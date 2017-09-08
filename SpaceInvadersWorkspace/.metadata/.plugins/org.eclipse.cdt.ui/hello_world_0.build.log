@@ -1,0 +1,33 @@
+
+**** Build of configuration Debug for project hello_world_0 ****
+
+make all 
+Building file: ../src/fibbonaci.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../hello_world_bsp_0/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v8.20.b -mno-xl-soft-mul -MMD -MP -MF"src/fibbonaci.d" -MT"src/fibbonaci.d" -o"src/fibbonaci.o" "../src/fibbonaci.c"
+Finished building: ../src/fibbonaci.c
+' '
+Building target: hello_world_0.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../hello_world_bsp_0/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v8.20.b -mno-xl-soft-mul -o"hello_world_0.elf"  ./src/fibbonaci.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: hello_world_0.elf
+' '
+Invoking: MicroBlaze Print Size
+mb-size hello_world_0.elf  |tee "hello_world_0.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+   4946	    300	   2094	   7340	   1cac	hello_world_0.elf
+Finished building: hello_world_0.elf.size
+' '
+Invoking: Xilinx ELF Check
+elfcheck hello_world_0.elf -hw ../../SpaceInvaders_hw_platform/system.xml -pe microblaze_0  |tee "hello_world_0.elf.elfcheck"
+elfcheck
+Xilinx EDK 13.4 Build EDK_O.87xd
+Copyright (c) 1995-2011 Xilinx, Inc.  All rights reserved.
+
+Command Line: elfcheck -hw ../../SpaceInvaders_hw_platform/system.xml -pe
+microblaze_0 hello_world_0.elf 
+
+ELF file	: hello_world_0.elf
+elfcheck passed.
+Finished building: hello_world_0.elf.elfcheck
+' '
