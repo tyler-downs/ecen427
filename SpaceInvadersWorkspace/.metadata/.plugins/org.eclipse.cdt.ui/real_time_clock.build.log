@@ -7,15 +7,25 @@ Invoking: MicroBlaze gcc compiler
 mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../hello_world_bsp_1/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v8.20.b -mno-xl-soft-mul -MMD -MP -MF"src/realtimeclock_main.d" -MT"src/realtimeclock_main.d" -o"src/realtimeclock_main.o" "../src/realtimeclock_main.c"
 Finished building: ../src/realtimeclock_main.c
 ' '
+Building file: ../src/setTimeSM.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../hello_world_bsp_1/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v8.20.b -mno-xl-soft-mul -MMD -MP -MF"src/setTimeSM.d" -MT"src/setTimeSM.d" -o"src/setTimeSM.o" "../src/setTimeSM.c"
+Finished building: ../src/setTimeSM.c
+' '
+Building file: ../src/sharedGlobals.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../hello_world_bsp_1/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v8.20.b -mno-xl-soft-mul -MMD -MP -MF"src/sharedGlobals.d" -MT"src/sharedGlobals.d" -o"src/sharedGlobals.o" "../src/sharedGlobals.c"
+Finished building: ../src/sharedGlobals.c
+' '
 Building target: real_time_clock.elf
 Invoking: MicroBlaze gcc linker
-mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../hello_world_bsp_1/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v8.20.b -mno-xl-soft-mul -o"real_time_clock.elf"  ./src/platform.o ./src/realtimeclock_main.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../hello_world_bsp_1/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v8.20.b -mno-xl-soft-mul -o"real_time_clock.elf"  ./src/platform.o ./src/realtimeclock_main.o ./src/setTimeSM.o ./src/sharedGlobals.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
 Finished building target: real_time_clock.elf
 ' '
 Invoking: MicroBlaze Print Size
 mb-size real_time_clock.elf  |tee "real_time_clock.elf.size"
    text	   data	    bss	    dec	    hex	filename
-   8014	    392	   2146	  10552	   2938	real_time_clock.elf
+   9638	    396	   2154	  12188	   2f9c	real_time_clock.elf
 Finished building: real_time_clock.elf.size
 ' '
 Invoking: Xilinx ELF Check

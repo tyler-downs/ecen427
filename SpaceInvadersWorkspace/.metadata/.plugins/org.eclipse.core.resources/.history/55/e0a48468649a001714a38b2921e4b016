@@ -1,0 +1,46 @@
+/*
+ * sharedGlobals.c
+ *
+ *  Created on: Sep 15, 2017
+ *      Author: superman
+ */
+
+u8 hour = HOUR_MAX; //current hour
+u8 min = MIN_SEC_MAX; //current minute
+u8 sec = 45; //current second
+
+u8 incSec() //increments seconds, returns true if rolls over
+{
+	if (sec >= MIN_SEC_MAX)
+	{
+		sec = 0;
+		return TRUE;
+	}
+	else
+	{
+		sec++;
+		return FALSE;
+	}
+}
+
+u8 incMin() //increments minutes, returns true if rolls over
+{
+	if (min >= MIN_SEC_MAX)
+	{
+		min = 0;
+		return TRUE;
+	}
+	else
+	{
+		min++;
+		return FALSE;
+	}
+}
+
+void incHour() //increments the hour
+{
+	if (hour >= HOUR_MAX)
+		hour = 0;
+	else
+		hour++;
+}

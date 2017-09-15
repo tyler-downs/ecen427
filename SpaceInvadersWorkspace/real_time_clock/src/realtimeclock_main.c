@@ -10,6 +10,8 @@
 #include "platform.h"       // Enables caching and other system stuff.
 #include "mb_interface.h"   // provides the microblaze interrupt enables, etc.
 #include "xintc_l.h"        // Provides handy macros for the interrupt controller.
+#include "setTimeSM.h"		// state machine for setting the clock
+#include "sharedGlobals.h"	//globals to share with setTime state machine
 
 #define FIT_TIMER_COUNTER_MAX 100 //One second at one interrupt every 10ms
 #define DEBOUNCE_COUNT_MAX 5 //5 10ms ticks gives us 50ms of debounce time
@@ -20,14 +22,27 @@
 #define PB_BTNL_MASK 0x0008 //Mask for identifying the left button
 #define PB_BTNU_MASK 0x0010 //Mask for identifying the up button
 
-
 XGpio gpLED;  // This is a handle for the LED GPIO block.
 XGpio gpPB;   // This is a handle for the push-button GPIO block.
 
 u32 currentButtonState = 0; //the state of the button register
-u32 previousButtonState = 0;
+u32 previousButtonState = 0; //for debouncing: checking if button state has changed
+
 u8 fitTimerCounter = 0; //Counter for the FIT to react every one second
 u32 debounceCounter = 0; //Counter used in debouncing the buttons
+
+
+
+
+void incrementTime() //increment the time and update the clock.
+{
+	if (incSec())
+	{
+		if (incMin())
+			incHour();
+	}
+	printClock(); //print the updated time to the clock
+}
 
 // This is invoked in response to a timer interrupt.
 // It does 2 things: 1) debounce switches, and 2) advances the time.
@@ -35,8 +50,10 @@ void timer_interrupt_handler() {
 	fitTimerCounter++;
 	if (fitTimerCounter > FIT_TIMER_COUNTER_MAX)
 	{
-		print(".");
 		fitTimerCounter = 0;
+		if (tickingEnabled)
+			incrementTime(); //update the time and clock.
+
 	}
 
 
@@ -45,9 +62,39 @@ void timer_interrupt_handler() {
 	if (debounceCounter >= 5 && previousButtonState != currentButtonState)
 	{
 		previousButtonState = currentButtonState;
+
+		//update button values
+		hour_btn = currentButtonState & PB_BTNL_MASK; //hour is left, bit 3
+		min_btn = currentButtonState & PB_BTNC_MASK; //min is center, bit 0
+		sec_btn = currentButtonState & PB_BTNR_MASK; //sec is right, bit 1
+		up_btn = currentButtonState & PB_BTNU_MASK; //up is bit 4
+		down_btn = currentButtonState & PB_BTND_MASK; //down is bit 2
+
 		//print the buttons
-		xil_printf("%x\n\r", currentButtonState);
+		//xil_printf("%x\n\r", currentButtonState);
+		/*if (currentButtonState & PB_BTNC_MASK)
+		{
+			print("center\n\r");
+		}
+		if (currentButtonState & PB_BTNR_MASK)
+		{
+			print("right\n\r");
+		}
+		if (currentButtonState & PB_BTND_MASK)
+		{
+			print("down\n\r");
+		}
+		if (currentButtonState & PB_BTNL_MASK)
+		{
+			print("left\n\r");
+		}
+		if (currentButtonState & PB_BTNU_MASK)
+		{
+			print("up\n\r");
+		}*/
 	}
+
+	setTime_tick(); //call tick function
 }
 
 // This is invoked each time there is a change in the button state (result of a push or a bounce).
