@@ -19,7 +19,7 @@ u8 hour = HOUR_MAX; //current hour
 u8 min = MIN_SEC_MAX; //current minute
 u8 sec = DEFAULT_SEC; //current second
 
-u8 tickingEnabled = TRUE; //flag that will be nonzero if the clock should automatically increment
+u8 tickingEnabled = 1; //flag that will be nonzero if the clock should automatically increment
 
 u8 incSec() //increments seconds, returns true if rolls over
 {

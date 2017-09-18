@@ -13,13 +13,11 @@ u8 sec_btn = 0; //right
 u8 up_btn = 0; //up
 u8 down_btn = 0; //down
 
-#define DEFAULT_SEC 45
-
 u8 hour = HOUR_MAX; //current hour
 u8 min = MIN_SEC_MAX; //current minute
-u8 sec = DEFAULT_SEC; //current second
+u8 sec = 45; //current second
 
-u8 tickingEnabled = TRUE; //flag that will be nonzero if the clock should automatically increment
+u8 tickingEnabled = 1; //flag that will be nonzero if the clock should automatically increment
 
 u8 incSec() //increments seconds, returns true if rolls over
 {

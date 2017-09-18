@@ -69,6 +69,29 @@ void timer_interrupt_handler() {
 		sec_btn = currentButtonState & PB_BTNR_MASK; //sec is right, bit 1
 		up_btn = currentButtonState & PB_BTNU_MASK; //up is bit 4
 		down_btn = currentButtonState & PB_BTND_MASK; //down is bit 2
+
+		//print the buttons
+		//xil_printf("%x\n\r", currentButtonState);
+		/*if (currentButtonState & PB_BTNC_MASK)
+		{
+			print("center\n\r");
+		}
+		if (currentButtonState & PB_BTNR_MASK)
+		{
+			print("right\n\r");
+		}
+		if (currentButtonState & PB_BTND_MASK)
+		{
+			print("down\n\r");
+		}
+		if (currentButtonState & PB_BTNL_MASK)
+		{
+			print("left\n\r");
+		}
+		if (currentButtonState & PB_BTNU_MASK)
+		{
+			print("up\n\r");
+		}*/
 	}
 
 	setTime_tick(); //call tick function
@@ -84,6 +107,9 @@ void pb_interrupt_handler() {
   XGpio_InterruptGlobalDisable(&gpPB);                // Turn off all PB interrupts for now
   currentButtonState = XGpio_DiscreteRead(&gpPB, 1);  // Get the current state of the buttons.
   // You need to do something here.
+  //xil_printf("%x\n\r", currentButtonState);
+  //print("#");
+  //if (currentButtonState)
 
   XGpio_InterruptClear(&gpPB, 0xFFFFFFFF);            // Ack the PB interrupt.
   XGpio_InterruptGlobalEnable(&gpPB);                 // Re-enable PB interrupts.
@@ -114,7 +140,7 @@ int main (void) {
     // Initialize the GPIO peripherals.
 
     int success;
-
+    //print("hello world\n\r");
     success = XGpio_Initialize(&gpPB, XPAR_PUSH_BUTTONS_5BITS_DEVICE_ID);
     // Set the push button peripheral to be inputs.
     XGpio_SetDataDirection(&gpPB, 1, 0x0000001F);
@@ -128,7 +154,7 @@ int main (void) {
     		(XPAR_FIT_TIMER_0_INTERRUPT_MASK | XPAR_PUSH_BUTTONS_5BITS_IP2INTC_IRPT_MASK));
     XIntc_MasterEnable(XPAR_INTC_0_BASEADDR);
     microblaze_enable_interrupts();
-
+    //print("Hello World\n\r");
     while(1);  // Program never ends.
 
 

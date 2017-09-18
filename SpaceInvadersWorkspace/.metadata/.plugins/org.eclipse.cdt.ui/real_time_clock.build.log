@@ -2,10 +2,10 @@
 **** Build of configuration Debug for project real_time_clock ****
 
 make all 
-Building file: ../src/setTimeSM.c
+Building file: ../src/sharedGlobals.c
 Invoking: MicroBlaze gcc compiler
-mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../hello_world_bsp_1/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v8.20.b -mno-xl-soft-mul -MMD -MP -MF"src/setTimeSM.d" -MT"src/setTimeSM.d" -o"src/setTimeSM.o" "../src/setTimeSM.c"
-Finished building: ../src/setTimeSM.c
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../hello_world_bsp_1/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v8.20.b -mno-xl-soft-mul -MMD -MP -MF"src/sharedGlobals.d" -MT"src/sharedGlobals.d" -o"src/sharedGlobals.o" "../src/sharedGlobals.c"
+Finished building: ../src/sharedGlobals.c
 ' '
 Building target: real_time_clock.elf
 Invoking: MicroBlaze gcc linker
