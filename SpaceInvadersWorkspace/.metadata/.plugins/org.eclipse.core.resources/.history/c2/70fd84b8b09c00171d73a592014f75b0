@@ -140,7 +140,7 @@ int main (void) {
     // Initialize the GPIO peripherals.
 
     int success;
-    //print("hello world\n\r");
+    print("hello world\n\r");
     success = XGpio_Initialize(&gpPB, XPAR_PUSH_BUTTONS_5BITS_DEVICE_ID);
     // Set the push button peripheral to be inputs.
     XGpio_SetDataDirection(&gpPB, 1, 0x0000001F);
@@ -154,7 +154,7 @@ int main (void) {
     		(XPAR_FIT_TIMER_0_INTERRUPT_MASK | XPAR_PUSH_BUTTONS_5BITS_IP2INTC_IRPT_MASK));
     XIntc_MasterEnable(XPAR_INTC_0_BASEADDR);
     microblaze_enable_interrupts();
-    //print("Hello World\n\r");
+    print("Hello World\n\r");
     while(1);  // Program never ends.
 
 

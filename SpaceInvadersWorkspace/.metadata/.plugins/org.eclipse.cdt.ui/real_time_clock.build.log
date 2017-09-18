@@ -2,20 +2,10 @@
 **** Build of configuration Debug for project real_time_clock ****
 
 make all 
-Building file: ../src/realtimeclock_main.c
-Invoking: MicroBlaze gcc compiler
-mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../hello_world_bsp_1/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v8.20.b -mno-xl-soft-mul -MMD -MP -MF"src/realtimeclock_main.d" -MT"src/realtimeclock_main.d" -o"src/realtimeclock_main.o" "../src/realtimeclock_main.c"
-Finished building: ../src/realtimeclock_main.c
-' '
 Building file: ../src/setTimeSM.c
 Invoking: MicroBlaze gcc compiler
 mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../hello_world_bsp_1/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v8.20.b -mno-xl-soft-mul -MMD -MP -MF"src/setTimeSM.d" -MT"src/setTimeSM.d" -o"src/setTimeSM.o" "../src/setTimeSM.c"
 Finished building: ../src/setTimeSM.c
-' '
-Building file: ../src/sharedGlobals.c
-Invoking: MicroBlaze gcc compiler
-mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../hello_world_bsp_1/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v8.20.b -mno-xl-soft-mul -MMD -MP -MF"src/sharedGlobals.d" -MT"src/sharedGlobals.d" -o"src/sharedGlobals.o" "../src/sharedGlobals.c"
-Finished building: ../src/sharedGlobals.c
 ' '
 Building target: real_time_clock.elf
 Invoking: MicroBlaze gcc linker
@@ -25,7 +15,7 @@ Finished building target: real_time_clock.elf
 Invoking: MicroBlaze Print Size
 mb-size real_time_clock.elf  |tee "real_time_clock.elf.size"
    text	   data	    bss	    dec	    hex	filename
-   9638	    396	   2154	  12188	   2f9c	real_time_clock.elf
+  10138	    396	   2166	  12700	   319c	real_time_clock.elf
 Finished building: real_time_clock.elf.size
 ' '
 Invoking: Xilinx ELF Check

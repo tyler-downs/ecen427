@@ -63,10 +63,6 @@ void downTime() //runs when down button is pushed to manually set time
 	//we don't care about rollover like in normal operation
 }
 
-u8 hour_hold_btn = 0; //the value of the hour button when auto-incrementing started
-u8 min_hold_btn = 0; //the value of the minute button when auto-incrementing started
-u8 sec_hold_btn = 0; //the value of the second button when auto-incrementing started
-
 void upTime_auto() //increments the hours, minutes, or seconds based on the saved button values
 {
 	if (sec_hold_btn != 0) //if second button is being pushed
@@ -98,6 +94,10 @@ void downTime_auto() //decrements the hours, minutes, or seconds based on the sa
 u16 holdTimer = 0; //timer for waiting to start auto-incrementing
 u16 incTimer = 0; //timer to control speed of auto-incrementing
 
+u8 hour_hold_btn = 0; //the value of the hour button when auto-incrementing started
+u8 min_hold_btn = 0; //the value of the minute button when auto-incrementing started
+u8 sec_hold_btn = 0; //the value of the second button when auto-incrementing started
+
 void saveButtons() //save the values of the buttons when auto-incrementing starts
 {
 	hour_hold_btn = hour_btn; //save the value of the hour button
@@ -120,22 +120,20 @@ void setTime_tick()
 		break;
 	case up_pressed_st:
 		tickingEnabled = FALSE; //stop the automatic clock ticking
-		holdTimer++; //increment the hold timer (to measure when to start auto-incrementing)
 		break;
 	case down_pressed_st:
 		tickingEnabled = FALSE; //stop the automatic clock ticking
-		holdTimer++; //increment the hold timer (to measure when to start auto-decrementing)
 		break;
 	case updown_pressed_st:
 		tickingEnabled = FALSE; //stop the automatic clock ticking
 		break;
 	case auto_up_st:
 		tickingEnabled = FALSE; //stop the automatic clock ticking
-		incTimer++; //increment the increment timer (to measure when to increment again in auto-incrementing)
+		holdTimer++;
 		break;
 	case auto_down_st:
 		tickingEnabled = FALSE; //stop the automatic clock ticking
-		incTimer++; //increment the increment timer (to measure when to decrement again in auto-decrementing)
+		holdTimer++;
 		break;
 	}
 

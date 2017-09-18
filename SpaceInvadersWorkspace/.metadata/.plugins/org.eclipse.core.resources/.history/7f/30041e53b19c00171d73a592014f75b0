@@ -120,22 +120,20 @@ void setTime_tick()
 		break;
 	case up_pressed_st:
 		tickingEnabled = FALSE; //stop the automatic clock ticking
-		holdTimer++; //increment the hold timer (to measure when to start auto-incrementing)
 		break;
 	case down_pressed_st:
 		tickingEnabled = FALSE; //stop the automatic clock ticking
-		holdTimer++; //increment the hold timer (to measure when to start auto-decrementing)
 		break;
 	case updown_pressed_st:
 		tickingEnabled = FALSE; //stop the automatic clock ticking
 		break;
 	case auto_up_st:
 		tickingEnabled = FALSE; //stop the automatic clock ticking
-		incTimer++; //increment the increment timer (to measure when to increment again in auto-incrementing)
+		holdTimer++;
 		break;
 	case auto_down_st:
 		tickingEnabled = FALSE; //stop the automatic clock ticking
-		incTimer++; //increment the increment timer (to measure when to decrement again in auto-decrementing)
+		holdTimer++;
 		break;
 	}
 

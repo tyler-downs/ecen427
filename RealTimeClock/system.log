@@ -1515,3 +1515,35 @@ Xilinx Software Development Kit
 Xilinx EDK 13.4 Build EDK_O.87xd
 Copyright (c) 1995-2010 Xilinx, Inc.  All rights reserved.
 Done!
+Writing filter settings....
+Done writing filter settings to:
+	C:\Users\superman\Documents\TylerBondGithub\ecen427\RealTimeClock\etc\system.filters
+Done writing Tab View settings to:
+	C:\Users\superman\Documents\TylerBondGithub\ecen427\RealTimeClock\etc\system.gui
+Xilinx Platform Studio (XPS)
+Xilinx EDK 13.4 Build EDK_O.87xd
+Copyright (c) 1995-2011 Xilinx, Inc.  All rights reserved.
+
+Writing filter settings....
+Done writing filter settings to:
+	C:\Users\superman\Documents\TylerBondGithub\ecen427\RealTimeClock\etc\system.filters
+Done writing Tab View settings to:
+	C:\Users\superman\Documents\TylerBondGithub\ecen427\RealTimeClock\etc\system.gui
+Xilinx Platform Studio (XPS)
+Xilinx EDK 13.4 Build EDK_O.87xd
+Copyright (c) 1995-2011 Xilinx, Inc.  All rights reserved.
+
+
+********************************************************************************
+At Local date and time: Mon Sep 18 13:57:24 2017
+ make -f system.make exporttosdk started...
+make: Nothing to be done for `exporttosdk'.
+Done!
+
+********************************************************************************
+At Local date and time: Mon Sep 18 13:57:24 2017
+ xsdk.exe -hwspec C:\Users\superman\Documents\TylerBondGithub\ecen427\RealTimeClock\SDK\SDK_Export\hw\system.xml started...
+Xilinx Software Development Kit
+Xilinx EDK 13.4 Build EDK_O.87xd
+Copyright (c) 1995-2010 Xilinx, Inc.  All rights reserved.
+Done!

@@ -1,14 +1,26 @@
-#Fri Sep 08 15:00:22 MDT 2017
-com.xilinx.sdk.linkgen.prefs.hello_world_0\:Stack-size=1024
-com.xilinx.sdk.linkgen.prefs.hello_world_0\:.sdata2=microblaze_0_i_bram_ctrl_microblaze_0_d_bram_ctrl
-com.xilinx.sdk.linkgen.prefs.hello_world_0\:.text=microblaze_0_i_bram_ctrl_microblaze_0_d_bram_ctrl
-com.xilinx.sdk.linkgen.prefs.hello_world_0\:.rodata=microblaze_0_i_bram_ctrl_microblaze_0_d_bram_ctrl
-com.xilinx.sdk.linkgen.prefs.hello_world_0\:.sbss2=microblaze_0_i_bram_ctrl_microblaze_0_d_bram_ctrl
-com.xilinx.sdk.linkgen.prefs.hello_world_0\:Heap-size=1024
-com.xilinx.sdk.linkgen.prefs.hello_world_0\:.bss=microblaze_0_i_bram_ctrl_microblaze_0_d_bram_ctrl
+#Fri Sep 15 17:18:07 MDT 2017
+com.xilinx.sdk.linkgen.prefs.real_time_clock\:.sdata2=microblaze_0_i_bram_ctrl_microblaze_0_d_bram_ctrl
 com.xilinx.sdk.linkgen.prefs.hello_world_0\:.sdata=microblaze_0_i_bram_ctrl_microblaze_0_d_bram_ctrl
-com.xilinx.sdk.linkgen.prefs.hello_world_0\:.sbss=microblaze_0_i_bram_ctrl_microblaze_0_d_bram_ctrl
 com.xilinx.sdk.linkgen.prefs.hello_world_0\:Heap=microblaze_0_i_bram_ctrl_microblaze_0_d_bram_ctrl
+com.xilinx.sdk.linkgen.prefs.hello_world_0\:.text=microblaze_0_i_bram_ctrl_microblaze_0_d_bram_ctrl
+com.xilinx.sdk.linkgen.prefs.real_time_clock\:.sbss2=microblaze_0_i_bram_ctrl_microblaze_0_d_bram_ctrl
+com.xilinx.sdk.linkgen.prefs.real_time_clock\:.rodata=microblaze_0_i_bram_ctrl_microblaze_0_d_bram_ctrl
+com.xilinx.sdk.linkgen.prefs.real_time_clock\:Heap=microblaze_0_i_bram_ctrl_microblaze_0_d_bram_ctrl
+com.xilinx.sdk.linkgen.prefs.real_time_clock\:.text=microblaze_0_i_bram_ctrl_microblaze_0_d_bram_ctrl
 eclipse.preferences.version=1
+com.xilinx.sdk.linkgen.prefs.hello_world_0\:.sbss2=microblaze_0_i_bram_ctrl_microblaze_0_d_bram_ctrl
+com.xilinx.sdk.linkgen.prefs.hello_world_0\:.sdata2=microblaze_0_i_bram_ctrl_microblaze_0_d_bram_ctrl
 com.xilinx.sdk.linkgen.prefs.hello_world_0\:.data=microblaze_0_i_bram_ctrl_microblaze_0_d_bram_ctrl
+com.xilinx.sdk.linkgen.prefs.hello_world_0\:.rodata=microblaze_0_i_bram_ctrl_microblaze_0_d_bram_ctrl
+com.xilinx.sdk.linkgen.prefs.hello_world_0\:.sbss=microblaze_0_i_bram_ctrl_microblaze_0_d_bram_ctrl
+com.xilinx.sdk.linkgen.prefs.real_time_clock\:Heap-size=1024
+com.xilinx.sdk.linkgen.prefs.hello_world_0\:Stack-size=1024
+com.xilinx.sdk.linkgen.prefs.real_time_clock\:.data=microblaze_0_i_bram_ctrl_microblaze_0_d_bram_ctrl
+com.xilinx.sdk.linkgen.prefs.real_time_clock\:Stack-size=1024
+com.xilinx.sdk.linkgen.prefs.hello_world_0\:.bss=microblaze_0_i_bram_ctrl_microblaze_0_d_bram_ctrl
+com.xilinx.sdk.linkgen.prefs.real_time_clock\:.bss=microblaze_0_i_bram_ctrl_microblaze_0_d_bram_ctrl
+com.xilinx.sdk.linkgen.prefs.real_time_clock\:.sbss=microblaze_0_i_bram_ctrl_microblaze_0_d_bram_ctrl
+com.xilinx.sdk.linkgen.prefs.hello_world_0\:Heap-size=1024
 com.xilinx.sdk.linkgen.prefs.hello_world_0\:Stack=microblaze_0_i_bram_ctrl_microblaze_0_d_bram_ctrl
+com.xilinx.sdk.linkgen.prefs.real_time_clock\:.sdata=microblaze_0_i_bram_ctrl_microblaze_0_d_bram_ctrl
+com.xilinx.sdk.linkgen.prefs.real_time_clock\:Stack=microblaze_0_i_bram_ctrl_microblaze_0_d_bram_ctrl
