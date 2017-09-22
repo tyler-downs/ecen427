@@ -1,0 +1,10 @@
+
+**** Build of configuration Debug for project helloWorld ****
+
+make all 
+Building file: ../main.c
+Invoking: ARM gcc compiler
+arm-xilinx-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d" -o"main.o" "../main.c"
+'arm-xilinx-eabi-gcc' is not recognized as an internal or external command,
+operable program or batch file.
+make: *** [main.o] Error 1

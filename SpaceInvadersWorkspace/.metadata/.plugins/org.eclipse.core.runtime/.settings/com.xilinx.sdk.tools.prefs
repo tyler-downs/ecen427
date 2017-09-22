@@ -1,4 +1,4 @@
-#Fri Sep 15 17:18:07 MDT 2017
+#Fri Sep 22 13:02:39 MDT 2017
 com.xilinx.sdk.linkgen.prefs.real_time_clock\:.sdata2=microblaze_0_i_bram_ctrl_microblaze_0_d_bram_ctrl
 com.xilinx.sdk.linkgen.prefs.hello_world_0\:.sdata=microblaze_0_i_bram_ctrl_microblaze_0_d_bram_ctrl
 com.xilinx.sdk.linkgen.prefs.hello_world_0\:Heap=microblaze_0_i_bram_ctrl_microblaze_0_d_bram_ctrl
@@ -14,7 +14,7 @@ com.xilinx.sdk.linkgen.prefs.hello_world_0\:.data=microblaze_0_i_bram_ctrl_micro
 com.xilinx.sdk.linkgen.prefs.hello_world_0\:.rodata=microblaze_0_i_bram_ctrl_microblaze_0_d_bram_ctrl
 com.xilinx.sdk.linkgen.prefs.hello_world_0\:.sbss=microblaze_0_i_bram_ctrl_microblaze_0_d_bram_ctrl
 com.xilinx.sdk.linkgen.prefs.real_time_clock\:Heap-size=1024
-com.xilinx.sdk.linkgen.prefs.hello_world_0\:Stack-size=1024
+com.xilinx.sdk.linkgen.prefs.hello_world_0\:Stack-size=4096
 com.xilinx.sdk.linkgen.prefs.real_time_clock\:.data=microblaze_0_i_bram_ctrl_microblaze_0_d_bram_ctrl
 com.xilinx.sdk.linkgen.prefs.real_time_clock\:Stack-size=1024
 com.xilinx.sdk.linkgen.prefs.hello_world_0\:.bss=microblaze_0_i_bram_ctrl_microblaze_0_d_bram_ctrl

@@ -91,11 +91,15 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
-					<fileInfo id="xilinx.gnu.mb.exe.debug.439407076.200809780" name="helloworld.c" rcbsApplicability="disable" resourcePath="src/helloworld.c" toolsToInvoke="xilinx.gnu.mb.c.toolchain.compiler.debug.455030060.373429968">
-						<tool id="xilinx.gnu.mb.c.toolchain.compiler.debug.455030060.373429968" name="MicroBlaze gcc compiler" superClass="xilinx.gnu.mb.c.toolchain.compiler.debug.455030060"/>
+					<fileInfo id="xilinx.gnu.mb.exe.debug.439407076.478214195" name="lscript.ld" rcbsApplicability="disable" resourcePath="src/lscript.ld" toolsToInvoke="xilinx.gnu.mb.c.toolchain.linker.debug.114207700.2035210370">
+						<tool id="xilinx.gnu.mb.c.toolchain.linker.debug.114207700.2035210370" name="MicroBlaze gcc linker" superClass="xilinx.gnu.mb.c.toolchain.linker.debug.114207700"/>
 					</fileInfo>
+					<fileInfo id="xilinx.gnu.mb.exe.debug.439407076.2076070191" name="platform.h" rcbsApplicability="disable" resourcePath="src/platform.h" toolsToInvoke=""/>
+					<fileInfo id="xilinx.gnu.mb.exe.debug.439407076.193167174" name="sharedGlobals.h" rcbsApplicability="disable" resourcePath="src/sharedGlobals.h" toolsToInvoke=""/>
+					<fileInfo id="xilinx.gnu.mb.exe.debug.439407076.19872890" name="platform_config.h" rcbsApplicability="disable" resourcePath="src/platform_config.h" toolsToInvoke=""/>
+					<fileInfo id="xilinx.gnu.mb.exe.debug.439407076.1491249582" name="setTimeSM.h" rcbsApplicability="disable" resourcePath="src/setTimeSM.h" toolsToInvoke=""/>
 					<sourceEntries>
-						<entry excluding="src/helloworld.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="src/lscript.ld|src/platform.c|src/platform.h|src/platform_config.h|src/setTimeSM.c|src/setTimeSM.h|src/sharedGlobals.c|src/sharedGlobals.h|src/realtimeclock_main.c|src/helloworld.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -716,6 +720,7 @@
 			</storageModule>
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
 			<storageModule moduleId="org.eclipse.cdt.core.language.mapping"/>
+			<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
 		</cconfiguration>
 		<cconfiguration id="xilinx.gnu.mb.exe.release.389810664">
 			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="xilinx.gnu.mb.exe.release.389810664" moduleId="org.eclipse.cdt.core.settings" name="Release">
@@ -1424,6 +1429,7 @@
 			</storageModule>
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
 			<storageModule moduleId="org.eclipse.cdt.core.language.mapping"/>
+			<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
 		</cconfiguration>
 	</storageModule>
 	<storageModule moduleId="cdtBuildSystem" version="4.0.0">

@@ -25,15 +25,11 @@ extern void XNullHandler (void *);
 XIntc_Config XIntc_ConfigTable[] =
 {
 	{
-		XPAR_MICROBLAZE_0_INTC_DEVICE_ID,
-		XPAR_MICROBLAZE_0_INTC_BASEADDR,
-		XPAR_MICROBLAZE_0_INTC_KIND_OF_INTR,
+		XPAR_AXI_INTC_0_DEVICE_ID,
+		XPAR_AXI_INTC_0_BASEADDR,
+		XPAR_AXI_INTC_0_KIND_OF_INTR,
 		XIN_SVC_SGL_ISR_OPTION,
 		{
-			{
-				XNullHandler,
-				(void *) XNULL
-			},
 			{
 				XNullHandler,
 				(void *) XNULL

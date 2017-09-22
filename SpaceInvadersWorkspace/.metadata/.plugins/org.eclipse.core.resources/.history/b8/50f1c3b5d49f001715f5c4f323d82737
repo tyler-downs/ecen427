@@ -1,0 +1,14 @@
+/*
+ * render.c
+ *
+ *  Created on: Sep 22, 2017
+ *      Author: superman
+ */
+
+#include "render.h"
+
+void render()
+{
+
+}
+

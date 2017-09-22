@@ -1,0 +1,22 @@
+/*
+ * main.c
+ *
+ *  Created on: Sep 22, 2017
+ *      Author: superman
+ */
+
+#include <stdio.h>
+#include "platform.h"
+
+void print(char *str);
+
+int main()
+{
+    init_platform();
+
+    print("Hello World\n\r");
+
+    cleanup_platform();
+
+    return 0;
+}

@@ -14,11 +14,11 @@
 #include "mb_interface.h"   // provides the microblaze interrupt enables, etc.
 #include "xintc_l.h"        // Provides handy macros for the interrupt controller.
 
-#define HOUR_MAX 23
-#define MIN_SEC_MAX 59
+#define HOUR_MAX 23 //max value for hours before resetting
+#define MIN_SEC_MAX 59 //max value for minutes and seconds before resetting
 
-#define TRUE 1
-#define FALSE 0
+#define TRUE 1 //used in lieu of bool
+#define FALSE 0 //used in lieu of bool
 
 //these are the values of the debounced buttons
 extern u8 hour_btn; //left

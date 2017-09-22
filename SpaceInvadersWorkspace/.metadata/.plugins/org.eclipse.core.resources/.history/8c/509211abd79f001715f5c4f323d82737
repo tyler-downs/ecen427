@@ -1,0 +1,20 @@
+/*
+ * renderTest.c
+ *
+ *  Created on: Sep 22, 2017
+ *      Author: superman
+ */
+
+#include "renderTest.h"
+#include <stdio.h>
+
+void renderTest()
+{
+	init_platform(); // Necessary for all programs.
+	disp_init(); //draw the original screen
+	while(1)
+	{
+		char input;
+		input = getchar();
+	}
+}

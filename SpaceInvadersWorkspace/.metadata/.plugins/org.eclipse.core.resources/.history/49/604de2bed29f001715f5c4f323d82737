@@ -1,0 +1,21 @@
+/*
+ * globals.h
+ *
+ *  Created on: Sep 22, 2017
+ *      Author: superman
+ */
+
+#ifndef GLOBALS_H_
+#define GLOBALS_H_
+
+#define <stdint.h>
+
+typedef struct {uint16_t x; uint16_t y;} point_t;
+
+void setTankPositionGlobal(uint16_t val);
+uint16_t getTankPositionGlobal();
+
+void setTankBulletPosition(point_t val);
+point_t getTankBulletPosition();
+
+#endif /* GLOBALS_H_ */

@@ -1,0 +1,15 @@
+/*
+ * render.h
+ *
+ *  Created on: Sep 22, 2017
+ *      Author: superman
+ */
+
+#ifndef RENDER_H_
+#define RENDER_H_
+#include "globals.h"
+
+void disp_init();
+void render();
+
+#endif /* RENDER_H_ */

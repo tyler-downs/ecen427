@@ -1,33 +1,4 @@
 
-**** Build of configuration Debug for project real_time_clock ****
+****  of configuration Debug for project real_time_clock ****
 
-make all 
-Building file: ../src/sharedGlobals.c
-Invoking: MicroBlaze gcc compiler
-mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../hello_world_bsp_1/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v8.20.b -mno-xl-soft-mul -MMD -MP -MF"src/sharedGlobals.d" -MT"src/sharedGlobals.d" -o"src/sharedGlobals.o" "../src/sharedGlobals.c"
-Finished building: ../src/sharedGlobals.c
-' '
-Building target: real_time_clock.elf
-Invoking: MicroBlaze gcc linker
-mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../hello_world_bsp_1/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v8.20.b -mno-xl-soft-mul -o"real_time_clock.elf"  ./src/platform.o ./src/realtimeclock_main.o ./src/setTimeSM.o ./src/sharedGlobals.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
-Finished building target: real_time_clock.elf
-' '
-Invoking: MicroBlaze Print Size
-mb-size real_time_clock.elf  |tee "real_time_clock.elf.size"
-   text	   data	    bss	    dec	    hex	filename
-  10138	    396	   2166	  12700	   319c	real_time_clock.elf
-Finished building: real_time_clock.elf.size
-' '
-Invoking: Xilinx ELF Check
-elfcheck real_time_clock.elf -hw ../../SpaceInvaders_hw_platform/system.xml -pe microblaze_0  |tee "real_time_clock.elf.elfcheck"
-elfcheck
-Xilinx EDK 13.4 Build EDK_O.87xd
-Copyright (c) 1995-2011 Xilinx, Inc.  All rights reserved.
-
-Command Line: elfcheck -hw ../../SpaceInvaders_hw_platform/system.xml -pe
-microblaze_0 real_time_clock.elf 
-
-ELF file	: real_time_clock.elf
-elfcheck passed.
-Finished building: real_time_clock.elf.elfcheck
-' '
+Nothing to build for project real_time_clock
