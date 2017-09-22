@@ -15,5 +15,9 @@ void renderTest()
 	{
 		char input;
 		input = getchar();
+		if (input == '8')
+		{
+			render();
+		}
 	}
 }

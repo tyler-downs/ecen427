@@ -12,7 +12,7 @@ src/renderMain.d src/renderMain.o: ../src/renderMain.c ../src/platform.h \
   ../../hello_world_bsp_2/microblaze_0/include/xdebug.h \
   ../../hello_world_bsp_2/microblaze_0/include/xstatus.h \
   ../../hello_world_bsp_2/microblaze_0/include/xil_assert.h \
-  ../../hello_world_bsp_2/microblaze_0/include/xio.h
+  ../../hello_world_bsp_2/microblaze_0/include/xio.h ../src/bitmaps.h
 
 ../src/platform.h:
 
@@ -47,3 +47,5 @@ src/renderMain.d src/renderMain.o: ../src/renderMain.c ../src/platform.h \
 ../../hello_world_bsp_2/microblaze_0/include/xil_assert.h:
 
 ../../hello_world_bsp_2/microblaze_0/include/xio.h:
+
+../src/bitmaps.h:

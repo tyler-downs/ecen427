@@ -2,15 +2,18 @@
 **** Build of configuration Debug for project SpaceInvaders ****
 
 make all 
-Building file: ../src/renderMain.c
+Building file: ../src/render.c
 Invoking: MicroBlaze gcc compiler
-mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../hello_world_bsp_2/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v8.20.b -mno-xl-soft-mul -MMD -MP -MF"src/renderMain.d" -MT"src/renderMain.d" -o"src/renderMain.o" "../src/renderMain.c"
-Finished building: ../src/renderMain.c
-' '
-Building file: ../src/renderTest.c
-Invoking: MicroBlaze gcc compiler
-mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../hello_world_bsp_2/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v8.20.b -mno-xl-soft-mul -MMD -MP -MF"src/renderTest.d" -MT"src/renderTest.d" -o"src/renderTest.o" "../src/renderTest.c"
-Finished building: ../src/renderTest.c
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../hello_world_bsp_2/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v8.20.b -mno-xl-soft-mul -MMD -MP -MF"src/render.d" -MT"src/render.d" -o"src/render.o" "../src/render.c"
+../src/render.c: In function 'drawTankInit':
+../src/render.c:62: warning: passing argument 1 of 'drawObject' discards qualifiers from pointer target type
+../src/render.c: In function 'drawBunkersInit':
+../src/render.c:78: warning: passing argument 1 of 'drawObject' discards qualifiers from pointer target type
+../src/render.c: In function 'drawAliensInit':
+../src/render.c:103: warning: passing argument 1 of 'drawObject' discards qualifiers from pointer target type
+../src/render.c:105: warning: passing argument 1 of 'drawObject' discards qualifiers from pointer target type
+../src/render.c:107: warning: passing argument 1 of 'drawObject' discards qualifiers from pointer target type
+Finished building: ../src/render.c
 ' '
 Building target: SpaceInvaders.elf
 Invoking: MicroBlaze gcc linker
@@ -20,7 +23,7 @@ Finished building target: SpaceInvaders.elf
 Invoking: MicroBlaze Print Size
 mb-size SpaceInvaders.elf  |tee "SpaceInvaders.elf.size"
    text	   data	    bss	    dec	    hex	filename
-  22284	   1420	   5284	  28988	   713c	SpaceInvaders.elf
+  24700	   1428	   5284	  31412	   7ab4	SpaceInvaders.elf
 Finished building: SpaceInvaders.elf.size
 ' '
 Invoking: Xilinx ELF Check

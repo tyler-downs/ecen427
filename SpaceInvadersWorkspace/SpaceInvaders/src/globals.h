@@ -10,6 +10,11 @@
 
 #include <stdint.h>
 
+#define BLACK 0x00000000
+#define GREEN 0x0000FF00
+#define WHITE 0x00FFFFFF
+#define RED	  0x00FF0000
+
 typedef struct {uint16_t x; uint16_t y;} point_t;
 typedef enum {cross_bullet, ziggy_bullet} bullet_type;
 
