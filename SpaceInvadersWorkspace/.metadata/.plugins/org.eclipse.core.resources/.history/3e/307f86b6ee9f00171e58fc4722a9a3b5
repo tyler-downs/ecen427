@@ -222,7 +222,7 @@ packword6(1,1,1,1,1,1),
 packword6(1,1,1,1,1,1)
 };
 
-static const uint32_t lives_18x5[] = {
+static const uint32_t lives_?x5[] = {
 packword18(1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1),
 packword18(1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0),
 packword18(1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0),

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="21" version="2.0">
+<workbench progressCount="15" version="2.0">
 <workbenchAdvisor/>
 <window height="1160" maximized="true" width="1092" x="0" y="0">
 <fastViewData fastViewLocation="1024"/>
@@ -37,13 +37,13 @@
 </folder>
 </info>
 </editorArea>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="fibbonaci.c" partName="fibbonaci.c" path="C:/Users/superman/Documents/TylerBondGithub/ecen427/SpaceInvadersWorkspace/hello_world_0/src/fibbonaci.c" title="fibbonaci.c" tooltip="hello_world_0/src/fibbonaci.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/hello_world_0/src/fibbonaci.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="render.c" partName="render.c" path="C:/Users/superman/Documents/TylerBondGithub/ecen427/SpaceInvadersWorkspace/SpaceInvaders/src/render.c" title="render.c" tooltip="SpaceInvaders/src/render.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SpaceInvaders/src/render.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="6984" selectionTopPixel="2797"/>
 </editor>
-<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="helloworld.c" partName="helloworld.c" path="C:/Users/superman/Documents/TylerBondGithub/ecen427/SpaceInvadersWorkspace/hello_world_0/src/helloworld.c" title="helloworld.c" tooltip="hello_world_0/src/helloworld.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/hello_world_0/src/helloworld.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="889" selectionTopPixel="0"/>
+<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="bitmaps.h" partName="bitmaps.h" path="C:/Users/superman/Documents/TylerBondGithub/ecen427/SpaceInvadersWorkspace/SpaceInvaders/src/bitmaps.h" title="bitmaps.h" tooltip="SpaceInvaders/src/bitmaps.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SpaceInvaders/src/bitmaps.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="8736" selectionTopPixel="2093"/>
 </editor>
 </editors>
 <views>
@@ -61,6 +61,7 @@
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
 <expanded>
+<category IMemento.internal.id="Warnings (16 items)"/>
 <category IMemento.internal.id="Warnings"/>
 <category IMemento.internal.id="Errors"/>
 </expanded>
@@ -86,7 +87,7 @@
 <viewState/>
 </view>
 </views>
-<perspectives activePart="org.eclipse.ui.views.ProblemView" activePerspective="org.eclipse.cdt.ui.CPerspective">
+<perspectives activePart="org.eclipse.cdt.ui.editor.CEditor" activePerspective="org.eclipse.cdt.ui.CPerspective">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="org.eclipse.cdt.internal.ui.CPerspectiveFactory" id="org.eclipse.cdt.ui.CPerspective" label="C/C++"/>
 <alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
@@ -172,7 +173,7 @@
 </info>
 <info part="org.eclipse.ui.editorss" ratio="0.2155797" ratioLeft="357" ratioRight="1299" relationship="2" relative="topLeft"/>
 <info folder="true" part="bottom" ratio="0.7205323" ratioLeft="758" ratioRight="294" relationship="4" relative="org.eclipse.ui.editorss">
-<folder activePageID="org.eclipse.ui.views.ProblemView" appearance="2" expanded="2">
+<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
 <page content="org.eclipse.ui.views.TaskList" label="Tasks"/>
 <page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
@@ -222,28 +223,9 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_0/src/fibbonaci.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_0/vdmaTest.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_0/src/vdmaTest.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/SpaceInvaders/src/render.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/SpaceInvaders/src/bitmaps.h"/>
 </editors>
-<item historyLabel="setTimeSM.c" index="0">
-<position info="not_deleted" x="3298" y="0"/>
-</item>
-<item historyLabel="setTimeSM.c" index="0">
-<position info="not_deleted" x="6184" y="0"/>
-</item>
-<item historyLabel="setTimeSM.c" index="0">
-<position info="not_deleted" x="1828" y="0"/>
-</item>
-<item historyLabel="setTimeSM.c" index="0">
-<position info="not_deleted" x="8327" y="0"/>
-</item>
-<item historyLabel="setTimeSM.c" index="0">
-<position info="not_deleted" x="8477" y="0"/>
-</item>
-<item historyLabel="setTimeSM.c" index="0">
-<position info="not_deleted" x="8908" y="0"/>
-</item>
-<item historyLabel="setTimeSM.c" index="0">
-<position info="not_deleted" x="9231" y="0"/>
-</item>
 <item historyLabel="setTimeSM.c" index="0">
 <position info="not_deleted" x="9370" y="0"/>
 </item>
@@ -370,8 +352,29 @@
 <item historyLabel="vdmaTest.c" index="16">
 <position info="not_deleted" x="7170" y="0"/>
 </item>
-<item active="true" historyLabel="helloworld.c" index="13">
+<item historyLabel="helloworld.c" index="13">
 <position info="not_deleted" x="889" y="0"/>
+</item>
+<item historyLabel="render.c" index="18">
+<position info="not_deleted" x="1010" y="0"/>
+</item>
+<item historyLabel="bitmaps.h" index="19">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="bitmaps.h" index="19">
+<position info="not_deleted" x="8739" y="0"/>
+</item>
+<item historyLabel="bitmaps.h" index="19">
+<position info="not_deleted" x="8811" y="2"/>
+</item>
+<item historyLabel="bitmaps.h" index="19">
+<position info="not_deleted" x="8736" y="0"/>
+</item>
+<item historyLabel="render.c" index="18">
+<position info="not_deleted" x="6984" y="0"/>
+</item>
+<item active="true" historyLabel="bitmaps.h" index="19">
+<position info="not_deleted" x="8736" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -379,13 +382,6 @@
 <workbenchWindowAdvisor/>
 <actionBarAdvisor/>
 <trimLayout>
-<trimArea IMemento.internal.id="16384">
-<trimItem IMemento.internal.id="topLeft"/>
-</trimArea>
-<trimArea IMemento.internal.id="131072">
-<trimItem IMemento.internal.id="topRight"/>
-<trimItem IMemento.internal.id="org.eclipse.ui.internal.ViewStack@3bdacb2b"/>
-</trimArea>
 <trimArea IMemento.internal.id="128">
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.WorkbenchWindow.topBar"/>
 </trimArea>
@@ -393,11 +389,16 @@
 <trimItem IMemento.internal.id="org.eclise.ui.internal.FastViewBar"/>
 <trimItem IMemento.internal.id="org.eclipse.jface.action.StatusLineManager"/>
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.progress.ProgressRegion"/>
-<trimItem IMemento.internal.id="bottom"/>
 </trimArea>
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="bitmaps.h" tooltip="SpaceInvaders/src/bitmaps.h">
+<persistable path="/SpaceInvaders/src/bitmaps.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="render.c" tooltip="SpaceInvaders/src/render.c">
+<persistable path="/SpaceInvaders/src/render.c"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="vdmaTest.c" tooltip="hello_world_0/vdmaTest.c">
 <persistable path="/hello_world_0/vdmaTest.c"/>
 </file>
@@ -436,12 +437,6 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="xgpio.h" tooltip="hello_world_bsp_1/microblaze_0/libsrc/gpio_v3_00_a/src/xgpio.h">
 <persistable path="/hello_world_bsp_1/microblaze_0/libsrc/gpio_v3_00_a/src/xgpio.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="xgpio_l.h" tooltip="hello_world_bsp_0/microblaze_0/libsrc/gpio_v3_00_a/src/xgpio_l.h">
-<persistable path="/hello_world_bsp_0/microblaze_0/libsrc/gpio_v3_00_a/src/xgpio_l.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="xgpio.c" tooltip="hello_world_bsp_0/microblaze_0/libsrc/gpio_v3_00_a/src/xgpio.c">
-<persistable path="/hello_world_bsp_0/microblaze_0/libsrc/gpio_v3_00_a/src/xgpio.c"/>
 </file>
 </mruList>
 </workbench>

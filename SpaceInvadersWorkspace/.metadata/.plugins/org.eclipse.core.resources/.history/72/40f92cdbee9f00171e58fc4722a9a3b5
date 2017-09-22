@@ -183,8 +183,6 @@ void disp_init()
 	drawTankInit(); //draw the tank
 	drawBunkersInit(); //draw the bunkers
 	drawAliensInit(); //draw the block of aliens
-	point_t p = {0, 0};
-	drawObject(lives_18x5, 18, 5, p, WHITE);
 
 
 

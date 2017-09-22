@@ -13,6 +13,8 @@ mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../hello_world_bsp_2/microblaze_
 ../src/render.c:103: warning: passing argument 1 of 'drawObject' discards qualifiers from pointer target type
 ../src/render.c:105: warning: passing argument 1 of 'drawObject' discards qualifiers from pointer target type
 ../src/render.c:107: warning: passing argument 1 of 'drawObject' discards qualifiers from pointer target type
+../src/render.c: In function 'disp_init':
+../src/render.c:187: warning: passing argument 1 of 'drawObject' discards qualifiers from pointer target type
 Finished building: ../src/render.c
 ' '
 Building target: SpaceInvaders.elf
@@ -23,7 +25,7 @@ Finished building target: SpaceInvaders.elf
 Invoking: MicroBlaze Print Size
 mb-size SpaceInvaders.elf  |tee "SpaceInvaders.elf.size"
    text	   data	    bss	    dec	    hex	filename
-  24700	   1428	   5284	  31412	   7ab4	SpaceInvaders.elf
+  24808	   1428	   5280	  31516	   7b1c	SpaceInvaders.elf
 Finished building: SpaceInvaders.elf.size
 ' '
 Invoking: Xilinx ELF Check

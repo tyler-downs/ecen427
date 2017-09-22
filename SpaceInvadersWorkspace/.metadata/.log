@@ -258,3 +258,86 @@ org.eclipse.core.runtime.AssertionFailedException: unknown saveable: org.eclipse
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:575)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1408)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1384)
+
+!ENTRY org.eclipse.ui.workbench 2 0 2017-09-22 17:26:17.285
+!MESSAGE A handler conflict occurred.  This may disable some commands.
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-09-22 17:26:17.285
+!MESSAGE Conflict for 'org.eclipse.cdt.ui.edit.text.c.toggleMarkOccurrences':
+HandlerActivation(commandId=org.eclipse.cdt.ui.edit.text.c.toggleMarkOccurrences,
+	handler=ActionHandler(org.eclipse.cdt.internal.ui.editor.ToggleMarkOccurrencesAction@4b848b3a),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@56f052d5)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.cdt.ui.edit.text.c.toggleMarkOccurrences,
+	handler=ActionHandler(org.eclipse.cdt.internal.ui.editor.ToggleMarkOccurrencesAction@6ad0b391),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@56f052d5)),sourcePriority=4210689)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-09-22 17:26:17.285
+!MESSAGE Conflict for 'org.eclipse.cdt.ui.refactor.extract.constant':
+HandlerActivation(commandId=org.eclipse.cdt.ui.refactor.extract.constant,
+	handler=ActionHandler(org.eclipse.cdt.ui.refactoring.actions.ExtractConstantAction@2bbd2b60),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@56f052d5)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.cdt.ui.refactor.extract.constant,
+	handler=ActionHandler(org.eclipse.cdt.ui.refactoring.actions.ExtractConstantAction@106ac20f),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@56f052d5)),sourcePriority=4210689)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-09-22 17:26:17.285
+!MESSAGE Conflict for 'org.eclipse.cdt.ui.refactor.extract.function':
+HandlerActivation(commandId=org.eclipse.cdt.ui.refactor.extract.function,
+	handler=ActionHandler(org.eclipse.cdt.ui.refactoring.actions.ExtractFunctionAction@50ea6f34),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@56f052d5)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.cdt.ui.refactor.extract.function,
+	handler=ActionHandler(org.eclipse.cdt.ui.refactoring.actions.ExtractFunctionAction@4f2ae86c),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@56f052d5)),sourcePriority=4210689)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-09-22 17:26:17.285
+!MESSAGE Conflict for 'org.eclipse.ui.navigate.next':
+HandlerActivation(commandId=org.eclipse.ui.navigate.next,
+	handler=ActionHandler(org.eclipse.ui.texteditor.GotoAnnotationAction@a01330f),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@56f052d5)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.ui.navigate.next,
+	handler=ActionHandler(org.eclipse.ui.texteditor.GotoAnnotationAction@54bf22ea),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@56f052d5)),sourcePriority=4210689)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-09-22 17:26:17.285
+!MESSAGE Conflict for 'org.eclipse.cdt.ui.edit.text.rename.element':
+HandlerActivation(commandId=org.eclipse.cdt.ui.edit.text.rename.element,
+	handler=ActionHandler(org.eclipse.cdt.ui.refactoring.actions.CRenameAction@508d5c1d),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@56f052d5)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.cdt.ui.edit.text.rename.element,
+	handler=ActionHandler(org.eclipse.cdt.ui.refactoring.actions.CRenameAction@709a9d3b),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@56f052d5)),sourcePriority=4210689)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-09-22 17:26:17.285
+!MESSAGE Conflict for 'org.eclipse.cdt.ui.refactor.extract.local.variable':
+HandlerActivation(commandId=org.eclipse.cdt.ui.refactor.extract.local.variable,
+	handler=ActionHandler(org.eclipse.cdt.ui.refactoring.actions.ExtractLocalVariableAction@36c8c63e),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@56f052d5)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.cdt.ui.refactor.extract.local.variable,
+	handler=ActionHandler(org.eclipse.cdt.ui.refactoring.actions.ExtractLocalVariableAction@374f2c8b),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@56f052d5)),sourcePriority=4210689)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-09-22 17:26:17.285
+!MESSAGE Conflict for 'org.eclipse.ui.navigate.previous':
+HandlerActivation(commandId=org.eclipse.ui.navigate.previous,
+	handler=ActionHandler(org.eclipse.ui.texteditor.GotoAnnotationAction@2ef5760b),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@56f052d5)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.ui.navigate.previous,
+	handler=ActionHandler(org.eclipse.ui.texteditor.GotoAnnotationAction@7518e442),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@56f052d5)),sourcePriority=4210689)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-09-22 17:26:17.285
+!MESSAGE Conflict for 'org.eclipse.ui.edit.text.toggleShowSelectedElementOnly':
+HandlerActivation(commandId=org.eclipse.ui.edit.text.toggleShowSelectedElementOnly,
+	handler=ActionHandler(org.eclipse.cdt.internal.ui.editor.TogglePresentationAction@3531e51d),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@56f052d5)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.ui.edit.text.toggleShowSelectedElementOnly,
+	handler=ActionHandler(org.eclipse.cdt.internal.ui.editor.TogglePresentationAction@5eb8ee33),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@56f052d5)),sourcePriority=4210689)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-09-22 17:26:17.285
+!MESSAGE Conflict for 'org.eclipse.cdt.ui.refactor.hide.method':
+HandlerActivation(commandId=org.eclipse.cdt.ui.refactor.hide.method,
+	handler=ActionHandler(org.eclipse.cdt.ui.refactoring.actions.HideMethodAction@3f1e86da),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@56f052d5)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.cdt.ui.refactor.hide.method,
+	handler=ActionHandler(org.eclipse.cdt.ui.refactoring.actions.HideMethodAction@6d277295),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@56f052d5)),sourcePriority=4210689)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-09-22 17:26:17.285
+!MESSAGE Conflict for 'org.eclipse.ui.file.refresh':
+HandlerActivation(commandId=org.eclipse.ui.file.refresh,
+	handler=ActionHandler(org.eclipse.ui.internal.editors.text.RefreshEditorAction@38d3cc2f),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@56f052d5)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.ui.file.refresh,
+	handler=ActionHandler(org.eclipse.ui.internal.editors.text.RefreshEditorAction@59023ece),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@56f052d5)),sourcePriority=4210689)
