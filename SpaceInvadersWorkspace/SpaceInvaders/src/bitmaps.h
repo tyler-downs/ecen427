@@ -24,7 +24,13 @@
  (b15 << 15) | (b14 << 14) | (b13 << 13) | (b12 << 12) | (b11 << 11) | (b10 << 10) | (b9  << 9 ) | (b8  << 8 ) |						  \
  (b7  << 7 ) | (b6  << 6 ) | (b5  << 5 ) | (b4  << 4 ) | (b3  << 3 ) | (b2  << 2 ) | (b1  << 1 ) | (b0  << 0 ) )
 
-// Packs each horizontal line of the figures into a single 24 bit word.
+// Packs each horizontal line of the figures into a single 20 bit word.
+#define packword20(b19,b18,b17,b16,b15,b14,b13,b12,b11,b10,b9,b8,b7,b6,b5,b4,b3,b2,b1,b0) \
+((b19 << 19) | (b18 << 18) | (b17 << 17) | (b16 << 16) |						  \
+ (b15 << 15) | (b14 << 14) | (b13 << 13) | (b12 << 12) | (b11 << 11) | (b10 << 10) | (b9  << 9 ) | (b8  << 8 ) |						  \
+ (b7  << 7 ) | (b6  << 6 ) | (b5  << 5 ) | (b4  << 4 ) | (b3  << 3 ) | (b2  << 2 ) | (b1  << 1 ) | (b0  << 0 ) )
+
+// Packs each horizontal line of the figures into a single 18 bit word.
 #define packword18(b17,b16,b15,b14,b13,b12,b11,b10,b9,b8,b7,b6,b5,b4,b3,b2,b1,b0) \
 ((b17 << 17) | (b16 << 16) |  \
  (b15 << 15) | (b14 << 14) | (b13 << 13) | (b12 << 12) | (b11 << 11) | (b10 << 10) | (b9  << 9 ) | (b8  << 8 ) |						  \
@@ -48,6 +54,14 @@
 // Packs each horizontal line of the figures into a single 6 bit word.
 #define packword6(b5,b4,b3,b2,b1,b0) \
 ((b5  << 5 ) | (b4  << 4 ) | (b3  << 3 ) | (b2  << 2 ) | (b1  << 1 ) | (b0  << 0 ) )
+
+// Packs each horizontal line of the figures into a single 5 bit word.
+#define packword5(b4,b3,b2,b1,b0) \
+((b4  << 4 ) | (b3  << 3 ) | (b2  << 2 ) | (b1  << 1 ) | (b0  << 0 ) )
+
+// Packs each horizontal line of the figures into a single 3 bit word.
+#define packword3(b2,b1,b0) \
+((b2  << 2 ) | (b1  << 1 ) | (b0  << 0 ) )
 
 // Must define packword for each of the different bit-widths.
 static const uint32_t saucer_16x7[] =
@@ -228,6 +242,94 @@ packword18(1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0),
 packword18(1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0),
 packword18(1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
 packword18(1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0)
+};
+
+static const uint32_t score_20x5[] = {
+packword20(0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1),
+packword20(1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0),
+packword20(0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0),
+packword20(0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 1, 0, 0, 1, 0, 0),
+packword20(1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1)
+};
+
+static const uint32_t zero_5x5[] = {
+packword5(0, 1, 1, 0, 0),
+packword5(1, 0, 0, 1, 0),
+packword5(1, 0, 0, 1, 0),
+packword5(1, 0, 0, 1, 0),
+packword5(0, 1, 1, 0, 0)
+};
+
+static const uint32_t one_3x5[] = {
+packword3(1, 1, 0),
+packword3(0, 1, 0),
+packword3(0, 1, 0),
+packword3(0, 1, 0),
+packword3(0, 1, 0)
+};
+
+static const uint32_t two_5x5[] = {
+packword5(1, 1, 1, 0, 0),
+packword5(0, 0, 0, 1, 0),
+packword5(0, 1, 1, 1, 0),
+packword5(1, 0, 0, 0, 0),
+packword5(1, 1, 1, 1, 0)
+};
+
+static const uint32_t three_5x5[] = {
+packword5(1, 1, 1, 0, 0),
+packword5(0, 0, 0, 1, 0),
+packword5(1, 1, 1, 1, 0),
+packword5(0, 0, 0, 1, 0),
+packword5(1, 1, 1, 0, 0)
+};
+
+static const uint32_t four_5x5[] = {
+packword5(1, 0, 0, 1, 0),
+packword5(1, 0, 0, 1, 0),
+packword5(1, 1, 1, 1, 0),
+packword5(0, 0, 0, 1, 0),
+packword5(0, 0, 0, 1, 0)
+};
+
+static const uint32_t five_5x5[] = {
+packword5(1, 1, 1, 1, 0),
+packword5(1, 0, 0, 0, 0),
+packword5(1, 1, 1, 0, 0),
+packword5(0, 0, 0, 1, 0),
+packword5(1, 1, 1, 0, 0)
+};
+
+static const uint32_t six_5x5[] = {
+packword5(0, 1, 1, 0, 0),
+packword5(1, 0, 0, 0, 0),
+packword5(1, 1, 1, 0, 0),
+packword5(1, 0, 0, 1, 0),
+packword5(0, 1, 1, 0, 0)
+};
+
+static const uint32_t seven_5x5[] = {
+packword5(1, 1, 1, 1, 0),
+packword5(0, 0, 0, 1, 0),
+packword5(0, 0, 0, 1, 0),
+packword5(0, 0, 1, 0, 0),
+packword5(0, 0, 1, 0, 0)
+};
+
+static const uint32_t eight_5x5[] = {
+packword5(0, 1, 1, 0, 0),
+packword5(1, 0, 0, 1, 0),
+packword5(0, 1, 1, 0, 0),
+packword5(1, 0, 0, 1, 0),
+packword5(0, 1, 1, 0, 0)
+};
+
+static const uint32_t nine_5x5[] = {
+packword5(0, 1, 1, 0, 0),
+packword5(1, 0, 0, 1, 0),
+packword5(0, 1, 1, 1, 0),
+packword5(0, 0, 0, 1, 0),
+packword5(0, 1, 1, 0, 0)
 };
 
 #endif /* BITMAPS_H_ */

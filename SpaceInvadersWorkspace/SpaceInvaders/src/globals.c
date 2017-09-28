@@ -18,6 +18,9 @@ static uint8_t bunker1State[NUM_BUNKER_BLOCKS] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 static uint8_t bunker2State[NUM_BUNKER_BLOCKS] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 static uint8_t bunker3State[NUM_BUNKER_BLOCKS] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
+static uint16_t currentScore = 0;
+
+
 // Here are the accessors.
 void setTankPosition(uint16_t val) {
   tankPosition = val;
@@ -129,3 +132,7 @@ void updateBulletPositions()
 {
 
 }
+
+uint16_t getCurrentScore() {return currentScore;}
+
+void setScore(uint16_t score) {currentScore = score;}

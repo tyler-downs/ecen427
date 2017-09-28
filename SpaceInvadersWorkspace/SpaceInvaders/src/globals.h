@@ -42,6 +42,9 @@ point_t getAlienBulletPosition3();
 void erodeBunker(uint8_t bunkerIndex, uint8_t blockIndex);
 uint8_t getBunkerErosionState(uint8_t bunkerIndex, uint8_t blockIndex);
 
+uint16_t getCurrentScore();
+void setScore(uint16_t score);
+
 //UI functions
 void fireTankBullet();
 void moveTankLeft();
