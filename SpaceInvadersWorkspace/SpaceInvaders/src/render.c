@@ -6,11 +6,8 @@
  */
 
 #include "render.h"
-#include <stdio.h>
 
-#define MAGNIFY_MULT 2
-#define WIDTH_DISPLAY 640
-#define HEIGHT_DISPLAY 480
+
 // The variables framePointer and framePointer1 are just pointers to the base address
 // of frame 0 and frame 1.
 unsigned int * framePointer0 = (unsigned int *) FRAME_BUFFER_0_ADDR;
@@ -38,19 +35,19 @@ unsigned int * framePointer1 = ((unsigned int *) FRAME_BUFFER_0_ADDR) + 640*480;
 char score[MAX_SCORE_DIGITS] = {0, 0, 0, 0, 0, 0};
 
 #define SCORE_GAP 20 //space betwen "score" and first digit
-void updateScoreDisplay(uint16_t newScore)
+/*void updateScoreDisplay(uint16_t newScore)
 {
 	char updatedScore[MAX_SCORE_DIGITS] = {0, 0, 0, 0, 0, 0};
-	sprintf(updatedScore, "%d", newScore); //store the score as a char array //this is causing errors...BRAM full
+	xil_sprintf(updatedScore, "%d", newScore); //store the score as a char array //this is causing errors...BRAM full
 
 	//test
-	int n = 0;
+	uint16_t n = 0;
 	for (n = 0; n < MAX_SCORE_DIGITS; n++)
 	{
 		xil_printf("Score is : %c\n", updatedScore[n]);
 	}
 
-	int m, firstNonzero;
+	uint16_t m, firstNonzero;
 	for (m = 0; m < MAX_SCORE_DIGITS; m++)
 	{
 		if (updatedScore[m] != 0)
@@ -59,49 +56,50 @@ void updateScoreDisplay(uint16_t newScore)
 			break;
 		}
 	}
-	int k;
+	uint16_t k;
+	uint8_t x;
 	for (k = firstNonzero; k < MAX_SCORE_DIGITS; k++)
 	{
 		switch(updatedScore[k])
 		{
 		case '0':
-			uint8_t x = SCORE_X + SCORE_WIDTH*MAGNIFY_MULT + (k-firstNonzero)*(DIGIT_WIDTH*MAGNIFY_MULT);
+			x = SCORE_X + SCORE_WIDTH*MAGNIFY_MULT + (k-firstNonzero)*(DIGIT_WIDTH*MAGNIFY_MULT);
 			drawObject(zero_5x5, DIGIT_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN);
 			break;
 		case '1':
-			uint8_t x = SCORE_X + SCORE_WIDTH*MAGNIFY_MULT + (k-firstNonzero)*(DIGIT_WIDTH*MAGNIFY_MULT);
+			x = SCORE_X + SCORE_WIDTH*MAGNIFY_MULT + (k-firstNonzero)*(DIGIT_WIDTH*MAGNIFY_MULT);
 			drawObject(one_3x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN);
 			break;
 		case '2':
-			uint8_t x = SCORE_X + SCORE_WIDTH*MAGNIFY_MULT + (k-firstNonzero)*(DIGIT_WIDTH*MAGNIFY_MULT);
+			x = SCORE_X + SCORE_WIDTH*MAGNIFY_MULT + (k-firstNonzero)*(DIGIT_WIDTH*MAGNIFY_MULT);
 			drawObject(two_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN);
 			break;
 		case '3':
-			uint8_t x = SCORE_X + SCORE_WIDTH*MAGNIFY_MULT + (k-firstNonzero)*(DIGIT_WIDTH*MAGNIFY_MULT);
+			x = SCORE_X + SCORE_WIDTH*MAGNIFY_MULT + (k-firstNonzero)*(DIGIT_WIDTH*MAGNIFY_MULT);
 			drawObject(three_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN);
 			break;
 		case '4':
-			uint8_t x = SCORE_X + SCORE_WIDTH*MAGNIFY_MULT + (k-firstNonzero)*(DIGIT_WIDTH*MAGNIFY_MULT);
+			x = SCORE_X + SCORE_WIDTH*MAGNIFY_MULT + (k-firstNonzero)*(DIGIT_WIDTH*MAGNIFY_MULT);
 			drawObject(four_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN);
 			break;
 		case '5':
-			uint8_t x = SCORE_X + SCORE_WIDTH*MAGNIFY_MULT + (k-firstNonzero)*(DIGIT_WIDTH*MAGNIFY_MULT);
+			x = SCORE_X + SCORE_WIDTH*MAGNIFY_MULT + (k-firstNonzero)*(DIGIT_WIDTH*MAGNIFY_MULT);
 			drawObject(five_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN);
 			break;
 		case '6':
-			uint8_t x = SCORE_X + SCORE_WIDTH*MAGNIFY_MULT + (k-firstNonzero)*(DIGIT_WIDTH*MAGNIFY_MULT);
+			x = SCORE_X + SCORE_WIDTH*MAGNIFY_MULT + (k-firstNonzero)*(DIGIT_WIDTH*MAGNIFY_MULT);
 			drawObject(six_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN);
 			break;
 		case '7':
-			uint8_t x = SCORE_X + SCORE_WIDTH*MAGNIFY_MULT + (k-firstNonzero)*(DIGIT_WIDTH*MAGNIFY_MULT);
+			x = SCORE_X + SCORE_WIDTH*MAGNIFY_MULT + (k-firstNonzero)*(DIGIT_WIDTH*MAGNIFY_MULT);
 			drawObject(seven_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN);
 			break;
 		case '8':
-			uint8_t x = SCORE_X + SCORE_WIDTH*MAGNIFY_MULT + (k-firstNonzero)*(DIGIT_WIDTH*MAGNIFY_MULT);
+			x = SCORE_X + SCORE_WIDTH*MAGNIFY_MULT + (k-firstNonzero)*(DIGIT_WIDTH*MAGNIFY_MULT);
 			drawObject(eight_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN);
 			break;
 		case '9':
-			uint8_t x = SCORE_X + SCORE_WIDTH*MAGNIFY_MULT + (k-firstNonzero)*(DIGIT_WIDTH*MAGNIFY_MULT);
+			x = SCORE_X + SCORE_WIDTH*MAGNIFY_MULT + (k-firstNonzero)*(DIGIT_WIDTH*MAGNIFY_MULT);
 			drawObject(nine_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN);
 			break;
 		}
@@ -110,6 +108,27 @@ void updateScoreDisplay(uint16_t newScore)
 
 
 
+}*/
+
+
+
+void drawPixel(uint16_t y, uint16_t x, uint32_t color)
+{
+	if (framePointer0[y*WIDTH_DISPLAY + x] != color)
+		framePointer0[y*WIDTH_DISPLAY + x] = color;
+}
+
+//erases a rectangle with upper left point startpoint, given width, and given height in pixels
+void eraseRectangle(point_t startPoint, uint16_t width, uint16_t height)
+{
+	uint8_t i, j;
+	for (i = 0; i < width*MAGNIFY_MULT; i++)
+	{
+		for (j = 0; j < height*MAGNIFY_MULT; j++)
+		{
+			drawPixel((startPoint.y + j), (startPoint.x + i), BLACK);
+		}
+	}
 }
 
 void drawObject(uint32_t bitmap[], uint16_t width, uint16_t height, point_t startPoint, uint32_t color)
@@ -119,12 +138,13 @@ void drawObject(uint32_t bitmap[], uint16_t width, uint16_t height, point_t star
 		for (col=0; col<(width*MAGNIFY_MULT); col++) {
 			if ((bitmap[row/MAGNIFY_MULT] & (1<<(width-1-col/MAGNIFY_MULT))))
 			{
-				framePointer0[(row+startPoint.y)*WIDTH_DISPLAY + (col+startPoint.x)] = color;
+				//framePointer0[(row+startPoint.y)*WIDTH_DISPLAY + (col+startPoint.x)] = color;
+				drawPixel((row+startPoint.y), (col+startPoint.x), color);
 			}
 			else
 			{
-				continue;
-				framePointer0[row*WIDTH_DISPLAY + col] = BLACK;
+				//framePointer0[row*WIDTH_DISPLAY + col] = BLACK;
+				drawPixel((row+startPoint.y), (col+startPoint.x), BLACK);
 			}
 		}
 	}
@@ -149,10 +169,7 @@ void drawScreenInit()
 	}
 }
 
-#define TANK_START_X 99
-#define TANK_START_Y 400
-#define TANK_WIDTH 15
-#define TANK_HEIGHT 8
+
 void drawTankInit()
 {
 	point_t tankStartPoint = {TANK_START_X, TANK_START_Y};
@@ -176,22 +193,13 @@ void drawBunkersInit()
 	}
 }
 
-#define ALIENS_START_X 145
-#define ALIENS_START_Y 125
-#define ALIEN_WIDTH 12
-#define ALIEN_HEIGHT 8
-#define NUM_ALIENS_PER_ROW 11
-#define NUM_TOP_ALIEN_ROWS 1
-#define NUM_MIDDLE_ALIEN_ROWS 2
-#define NUM_BOTTOM_ALIEN_ROWS 2
-#define ALIEN_SPACE_HORIZ 8
-#define ALIEN_SPACE_VERT 10
+
 void drawAliensInit()
 {
 	uint8_t r = 0, c = 0;
-	for (r = 0; r < NUM_TOP_ALIEN_ROWS + NUM_MIDDLE_ALIEN_ROWS + NUM_BOTTOM_ALIEN_ROWS; r++) //alien rows
+	for (r = 0; r < NUM_ALIEN_ROWS; r++) //alien rows
 	{
-		for (c = 0; c < NUM_ALIENS_PER_ROW; c++) //alien column
+		for (c = 0; c < NUM_ALIEN_COLUMNS; c++) //alien column
 		{
 			uint16_t x = ALIENS_START_X + (ALIEN_WIDTH * MAGNIFY_MULT * c) + (ALIEN_SPACE_HORIZ * c);
 			uint16_t y = (ALIENS_START_Y + (ALIEN_HEIGHT * MAGNIFY_MULT * r) + ALIEN_SPACE_VERT * r);
@@ -206,6 +214,7 @@ void drawAliensInit()
 	}
 	point_t alienBlockStartPoint = {ALIENS_START_X, ALIENS_START_Y};
 	setAlienBlockPosition(alienBlockStartPoint); //set global
+	xil_printf("Alien block position initially: %d, %d\n\r", getAlienBlockPosition().x, getAlienBlockPosition().y);
 }
 
 
@@ -295,7 +304,7 @@ void disp_init()
 		drawObject(tank_15x8, TANK_WIDTH, TANK_HEIGHT, (point_t) {x, y}, GREEN);
 	}
 
-	updateScoreDisplay(1234);
+	//updateScoreDisplay(1234);
 
 
 
@@ -316,6 +325,8 @@ void disp_init()
 		xil_printf("vdma parking failed\n\r");
 	}
 }
+
+
 
 void render()
 {

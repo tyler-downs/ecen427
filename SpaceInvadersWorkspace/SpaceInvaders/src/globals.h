@@ -15,6 +15,37 @@
 #define WHITE 0x00FFFFFF
 #define RED	  0x00FF0000
 
+//#defines for aliens
+#define ALIENS_START_X 145
+#define ALIENS_START_Y 125
+#define ALIEN_WIDTH 12
+#define ALIEN_HEIGHT 8
+#define NUM_ALIEN_COLUMNS 11
+#define NUM_TOP_ALIEN_ROWS 1
+#define NUM_MIDDLE_ALIEN_ROWS 2
+#define NUM_BOTTOM_ALIEN_ROWS 2
+#define NUM_ALIEN_ROWS (NUM_TOP_ALIEN_ROWS + NUM_MIDDLE_ALIEN_ROWS + NUM_BOTTOM_ALIEN_ROWS)
+#define ALIEN_SPACE_HORIZ 8
+#define ALIEN_SPACE_VERT 10
+
+//Tank defines
+#define TANK_START_X 99
+#define TANK_START_Y 400
+#define TANK_WIDTH 15
+#define TANK_HEIGHT 8
+
+//Display defines
+#define MAGNIFY_MULT 2
+#define WIDTH_DISPLAY 640
+#define HEIGHT_DISPLAY 480
+
+typedef enum {alien_guise_out, alien_guise_in} alien_guise_type;
+typedef enum {aliens_move_right, aliens_move_left} alien_direction_type;
+
+//Alien variables
+static alien_guise_type currentAlienGuise = alien_guise_out; //initialize alien guise to out
+static alien_direction_type currentAlienDirection = aliens_move_right; //initialize alien crawl direction to right
+
 typedef struct {uint16_t x; uint16_t y;} point_t;
 typedef enum {cross_bullet, ziggy_bullet} bullet_type;
 
@@ -53,6 +84,7 @@ void moveAliens();
 void killAlien(uint8_t alien);
 void fireRandomAlienMissile();
 void updateBulletPositions();
+void eraseAllAliens();
 
 
 #endif /* GLOBALS_H_ */

@@ -17,7 +17,19 @@ void renderTest()
 		input = getchar();
 		if (input == '8')
 		{
-			render();
+			moveAliens();
+		}
+		else if (input == '4')
+		{
+			moveTankLeft();
+		}
+		else if (input == '6')
+		{
+			moveTankRight();
+		}
+		else if (input == '1')
+		{
+			eraseAllAliens();
 		}
 	}
 }

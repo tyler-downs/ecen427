@@ -49,15 +49,15 @@ SECTIONS
    *(.text)
    *(.text.*)
    *(.gnu.linkonce.t.*)
-} > microblaze_0_i_bram_ctrl_microblaze_0_d_bram_ctrl
+} > MCB_DDR2_S0_AXI_BASEADDR
 
 .init : {
    KEEP (*(.init))
-} > microblaze_0_i_bram_ctrl_microblaze_0_d_bram_ctrl
+} > MCB_DDR2_S0_AXI_BASEADDR
 
 .fini : {
    KEEP (*(.fini))
-} > microblaze_0_i_bram_ctrl_microblaze_0_d_bram_ctrl
+} > MCB_DDR2_S0_AXI_BASEADDR
 
 .ctors : {
    __CTOR_LIST__ = .;
