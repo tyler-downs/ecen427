@@ -15,6 +15,9 @@
 #define WHITE 0x00FFFFFF
 #define RED	  0x00FF0000
 
+#define TRUE 1
+#define FALSE 0
+
 //#defines for aliens
 #define ALIENS_START_X 145
 #define ALIENS_START_Y 125
@@ -27,12 +30,16 @@
 #define NUM_ALIEN_ROWS (NUM_TOP_ALIEN_ROWS + NUM_MIDDLE_ALIEN_ROWS + NUM_BOTTOM_ALIEN_ROWS)
 #define ALIEN_SPACE_HORIZ 8
 #define ALIEN_SPACE_VERT 10
+#define MAX_ALIEN_COL_INDEX 10
+#define MAX_ALIEN_ROW_INDEX 4
 
 //Tank defines
 #define TANK_START_X 99
 #define TANK_START_Y 400
 #define TANK_WIDTH 15
 #define TANK_HEIGHT 8
+#define TANK_MOVE_PIXELS (3 * MAGNIFY_MULT)
+#define TANK_SCREEN_EDGE_RIGHT (WIDTH_DISPLAY-(TANK_WIDTH+TANK_MOVE_PIXELS)*MAGNIFY_MULT)
 
 //Display defines
 #define MAGNIFY_MULT 2
@@ -42,11 +49,7 @@
 typedef enum {alien_guise_out, alien_guise_in} alien_guise_type;
 typedef enum {aliens_move_right, aliens_move_left} alien_direction_type;
 
-//Alien variables
-static alien_guise_type currentAlienGuise = alien_guise_out; //initialize alien guise to out
-static alien_direction_type currentAlienDirection = aliens_move_right; //initialize alien crawl direction to right
-
-typedef struct {uint16_t x; uint16_t y;} point_t;
+typedef struct {int16_t x; int16_t y;} point_t;
 typedef enum {cross_bullet, ziggy_bullet} bullet_type;
 
 void setTankPosition(uint16_t val);

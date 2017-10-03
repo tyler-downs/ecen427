@@ -6,6 +6,7 @@
  */
 
 #include "renderTest.h"
+#include "aliens.h"
 #include <stdio.h>
 
 void renderTest()
@@ -27,9 +28,20 @@ void renderTest()
 		{
 			moveTankRight();
 		}
-		else if (input == '1')
+		else if (input == '2')
 		{
-			eraseAllAliens();
+			printf("Enter an alien index to kill:\n\r");
+			int alienToKill;
+			scanf("%d", &alienToKill);
+			killAlien(alienToKill);
+		}
+		else if (input == '5')
+		{
+			printf("Leftmost living alien column = %d\n\r", getLeftmostLivingAlienColumn());
+		}
+		else if (input == '3')
+		{
+			printf("Rightmost living alien column = %d\n\r", getRightmostLivingAlienColumn());
 		}
 	}
 }
