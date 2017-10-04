@@ -19,6 +19,14 @@
 static alien_guise_type currentAlienGuise = alien_guise_out; //initialize alien guise to out
 static alien_direction_type currentAlienDirection = aliens_move_right; //initialize alien crawl direction to right
 
+//array for aliens alive (row, column)
+static uint8_t aliensAlive[NUM_ALIEN_ROWS][NUM_ALIEN_COLUMNS] = \
+		{{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}};
+
 
 //////////// FUNCTION PROTOTYPES /////////////////
 
@@ -33,6 +41,8 @@ void killAlien(uint8_t alien);
 int8_t getLeftmostLivingAlienColumn();
 
 int8_t getRightmostLivingAlienColumn();
+
+void fireRandomAlienMissile();
 
 
 

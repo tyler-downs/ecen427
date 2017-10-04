@@ -95,11 +95,6 @@ uint8_t getBunkerErosionState(uint8_t bunkerIndex, uint8_t blockIndex)
 
 }
 
-void fireTankBullet()
-{
-
-}
-
 
 void moveTankRight()
 {
@@ -137,10 +132,9 @@ void moveTankLeft()
 
 
 
-void fireRandomAlienMissile()
-{
 
-}
+
+
 void updateBulletPositions()
 {
 

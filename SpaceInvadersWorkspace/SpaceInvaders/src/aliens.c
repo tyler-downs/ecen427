@@ -9,13 +9,7 @@
 #define ALIEN_MOVE_PIXELS TANK_MOVE_PIXELS
 
 
-//array for aliens alive (row, column)
-static uint8_t aliensAlive[NUM_ALIEN_ROWS][NUM_ALIEN_COLUMNS] = \
-		{{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}};
+
 
 static point_t alienBlockPosition;
 static point_t oldAlienBlockPosition;
@@ -222,9 +216,9 @@ uint16_t getRightEdgeOfAlienBlock()
 
 
 
-uint16_t getLeftmostLivingAlienColumnAdjustment()
+int16_t getLeftmostLivingAlienColumnAdjustment()
 {
-	return (getLeftmostLivingAlienColumn() * (ALIEN_WIDTH));
+	return (getLeftmostLivingAlienColumn() * (ALIEN_WIDTH  + ALIEN_SPACE_HORIZ + NUM_ALIEN_COLUMNS));
 }
 
 void updateAlienBlockPosition()
@@ -241,7 +235,7 @@ void updateAlienBlockPosition()
 		{
 			//update the alien's position
 			oldAlienBlockPosition = getAlienBlockPosition();
-			point_t newAlienBlockPosition = {(getAlienBlockPosition().x + 3*MAGNIFY_MULT), getAlienBlockPosition().y};
+			point_t newAlienBlockPosition = {(getAlienBlockPosition().x + 3*MAGNIFY_MULT), getAlienBlockPosition().y}; //TODO: magic number
 			setAlienBlockPosition(newAlienBlockPosition);
 			xil_printf("New alien block position: %d, %d\n\r", newAlienBlockPosition.x, newAlienBlockPosition.y);
 		}
@@ -249,7 +243,8 @@ void updateAlienBlockPosition()
 	else //if aliens are moving left
 	{
 		//if the left end of the alien block is too close to the left edge of the screen
-		if ( (int32_t)(getAlienBlockPosition().x + getLeftmostLivingAlienColumnAdjustment() + ALIEN_SPACE_HORIZ) <= SCREEN_EDGE_BUMPER_PIXELS)
+		printf("Adjustment value: %d\n\r", getLeftmostLivingAlienColumnAdjustment());
+		if ( (getAlienBlockPosition().x + getLeftmostLivingAlienColumnAdjustment()) <= SCREEN_EDGE_BUMPER_PIXELS)
 		{
 			moveDownOneRow();
 		}
@@ -335,6 +330,8 @@ void killAlien(uint8_t alien)
 
 	//kill this alien
 	aliensAlive[row][col] = 0;
+
+	xil_printf("%d,%d = %d\n\r", row, col, aliensAlive[row][col]);
 }
 
 void setAlienBlockPosition(point_t val)
@@ -345,5 +342,10 @@ void setAlienBlockPosition(point_t val)
 point_t getAlienBlockPosition()
 {
 	return alienBlockPosition;
+}
+
+void fireRandomAlienMissile()
+{
+
 }
 

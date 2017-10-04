@@ -332,4 +332,14 @@ packword5(0, 0, 0, 1, 0),
 packword5(0, 1, 1, 0, 0)
 };
 
+
+static const uint32_t tankBullet_3x6[] = {
+packword3(0,1,0),
+packword3(0,1,0),
+packword3(0,1,0),
+packword3(0,1,0),
+packword3(0,1,0),
+packword3(0,1,0)
+};
+
 #endif /* BITMAPS_H_ */

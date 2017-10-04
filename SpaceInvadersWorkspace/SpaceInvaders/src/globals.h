@@ -55,9 +55,6 @@ typedef enum {cross_bullet, ziggy_bullet} bullet_type;
 void setTankPosition(uint16_t val);
 uint16_t getTankPosition();
 
-void setTankBulletPosition(point_t val);
-point_t getTankBulletPosition();
-
 void setAlienBlockPosition(point_t val);
 point_t getAlienBlockPosition();
 
@@ -85,7 +82,6 @@ void moveTankLeft();
 void moveTankRight();
 void moveAliens();
 void killAlien(uint8_t alien);
-void fireRandomAlienMissile();
 void updateBulletPositions();
 void eraseAllAliens();
 

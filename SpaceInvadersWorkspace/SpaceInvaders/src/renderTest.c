@@ -37,11 +37,15 @@ void renderTest()
 		}
 		else if (input == '5')
 		{
-			printf("Leftmost living alien column = %d\n\r", getLeftmostLivingAlienColumn());
+			fireTankBullet();
 		}
 		else if (input == '3')
 		{
-			printf("Rightmost living alien column = %d\n\r", getRightmostLivingAlienColumn());
+			fireRandomAlienBullet();
+		}
+		else if (input == '9')
+		{
+			advanceTankBullet();
 		}
 	}
 }
