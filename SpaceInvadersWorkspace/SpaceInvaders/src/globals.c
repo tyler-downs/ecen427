@@ -14,6 +14,11 @@ static uint16_t tankPosition;
 static point_t tankBulletPosition;
 
 
+static bullet_type alienBulletTypes[MAX_ALIEN_BULLETS];
+static bullet_guise_type alienBulletGuises[MAX_ALIEN_BULLETS];
+static point_t alienBulletPositions[MAX_ALIEN_BULLETS];
+static uint8_t bulletsActive[MAX_ALIEN_BULLETS] = {0, 0, 0, 0};
+
 #define NUM_BUNKER_BLOCKS 10
 static uint8_t bunker0State[NUM_BUNKER_BLOCKS] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 static uint8_t bunker1State[NUM_BUNKER_BLOCKS] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -22,8 +27,32 @@ static uint8_t bunker3State[NUM_BUNKER_BLOCKS] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 static uint16_t currentScore = 0;
 
+uint8_t isBulletActive(uint8_t bulletNumber)
+{
+	return bulletsActive[bulletNumber];
+}
+void setBulletStatus(uint8_t bulletNumber, uint8_t active)
+{
+	bulletsActive[bulletNumber] = active;
+}
 
+void setAlienBulletPosition(uint8_t bulletNum, point_t val)
+{
+	alienBulletPositions[bulletNum] = val;
+}
+point_t getAlienBulletPosition(uint8_t bulletNum) {return alienBulletPositions[bulletNum]; }
 
+void setAlienBulletType(uint8_t bulletNum, bullet_type type)
+{
+	alienBulletTypes[bulletNum] = type;
+}
+bullet_type getAlienBulletType(uint8_t bulletNum) { return alienBulletTypes[bulletNum]; }
+
+void setAlienBulletGuise(uint8_t bulletNum, bullet_guise_type guise)
+{
+	alienBulletGuises[bulletNum] = guise;
+}
+bullet_guise_type getAlienBulletGuise(uint8_t bulletNum) { return alienBulletGuises[bulletNum]; }
 
 // Here are the accessors.
 void setTankPosition(uint16_t val) {
@@ -45,56 +74,6 @@ point_t getTankBulletPosition() {
 
 
 
-void setAlienBulletPosition0(point_t val, bullet_type bul)
-{
-
-}
-
-point_t getAlienBulletPosition0()
-{
-
-}
-
-void setAlienBulletPosition1(point_t val, bullet_type bul)
-{
-
-}
-
-point_t getAlienBulletPosition1()
-{
-
-}
-
-void setAlienBulletPosition2(point_t val, bullet_type bul)
-{
-
-}
-
-point_t getAlienBulletPosition2()
-{
-
-}
-
-void setAlienBulletPosition3(point_t val, bullet_type bul)
-{
-
-}
-
-point_t getAlienBulletPosition3()
-{
-
-}
-
-void erodeBunker(uint8_t bunkerIndex, uint8_t blockIndex)
-{
-
-}
-
-uint8_t getBunkerErosionState(uint8_t bunkerIndex, uint8_t blockIndex)
-{
-
-}
-
 
 void moveTankRight()
 {
@@ -106,7 +85,7 @@ void moveTankRight()
 		uint16_t newTankPosition = getTankPosition() + TANK_MOVE_PIXELS;
 		setTankPosition(newTankPosition);
 		//draw the tank
-		drawObject(tank_15x8, TANK_WIDTH, TANK_HEIGHT, (point_t){newTankPosition, TANK_START_Y}, GREEN);
+		drawObject(tank_15x8, TANK_WIDTH, TANK_HEIGHT, (point_t){newTankPosition, TANK_START_Y}, GREEN, FORCE_BLACK_BACKGROUND);
 
 	}
 
@@ -124,7 +103,7 @@ void moveTankLeft()
 		uint16_t newTankPosition = getTankPosition() - TANK_MOVE_PIXELS;
 		setTankPosition(newTankPosition);
 		//draw the tank
-		drawObject(tank_15x8, TANK_WIDTH, TANK_HEIGHT, (point_t){newTankPosition, TANK_START_Y}, GREEN);
+		drawObject(tank_15x8, TANK_WIDTH, TANK_HEIGHT, (point_t){newTankPosition, TANK_START_Y}, GREEN, FORCE_BLACK_BACKGROUND);
 	}
 }
 
@@ -135,9 +114,10 @@ void moveTankLeft()
 
 
 
-void updateBulletPositions()
+void advanceAllBullets()
 {
-
+	advanceTankBullet();
+	advanceAllAlienBullets();
 }
 
 uint16_t getCurrentScore() {return currentScore;}

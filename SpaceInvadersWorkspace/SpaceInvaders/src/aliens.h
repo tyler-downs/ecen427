@@ -27,6 +27,12 @@ static uint8_t aliensAlive[NUM_ALIEN_ROWS][NUM_ALIEN_COLUMNS] = \
 		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
 		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}};
 
+uint8_t isAlienAlive(uint8_t row, uint8_t col);
+
+
+//TEST
+void printAliens();
+
 
 //////////// FUNCTION PROTOTYPES /////////////////
 
@@ -43,6 +49,8 @@ int8_t getLeftmostLivingAlienColumn();
 int8_t getRightmostLivingAlienColumn();
 
 void fireRandomAlienMissile();
+
+
 
 
 

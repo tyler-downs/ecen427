@@ -24,5 +24,6 @@ void setTankBulletPosition(point_t val);
 point_t getTankBulletPosition();
 void eraseEntireTankBullet();
 void fireRandomAlienBullet();
+void advanceAllAlienBullets();
 
 #endif /* BULLETS_H_ */

@@ -18,6 +18,10 @@
 #define TRUE 1
 #define FALSE 0
 
+//defines for line at bottom of screen
+#define BOTTOMLINE_TOP 438
+#define BOTTOMLINE_WIDTH 3
+
 //#defines for aliens
 #define ALIENS_START_X 145
 #define ALIENS_START_Y 125
@@ -45,12 +49,17 @@
 #define MAGNIFY_MULT 2
 #define WIDTH_DISPLAY 640
 #define HEIGHT_DISPLAY 480
+//for draw function
+#define FORCE_BLACK_BACKGROUND 1
+#define LEAVE_BACKGROUND 0
 
 typedef enum {alien_guise_out, alien_guise_in} alien_guise_type;
 typedef enum {aliens_move_right, aliens_move_left} alien_direction_type;
 
 typedef struct {int16_t x; int16_t y;} point_t;
+#define NUM_BULLET_TYPES 2
 typedef enum {cross_bullet, ziggy_bullet} bullet_type;
+typedef enum {bullet_guise_0, bullet_guise_1} bullet_guise_type;
 
 void setTankPosition(uint16_t val);
 uint16_t getTankPosition();
@@ -58,20 +67,17 @@ uint16_t getTankPosition();
 void setAlienBlockPosition(point_t val);
 point_t getAlienBlockPosition();
 
-void setAlienBulletPosition0(point_t val, bullet_type bul);
-point_t getAlienBulletPosition0();
+#define MAX_ALIEN_BULLETS 4
 
-void setAlienBulletPosition1(point_t val, bullet_type bul);
-point_t getAlienBulletPosition1();
+void setAlienBulletPosition(uint8_t bulletNum, point_t val);
+point_t getAlienBulletPosition(uint8_t bulletNum);
+void setAlienBulletType(uint8_t bulletNum, bullet_type type);
+bullet_type getAlienBulletType(uint8_t bulletNum);
+void setAlienBulletGuise(uint8_t bulletNum, bullet_guise_type guise);
+bullet_guise_type getAlienBulletGuise(uint8_t bulletNum);
 
-void setAlienBulletPosition2(point_t val, bullet_type bul);
-point_t getAlienBulletPosition2();
-
-void setAlienBulletPosition3(point_t val, bullet_type bul);
-point_t getAlienBulletPosition3();
-
-void erodeBunker(uint8_t bunkerIndex, uint8_t blockIndex);
-uint8_t getBunkerErosionState(uint8_t bunkerIndex, uint8_t blockIndex);
+uint8_t isBulletActive(uint8_t bulletNumber);
+void setBulletStatus(uint8_t bulletNumber, uint8_t active);
 
 uint16_t getCurrentScore();
 void setScore(uint16_t score);
@@ -82,7 +88,7 @@ void moveTankLeft();
 void moveTankRight();
 void moveAliens();
 void killAlien(uint8_t alien);
-void updateBulletPositions();
+void advanceAllBullets();
 void eraseAllAliens();
 
 

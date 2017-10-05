@@ -16,36 +16,38 @@ void renderTest()
 	{
 		char input;
 		input = getchar();
-		if (input == '8')
+		switch(input)
 		{
+		case '8':
 			moveAliens();
-		}
-		else if (input == '4')
-		{
+			break;
+		case '4':
 			moveTankLeft();
-		}
-		else if (input == '6')
-		{
+			break;
+		case '6':
 			moveTankRight();
-		}
-		else if (input == '2')
-		{
+			break;
+		case '2':
 			printf("Enter an alien index to kill:\n\r");
 			int alienToKill;
 			scanf("%d", &alienToKill);
 			killAlien(alienToKill);
-		}
-		else if (input == '5')
-		{
+			break;
+		case '5':
 			fireTankBullet();
-		}
-		else if (input == '3')
-		{
+			break;
+		case '3':
 			fireRandomAlienBullet();
-		}
-		else if (input == '9')
-		{
-			advanceTankBullet();
+			break;
+		case '9':
+			advanceAllBullets();
+			break;
+		case '7':
+			printf("Enter bunker to erode (0-3): \n\r");
+			int bunkerToErode;
+			scanf("%d", &bunkerToErode);
+			erodeEntireBunker(bunkerToErode);
+			break;
 		}
 	}
 }

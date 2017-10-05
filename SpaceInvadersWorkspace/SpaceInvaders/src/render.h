@@ -15,8 +15,10 @@
 #include "time.h"
 #include "unistd.h"
 #include "bitmaps.h"
-
 #include "globals.h"
+#include "bunkers.h"
+#include <time.h>
+#include <stdlib.h>
 
 #define DEBUG
 void print(char *str);
@@ -27,7 +29,7 @@ void disp_init();
 //void drawObject(uint32_t bitmap[], uint16_t width, uint16_t height, point_t startPoint, uint32_t color);
 void render();
 void drawScreenInit();
-void drawObject(uint32_t bitmap[], uint16_t width, uint16_t height, point_t startPoint, uint32_t color);
+void drawObject(uint32_t bitmap[], uint16_t width, uint16_t height, point_t startPoint, uint32_t color, uint8_t force);
 void drawPixel(uint16_t y, uint16_t x, uint32_t color);
 void eraseRectangle(point_t startPoint, uint16_t width, uint16_t height);
 

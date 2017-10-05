@@ -8,11 +8,30 @@
 
 #define ALIEN_MOVE_PIXELS TANK_MOVE_PIXELS
 
-
-
-
 static point_t alienBlockPosition;
 static point_t oldAlienBlockPosition;
+
+uint8_t isAlienAlive(uint8_t row, uint8_t col)
+{
+	return aliensAlive[row][col];
+}
+
+//TEST
+void printAliens()
+{
+	xil_printf("\n\raliens alive:\n\r");
+	int r , c;
+	for (r = 0; r < 5; r++)
+	{
+		for (c = 0; c < 11; c++)
+		{
+			xil_printf("%d ", aliensAlive[r][c]);
+		}
+		xil_printf("\n\r");
+	}
+
+
+}
 
 void switchAlienGuises()
 {
@@ -42,20 +61,20 @@ void eraseOneAlien(uint8_t row, uint8_t col)
 	if (currentAlienGuise == alien_guise_out)
 	{
 		if (row < NUM_TOP_ALIEN_ROWS) //if we're drawing a top alien
-			drawObject(alien_top_out_12x8, ALIEN_WIDTH, ALIEN_HEIGHT, alienLocation, BLACK); //draw top alien
+			drawObject(alien_top_out_12x8, ALIEN_WIDTH, ALIEN_HEIGHT, alienLocation, BLACK, FORCE_BLACK_BACKGROUND); //draw top alien
 		else if(row < NUM_TOP_ALIEN_ROWS + NUM_MIDDLE_ALIEN_ROWS) //if we're drawing a middle alien
-			drawObject(alien_middle_out_12x8, ALIEN_WIDTH, ALIEN_HEIGHT, alienLocation, BLACK); //draw middle alien
+			drawObject(alien_middle_out_12x8, ALIEN_WIDTH, ALIEN_HEIGHT, alienLocation, BLACK, FORCE_BLACK_BACKGROUND); //draw middle alien
 		else // we must be drawing a bottom alien
-			drawObject(alien_bottom_out_12x8, ALIEN_WIDTH, ALIEN_HEIGHT, alienLocation, BLACK); //draw bottom alien
+			drawObject(alien_bottom_out_12x8, ALIEN_WIDTH, ALIEN_HEIGHT, alienLocation, BLACK, FORCE_BLACK_BACKGROUND); //draw bottom alien
 	}
 	else //current alien guise is alien guise in
 	{
 		if (row < NUM_TOP_ALIEN_ROWS) //if we're drawing a top alien
-			drawObject(alien_top_in_12x8, ALIEN_WIDTH, ALIEN_HEIGHT, alienLocation, BLACK); //draw top alien
+			drawObject(alien_top_in_12x8, ALIEN_WIDTH, ALIEN_HEIGHT, alienLocation, BLACK, FORCE_BLACK_BACKGROUND); //draw top alien
 		else if(row < NUM_TOP_ALIEN_ROWS + NUM_MIDDLE_ALIEN_ROWS) //if we're drawing a middle alien
-			drawObject(alien_middle_in_12x8, ALIEN_WIDTH, ALIEN_HEIGHT, alienLocation, BLACK); //draw middle alien
+			drawObject(alien_middle_in_12x8, ALIEN_WIDTH, ALIEN_HEIGHT, alienLocation, BLACK, FORCE_BLACK_BACKGROUND); //draw middle alien
 		else // we must be drawing a bottom alien
-			drawObject(alien_bottom_in_12x8, ALIEN_WIDTH, ALIEN_HEIGHT, alienLocation, BLACK); //draw bottom alien
+			drawObject(alien_bottom_in_12x8, ALIEN_WIDTH, ALIEN_HEIGHT, alienLocation, BLACK, FORCE_BLACK_BACKGROUND); //draw bottom alien
 	}
 }
 
@@ -87,20 +106,20 @@ void drawOneAlien(uint8_t row, uint8_t col)
 	if (currentAlienGuise == alien_guise_out)
 	{
 		if (row < NUM_TOP_ALIEN_ROWS) //if we're drawing a top alien
-			drawObject(alien_top_out_12x8, ALIEN_WIDTH, ALIEN_HEIGHT, alienLocation, WHITE); //draw top alien
+			drawObject(alien_top_out_12x8, ALIEN_WIDTH, ALIEN_HEIGHT, alienLocation, WHITE, FORCE_BLACK_BACKGROUND); //draw top alien
 		else if(row < NUM_TOP_ALIEN_ROWS + NUM_MIDDLE_ALIEN_ROWS) //if we're drawing a middle alien
-			drawObject(alien_middle_out_12x8, ALIEN_WIDTH, ALIEN_HEIGHT, alienLocation, WHITE); //draw middle alien
+			drawObject(alien_middle_out_12x8, ALIEN_WIDTH, ALIEN_HEIGHT, alienLocation, WHITE, FORCE_BLACK_BACKGROUND); //draw middle alien
 		else // we must be drawing a bottom alien
-			drawObject(alien_bottom_out_12x8, ALIEN_WIDTH, ALIEN_HEIGHT, alienLocation, WHITE); //draw bottom alien
+			drawObject(alien_bottom_out_12x8, ALIEN_WIDTH, ALIEN_HEIGHT, alienLocation, WHITE, FORCE_BLACK_BACKGROUND); //draw bottom alien
 	}
 	else //current alien guise is alien guise in
 	{
 		if (row < NUM_TOP_ALIEN_ROWS) //if we're drawing a top alien
-			drawObject(alien_top_in_12x8, ALIEN_WIDTH, ALIEN_HEIGHT, alienLocation, WHITE); //draw top alien
+			drawObject(alien_top_in_12x8, ALIEN_WIDTH, ALIEN_HEIGHT, alienLocation, WHITE, FORCE_BLACK_BACKGROUND); //draw top alien
 		else if(row < NUM_TOP_ALIEN_ROWS + NUM_MIDDLE_ALIEN_ROWS) //if we're drawing a middle alien
-			drawObject(alien_middle_in_12x8, ALIEN_WIDTH, ALIEN_HEIGHT, alienLocation, WHITE); //draw middle alien
+			drawObject(alien_middle_in_12x8, ALIEN_WIDTH, ALIEN_HEIGHT, alienLocation, WHITE, FORCE_BLACK_BACKGROUND); //draw middle alien
 		else // we must be drawing a bottom alien
-			drawObject(alien_bottom_in_12x8, ALIEN_WIDTH, ALIEN_HEIGHT, alienLocation, WHITE); //draw bottom alien
+			drawObject(alien_bottom_in_12x8, ALIEN_WIDTH, ALIEN_HEIGHT, alienLocation, WHITE, FORCE_BLACK_BACKGROUND); //draw bottom alien
 	}
 }
 
@@ -332,6 +351,7 @@ void killAlien(uint8_t alien)
 	aliensAlive[row][col] = 0;
 
 	xil_printf("%d,%d = %d\n\r", row, col, aliensAlive[row][col]);
+	printAliens();
 }
 
 void setAlienBlockPosition(point_t val)

@@ -34,7 +34,7 @@ unsigned int * framePointer1 = ((unsigned int *) FRAME_BUFFER_0_ADDR) + 640*480;
 #define MAX_SCORE_DIGITS 6
 char score[MAX_SCORE_DIGITS] = {0, 0, 0, 0, 0, 0};
 
-#define SCORE_GAP 20 //space betwen "score" and first digit
+#define SCORE_GAP 20 //space between "score" and first digit
 /*void updateScoreDisplay(uint16_t newScore)
 {
 	char updatedScore[MAX_SCORE_DIGITS] = {0, 0, 0, 0, 0, 0};
@@ -131,7 +131,8 @@ void eraseRectangle(point_t startPoint, uint16_t width, uint16_t height)
 	}
 }
 
-void drawObject(uint32_t bitmap[], uint16_t width, uint16_t height, point_t startPoint, uint32_t color)
+//if force is true, it will draw black where the bitmap is 0. If it is false, it will leave it alone.
+void drawObject(uint32_t bitmap[], uint16_t width, uint16_t height, point_t startPoint, uint32_t color, uint8_t force)
 {
 	uint16_t row=0, col=0;
 	for (row=0; row<(height*MAGNIFY_MULT); row++) {
@@ -143,15 +144,16 @@ void drawObject(uint32_t bitmap[], uint16_t width, uint16_t height, point_t star
 			}
 			else
 			{
-				//framePointer0[row*WIDTH_DISPLAY + col] = BLACK;
-				drawPixel((row+startPoint.y), (col+startPoint.x), BLACK);
+				if (force)
+					drawPixel((row+startPoint.y), (col+startPoint.x), BLACK);
+				else
+					continue;
 			}
 		}
 	}
 }
 
-#define BOTTOMLINE_TOP 438
-#define BOTTOMLINE_WIDTH 3
+
 void drawScreenInit()
 {
 	uint16_t row=0, col=0;
@@ -173,25 +175,11 @@ void drawScreenInit()
 void drawTankInit()
 {
 	point_t tankStartPoint = {TANK_START_X, TANK_START_Y};
-	drawObject(tank_15x8, TANK_WIDTH, TANK_HEIGHT, tankStartPoint, GREEN); //draw the tank
+	drawObject(tank_15x8, TANK_WIDTH, TANK_HEIGHT, tankStartPoint, GREEN, FORCE_BLACK_BACKGROUND); //draw the tank
 	setTankPosition(TANK_START_X); //set global variable
 }
 
-#define BUNKER_START_Y 340
-#define BUNKER_SPACE 90 //space between individual bunkers, and bunkers and the edge of the screen
-#define BUNKER_WIDTH 24
-#define BUNKER_HEIGHT 18
-#define BUNKER_FINAL_WIDTH (BUNKER_WIDTH * MAGNIFY_MULT)
-#define NUM_BUNKERS 4
-void drawBunkersInit()
-{
-	uint8_t n = 1;
-	for (n = 1; n < NUM_BUNKERS + 1; n++)
-	{
-		point_t bunkerStartPoint = {(n * BUNKER_SPACE) + ((n-1) * BUNKER_FINAL_WIDTH), BUNKER_START_Y};
-		drawObject(bunker_24x18, BUNKER_WIDTH, BUNKER_HEIGHT, bunkerStartPoint, GREEN); //draw bunkers
-	}
-}
+
 
 
 void drawAliensInit()
@@ -205,11 +193,11 @@ void drawAliensInit()
 			uint16_t y = (ALIENS_START_Y + (ALIEN_HEIGHT * MAGNIFY_MULT * r) + ALIEN_SPACE_VERT * r);
 			point_t alienStartPoint = {x, y};
 			if (r < NUM_TOP_ALIEN_ROWS) //if we're drawing a top alien
-				drawObject(alien_top_out_12x8, ALIEN_WIDTH, ALIEN_HEIGHT, alienStartPoint, WHITE); //draw top alien
+				drawObject(alien_top_out_12x8, ALIEN_WIDTH, ALIEN_HEIGHT, alienStartPoint, WHITE, FORCE_BLACK_BACKGROUND); //draw top alien
 			else if(r < NUM_TOP_ALIEN_ROWS + NUM_MIDDLE_ALIEN_ROWS) //if we're drawing a middle alien
-				drawObject(alien_middle_out_12x8, ALIEN_WIDTH, ALIEN_HEIGHT, alienStartPoint, WHITE); //draw middle alien
+				drawObject(alien_middle_out_12x8, ALIEN_WIDTH, ALIEN_HEIGHT, alienStartPoint, WHITE, FORCE_BLACK_BACKGROUND); //draw middle alien
 			else // we must be drawing a bottom alien
-				drawObject(alien_bottom_out_12x8, ALIEN_WIDTH, ALIEN_HEIGHT, alienStartPoint, WHITE); //draw bottom alien
+				drawObject(alien_bottom_out_12x8, ALIEN_WIDTH, ALIEN_HEIGHT, alienStartPoint, WHITE, FORCE_BLACK_BACKGROUND); //draw bottom alien
 		}
 	}
 	point_t alienBlockStartPoint = {ALIENS_START_X, ALIENS_START_Y};
@@ -290,10 +278,10 @@ void disp_init()
 	drawBunkersInit(); //draw the bunkers
 	drawAliensInit(); //draw the block of aliens
 
-	drawObject(lives_18x5, LIVES_WIDTH, LIVES_HEIGHT, (point_t) {LIVES_X, LIVES_Y}, WHITE); //draw "lives"
+	drawObject(lives_18x5, LIVES_WIDTH, LIVES_HEIGHT, (point_t) {LIVES_X, LIVES_Y}, WHITE, FORCE_BLACK_BACKGROUND); //draw "lives"
 
 
-	drawObject(score_20x5, SCORE_WIDTH, SCORE_HEIGHT, (point_t) {SCORE_X, SCORE_Y}, WHITE); //draw "score"
+	drawObject(score_20x5, SCORE_WIDTH, SCORE_HEIGHT, (point_t) {SCORE_X, SCORE_Y}, WHITE, FORCE_BLACK_BACKGROUND); //draw "score"
 
 	//draw tank lives
 	int n;
@@ -301,10 +289,11 @@ void disp_init()
 	{
 		int x = LIVES_X + LIVES_WIDTH*MAGNIFY_MULT + LIVES_TANK_SPACE + n*(TANK_WIDTH*MAGNIFY_MULT + TANK_SPACE);
 		int y = LIVES_Y - (TANK_HEIGHT - LIVES_HEIGHT)*MAGNIFY_MULT;
-		drawObject(tank_15x8, TANK_WIDTH, TANK_HEIGHT, (point_t) {x, y}, GREEN);
+		drawObject(tank_15x8, TANK_WIDTH, TANK_HEIGHT, (point_t) {x, y}, GREEN, FORCE_BLACK_BACKGROUND);
 	}
 
 	//updateScoreDisplay(1234);
+	srand(time(NULL)); //set random seed
 
 
 
