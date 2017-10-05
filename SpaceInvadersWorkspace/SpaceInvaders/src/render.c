@@ -7,38 +7,20 @@
 
 #include "render.h"
 
-
+////////////////// GLOBAL VARIABLES ///////////////////////////
 // The variables framePointer and framePointer1 are just pointers to the base address
 // of frame 0 and frame 1.
 unsigned int * framePointer0 = (unsigned int *) FRAME_BUFFER_0_ADDR;
 unsigned int * framePointer1 = ((unsigned int *) FRAME_BUFFER_0_ADDR) + 640*480;
 
-#define LIVES_X 320
-#define LIVES_Y 10
-#define LIVES_WIDTH 18
-#define LIVES_HEIGHT 5
+char score[MAX_SCORE_DIGITS] = {0, 0, 0, 0, 0, 0}; //The global score digits
 
-#define SCORE_X 10
-#define SCORE_Y LIVES_Y
-#define SCORE_WIDTH 20
-#define SCORE_HEIGHT LIVES_HEIGHT
 
-#define NUM_LIVES_INIT 3
-#define LIVES_TANK_SPACE 20 //space between "Lives" and the first tank life icon
-#define TANK_SPACE 10
-
-#define DIGIT_WIDTH 5
-#define DIGIT_HEIGHT 5
-#define ONE_WIDTH 3
-
-#define MAX_SCORE_DIGITS 6
-char score[MAX_SCORE_DIGITS] = {0, 0, 0, 0, 0, 0};
-
-#define SCORE_GAP 20 //space between "score" and first digit
-/*void updateScoreDisplay(uint16_t newScore)
+//Updates the score display given an integer score value
+void updateScoreDisplay(uint16_t newScore)
 {
 	char updatedScore[MAX_SCORE_DIGITS] = {0, 0, 0, 0, 0, 0};
-	xil_sprintf(updatedScore, "%d", newScore); //store the score as a char array //this is causing errors...BRAM full
+	//xil_sprintf(updatedScore, "%d", newScore); //store the score as a char array
 
 	//test
 	uint16_t n = 0;
@@ -64,54 +46,50 @@ char score[MAX_SCORE_DIGITS] = {0, 0, 0, 0, 0, 0};
 		{
 		case '0':
 			x = SCORE_X + SCORE_WIDTH*MAGNIFY_MULT + (k-firstNonzero)*(DIGIT_WIDTH*MAGNIFY_MULT);
-			drawObject(zero_5x5, DIGIT_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN);
+			drawObject(zero_5x5, DIGIT_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN, FORCE_BLACK_BACKGROUND);
 			break;
 		case '1':
 			x = SCORE_X + SCORE_WIDTH*MAGNIFY_MULT + (k-firstNonzero)*(DIGIT_WIDTH*MAGNIFY_MULT);
-			drawObject(one_3x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN);
+			drawObject(one_3x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN, FORCE_BLACK_BACKGROUND);
 			break;
 		case '2':
 			x = SCORE_X + SCORE_WIDTH*MAGNIFY_MULT + (k-firstNonzero)*(DIGIT_WIDTH*MAGNIFY_MULT);
-			drawObject(two_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN);
+			drawObject(two_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN, FORCE_BLACK_BACKGROUND);
 			break;
 		case '3':
 			x = SCORE_X + SCORE_WIDTH*MAGNIFY_MULT + (k-firstNonzero)*(DIGIT_WIDTH*MAGNIFY_MULT);
-			drawObject(three_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN);
+			drawObject(three_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN, FORCE_BLACK_BACKGROUND);
 			break;
 		case '4':
 			x = SCORE_X + SCORE_WIDTH*MAGNIFY_MULT + (k-firstNonzero)*(DIGIT_WIDTH*MAGNIFY_MULT);
-			drawObject(four_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN);
+			drawObject(four_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN, FORCE_BLACK_BACKGROUND);
 			break;
 		case '5':
 			x = SCORE_X + SCORE_WIDTH*MAGNIFY_MULT + (k-firstNonzero)*(DIGIT_WIDTH*MAGNIFY_MULT);
-			drawObject(five_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN);
+			drawObject(five_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN, FORCE_BLACK_BACKGROUND);
 			break;
 		case '6':
 			x = SCORE_X + SCORE_WIDTH*MAGNIFY_MULT + (k-firstNonzero)*(DIGIT_WIDTH*MAGNIFY_MULT);
-			drawObject(six_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN);
+			drawObject(six_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN, FORCE_BLACK_BACKGROUND);
 			break;
 		case '7':
 			x = SCORE_X + SCORE_WIDTH*MAGNIFY_MULT + (k-firstNonzero)*(DIGIT_WIDTH*MAGNIFY_MULT);
-			drawObject(seven_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN);
+			drawObject(seven_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN, FORCE_BLACK_BACKGROUND);
 			break;
 		case '8':
 			x = SCORE_X + SCORE_WIDTH*MAGNIFY_MULT + (k-firstNonzero)*(DIGIT_WIDTH*MAGNIFY_MULT);
-			drawObject(eight_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN);
+			drawObject(eight_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN, FORCE_BLACK_BACKGROUND);
 			break;
 		case '9':
 			x = SCORE_X + SCORE_WIDTH*MAGNIFY_MULT + (k-firstNonzero)*(DIGIT_WIDTH*MAGNIFY_MULT);
-			drawObject(nine_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN);
+			drawObject(nine_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN, FORCE_BLACK_BACKGROUND);
 			break;
 		}
 	}
+}
 
 
-
-
-}*/
-
-
-
+//Draws one pixel to the frame buffer. Checks if it is already that color before drawing.
 void drawPixel(uint16_t y, uint16_t x, uint32_t color)
 {
 	if (framePointer0[y*WIDTH_DISPLAY + x] != color)
@@ -122,11 +100,11 @@ void drawPixel(uint16_t y, uint16_t x, uint32_t color)
 void eraseRectangle(point_t startPoint, uint16_t width, uint16_t height)
 {
 	uint8_t i, j;
-	for (i = 0; i < width*MAGNIFY_MULT; i++)
+	for (i = 0; i < width*MAGNIFY_MULT; i++) //iterate through the width of the rectangle
 	{
-		for (j = 0; j < height*MAGNIFY_MULT; j++)
+		for (j = 0; j < height*MAGNIFY_MULT; j++) //iterate through the height
 		{
-			drawPixel((startPoint.y + j), (startPoint.x + i), BLACK);
+			drawPixel((startPoint.y + j), (startPoint.x + i), BLACK); //draw each pixel black as night
 		}
 	}
 }
@@ -135,37 +113,40 @@ void eraseRectangle(point_t startPoint, uint16_t width, uint16_t height)
 void drawObject(uint32_t bitmap[], uint16_t width, uint16_t height, point_t startPoint, uint32_t color, uint8_t force)
 {
 	uint16_t row=0, col=0;
-	for (row=0; row<(height*MAGNIFY_MULT); row++) {
-		for (col=0; col<(width*MAGNIFY_MULT); col++) {
+	for (row=0; row<(height*MAGNIFY_MULT); row++) { //iterate through the height of the object
+		for (col=0; col<(width*MAGNIFY_MULT); col++) {	//iterate through the width of the object
+			//if the bitmap tells you to draw and the force is strong
 			if ((bitmap[row/MAGNIFY_MULT] & (1<<(width-1-col/MAGNIFY_MULT))))
 			{
-				//framePointer0[(row+startPoint.y)*WIDTH_DISPLAY + (col+startPoint.x)] = color;
-				drawPixel((row+startPoint.y), (col+startPoint.x), color);
+				drawPixel((row+startPoint.y), (col+startPoint.x), color); //draw the pixel in the color
 			}
 			else
 			{
-				if (force)
+				if (force) //if the force option is enabled, draw the background black
 					drawPixel((row+startPoint.y), (col+startPoint.x), BLACK);
-				else
+				else //otherwise, skip the pixels that you don't need to color in
 					continue;
 			}
 		}
 	}
 }
 
-
+//Draws the initial game screen (just the green line and the black background).
 void drawScreenInit()
 {
 	uint16_t row=0, col=0;
-	for( row=0; row<HEIGHT_DISPLAY; row++) {
-		for(col=0; col<WIDTH_DISPLAY; col++) {
+	for( row=0; row<HEIGHT_DISPLAY; row++) { //iterate through the display height
+		for(col=0; col<WIDTH_DISPLAY; col++) { //iterate through the width too
+			//if we're in the spot where green should be drawn
 			if (row > BOTTOMLINE_TOP && row < BOTTOMLINE_TOP + BOTTOMLINE_WIDTH)
 			{
-				framePointer0[row*WIDTH_DISPLAY + col] = GREEN;
+				//framePointer0[row*WIDTH_DISPLAY + col] = GREEN; //draw green pixels
+				drawPixel(row, col, GREEN);
 			}
 			else
 			{
-				framePointer0[row*WIDTH_DISPLAY + col] = BLACK;
+				//framePointer0[row*WIDTH_DISPLAY + col] = BLACK; //draw black pixels
+				drawPixel(row, col, BLACK);
 			}
 		}
 	}
@@ -204,8 +185,6 @@ void drawAliensInit()
 	setAlienBlockPosition(alienBlockStartPoint); //set global
 	xil_printf("Alien block position initially: %d, %d\n\r", getAlienBlockPosition().x, getAlienBlockPosition().y);
 }
-
-
 
 
 void disp_init()
@@ -315,11 +294,5 @@ void disp_init()
 	}
 }
 
-
-
-void render()
-{
-
-}
 
 
