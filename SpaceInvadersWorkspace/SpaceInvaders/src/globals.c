@@ -8,6 +8,7 @@
 #include "globals.h"
 #include "bitmaps.h"
 #include "render.h"
+#include "bullets.h"
 
 //////////////////////// GLOBAL VARIABLES ///////////////////////////////
 static uint16_t tankPosition; // The current x-coordinate of the tank

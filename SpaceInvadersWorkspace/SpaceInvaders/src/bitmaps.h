@@ -237,6 +237,7 @@ packword6(1,1,1,1,1,1),
 packword6(1,1,1,1,1,1)
 };
 
+//Bitmap for the word "lives"
 static const uint32_t lives_18x5[] = {
 packword18(1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1),
 packword18(1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0),
@@ -245,6 +246,7 @@ packword18(1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
 packword18(1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0)
 };
 
+//Bitmap for the word "score"
 static const uint32_t score_20x5[] = {
 packword20(0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1),
 packword20(1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0),
@@ -253,6 +255,7 @@ packword20(0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 1, 0, 0, 1, 0, 0),
 packword20(1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1)
 };
 
+//Bitmap for number 0
 static const uint32_t zero_5x5[] = {
 packword5(0, 1, 1, 0, 0),
 packword5(1, 0, 0, 1, 0),
@@ -261,6 +264,7 @@ packword5(1, 0, 0, 1, 0),
 packword5(0, 1, 1, 0, 0)
 };
 
+//Bitmap for number 1
 static const uint32_t one_3x5[] = {
 packword3(1, 1, 0),
 packword3(0, 1, 0),
@@ -269,6 +273,7 @@ packword3(0, 1, 0),
 packword3(0, 1, 0)
 };
 
+//Bitmap for number 2
 static const uint32_t two_5x5[] = {
 packword5(1, 1, 1, 0, 0),
 packword5(0, 0, 0, 1, 0),
@@ -277,6 +282,7 @@ packword5(1, 0, 0, 0, 0),
 packword5(1, 1, 1, 1, 0)
 };
 
+//Bitmap for number 3
 static const uint32_t three_5x5[] = {
 packword5(1, 1, 1, 0, 0),
 packword5(0, 0, 0, 1, 0),
@@ -285,6 +291,7 @@ packword5(0, 0, 0, 1, 0),
 packword5(1, 1, 1, 0, 0)
 };
 
+//Bitmap for number 4
 static const uint32_t four_5x5[] = {
 packword5(1, 0, 0, 1, 0),
 packword5(1, 0, 0, 1, 0),
@@ -293,6 +300,7 @@ packword5(0, 0, 0, 1, 0),
 packword5(0, 0, 0, 1, 0)
 };
 
+//Bitmap for number 5
 static const uint32_t five_5x5[] = {
 packword5(1, 1, 1, 1, 0),
 packword5(1, 0, 0, 0, 0),
@@ -301,6 +309,7 @@ packword5(0, 0, 0, 1, 0),
 packword5(1, 1, 1, 0, 0)
 };
 
+//Bitmap for number 6
 static const uint32_t six_5x5[] = {
 packword5(0, 1, 1, 0, 0),
 packword5(1, 0, 0, 0, 0),
@@ -309,6 +318,7 @@ packword5(1, 0, 0, 1, 0),
 packword5(0, 1, 1, 0, 0)
 };
 
+//Bitmap for number 7
 static const uint32_t seven_5x5[] = {
 packword5(1, 1, 1, 1, 0),
 packword5(0, 0, 0, 1, 0),
@@ -317,6 +327,7 @@ packword5(0, 0, 1, 0, 0),
 packword5(0, 0, 1, 0, 0)
 };
 
+//Bitmap for number 8
 static const uint32_t eight_5x5[] = {
 packword5(0, 1, 1, 0, 0),
 packword5(1, 0, 0, 1, 0),
@@ -325,6 +336,7 @@ packword5(1, 0, 0, 1, 0),
 packword5(0, 1, 1, 0, 0)
 };
 
+//Bitmap for number 9
 static const uint32_t nine_5x5[] = {
 packword5(0, 1, 1, 0, 0),
 packword5(1, 0, 0, 1, 0),
@@ -333,7 +345,7 @@ packword5(0, 0, 0, 1, 0),
 packword5(0, 1, 1, 0, 0)
 };
 
-
+//Bitmap for tank bullet
 static const uint32_t tankBullet_3x6[] = {
 packword3(0,1,0),
 packword3(0,1,0),
@@ -343,6 +355,7 @@ packword3(0,1,0),
 packword3(0,1,0)
 };
 
+//Bitmap for cross alien bullet 0
 static const uint32_t crossBulletGuise0_5x6[] = {
 packword5(0, 0, 1, 0, 0),
 packword5(0, 1, 1, 1, 0),
@@ -352,6 +365,7 @@ packword5(0, 0, 1, 0, 0),
 packword5(0, 0, 1, 0, 0)
 };
 
+//Bitmap for cross alien bullet 1
 static const uint32_t crossBulletGuise1_5x6[] = {
 packword5(0, 0, 1, 0, 0),
 packword5(0, 0, 1, 0, 0),
@@ -361,6 +375,7 @@ packword5(0, 1, 1, 1, 0),
 packword5(0, 0, 1, 0, 0)
 };
 
+//Bitmap for zigzag alien bullet 0
 static const uint32_t zigzagBulletGuise0_3x7[] = {
 packword3(0, 0, 1),
 packword3(0, 1, 0),
@@ -371,6 +386,7 @@ packword3(0, 1, 0),
 packword3(1, 0, 0)
 };
 
+//Bitmap for zigzag alien bullet 1
 static const uint32_t zigzagBulletGuise1_3x7[] = {
 packword3(1, 0, 0),
 packword3(0, 1, 0),

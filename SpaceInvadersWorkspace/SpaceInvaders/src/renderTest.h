@@ -10,6 +10,7 @@
 #include "globals.h"
 #include "render.h"
 
+//The main loop of the lab3 test program for passoff
 void renderTest();
 
 #endif /* RENDERTEST_H_ */

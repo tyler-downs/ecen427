@@ -11,7 +11,6 @@
 #include "render.h"
 
 ///////////// DEFINES /////////////////////////////
-#define ERROR_INDEX -1 //used for indicating error exit status of various functions
 #define SCREEN_EDGE_BUMPER_PIXELS 10 //The number of pixels that acts as a buffer when the aliens reach the screen edge
 #define ALIEN_MOVE_PIXELS TANK_MOVE_PIXELS //The amount the aliens move with each step
 

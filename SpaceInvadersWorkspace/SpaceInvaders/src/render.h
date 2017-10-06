@@ -46,12 +46,19 @@
 
 
 ////////////////////// FUNCTION PROTOTYPES ///////////////////////
+//Initializes the display
 void disp_init();
-//void drawObject(uint32_t bitmap[], uint16_t width, uint16_t height, point_t startPoint, uint32_t color);
+
+//Draws the black game screen with the green line
 void drawScreenInit();
+
+//Draws an object given details about the bitmap, location, size, and color
 void drawObject(uint32_t bitmap[], uint16_t width, uint16_t height, point_t startPoint, uint32_t color, uint8_t force);
+
+//Draws one pixel given position and color
 void drawPixel(uint16_t y, uint16_t x, uint32_t color);
+
+//Erases a rectangle at the given position of the given size
 void eraseRectangle(point_t startPoint, uint16_t width, uint16_t height);
-void print(char *str);
 
 #endif /* RENDER_H_ */

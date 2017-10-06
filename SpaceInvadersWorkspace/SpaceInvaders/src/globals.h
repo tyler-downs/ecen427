@@ -10,6 +10,10 @@
 
 #include <stdint.h>
 
+/////////////////// DEFINES //////////////////////////
+//General defines
+#define ERROR_INDEX -1 		//used for indicating error exit status of various functions
+
 //Colors
 #define BLACK 0x00000000
 #define GREEN 0x0000FF00
@@ -40,8 +44,12 @@
 #define MAX_ALIEN_ROW_INDEX 4		//Largest index for alien row
 
 //Alien bullet defines
-#define NUM_BULLET_TYPES 2
-#define MAX_ALIEN_BULLETS 4
+#define NUM_BULLET_TYPES 2			//The number of bullet types
+#define MAX_ALIEN_BULLETS 4			//The max number of alien bullets that can be on the screen
+#define CROSS_BULLET_WIDTH 5		//The width of the cross bullet
+#define CR0SS_BULLET_HEIGHT 6		//The height of the cross bullet
+#define ZIGZAG_BULLET_WIDTH 3		//Width of the zigzag bullet
+#define ZIGZAG_BULLET_HEIGHT 7		//Height of the zigzag bullet
 
 //Tank defines
 #define TANK_START_X 99 				//Start x coord for the tank
@@ -52,6 +60,12 @@
 #define TANK_SCREEN_EDGE_RIGHT (WIDTH_DISPLAY-(TANK_WIDTH+TANK_MOVE_PIXELS)*MAGNIFY_MULT) //How far the tank can go on the right
 #define TANK_SCREEN_EDGE_LEFT TANK_MOVE_PIXELS //Bumper for the left side of the screen
 
+//Tank bullet defines
+#define TANK_BULLET_OFFSET_X 12						//The x offset for placing a tank bullet
+#define TANK_BULLET_OFFSET_Y (TANK_HEIGHT+4)		//The y offset for placing a tank bullet
+#define TANK_BULLET_HEIGHT 6						//The height of a tank bullet
+#define TANK_BULLET_WIDTH 3							//The width of a tank bullet
+#define TANK_BULLET_TRAVEL_DISTANCE 6 				//The distance a tank bullet travels with each step
 
 //Bunker defines
 #define NUM_BUNKER_BLOCKS 10
@@ -75,7 +89,7 @@ typedef struct {int16_t x; int16_t y;} point_t;
 
 //////////////////// FUNCTION PROTOTYPES ////////////////////////
 
-//Getters and setters
+//Getters and setters. These are self-explanatory.
 void setTankPosition(uint16_t val);
 uint16_t getTankPosition();
 void setAlienBlockPosition(point_t val);
@@ -92,13 +106,12 @@ uint16_t getCurrentScore();
 void setScore(uint16_t score);
 
 //UI functions
-void fireTankBullet();
-void moveTankLeft();
-void moveTankRight();
-void moveAliens();
-void killAlien(uint8_t alien);
-void advanceAllBullets();
-void eraseAllAliens();
+void moveTankLeft();				//Moves the tank right
+void moveTankRight();				//Moves the tank left
+void moveAliens();					//Moves the whole alien block one step
+void killAlien(uint8_t alien);		//Kills the alien at the given index
+void advanceAllBullets();			//Advances all alien bullets
+void eraseAllAliens();				//Erases all aliens
 
 
 #endif /* GLOBALS_H_ */

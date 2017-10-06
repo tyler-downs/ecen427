@@ -6,8 +6,7 @@
  */
 #include "bunkers.h"
 
-#define NUM_BUNKER_BLOCK_ROWS 3
-#define NUM_BUNKER_BLOCK_COLS 4
+
 //there are 3 rows and 4 columns of "bunker blocks".
 //bunker 0 is leftmost, bunker 3 is rightmost
 uint8_t bunker0state[NUM_BUNKER_BLOCK_ROWS][NUM_BUNKER_BLOCK_COLS] = { //initialized to 0 to indicate 0 damage
@@ -34,89 +33,69 @@ uint8_t bunker3state[NUM_BUNKER_BLOCK_ROWS][NUM_BUNKER_BLOCK_COLS] = { //initial
 		{0, 0, 0, 0},
 };
 
-#define BUNKER_START_Y 340
-#define BUNKER_SPACE 90 //space between individual bunkers, and bunkers and the edge of the screen
-#define BUNKER_WIDTH 24
-#define BUNKER_HEIGHT 18
-#define BUNKER_FINAL_WIDTH (BUNKER_WIDTH * MAGNIFY_MULT)
-#define NUM_BUNKERS 4
-
+//Returns the start location of a bunker given its bunker index.
 point_t getBunkerStartPoint(uint8_t bunker)
 {
 	return (point_t) {((bunker+1) * BUNKER_SPACE) + (bunker * BUNKER_FINAL_WIDTH), BUNKER_START_Y};
 }
 
-
+//Initially draws the bunkers.
 void drawBunkersInit()
 {
 	uint8_t n = 0;
-	for (n = 0; n < NUM_BUNKERS; n++)
+	for (n = 0; n < NUM_BUNKERS; n++) //iterate through the four bunkers
 	{
-		point_t bunkerStartPoint = getBunkerStartPoint(n);
+		point_t bunkerStartPoint = getBunkerStartPoint(n); //get the start point
 		drawObject(bunker_24x18, BUNKER_WIDTH, BUNKER_HEIGHT, bunkerStartPoint, GREEN); //draw bunkers
 	}
 }
 
-#define EROSION_ST_UNDAMAGED 0
-#define EROSION_ST1 1
-#define EROSION_ST2 2
-#define EROSION_ST3 3
-#define EROSION_ST_DESTROYED 4
-
-#define BUNKER0 0
-#define BUNKER1 1
-#define BUNKER2 2
-#define BUNKER3 3
-
-
-//returns the erosion state of the bunker block at the specified bunker, row, and column
+//Returns the erosion state of the bunker block at the specified bunker, row, and column.
 uint8_t getBunkerBlockState(uint8_t bunker, uint8_t row, uint8_t col)
 {
 	switch (bunker)
 	{
 	case BUNKER0:
-		return bunker0state[row][col];
+		return bunker0state[row][col];		//Update bunker 0
 		break;
 	case BUNKER1:
-		return bunker1state[row][col];
+		return bunker1state[row][col];		//Update bunker 1
 		break;
 	case BUNKER2:
-		return bunker2state[row][col];
+		return bunker2state[row][col];		//Update bunker 2
 		break;
 	case BUNKER3:
-		return bunker3state[row][col];
+		return bunker3state[row][col];		//Update bunker 3
 		break;
 	default:
 		xil_printf("Tried to erode an invalid bunker block at bunker %d, row %d, col %d\n\r", bunker, row, col);
-		return -1;
+		return ERROR_INDEX;
 		break;
 	}
 }
 
+//Set the erosion state of a bunker block given which bunker it's in, row, col, and state.
 void setBlockErosionState(uint8_t bunker, uint8_t row, uint8_t col, uint8_t state)
 {
-	if (state < 0 || state > 4) //valid states are 0-4
+	if ((state < 0) || (state > 4)) //valid states are 0-4
 	{
 		xil_printf("Tried to set erosion state to %d. Should be 0-4\n\r", state);
 		return;
 	}
-
-	//xil_printf("  setting erosion state bunker: %d, row: %d, col: %d, state: %d\n\r", bunker, row, col, state);
-
 	//update the specified bunker block
 	switch (bunker)
 	{
 	case BUNKER0:
-		bunker0state[row][col] = state;
+		bunker0state[row][col] = state; 	//Update bunker 0
 		break;
 	case BUNKER1:
-		bunker1state[row][col] = state;
+		bunker1state[row][col] = state;		//Update bunker 1
 		break;
 	case BUNKER2:
-		bunker2state[row][col] = state;
+		bunker2state[row][col] = state;		//Update bunker 2
 		break;
 	case BUNKER3:
-		bunker3state[row][col] = state;
+		bunker3state[row][col] = state;		//Update bunker 3
 		break;
 	default:
 		xil_printf("Tried to set an invalid bunker block at bunker %d, row %d, col %d\n\r", bunker, row, col);
@@ -125,9 +104,8 @@ void setBlockErosionState(uint8_t bunker, uint8_t row, uint8_t col, uint8_t stat
 }
 
 
-#define BUNKER_BLOCK_WIDTH 6
-#define BUNKER_BLOCK_HEIGHT 6
-//erodes the specified bunker block by one level
+
+//Erodes the specified bunker block by one level.
 void erodeBunkerBlock(uint8_t bunker, uint8_t row, uint8_t col)
 {
 	//xil_printf("  eroding bunker %d, row: %d, col: %d\n\r", bunker, row, col);
@@ -160,10 +138,9 @@ void erodeBunkerBlock(uint8_t bunker, uint8_t row, uint8_t col)
 	}
 }
 
-//for test purposes only, erode an entire bunker at once
+//For test purposes only, erode an entire bunker at once
 void erodeEntireBunker(uint8_t bunker)
 {
-	//xil_printf("  eroding bunker %d\n\r", bunker);
 	uint8_t r, c;
 	for (r = 0; r < NUM_BUNKER_BLOCK_ROWS; r++)
 	{

@@ -11,7 +11,7 @@
 int main()
 {
 	init_platform(); // Necessary for all programs.
-	renderTest();
+	renderTest();	 //Run the lab3 main
 	cleanup_platform();
 	return 0;
 }

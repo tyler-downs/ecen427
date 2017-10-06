@@ -16,6 +16,8 @@ unsigned int * framePointer1 = ((unsigned int *) FRAME_BUFFER_0_ADDR) + 640*480;
 char score[MAX_SCORE_DIGITS] = {0, 0, 0, 0, 0, 0}; //The global score digits
 
 
+/** NOTE: This function is not finished, it will be used in the next lab. Ignore this for this lab. **/
+/*
 //Updates the score display given an integer score value
 void updateScoreDisplay(uint16_t newScore)
 {
@@ -86,7 +88,7 @@ void updateScoreDisplay(uint16_t newScore)
 			break;
 		}
 	}
-}
+}*/
 
 
 //Draws one pixel to the frame buffer. Checks if it is already that color before drawing.
@@ -152,17 +154,15 @@ void drawScreenInit()
 	}
 }
 
-
+//Initially draws the tank
 void drawTankInit()
 {
-	point_t tankStartPoint = {TANK_START_X, TANK_START_Y};
+	point_t tankStartPoint = {TANK_START_X, TANK_START_Y}; //put the tank at its start point
 	drawObject(tank_15x8, TANK_WIDTH, TANK_HEIGHT, tankStartPoint, GREEN, FORCE_BLACK_BACKGROUND); //draw the tank
 	setTankPosition(TANK_START_X); //set global variable
 }
 
-
-
-
+//Initially draws the aliens
 void drawAliensInit()
 {
 	uint8_t r = 0, c = 0;
@@ -186,7 +186,7 @@ void drawAliensInit()
 	xil_printf("Alien block position initially: %d, %d\n\r", getAlienBlockPosition().x, getAlienBlockPosition().y);
 }
 
-
+//Initializes the display
 void disp_init()
 {
 	//initialize display stuff
@@ -249,39 +249,28 @@ void disp_init()
 	xil_printf("Woohoo! I made it through initialization.\n\r");
 	// Now, let's get ready to start displaying some stuff on the screen.
 
-
-
-	//draw everything on screen in original positions //DO THIS ***********************************
+	//Draw everything on screen in original positions
 	drawScreenInit(); //draw the main screen
 	drawTankInit(); //draw the tank
 	drawBunkersInit(); //draw the bunkers
 	drawAliensInit(); //draw the block of aliens
 
-	drawObject(lives_18x5, LIVES_WIDTH, LIVES_HEIGHT, (point_t) {LIVES_X, LIVES_Y}, WHITE, FORCE_BLACK_BACKGROUND); //draw "lives"
-
-
-	drawObject(score_20x5, SCORE_WIDTH, SCORE_HEIGHT, (point_t) {SCORE_X, SCORE_Y}, WHITE, FORCE_BLACK_BACKGROUND); //draw "score"
+	//Draw the word "Lives"
+	drawObject(lives_18x5, LIVES_WIDTH, LIVES_HEIGHT, (point_t) {LIVES_X, LIVES_Y}, WHITE, FORCE_BLACK_BACKGROUND);
+	//Draw the word "Score
+	drawObject(score_20x5, SCORE_WIDTH, SCORE_HEIGHT, (point_t) {SCORE_X, SCORE_Y}, WHITE, FORCE_BLACK_BACKGROUND);
 
 	//draw tank lives
 	int n;
-	for(n = 0; n < NUM_LIVES_INIT; n++)
+	for(n = 0; n < NUM_LIVES_INIT; n++) //Just draw a tank three times at the top of the screen
 	{
 		int x = LIVES_X + LIVES_WIDTH*MAGNIFY_MULT + LIVES_TANK_SPACE + n*(TANK_WIDTH*MAGNIFY_MULT + TANK_SPACE);
 		int y = LIVES_Y - (TANK_HEIGHT - LIVES_HEIGHT)*MAGNIFY_MULT;
 		drawObject(tank_15x8, TANK_WIDTH, TANK_HEIGHT, (point_t) {x, y}, GREEN, FORCE_BLACK_BACKGROUND);
 	}
-
-	//updateScoreDisplay(1234);
 	srand(time(NULL)); //set random seed
-
-
-
-
-
-
 	// This tells the HDMI controller the resolution of your display (there must be a better way to do this).
 	XIo_Out32(XPAR_AXI_HDMI_0_BASEADDR, 640*480);
-
 	// Start the DMA for the read channel only.
 	if(XST_FAILURE == XAxiVdma_DmaStart(&videoDMAController, XAXIVDMA_READ)){
 		xil_printf("DMA START FAILED\r\n");
