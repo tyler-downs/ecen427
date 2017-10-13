@@ -28,9 +28,10 @@ void moveSaucerRight()
 	//erase the rectangle
 	eraseRectangle((point_t) {getSaucerPosition(), SAUCER_POSITION_Y}, SAUCER_MOVE_PIXELS, SAUCER_HEIGHT);
 	//change the start point of the saucer
-	uint16_t newSaucerPosition = getSaucerPosition() + SAUCER_MOVE_PIXELS;
+	int16_t newSaucerPosition = getSaucerPosition() + SAUCER_MOVE_PIXELS;
 	setSaucerPosition(newSaucerPosition);
 	//draw the saucer
+	//xil_printf("New saucer position: %d\n\r", newSaucerPosition);
 	drawObject(saucer_16x7, SAUCER_WIDTH, SAUCER_HEIGHT, (point_t){newSaucerPosition, SAUCER_POSITION_Y}, RED, FORCE_BLACK_BACKGROUND);
 }
 
@@ -40,8 +41,9 @@ void moveSaucerLeft()
 	//erase the rectangle
 	eraseRectangle((point_t) {getSaucerPosition() + SAUCER_WIDTH + SAUCER_MOVE_PIXELS, SAUCER_POSITION_Y}, SAUCER_MOVE_PIXELS, SAUCER_HEIGHT);
 	//change the start point of the saucer
-	uint16_t newSaucerPosition = getSaucerPosition() - SAUCER_MOVE_PIXELS;
+	int16_t newSaucerPosition = getSaucerPosition() - SAUCER_MOVE_PIXELS;
 	setSaucerPosition(newSaucerPosition);
 	//draw the saucer
+	//xil_printf("New saucer position: %d\n\r", newSaucerPosition);
 	drawObject(saucer_16x7, SAUCER_WIDTH, SAUCER_HEIGHT, (point_t){newSaucerPosition, SAUCER_POSITION_Y}, RED, FORCE_BLACK_BACKGROUND);
 }

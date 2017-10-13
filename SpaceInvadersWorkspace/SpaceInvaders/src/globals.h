@@ -106,8 +106,8 @@ void setBulletStatus(uint8_t bulletNumber, uint8_t active);
 uint16_t getCurrentScore();
 void setScore(uint16_t score);
 void incrementScore(uint16_t plus); //increments the score to the provided value
-uint16_t getSaucerPosition();
-void setSaucerPosition(uint16_t position);
+int16_t getSaucerPosition();
+void setSaucerPosition(int16_t position);
 void updateLives(uint8_t incDec);
 uint8_t getNumLives();
 

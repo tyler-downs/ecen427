@@ -59,7 +59,7 @@ void drawScreenInit();
 void drawObject(uint32_t bitmap[], uint16_t width, uint16_t height, point_t startPoint, uint32_t color, uint8_t force);
 
 //Draws one pixel given position and color
-void drawPixel(uint16_t y, uint16_t x, uint32_t color);
+void drawPixel(int16_t y, int16_t x, uint32_t color);
 
 //Erases a rectangle at the given position of the given size
 void eraseRectangle(point_t startPoint, uint16_t width, uint16_t height);

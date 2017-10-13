@@ -123,10 +123,14 @@ for(n = 0; n < NUM_LIVES_INIT; n++) //Just draw a tank three times at the top of
 }
 */
 
-//Draws one pixel to the frame buffer. Checks if it is already that color before drawing.
-void drawPixel(uint16_t y, uint16_t x, uint32_t color)
+uint8_t isOnScreen(point_t point)
 {
-	if (framePointer0[y*WIDTH_DISPLAY + x] != color)
+	return (point.x >= 0 && point.x < 640 && point.y >=0 && point.y < 480);
+}
+//Draws one pixel to the frame buffer. Checks if it is already that color before drawing.
+void drawPixel(int16_t y, int16_t x, uint32_t color)
+{
+	if (isOnScreen((point_t){x,y}) && framePointer0[y*WIDTH_DISPLAY + x] != color)
 		framePointer0[y*WIDTH_DISPLAY + x] = color;
 }
 
