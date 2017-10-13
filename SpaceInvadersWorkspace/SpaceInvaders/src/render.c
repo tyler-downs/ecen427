@@ -16,79 +16,82 @@ unsigned int * framePointer1 = ((unsigned int *) FRAME_BUFFER_0_ADDR) + 640*480;
 char score[MAX_SCORE_DIGITS] = {0, 0, 0, 0, 0, 0}; //The global score digits
 
 
-/** NOTE: This function is not finished, it will be used in the next lab. Ignore this for this lab. **/
-/*
+#define SCORE_SPACE 15
 //Updates the score display given an integer score value
 void updateScoreDisplay(uint16_t newScore)
 {
-	char updatedScore[MAX_SCORE_DIGITS] = {0, 0, 0, 0, 0, 0};
-	//xil_sprintf(updatedScore, "%d", newScore); //store the score as a char array
+	char updatedScore[MAX_SCORE_DIGITS] = {'0', '0', '0', '0', '0', '0'}; //initialize the score char array
 
-	//test
-	uint16_t n = 0;
-	for (n = 0; n < MAX_SCORE_DIGITS; n++)
+	//convert the integer score into a char array
+	int16_t i = 0;
+	for (i = 5; i >= 0; i--)
 	{
-		xil_printf("Score is : %c\n", updatedScore[n]);
+		updatedScore[i] = (char) ((newScore % 10) + '0');
+		//xil_printf("i = %d, newScore = %d, updatedScore[i] = %c\n\r", i, newScore, updatedScore[i]); //TEST
+		newScore /= 10;
 	}
 
-	uint16_t m, firstNonzero;
-	for (m = 0; m < MAX_SCORE_DIGITS; m++)
+	/*//test
+	uint16_t n = 0;
+	xil_printf("Score is : ");
+	for (n = 0; n < MAX_SCORE_DIGITS; n++)
 	{
-		if (updatedScore[m] != 0)
+		xil_printf("%c", updatedScore[n]);
+	}
+	xil_printf("\n\r");
+*/
+	//determine the first digit to display (we don't want leading zeros)
+	uint16_t m, firstNonzero = MAX_SCORE_DIGITS-1;
+	for (m = 0 ; m < MAX_SCORE_DIGITS; m++)
+	{
+		if (updatedScore[m] != '0')
 		{
 			firstNonzero = m;
 			break;
 		}
 	}
+	//xil_printf("firstNonzero = %d\n\r", firstNonzero); //TEST
 	uint16_t k;
 	uint8_t x;
+	//write each digit to the screen
 	for (k = firstNonzero; k < MAX_SCORE_DIGITS; k++)
 	{
+		x = SCORE_SPACE + SCORE_X + SCORE_WIDTH*MAGNIFY_MULT + (k-firstNonzero)*(DIGIT_WIDTH*MAGNIFY_MULT);
 		switch(updatedScore[k])
 		{
 		case '0':
-			x = SCORE_X + SCORE_WIDTH*MAGNIFY_MULT + (k-firstNonzero)*(DIGIT_WIDTH*MAGNIFY_MULT);
 			drawObject(zero_5x5, DIGIT_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN, FORCE_BLACK_BACKGROUND);
 			break;
 		case '1':
-			x = SCORE_X + SCORE_WIDTH*MAGNIFY_MULT + (k-firstNonzero)*(DIGIT_WIDTH*MAGNIFY_MULT);
-			drawObject(one_3x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN, FORCE_BLACK_BACKGROUND);
+			drawObject(one_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN, FORCE_BLACK_BACKGROUND);
 			break;
 		case '2':
-			x = SCORE_X + SCORE_WIDTH*MAGNIFY_MULT + (k-firstNonzero)*(DIGIT_WIDTH*MAGNIFY_MULT);
 			drawObject(two_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN, FORCE_BLACK_BACKGROUND);
 			break;
 		case '3':
-			x = SCORE_X + SCORE_WIDTH*MAGNIFY_MULT + (k-firstNonzero)*(DIGIT_WIDTH*MAGNIFY_MULT);
 			drawObject(three_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN, FORCE_BLACK_BACKGROUND);
 			break;
 		case '4':
-			x = SCORE_X + SCORE_WIDTH*MAGNIFY_MULT + (k-firstNonzero)*(DIGIT_WIDTH*MAGNIFY_MULT);
 			drawObject(four_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN, FORCE_BLACK_BACKGROUND);
 			break;
 		case '5':
-			x = SCORE_X + SCORE_WIDTH*MAGNIFY_MULT + (k-firstNonzero)*(DIGIT_WIDTH*MAGNIFY_MULT);
 			drawObject(five_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN, FORCE_BLACK_BACKGROUND);
 			break;
 		case '6':
-			x = SCORE_X + SCORE_WIDTH*MAGNIFY_MULT + (k-firstNonzero)*(DIGIT_WIDTH*MAGNIFY_MULT);
 			drawObject(six_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN, FORCE_BLACK_BACKGROUND);
 			break;
 		case '7':
-			x = SCORE_X + SCORE_WIDTH*MAGNIFY_MULT + (k-firstNonzero)*(DIGIT_WIDTH*MAGNIFY_MULT);
 			drawObject(seven_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN, FORCE_BLACK_BACKGROUND);
 			break;
 		case '8':
-			x = SCORE_X + SCORE_WIDTH*MAGNIFY_MULT + (k-firstNonzero)*(DIGIT_WIDTH*MAGNIFY_MULT);
 			drawObject(eight_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN, FORCE_BLACK_BACKGROUND);
 			break;
 		case '9':
-			x = SCORE_X + SCORE_WIDTH*MAGNIFY_MULT + (k-firstNonzero)*(DIGIT_WIDTH*MAGNIFY_MULT);
 			drawObject(nine_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN, FORCE_BLACK_BACKGROUND);
 			break;
 		}
 	}
-}*/
+}
 
 
 //Draws one pixel to the frame buffer. Checks if it is already that color before drawing.
@@ -259,6 +262,8 @@ void disp_init()
 	drawObject(lives_18x5, LIVES_WIDTH, LIVES_HEIGHT, (point_t) {LIVES_X, LIVES_Y}, WHITE, FORCE_BLACK_BACKGROUND);
 	//Draw the word "Score
 	drawObject(score_20x5, SCORE_WIDTH, SCORE_HEIGHT, (point_t) {SCORE_X, SCORE_Y}, WHITE, FORCE_BLACK_BACKGROUND);
+	setScore(0); //initialize the score
+	updateScoreDisplay(0); //draw the score
 
 	//draw tank lives
 	int n;

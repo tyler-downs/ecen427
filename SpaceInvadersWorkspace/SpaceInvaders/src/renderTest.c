@@ -49,6 +49,16 @@ void renderTest()
 			scanf("%d", &bunkerToErode);
 			erodeEntireBunker(bunkerToErode); //Erodes the bunker chosen
 			break;
+		case 'a':
+			moveSaucerLeft();
+			break;
+		case 'd':
+			moveSaucerRight();
+			break;
+		case 's':
+			incrementScore(10);
+			updateScoreDisplay(getCurrentScore());
+			break;
 		}
 	}
 }

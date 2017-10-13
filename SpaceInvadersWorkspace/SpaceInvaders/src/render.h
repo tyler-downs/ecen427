@@ -38,7 +38,7 @@
 
 #define DIGIT_WIDTH 5						//Width of each digit
 #define DIGIT_HEIGHT 5						//Height of each digit
-#define ONE_WIDTH 3							//Width of the number 1
+#define ONE_WIDTH 5							//Width of the number 1
 #define SCORE_GAP 20 						//space between "score" and first digit
 #define MAX_SCORE_DIGITS 6					//Max number of digits a score can be
 

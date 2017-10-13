@@ -173,6 +173,30 @@ packword15(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1),
 packword15(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
 };
 
+static const uint32_t tank_dead_guise0_15x8[] =
+{
+packword15(0,0,0,0,0,1,0,0,0,0,0,0,1,0,0),
+packword15(0,0,0,1,0,0,0,0,0,0,0,0,0,0,0),
+packword15(0,0,0,0,0,0,0,0,1,0,0,0,0,0,1),
+packword15(0,1,0,0,0,1,0,0,0,0,0,1,0,0,0),
+packword15(0,0,1,0,0,0,1,0,1,0,0,0,0,1,0),
+packword15(0,0,0,1,1,1,1,1,1,1,1,0,0,0,0),
+packword15(0,0,1,1,1,1,1,1,1,1,1,1,0,0,0),
+packword15(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
+};
+
+static const uint32_t tank_dead_guise1_15x8[] =
+{
+packword15(0,0,0,0,1,0,0,0,0,0,0,0,1,0,0),
+packword15(0,0,1,0,0,0,0,0,0,0,0,0,0,0,0),
+packword15(0,0,0,0,0,0,0,1,0,0,0,0,0,1,0),
+packword15(1,0,0,0,1,0,0,0,0,0,1,0,0,0,0),
+packword15(0,1,0,0,0,0,1,0,1,0,0,0,1,0,0),
+packword15(0,0,0,1,1,1,1,1,1,1,1,0,0,0,0),
+packword15(0,0,1,1,1,1,1,1,1,1,1,1,0,0,0),
+packword15(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
+};
+
 
 // Shape of the entire bunker.
 static const uint32_t bunker_24x18[] =
@@ -265,12 +289,12 @@ packword5(0, 1, 1, 0, 0)
 };
 
 //Bitmap for number 1
-static const uint32_t one_3x5[] = {
-packword3(1, 1, 0),
-packword3(0, 1, 0),
-packword3(0, 1, 0),
-packword3(0, 1, 0),
-packword3(0, 1, 0)
+static const uint32_t one_5x5[] = {
+packword5(0, 1, 1, 0, 0),
+packword5(0, 0, 1, 0, 0),
+packword5(0, 0, 1, 0, 0),
+packword5(0, 0, 1, 0, 0),
+packword5(0, 0, 1, 0, 0)
 };
 
 //Bitmap for number 2

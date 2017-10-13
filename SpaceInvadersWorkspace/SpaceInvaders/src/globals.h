@@ -84,6 +84,7 @@ typedef enum {alien_guise_out, alien_guise_in} alien_guise_type;
 typedef enum {aliens_move_right, aliens_move_left} alien_direction_type;
 typedef enum {cross_bullet, ziggy_bullet} bullet_type;
 typedef enum {bullet_guise_0, bullet_guise_1} bullet_guise_type;
+typedef enum {saucer_moves_right, saucer_moves_left} saucer_direction_type;
 typedef struct {int16_t x; int16_t y;} point_t;
 
 
@@ -104,6 +105,9 @@ uint8_t isBulletActive(uint8_t bulletNumber);
 void setBulletStatus(uint8_t bulletNumber, uint8_t active);
 uint16_t getCurrentScore();
 void setScore(uint16_t score);
+void incrementScore(uint16_t plus); //increments the score to the provided value
+uint16_t getSaucerPosition();
+void setSaucerPosition(uint16_t position);
 
 //UI functions
 void moveTankLeft();				//Moves the tank right

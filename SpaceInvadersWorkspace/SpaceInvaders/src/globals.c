@@ -17,6 +17,7 @@ static bullet_type alienBulletTypes[MAX_ALIEN_BULLETS]; //the types of each alie
 static bullet_guise_type alienBulletGuises[MAX_ALIEN_BULLETS]; //the guises of each alien bullet
 static point_t alienBulletPositions[MAX_ALIEN_BULLETS]; //the positions of each alien bullet
 static uint8_t bulletsActive[MAX_ALIEN_BULLETS] = {0, 0, 0, 0}; //bools to indicate which alien bullets are active
+static uint16_t saucerPosition; //The current x-coord of the saucer
 
 //Arrays for storing the state of each block in each bunker
 static uint8_t bunker0State[NUM_BUNKER_BLOCKS] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -29,6 +30,17 @@ static uint16_t currentScore = 0;
 
 
 ////////////////////////// FUNCTIONS //////////////////////////////////
+//Returns the value of the global saucer position x-coord
+uint16_t getSaucerPosition(){
+	return saucerPosition;
+}
+
+//Sets the position of the saucer to the given value
+void setSaucerPosition(uint16_t position){
+	saucerPosition = position;
+}
+
+
 //Given the alien bullet number, returns whether that bullet is active
 uint8_t isBulletActive(uint8_t bulletNumber)
 {
@@ -101,7 +113,6 @@ void moveTankRight()
 		setTankPosition(newTankPosition);
 		//draw the tank
 		drawObject(tank_15x8, TANK_WIDTH, TANK_HEIGHT, (point_t){newTankPosition, TANK_START_Y}, GREEN, FORCE_BLACK_BACKGROUND);
-
 	}
 
 }
@@ -121,6 +132,7 @@ void moveTankLeft()
 	}
 }
 
+
 //Advances all the bullets on the screen
 void advanceAllBullets()
 {
@@ -133,3 +145,8 @@ uint16_t getCurrentScore() {return currentScore;}
 
 //Sets the score to the given value
 void setScore(uint16_t score) {currentScore = score;}
+//increments the score to the provided value
+void incrementScore(uint16_t plus)
+{
+	currentScore = getCurrentScore() + plus;
+}
