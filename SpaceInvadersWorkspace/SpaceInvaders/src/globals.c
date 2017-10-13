@@ -24,7 +24,7 @@ static uint8_t bunker0State[NUM_BUNKER_BLOCKS] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 static uint8_t bunker1State[NUM_BUNKER_BLOCKS] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 static uint8_t bunker2State[NUM_BUNKER_BLOCKS] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 static uint8_t bunker3State[NUM_BUNKER_BLOCKS] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-
+static uint8_t lives = 0;
 //Global variable for the current score
 static uint16_t currentScore = 0;
 
@@ -150,3 +150,10 @@ void incrementScore(uint16_t plus)
 {
 	currentScore = getCurrentScore() + plus;
 }
+
+//pass in 1 or -1 to increment or decrement the number of lives
+void updateLives(uint8_t incDec)
+{
+	lives += incDec;
+}
+uint8_t getNumLives() {return lives;}

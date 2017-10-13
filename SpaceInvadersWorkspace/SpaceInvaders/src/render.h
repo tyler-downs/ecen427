@@ -44,6 +44,9 @@
 
 #define FRAME_BUFFER_0_ADDR 0xC1000000  	//Starting location in DDR where we will store the images that we display.
 
+#define INC 1
+#define DEC -1
+
 
 ////////////////////// FUNCTION PROTOTYPES ///////////////////////
 //Initializes the display
@@ -60,5 +63,11 @@ void drawPixel(uint16_t y, uint16_t x, uint32_t color);
 
 //Erases a rectangle at the given position of the given size
 void eraseRectangle(point_t startPoint, uint16_t width, uint16_t height);
+
+//update the score displayed on the screen by passing in the score to be displayed
+void updateScoreDisplay(uint16_t newScore);
+
+//update the lives displayed on the screen by passing in 1 to add a life or -1 to lose a life
+void updateLivesDisplay(int8_t incDec);
 
 #endif /* RENDER_H_ */

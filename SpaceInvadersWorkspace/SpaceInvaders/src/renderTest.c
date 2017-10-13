@@ -59,6 +59,14 @@ void renderTest()
 			incrementScore(10);
 			updateScoreDisplay(getCurrentScore());
 			break;
+		case 'l':
+			updateLivesDisplay(INC);
+			updateLives(INC); //update the global variable tracking number of lives
+			break;
+		case ',':
+			updateLivesDisplay(DEC);
+			updateLives(DEC); //update the global variable tracking number of lives
+			break;
 		}
 	}
 }

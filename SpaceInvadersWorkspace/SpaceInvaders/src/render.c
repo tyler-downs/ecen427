@@ -93,6 +93,35 @@ void updateScoreDisplay(uint16_t newScore)
 	}
 }
 
+#define LIVES_PER_ROW 6
+#define SPACE_BETWEEN_LIFE_ROWS (TANK_HEIGHT * 1.5 * MAGNIFY_MULT)
+point_t calculateLifePosition(uint8_t lifeNum)
+{
+	uint8_t col = lifeNum % LIVES_PER_ROW;
+	uint8_t row = lifeNum / LIVES_PER_ROW;
+	uint16_t x = LIVES_X + LIVES_WIDTH*MAGNIFY_MULT + LIVES_TANK_SPACE + col*(TANK_WIDTH*MAGNIFY_MULT + TANK_SPACE);
+	uint16_t y = LIVES_Y - (TANK_HEIGHT - LIVES_HEIGHT)*MAGNIFY_MULT + row*(SPACE_BETWEEN_LIFE_ROWS);
+	return (point_t) {x, y};
+}
+
+
+void updateLivesDisplay(int8_t incDec)
+{
+	uint8_t lifeNum = (incDec > 0) ? getNumLives() : (getNumLives() - 1);
+	point_t lifePosition = calculateLifePosition(lifeNum);
+	uint32_t color = (incDec > 0) ? GREEN : BLACK;
+	drawObject(tank_15x8, TANK_WIDTH, TANK_HEIGHT, lifePosition, color, FORCE_BLACK_BACKGROUND);
+}
+/*
+int n;
+for(n = 0; n < NUM_LIVES_INIT; n++) //Just draw a tank three times at the top of the screen
+{
+	int x = LIVES_X + LIVES_WIDTH*MAGNIFY_MULT + LIVES_TANK_SPACE + n*(TANK_WIDTH*MAGNIFY_MULT + TANK_SPACE);
+	int y = LIVES_Y - (TANK_HEIGHT - LIVES_HEIGHT)*MAGNIFY_MULT;
+	drawObject(tank_15x8, TANK_WIDTH, TANK_HEIGHT, (point_t) {x, y}, GREEN, FORCE_BLACK_BACKGROUND);
+	updateLives(INC); //update the global variable tracking number of lives
+}
+*/
 
 //Draws one pixel to the frame buffer. Checks if it is already that color before drawing.
 void drawPixel(uint16_t y, uint16_t x, uint32_t color)
@@ -269,10 +298,13 @@ void disp_init()
 	int n;
 	for(n = 0; n < NUM_LIVES_INIT; n++) //Just draw a tank three times at the top of the screen
 	{
-		int x = LIVES_X + LIVES_WIDTH*MAGNIFY_MULT + LIVES_TANK_SPACE + n*(TANK_WIDTH*MAGNIFY_MULT + TANK_SPACE);
+		/*int x = LIVES_X + LIVES_WIDTH*MAGNIFY_MULT + LIVES_TANK_SPACE + n*(TANK_WIDTH*MAGNIFY_MULT + TANK_SPACE);
 		int y = LIVES_Y - (TANK_HEIGHT - LIVES_HEIGHT)*MAGNIFY_MULT;
-		drawObject(tank_15x8, TANK_WIDTH, TANK_HEIGHT, (point_t) {x, y}, GREEN, FORCE_BLACK_BACKGROUND);
+		drawObject(tank_15x8, TANK_WIDTH, TANK_HEIGHT, (point_t) {x, y}, GREEN, FORCE_BLACK_BACKGROUND);*/
+		updateLivesDisplay(INC);
+		updateLives(INC); //update the global variable tracking number of lives
 	}
+
 	srand(time(NULL)); //set random seed
 	// This tells the HDMI controller the resolution of your display (there must be a better way to do this).
 	XIo_Out32(XPAR_AXI_HDMI_0_BASEADDR, 640*480);
