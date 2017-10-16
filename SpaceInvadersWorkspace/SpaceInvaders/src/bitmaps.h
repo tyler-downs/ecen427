@@ -75,6 +75,8 @@ packword16(0,0,1,1,1,0,0,1,1,0,0,1,1,1,0,0),
 packword16(0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0)
 };
 
+#define ALIEN_EXPLOSION_WIDTH 12
+#define ALIEN_EXPLOSION_HEIGHT 10
 static const uint32_t alien_explosion_12x10[] =
 {
 packword12(0,0,0,0,0,0,1,0,0,0,0,0),

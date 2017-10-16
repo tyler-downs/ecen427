@@ -11,8 +11,7 @@
 //////////////////////// GLOBAL VARIABLES ///////////////////
 static saucer_direction_type saucerDirection = saucer_moves_left;
 
-#define SAUCER_WIDTH 16
-#define SAUCER_HEIGHT 7
+
 ////////////////////////// FUNCTIONS ////////////////////////
 void drawSaucer()
 {

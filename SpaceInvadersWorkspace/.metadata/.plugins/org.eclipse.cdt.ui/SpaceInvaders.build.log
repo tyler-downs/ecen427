@@ -2,37 +2,37 @@
 **** Build of configuration Debug for project SpaceInvaders ****
 
 make all 
-Building file: ../src/render.c
+Building file: ../src/counters.c
 Invoking: MicroBlaze gcc compiler
-mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../hello_world_bsp_2/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v8.20.b -mno-xl-soft-mul -MMD -MP -MF"src/render.d" -MT"src/render.d" -o"src/render.o" "../src/render.c"
-../src/render.c: In function 'updateScoreDisplay':
-../src/render.c:68: error: expected expression before 'uint8_t'
-../src/render.c:69: warning: implicit declaration of function 'drawObject'
-../src/render.c:69: error: 'x' undeclared (first use in this function)
-../src/render.c:69: error: (Each undeclared identifier is reported only once
-../src/render.c:69: error: for each function it appears in.)
-../src/render.c:72: error: expected expression before 'uint8_t'
-../src/render.c:76: error: expected expression before 'uint8_t'
-../src/render.c:80: error: expected expression before 'uint8_t'
-../src/render.c:84: error: expected expression before 'uint8_t'
-../src/render.c:88: error: expected expression before 'uint8_t'
-../src/render.c:92: error: expected expression before 'uint8_t'
-../src/render.c:96: error: expected expression before 'uint8_t'
-../src/render.c:100: error: expected expression before 'uint8_t'
-../src/render.c:104: error: expected expression before 'uint8_t'
-../src/render.c: At top level:
-../src/render.c:116: warning: conflicting types for 'drawObject'
-../src/render.c:69: warning: previous implicit declaration of 'drawObject' was here
-../src/render.c: In function 'drawTankInit':
-../src/render.c:159: warning: passing argument 1 of 'drawObject' discards qualifiers from pointer target type
-../src/render.c: In function 'drawBunkersInit':
-../src/render.c:175: warning: passing argument 1 of 'drawObject' discards qualifiers from pointer target type
-../src/render.c: In function 'drawAliensInit':
-../src/render.c:200: warning: passing argument 1 of 'drawObject' discards qualifiers from pointer target type
-../src/render.c:202: warning: passing argument 1 of 'drawObject' discards qualifiers from pointer target type
-../src/render.c:204: warning: passing argument 1 of 'drawObject' discards qualifiers from pointer target type
-../src/render.c: In function 'disp_init':
-../src/render.c:284: warning: passing argument 1 of 'drawObject' discards qualifiers from pointer target type
-../src/render.c:287: warning: passing argument 1 of 'drawObject' discards qualifiers from pointer target type
-../src/render.c:295: warning: passing argument 1 of 'drawObject' discards qualifiers from pointer target type
-make: *** [src/render.o] Error 1
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../hello_world_bsp_2/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v8.20.b -mno-xl-soft-mul -MMD -MP -MF"src/counters.d" -MT"src/counters.d" -o"src/counters.o" "../src/counters.c"
+../src/counters.c: In function 'updateBulletMoveCounter':
+../src/counters.c:69: warning: passing argument 1 of 'drawObject' discards qualifiers from pointer target type
+../src/counters.c: In function 'updateTankMoveCounter':
+../src/counters.c:147: warning: implicit declaration of function 'leftButtonPressed'
+../src/counters.c:147: warning: implicit declaration of function 'rightButtonPressed'
+Finished building: ../src/counters.c
+' '
+Building target: SpaceInvaders.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../hello_world_bsp_2/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v8.20.b -mno-xl-soft-mul -o"SpaceInvaders.elf"  ./src/aliens.o ./src/bullets.o ./src/bunkers.o ./src/counters.o ./src/globals.o ./src/platform.o ./src/render.o ./src/renderTest.o ./src/saucer.o ./src/spaceInvadersMain.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: SpaceInvaders.elf
+' '
+Invoking: MicroBlaze Print Size
+mb-size SpaceInvaders.elf  |tee "SpaceInvaders.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 109040	   1572	   5512	 116124	  1c59c	SpaceInvaders.elf
+Finished building: SpaceInvaders.elf.size
+' '
+Invoking: Xilinx ELF Check
+elfcheck SpaceInvaders.elf -hw ../../SpaceInvaders_hw_platform/system.xml -pe microblaze_0  |tee "SpaceInvaders.elf.elfcheck"
+elfcheck
+Xilinx EDK 13.4 Build EDK_O.87xd
+Copyright (c) 1995-2011 Xilinx, Inc.  All rights reserved.
+
+Command Line: elfcheck -hw ../../SpaceInvaders_hw_platform/system.xml -pe
+microblaze_0 SpaceInvaders.elf 
+
+ELF file	: SpaceInvaders.elf
+elfcheck passed.
+Finished building: SpaceInvaders.elf.elfcheck
+' '

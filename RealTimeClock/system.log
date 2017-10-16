@@ -1552,3 +1552,119 @@ Done writing filter settings to:
 	C:\Users\superman\Documents\TylerBondGithub\ecen427\RealTimeClock\etc\system.filters
 Done writing Tab View settings to:
 	C:\Users\superman\Documents\TylerBondGithub\ecen427\RealTimeClock\etc\system.gui
+Xilinx Platform Studio (XPS)
+Xilinx EDK 13.4 Build EDK_O.87xd
+Copyright (c) 1995-2011 Xilinx, Inc.  All rights reserved.
+
+
+********************************************************************************
+At Local date and time: Mon Oct 09 12:08:10 2017
+ make -f system.make exporttosdk started...
+IF NOT EXIST "SDK\SDK_Export\hw" @mkdir "SDK\SDK_Export\hw"
+psf2Edward -inp system.xmp -exit_on_error -dont_add_loginfo -edwver 1.2 -xml SDK\SDK_Export\hw/system.xml 
+Release 13.4 - psf2Edward EDK_O.87xd (nt64)
+Copyright (c) 1995-2011 Xilinx, Inc.  All rights reserved.
+WARNING:EDK:3605 - Use of the repository located at
+   C:\Xilinx\13.4\ISE_DS\edk_user_repository\ 
+   (equivalent of $XILINX_EDK/../edk_user_repository) is now deprecated. 
+   It is recommended that you use Global SearchPath preference to specify search
+   paths that apply to all the projects.
+
+Checking platform configuration ...
+IPNAME: lmb_v10, INSTANCE: microblaze_0_ilmb - 1 master(s) : 1 slave(s) 
+IPNAME: lmb_v10, INSTANCE: microblaze_0_dlmb - 1 master(s) : 1 slave(s) 
+IPNAME: axi_interconnect, INSTANCE: axi4lite_0 - 1 master(s) : 6 slave(s) 
+
+Checking port drivers...
+
+Performing Clock DRCs...
+
+Performing Reset DRCs...
+
+Overriding system level properties...
+WARNING:EDK:4180 - PORT: bscan_tdo1, CONNECTOR: bscan_tdo1 - No driver found.
+   Port will be driven to GND -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm
+   _v2_1_0.mpd line 239 
+WARNING:EDK:4181 - PORT: bscan_tdi, CONNECTOR: bscan_tdi - floating connection -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm
+   _v2_1_0.mpd line 232 
+WARNING:EDK:4181 - PORT: bscan_reset, CONNECTOR: bscan_reset - floating
+   connection -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm
+   _v2_1_0.mpd line 233 
+WARNING:EDK:4181 - PORT: bscan_shift, CONNECTOR: bscan_shift - floating
+   connection -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm
+   _v2_1_0.mpd line 234 
+WARNING:EDK:4181 - PORT: bscan_update, CONNECTOR: bscan_update - floating
+   connection -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm
+   _v2_1_0.mpd line 235 
+WARNING:EDK:4181 - PORT: bscan_capture, CONNECTOR: bscan_capture - floating
+   connection -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm
+   _v2_1_0.mpd line 236 
+WARNING:EDK:4181 - PORT: bscan_sel1, CONNECTOR: bscan_sel1 - floating connection
+   -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm
+   _v2_1_0.mpd line 237 
+WARNING:EDK:4181 - PORT: bscan_drck1, CONNECTOR: bscan_drck1 - floating
+   connection -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm
+   _v2_1_0.mpd line 238 
+
+INFO: Setting C_RANGE_CHECK = ON for axi_interconnect axi4lite_0.
+
+Running system level update procedures...
+
+Running UPDATE Tcl procedures for OPTION SYSLEVEL_UPDATE_PROC...
+
+Running system level DRCs...
+
+Performing System level DRCs on properties...
+
+Running DRC Tcl procedures for OPTION SYSLEVEL_DRC_PROC...
+Conversion to XML complete.
+xdsgen -inp system.xmp -report SDK\SDK_Export\hw/system.html  -make_docs_local
+Release 13.4 - xdsgen EDK_O.87xd (nt64)
+Copyright (c) 1995-2011 Xilinx, Inc.  All rights reserved.
+WARNING:EDK:3605 - Use of the repository located at
+   C:\Xilinx\13.4\ISE_DS\edk_user_repository\ 
+   (equivalent of $XILINX_EDK/../edk_user_repository) is now deprecated. 
+   It is recommended that you use Global SearchPath preference to specify search
+   paths that apply to all the projects.
+Generated Block Diagram.
+Rasterizing proc_sys_reset_0.jpg.....
+Rasterizing microblaze_0_intc.jpg.....
+Rasterizing microblaze_0_ilmb.jpg.....
+Rasterizing microblaze_0_i_bram_ctrl.jpg.....
+Rasterizing microblaze_0_dlmb.jpg.....
+Rasterizing microblaze_0_d_bram_ctrl.jpg.....
+Rasterizing microblaze_0_bram_block.jpg.....
+Rasterizing microblaze_0.jpg.....
+Rasterizing debug_module.jpg.....
+Rasterizing clock_generator_0.jpg.....
+Rasterizing axi4lite_0.jpg.....
+Rasterizing RS232_Uart_1.jpg.....
+Rasterizing Push_Buttons_5Bits.jpg.....
+Rasterizing LEDs_8Bits.jpg.....
+Rasterizing DIP_Switches_8Bits.jpg.....
+Rasterizing fit_timer_0.jpg.....
+Rasterizing system_blkd.jpg.....
+Report generated.
+Report generation completed.
+Done!
+
+********************************************************************************
+At Local date and time: Mon Oct 09 12:08:28 2017
+ xsdk.exe -hwspec C:\Users\superman\Documents\TylerBondGithub\ecen427\RealTimeClock\SDK\SDK_Export\hw\system.xml started...
+Xilinx Software Development Kit
+Xilinx EDK 13.4 Build EDK_O.87xd
+Copyright (c) 1995-2010 Xilinx, Inc.  All rights reserved.
+Done!
+Writing filter settings....
+Done writing filter settings to:
+	C:\Users\superman\Documents\TylerBondGithub\ecen427\RealTimeClock\etc\system.filters
+Done writing Tab View settings to:
+	C:\Users\superman\Documents\TylerBondGithub\ecen427\RealTimeClock\etc\system.gui

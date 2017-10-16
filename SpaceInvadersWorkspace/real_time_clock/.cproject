@@ -92,14 +92,25 @@
 						</toolChain>
 					</folderInfo>
 					<fileInfo id="xilinx.gnu.mb.exe.debug.439407076.478214195" name="lscript.ld" rcbsApplicability="disable" resourcePath="src/lscript.ld" toolsToInvoke="xilinx.gnu.mb.c.toolchain.linker.debug.114207700.2035210370">
-						<tool id="xilinx.gnu.mb.c.toolchain.linker.debug.114207700.2035210370" name="MicroBlaze gcc linker" superClass="xilinx.gnu.mb.c.toolchain.linker.debug.114207700"/>
+						<tool id="xilinx.gnu.mb.c.toolchain.linker.debug.114207700.2035210370" name="MicroBlaze gcc linker" superClass="xilinx.gnu.mb.c.toolchain.linker.debug.114207700">
+							<inputType id="xilinx.gnu.linker.input.1344580406" superClass="xilinx.gnu.linker.input">
+								<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
+								<additionalInput kind="additionalinput" paths="$(LIBS)"/>
+								<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
+								<additionalInput kind="additionalinput" paths="$(LIBS)"/>
+							</inputType>
+							<inputType id="xilinx.gnu.linker.input.lscript.1629985454" name="Linker Script" superClass="xilinx.gnu.linker.input.lscript"/>
+						</tool>
 					</fileInfo>
 					<fileInfo id="xilinx.gnu.mb.exe.debug.439407076.2076070191" name="platform.h" rcbsApplicability="disable" resourcePath="src/platform.h" toolsToInvoke=""/>
 					<fileInfo id="xilinx.gnu.mb.exe.debug.439407076.193167174" name="sharedGlobals.h" rcbsApplicability="disable" resourcePath="src/sharedGlobals.h" toolsToInvoke=""/>
+					<fileInfo id="xilinx.gnu.mb.exe.debug.439407076.1312154364" name="helloworld.c" rcbsApplicability="disable" resourcePath="src/helloworld.c" toolsToInvoke="xilinx.gnu.mb.c.toolchain.compiler.debug.455030060.341356411">
+						<tool id="xilinx.gnu.mb.c.toolchain.compiler.debug.455030060.341356411" name="MicroBlaze gcc compiler" superClass="xilinx.gnu.mb.c.toolchain.compiler.debug.455030060"/>
+					</fileInfo>
 					<fileInfo id="xilinx.gnu.mb.exe.debug.439407076.19872890" name="platform_config.h" rcbsApplicability="disable" resourcePath="src/platform_config.h" toolsToInvoke=""/>
 					<fileInfo id="xilinx.gnu.mb.exe.debug.439407076.1491249582" name="setTimeSM.h" rcbsApplicability="disable" resourcePath="src/setTimeSM.h" toolsToInvoke=""/>
 					<sourceEntries>
-						<entry excluding="src/lscript.ld|src/platform.c|src/platform.h|src/platform_config.h|src/setTimeSM.c|src/setTimeSM.h|src/sharedGlobals.c|src/sharedGlobals.h|src/realtimeclock_main.c|src/helloworld.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="src/helloworld.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>

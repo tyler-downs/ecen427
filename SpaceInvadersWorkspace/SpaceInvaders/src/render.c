@@ -16,6 +16,8 @@ unsigned int * framePointer1 = ((unsigned int *) FRAME_BUFFER_0_ADDR) + 640*480;
 char score[MAX_SCORE_DIGITS] = {0, 0, 0, 0, 0, 0}; //The global score digits
 
 
+unsigned int * getFramePointer0() {return framePointer0;}
+
 #define SCORE_SPACE 15
 //Updates the score display given an integer score value
 void updateScoreDisplay(uint16_t newScore)
@@ -219,7 +221,6 @@ void drawAliensInit()
 	}
 	point_t alienBlockStartPoint = {ALIENS_START_X, ALIENS_START_Y};
 	setAlienBlockPosition(alienBlockStartPoint); //set global
-	xil_printf("Alien block position initially: %d, %d\n\r", getAlienBlockPosition().x, getAlienBlockPosition().y);
 }
 
 //Initializes the display

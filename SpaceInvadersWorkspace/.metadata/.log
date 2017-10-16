@@ -341,3 +341,1115 @@ HandlerActivation(commandId=org.eclipse.ui.file.refresh,
 HandlerActivation(commandId=org.eclipse.ui.file.refresh,
 	handler=ActionHandler(org.eclipse.ui.internal.editors.text.RefreshEditorAction@59023ece),
 	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@56f052d5)),sourcePriority=4210689)
+!SESSION 2017-10-13 11:57:11.961 -----------------------------------------------
+eclipse.buildId=Release 13.4 Build SDK_O.87xd
+java.version=1.6.0_21
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY org.eclipse.cdt.ui 4 4 2017-10-13 11:57:46.188
+!MESSAGE Error
+!STACK 1
+org.eclipse.core.runtime.CoreException: Project: SpaceInvaders is closed or inaccessible!
+	at org.eclipse.cdt.internal.core.settings.model.ExceptionFactory.createCoreException(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescriptionStorage(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescriptionInternal(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.createProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.CConfigBasedDescriptorManager.createProjDescriptionForDescriptor(Unknown Source)
+	at org.eclipse.cdt.internal.core.CConfigBasedDescriptorManager.findDescriptor(Unknown Source)
+	at org.eclipse.cdt.internal.core.CConfigBasedDescriptorManager.getDescriptor(Unknown Source)
+	at org.eclipse.cdt.core.CCorePlugin.getCProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.ui.text.doctools.ProjectMap.load(Unknown Source)
+	at org.eclipse.cdt.internal.ui.text.doctools.ProjectMap.<init>(Unknown Source)
+	at org.eclipse.cdt.internal.ui.text.doctools.DocCommentOwnerManager.getProjectMap(Unknown Source)
+	at org.eclipse.cdt.internal.ui.text.doctools.DocCommentOwnerManager.getCommentOwner(Unknown Source)
+	at org.eclipse.cdt.internal.ui.text.CTextTools.getDocumentationCommentOwner(Unknown Source)
+	at org.eclipse.cdt.internal.ui.text.CTextTools.setupCDocument(Unknown Source)
+	at org.eclipse.cdt.internal.ui.editor.CDocumentSetupParticipant.setup(Unknown Source)
+	at org.eclipse.core.internal.filebuffers.ResourceTextFileBufferManager$1.run(ResourceTextFileBufferManager.java:151)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.filebuffers.ResourceTextFileBufferManager.createEmptyDocument(ResourceTextFileBufferManager.java:166)
+	at org.eclipse.core.internal.filebuffers.ResourceTextFileBuffer.initializeFileBufferContent(ResourceTextFileBuffer.java:289)
+	at org.eclipse.core.internal.filebuffers.ResourceFileBuffer.create(ResourceFileBuffer.java:245)
+	at org.eclipse.core.internal.filebuffers.TextFileBufferManager.connect(TextFileBufferManager.java:112)
+	at org.eclipse.ui.editors.text.TextFileDocumentProvider.createFileInfo(TextFileDocumentProvider.java:559)
+	at org.eclipse.cdt.internal.ui.editor.CDocumentProvider.createFileInfo(Unknown Source)
+	at org.eclipse.ui.editors.text.TextFileDocumentProvider.connect(TextFileDocumentProvider.java:478)
+	at org.eclipse.cdt.internal.ui.editor.CDocumentProvider.connect(Unknown Source)
+	at org.eclipse.ui.texteditor.AbstractTextEditor.doSetInput(AbstractTextEditor.java:4056)
+	at org.eclipse.ui.texteditor.StatusTextEditor.doSetInput(StatusTextEditor.java:217)
+	at org.eclipse.ui.texteditor.AbstractDecoratedTextEditor.doSetInput(AbstractDecoratedTextEditor.java:1444)
+	at org.eclipse.ui.editors.text.TextEditor.doSetInput(TextEditor.java:169)
+	at org.eclipse.cdt.internal.ui.editor.CEditor.internalDoSetInput(Unknown Source)
+	at org.eclipse.cdt.internal.ui.editor.CEditor.doSetInput(Unknown Source)
+	at org.eclipse.ui.texteditor.AbstractTextEditor$19.run(AbstractTextEditor.java:3043)
+	at org.eclipse.jface.operation.ModalContext.runInCurrentThread(ModalContext.java:464)
+	at org.eclipse.jface.operation.ModalContext.run(ModalContext.java:372)
+	at org.eclipse.jface.window.ApplicationWindow$1.run(ApplicationWindow.java:759)
+	at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:70)
+	at org.eclipse.jface.window.ApplicationWindow.run(ApplicationWindow.java:756)
+	at org.eclipse.ui.internal.WorkbenchWindow.run(WorkbenchWindow.java:2606)
+	at org.eclipse.ui.texteditor.AbstractTextEditor.internalInit(AbstractTextEditor.java:3061)
+	at org.eclipse.ui.texteditor.AbstractTextEditor.init(AbstractTextEditor.java:3088)
+	at org.eclipse.ui.internal.EditorManager.createSite(EditorManager.java:798)
+	at org.eclipse.ui.internal.EditorReference.createPartHelper(EditorReference.java:647)
+	at org.eclipse.ui.internal.EditorReference.createPart(EditorReference.java:465)
+	at org.eclipse.ui.internal.WorkbenchPartReference.getPart(WorkbenchPartReference.java:595)
+	at org.eclipse.ui.internal.PartPane.setVisible(PartPane.java:313)
+	at org.eclipse.ui.internal.presentations.PresentablePart.setVisible(PresentablePart.java:180)
+	at org.eclipse.ui.internal.presentations.util.PresentablePartFolder.select(PresentablePartFolder.java:270)
+	at org.eclipse.ui.internal.presentations.util.LeftToRightTabOrder.select(LeftToRightTabOrder.java:65)
+	at org.eclipse.ui.internal.presentations.util.TabbedStackPresentation.selectPart(TabbedStackPresentation.java:473)
+	at org.eclipse.ui.internal.PartStack.refreshPresentationSelection(PartStack.java:1254)
+	at org.eclipse.ui.internal.PartStack.handleDeferredEvents(PartStack.java:1222)
+	at org.eclipse.ui.internal.LayoutPart.deferUpdates(LayoutPart.java:400)
+	at org.eclipse.ui.internal.PartSashContainer.handleDeferredEvents(PartSashContainer.java:1409)
+	at org.eclipse.ui.internal.LayoutPart.deferUpdates(LayoutPart.java:400)
+	at org.eclipse.ui.internal.WorkbenchPage.handleDeferredEvents(WorkbenchPage.java:1420)
+	at org.eclipse.ui.internal.WorkbenchPage.deferUpdates(WorkbenchPage.java:1410)
+	at org.eclipse.ui.internal.WorkbenchPage.closeEditors(WorkbenchPage.java:1384)
+	at org.eclipse.ui.internal.WorkbenchPage.closeEditor(WorkbenchPage.java:1439)
+	at org.eclipse.ui.internal.EditorPane.doHide(EditorPane.java:61)
+	at org.eclipse.ui.internal.PartStack.close(PartStack.java:541)
+	at org.eclipse.ui.internal.EditorStack.close(EditorStack.java:206)
+	at org.eclipse.ui.internal.PartStack$1.close(PartStack.java:120)
+	at org.eclipse.ui.internal.presentations.util.TabbedStackPresentation$1.handleEvent(TabbedStackPresentation.java:83)
+	at org.eclipse.ui.internal.presentations.util.AbstractTabFolder.fireEvent(AbstractTabFolder.java:269)
+	at org.eclipse.ui.internal.presentations.util.AbstractTabFolder.fireEvent(AbstractTabFolder.java:278)
+	at org.eclipse.ui.internal.presentations.defaultpresentation.DefaultTabFolder.access$1(DefaultTabFolder.java:1)
+	at org.eclipse.ui.internal.presentations.defaultpresentation.DefaultTabFolder$1.closeButtonPressed(DefaultTabFolder.java:71)
+	at org.eclipse.ui.internal.presentations.PaneFolder.notifyCloseListeners(PaneFolder.java:631)
+	at org.eclipse.ui.internal.presentations.PaneFolder$3.close(PaneFolder.java:206)
+	at org.eclipse.swt.custom.CTabFolder.onMouse(CTabFolder.java:1595)
+	at org.eclipse.swt.custom.CTabFolder$1.handleEvent(CTabFolder.java:261)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1053)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4066)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3657)
+	at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2640)
+	at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2604)
+	at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2438)
+	at org.eclipse.ui.internal.Workbench$7.run(Workbench.java:671)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:664)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:115)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:369)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:179)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:620)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:575)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1408)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1384)
+!SUBENTRY 1 org.eclipse.cdt.core 4 0 2017-10-13 11:57:46.188
+!MESSAGE Project: SpaceInvaders is closed or inaccessible!
+
+!ENTRY org.eclipse.ui 4 0 2017-10-13 11:57:46.266
+!MESSAGE Unable to create editor ID org.eclipse.cdt.ui.editor.CEditor: Project: SpaceInvaders is closed or inaccessible!
+!STACK 1
+org.eclipse.core.runtime.CoreException: Project: SpaceInvaders is closed or inaccessible!
+	at org.eclipse.cdt.internal.core.settings.model.ExceptionFactory.createCoreException(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescriptionStorage(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescriptionInternal(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.createProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.CConfigBasedDescriptorManager.createProjDescriptionForDescriptor(Unknown Source)
+	at org.eclipse.cdt.internal.core.CConfigBasedDescriptorManager.findDescriptor(Unknown Source)
+	at org.eclipse.cdt.internal.core.CConfigBasedDescriptorManager.getDescriptor(Unknown Source)
+	at org.eclipse.cdt.core.CCorePlugin.getCProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.language.LanguageMappingStore.getProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.language.LanguageMappingStore.decodeMappings(Unknown Source)
+	at org.eclipse.cdt.core.model.LanguageManager.getLanguageConfiguration(Unknown Source)
+	at org.eclipse.cdt.internal.core.language.LanguageMappingResolver.computeLanguage(Unknown Source)
+	at org.eclipse.cdt.core.model.LanguageManager.getLanguageForFile(Unknown Source)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getLanguage(Unknown Source)
+	at org.eclipse.cdt.internal.ui.editor.CEditor.internalDoSetInput(Unknown Source)
+	at org.eclipse.cdt.internal.ui.editor.CEditor.doSetInput(Unknown Source)
+	at org.eclipse.ui.texteditor.AbstractTextEditor$19.run(AbstractTextEditor.java:3043)
+	at org.eclipse.jface.operation.ModalContext.runInCurrentThread(ModalContext.java:464)
+	at org.eclipse.jface.operation.ModalContext.run(ModalContext.java:372)
+	at org.eclipse.jface.window.ApplicationWindow$1.run(ApplicationWindow.java:759)
+	at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:70)
+	at org.eclipse.jface.window.ApplicationWindow.run(ApplicationWindow.java:756)
+	at org.eclipse.ui.internal.WorkbenchWindow.run(WorkbenchWindow.java:2606)
+	at org.eclipse.ui.texteditor.AbstractTextEditor.internalInit(AbstractTextEditor.java:3061)
+	at org.eclipse.ui.texteditor.AbstractTextEditor.init(AbstractTextEditor.java:3088)
+	at org.eclipse.ui.internal.EditorManager.createSite(EditorManager.java:798)
+	at org.eclipse.ui.internal.EditorReference.createPartHelper(EditorReference.java:647)
+	at org.eclipse.ui.internal.EditorReference.createPart(EditorReference.java:465)
+	at org.eclipse.ui.internal.WorkbenchPartReference.getPart(WorkbenchPartReference.java:595)
+	at org.eclipse.ui.internal.PartPane.setVisible(PartPane.java:313)
+	at org.eclipse.ui.internal.presentations.PresentablePart.setVisible(PresentablePart.java:180)
+	at org.eclipse.ui.internal.presentations.util.PresentablePartFolder.select(PresentablePartFolder.java:270)
+	at org.eclipse.ui.internal.presentations.util.LeftToRightTabOrder.select(LeftToRightTabOrder.java:65)
+	at org.eclipse.ui.internal.presentations.util.TabbedStackPresentation.selectPart(TabbedStackPresentation.java:473)
+	at org.eclipse.ui.internal.PartStack.refreshPresentationSelection(PartStack.java:1254)
+	at org.eclipse.ui.internal.PartStack.handleDeferredEvents(PartStack.java:1222)
+	at org.eclipse.ui.internal.LayoutPart.deferUpdates(LayoutPart.java:400)
+	at org.eclipse.ui.internal.PartSashContainer.handleDeferredEvents(PartSashContainer.java:1409)
+	at org.eclipse.ui.internal.LayoutPart.deferUpdates(LayoutPart.java:400)
+	at org.eclipse.ui.internal.WorkbenchPage.handleDeferredEvents(WorkbenchPage.java:1420)
+	at org.eclipse.ui.internal.WorkbenchPage.deferUpdates(WorkbenchPage.java:1410)
+	at org.eclipse.ui.internal.WorkbenchPage.closeEditors(WorkbenchPage.java:1384)
+	at org.eclipse.ui.internal.WorkbenchPage.closeEditor(WorkbenchPage.java:1439)
+	at org.eclipse.ui.internal.EditorPane.doHide(EditorPane.java:61)
+	at org.eclipse.ui.internal.PartStack.close(PartStack.java:541)
+	at org.eclipse.ui.internal.EditorStack.close(EditorStack.java:206)
+	at org.eclipse.ui.internal.PartStack$1.close(PartStack.java:120)
+	at org.eclipse.ui.internal.presentations.util.TabbedStackPresentation$1.handleEvent(TabbedStackPresentation.java:83)
+	at org.eclipse.ui.internal.presentations.util.AbstractTabFolder.fireEvent(AbstractTabFolder.java:269)
+	at org.eclipse.ui.internal.presentations.util.AbstractTabFolder.fireEvent(AbstractTabFolder.java:278)
+	at org.eclipse.ui.internal.presentations.defaultpresentation.DefaultTabFolder.access$1(DefaultTabFolder.java:1)
+	at org.eclipse.ui.internal.presentations.defaultpresentation.DefaultTabFolder$1.closeButtonPressed(DefaultTabFolder.java:71)
+	at org.eclipse.ui.internal.presentations.PaneFolder.notifyCloseListeners(PaneFolder.java:631)
+	at org.eclipse.ui.internal.presentations.PaneFolder$3.close(PaneFolder.java:206)
+	at org.eclipse.swt.custom.CTabFolder.onMouse(CTabFolder.java:1595)
+	at org.eclipse.swt.custom.CTabFolder$1.handleEvent(CTabFolder.java:261)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1053)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4066)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3657)
+	at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2640)
+	at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2604)
+	at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2438)
+	at org.eclipse.ui.internal.Workbench$7.run(Workbench.java:671)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:664)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:115)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:369)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:179)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:620)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:575)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1408)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1384)
+!SUBENTRY 1 org.eclipse.cdt.core 4 0 2017-10-13 11:57:46.266
+!MESSAGE Project: SpaceInvaders is closed or inaccessible!
+
+!ENTRY org.eclipse.ui 2 2 2017-10-13 11:57:46.281
+!MESSAGE Ignored attempt to add saveable that was already registered
+!STACK 0
+org.eclipse.core.runtime.AssertionFailedException: unknown saveable: org.eclipse.ui.internal.DefaultSaveable@66ce3561 from part: org.eclipse.ui.internal.ErrorEditorPart@66ce3561
+	at org.eclipse.ui.internal.SaveablesList.logWarning(SaveablesList.java:187)
+	at org.eclipse.ui.internal.SaveablesList.addModel(SaveablesList.java:117)
+	at org.eclipse.ui.internal.SaveablesList.addModels(SaveablesList.java:289)
+	at org.eclipse.ui.internal.SaveablesList.postOpen(SaveablesList.java:684)
+	at org.eclipse.ui.internal.PartList.partOpened(PartList.java:234)
+	at org.eclipse.ui.internal.PartList.access$0(PartList.java:210)
+	at org.eclipse.ui.internal.PartList$1.propertyChanged(PartList.java:40)
+	at org.eclipse.ui.internal.WorkbenchPartReference.fireInternalPropertyChange(WorkbenchPartReference.java:375)
+	at org.eclipse.ui.internal.WorkbenchPartReference.getPart(WorkbenchPartReference.java:610)
+	at org.eclipse.ui.internal.PartPane.setVisible(PartPane.java:313)
+	at org.eclipse.ui.internal.presentations.PresentablePart.setVisible(PresentablePart.java:180)
+	at org.eclipse.ui.internal.presentations.util.PresentablePartFolder.select(PresentablePartFolder.java:270)
+	at org.eclipse.ui.internal.presentations.util.LeftToRightTabOrder.select(LeftToRightTabOrder.java:65)
+	at org.eclipse.ui.internal.presentations.util.TabbedStackPresentation.selectPart(TabbedStackPresentation.java:473)
+	at org.eclipse.ui.internal.PartStack.refreshPresentationSelection(PartStack.java:1254)
+	at org.eclipse.ui.internal.PartStack.handleDeferredEvents(PartStack.java:1222)
+	at org.eclipse.ui.internal.LayoutPart.deferUpdates(LayoutPart.java:400)
+	at org.eclipse.ui.internal.PartSashContainer.handleDeferredEvents(PartSashContainer.java:1409)
+	at org.eclipse.ui.internal.LayoutPart.deferUpdates(LayoutPart.java:400)
+	at org.eclipse.ui.internal.WorkbenchPage.handleDeferredEvents(WorkbenchPage.java:1420)
+	at org.eclipse.ui.internal.WorkbenchPage.deferUpdates(WorkbenchPage.java:1410)
+	at org.eclipse.ui.internal.WorkbenchPage.closeEditors(WorkbenchPage.java:1384)
+	at org.eclipse.ui.internal.WorkbenchPage.closeEditor(WorkbenchPage.java:1439)
+	at org.eclipse.ui.internal.EditorPane.doHide(EditorPane.java:61)
+	at org.eclipse.ui.internal.PartStack.close(PartStack.java:541)
+	at org.eclipse.ui.internal.EditorStack.close(EditorStack.java:206)
+	at org.eclipse.ui.internal.PartStack$1.close(PartStack.java:120)
+	at org.eclipse.ui.internal.presentations.util.TabbedStackPresentation$1.handleEvent(TabbedStackPresentation.java:83)
+	at org.eclipse.ui.internal.presentations.util.AbstractTabFolder.fireEvent(AbstractTabFolder.java:269)
+	at org.eclipse.ui.internal.presentations.util.AbstractTabFolder.fireEvent(AbstractTabFolder.java:278)
+	at org.eclipse.ui.internal.presentations.defaultpresentation.DefaultTabFolder.access$1(DefaultTabFolder.java:1)
+	at org.eclipse.ui.internal.presentations.defaultpresentation.DefaultTabFolder$1.closeButtonPressed(DefaultTabFolder.java:71)
+	at org.eclipse.ui.internal.presentations.PaneFolder.notifyCloseListeners(PaneFolder.java:631)
+	at org.eclipse.ui.internal.presentations.PaneFolder$3.close(PaneFolder.java:206)
+	at org.eclipse.swt.custom.CTabFolder.onMouse(CTabFolder.java:1595)
+	at org.eclipse.swt.custom.CTabFolder$1.handleEvent(CTabFolder.java:261)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1053)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4066)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3657)
+	at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2640)
+	at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2604)
+	at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2438)
+	at org.eclipse.ui.internal.Workbench$7.run(Workbench.java:671)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:664)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:115)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:369)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:179)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:620)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:575)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1408)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1384)
+
+!ENTRY org.eclipse.ui 4 0 2017-10-13 11:57:50.603
+!MESSAGE Unable to create editor ID org.eclipse.cdt.ui.editor.CEditor: Project: SpaceInvaders is closed or inaccessible!
+!STACK 1
+org.eclipse.core.runtime.CoreException: Project: SpaceInvaders is closed or inaccessible!
+	at org.eclipse.cdt.internal.core.settings.model.ExceptionFactory.createCoreException(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescriptionStorage(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescriptionInternal(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.createProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.CConfigBasedDescriptorManager.createProjDescriptionForDescriptor(Unknown Source)
+	at org.eclipse.cdt.internal.core.CConfigBasedDescriptorManager.findDescriptor(Unknown Source)
+	at org.eclipse.cdt.internal.core.CConfigBasedDescriptorManager.getDescriptor(Unknown Source)
+	at org.eclipse.cdt.core.CCorePlugin.getCProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.language.LanguageMappingStore.getProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.language.LanguageMappingStore.decodeMappings(Unknown Source)
+	at org.eclipse.cdt.core.model.LanguageManager.getLanguageConfiguration(Unknown Source)
+	at org.eclipse.cdt.internal.core.language.LanguageMappingResolver.computeLanguage(Unknown Source)
+	at org.eclipse.cdt.core.model.LanguageManager.getLanguageForFile(Unknown Source)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getLanguage(Unknown Source)
+	at org.eclipse.cdt.internal.ui.editor.CEditor.internalDoSetInput(Unknown Source)
+	at org.eclipse.cdt.internal.ui.editor.CEditor.doSetInput(Unknown Source)
+	at org.eclipse.ui.texteditor.AbstractTextEditor$19.run(AbstractTextEditor.java:3043)
+	at org.eclipse.jface.operation.ModalContext.runInCurrentThread(ModalContext.java:464)
+	at org.eclipse.jface.operation.ModalContext.run(ModalContext.java:372)
+	at org.eclipse.jface.window.ApplicationWindow$1.run(ApplicationWindow.java:759)
+	at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:70)
+	at org.eclipse.jface.window.ApplicationWindow.run(ApplicationWindow.java:756)
+	at org.eclipse.ui.internal.WorkbenchWindow.run(WorkbenchWindow.java:2606)
+	at org.eclipse.ui.texteditor.AbstractTextEditor.internalInit(AbstractTextEditor.java:3061)
+	at org.eclipse.ui.texteditor.AbstractTextEditor.init(AbstractTextEditor.java:3088)
+	at org.eclipse.ui.internal.EditorManager.createSite(EditorManager.java:798)
+	at org.eclipse.ui.internal.EditorReference.createPartHelper(EditorReference.java:647)
+	at org.eclipse.ui.internal.EditorReference.createPart(EditorReference.java:465)
+	at org.eclipse.ui.internal.WorkbenchPartReference.getPart(WorkbenchPartReference.java:595)
+	at org.eclipse.ui.internal.PartPane.setVisible(PartPane.java:313)
+	at org.eclipse.ui.internal.presentations.PresentablePart.setVisible(PresentablePart.java:180)
+	at org.eclipse.ui.internal.presentations.util.PresentablePartFolder.select(PresentablePartFolder.java:270)
+	at org.eclipse.ui.internal.presentations.util.LeftToRightTabOrder.select(LeftToRightTabOrder.java:65)
+	at org.eclipse.ui.internal.presentations.util.TabbedStackPresentation.selectPart(TabbedStackPresentation.java:473)
+	at org.eclipse.ui.internal.PartStack.refreshPresentationSelection(PartStack.java:1254)
+	at org.eclipse.ui.internal.PartStack.setSelection(PartStack.java:1207)
+	at org.eclipse.ui.internal.PartStack.presentationSelectionChanged(PartStack.java:841)
+	at org.eclipse.ui.internal.PartStack.access$1(PartStack.java:827)
+	at org.eclipse.ui.internal.PartStack$1.selectPart(PartStack.java:137)
+	at org.eclipse.ui.internal.presentations.BasicPartList.gotoSelectedElement(BasicPartList.java:326)
+	at org.eclipse.ui.internal.presentations.AbstractTableInformationControl$4.mouseUp(AbstractTableInformationControl.java:323)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:213)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1053)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4066)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3657)
+	at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2640)
+	at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2604)
+	at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2438)
+	at org.eclipse.ui.internal.Workbench$7.run(Workbench.java:671)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:664)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:115)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:369)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:179)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:620)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:575)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1408)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1384)
+!SUBENTRY 1 org.eclipse.cdt.core 4 0 2017-10-13 11:57:50.603
+!MESSAGE Project: SpaceInvaders is closed or inaccessible!
+
+!ENTRY org.eclipse.ui 2 2 2017-10-13 11:57:50.603
+!MESSAGE Ignored attempt to add saveable that was already registered
+!STACK 0
+org.eclipse.core.runtime.AssertionFailedException: unknown saveable: org.eclipse.ui.internal.DefaultSaveable@39880571 from part: org.eclipse.ui.internal.ErrorEditorPart@39880571
+	at org.eclipse.ui.internal.SaveablesList.logWarning(SaveablesList.java:187)
+	at org.eclipse.ui.internal.SaveablesList.addModel(SaveablesList.java:117)
+	at org.eclipse.ui.internal.SaveablesList.addModels(SaveablesList.java:289)
+	at org.eclipse.ui.internal.SaveablesList.postOpen(SaveablesList.java:684)
+	at org.eclipse.ui.internal.PartList.partOpened(PartList.java:234)
+	at org.eclipse.ui.internal.PartList.access$0(PartList.java:210)
+	at org.eclipse.ui.internal.PartList$1.propertyChanged(PartList.java:40)
+	at org.eclipse.ui.internal.WorkbenchPartReference.fireInternalPropertyChange(WorkbenchPartReference.java:375)
+	at org.eclipse.ui.internal.WorkbenchPartReference.getPart(WorkbenchPartReference.java:610)
+	at org.eclipse.ui.internal.PartPane.setVisible(PartPane.java:313)
+	at org.eclipse.ui.internal.presentations.PresentablePart.setVisible(PresentablePart.java:180)
+	at org.eclipse.ui.internal.presentations.util.PresentablePartFolder.select(PresentablePartFolder.java:270)
+	at org.eclipse.ui.internal.presentations.util.LeftToRightTabOrder.select(LeftToRightTabOrder.java:65)
+	at org.eclipse.ui.internal.presentations.util.TabbedStackPresentation.selectPart(TabbedStackPresentation.java:473)
+	at org.eclipse.ui.internal.PartStack.refreshPresentationSelection(PartStack.java:1254)
+	at org.eclipse.ui.internal.PartStack.setSelection(PartStack.java:1207)
+	at org.eclipse.ui.internal.PartStack.presentationSelectionChanged(PartStack.java:841)
+	at org.eclipse.ui.internal.PartStack.access$1(PartStack.java:827)
+	at org.eclipse.ui.internal.PartStack$1.selectPart(PartStack.java:137)
+	at org.eclipse.ui.internal.presentations.BasicPartList.gotoSelectedElement(BasicPartList.java:326)
+	at org.eclipse.ui.internal.presentations.AbstractTableInformationControl$4.mouseUp(AbstractTableInformationControl.java:323)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:213)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1053)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4066)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3657)
+	at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2640)
+	at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2604)
+	at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2438)
+	at org.eclipse.ui.internal.Workbench$7.run(Workbench.java:671)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:664)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:115)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:369)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:179)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:620)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:575)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1408)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1384)
+
+!ENTRY org.eclipse.ui.workbench 2 0 2017-10-13 11:58:55.474
+!MESSAGE A handler conflict occurred.  This may disable some commands.
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-10-13 11:58:55.474
+!MESSAGE Conflict for 'org.eclipse.cdt.ui.edit.text.c.toggleMarkOccurrences':
+HandlerActivation(commandId=org.eclipse.cdt.ui.edit.text.c.toggleMarkOccurrences,
+	handler=ActionHandler(org.eclipse.cdt.internal.ui.editor.ToggleMarkOccurrencesAction@6727d1b4),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.cdt.ui.edit.text.c.toggleMarkOccurrences,
+	handler=ActionHandler(org.eclipse.cdt.internal.ui.editor.ToggleMarkOccurrencesAction@6738b554),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-10-13 11:58:55.489
+!MESSAGE Conflict for 'org.eclipse.cdt.ui.refactor.extract.constant':
+HandlerActivation(commandId=org.eclipse.cdt.ui.refactor.extract.constant,
+	handler=ActionHandler(org.eclipse.cdt.ui.refactoring.actions.ExtractConstantAction@3c08d2bd),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.cdt.ui.refactor.extract.constant,
+	handler=ActionHandler(org.eclipse.cdt.ui.refactoring.actions.ExtractConstantAction@67439515),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-10-13 11:58:55.489
+!MESSAGE Conflict for 'org.eclipse.cdt.ui.refactor.extract.function':
+HandlerActivation(commandId=org.eclipse.cdt.ui.refactor.extract.function,
+	handler=ActionHandler(org.eclipse.cdt.ui.refactoring.actions.ExtractFunctionAction@5f0caaa),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.cdt.ui.refactor.extract.function,
+	handler=ActionHandler(org.eclipse.cdt.ui.refactoring.actions.ExtractFunctionAction@38961f2),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-10-13 11:58:55.489
+!MESSAGE Conflict for 'org.eclipse.ui.navigate.next':
+HandlerActivation(commandId=org.eclipse.ui.navigate.next,
+	handler=ActionHandler(org.eclipse.ui.texteditor.GotoAnnotationAction@307d58ae),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.ui.navigate.next,
+	handler=ActionHandler(org.eclipse.ui.texteditor.GotoAnnotationAction@75492060),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-10-13 11:58:55.489
+!MESSAGE Conflict for 'org.eclipse.cdt.ui.edit.text.rename.element':
+HandlerActivation(commandId=org.eclipse.cdt.ui.edit.text.rename.element,
+	handler=ActionHandler(org.eclipse.cdt.ui.refactoring.actions.CRenameAction@13ecbac8),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.cdt.ui.edit.text.rename.element,
+	handler=ActionHandler(org.eclipse.cdt.ui.refactoring.actions.CRenameAction@1adaaab0),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-10-13 11:58:55.489
+!MESSAGE Conflict for 'org.eclipse.cdt.ui.refactor.extract.local.variable':
+HandlerActivation(commandId=org.eclipse.cdt.ui.refactor.extract.local.variable,
+	handler=ActionHandler(org.eclipse.cdt.ui.refactoring.actions.ExtractLocalVariableAction@9fc1696),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.cdt.ui.refactor.extract.local.variable,
+	handler=ActionHandler(org.eclipse.cdt.ui.refactoring.actions.ExtractLocalVariableAction@52ed6f9),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-10-13 11:58:55.489
+!MESSAGE Conflict for 'org.eclipse.ui.navigate.previous':
+HandlerActivation(commandId=org.eclipse.ui.navigate.previous,
+	handler=ActionHandler(org.eclipse.ui.texteditor.GotoAnnotationAction@46237817),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.ui.navigate.previous,
+	handler=ActionHandler(org.eclipse.ui.texteditor.GotoAnnotationAction@42a151fa),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-10-13 11:58:55.489
+!MESSAGE Conflict for 'org.eclipse.ui.edit.text.toggleShowSelectedElementOnly':
+HandlerActivation(commandId=org.eclipse.ui.edit.text.toggleShowSelectedElementOnly,
+	handler=ActionHandler(org.eclipse.cdt.internal.ui.editor.TogglePresentationAction@6d0d1642),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.ui.edit.text.toggleShowSelectedElementOnly,
+	handler=ActionHandler(org.eclipse.cdt.internal.ui.editor.TogglePresentationAction@76307efc),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-10-13 11:58:55.489
+!MESSAGE Conflict for 'org.eclipse.cdt.ui.refactor.hide.method':
+HandlerActivation(commandId=org.eclipse.cdt.ui.refactor.hide.method,
+	handler=ActionHandler(org.eclipse.cdt.ui.refactoring.actions.HideMethodAction@69e10f02),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.cdt.ui.refactor.hide.method,
+	handler=ActionHandler(org.eclipse.cdt.ui.refactoring.actions.HideMethodAction@36a0829c),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-10-13 11:58:55.489
+!MESSAGE Conflict for 'org.eclipse.ui.file.refresh':
+HandlerActivation(commandId=org.eclipse.ui.file.refresh,
+	handler=ActionHandler(org.eclipse.ui.internal.editors.text.RefreshEditorAction@63deebc8),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.ui.file.refresh,
+	handler=ActionHandler(org.eclipse.ui.internal.editors.text.RefreshEditorAction@4049cab1),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+
+!ENTRY org.eclipse.ui.workbench 2 0 2017-10-13 12:19:27.884
+!MESSAGE A handler conflict occurred.  This may disable some commands.
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-10-13 12:19:27.884
+!MESSAGE Conflict for 'org.eclipse.ui.edit.addBookmark':
+HandlerActivation(commandId=org.eclipse.ui.edit.addBookmark,
+	handler=ActionHandler(org.eclipse.ui.texteditor.AddMarkerAction@6fd56e03),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.ui.edit.addBookmark,
+	handler=ActionHandler(org.eclipse.ui.texteditor.AddMarkerAction@2529c051),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-10-13 12:19:27.884
+!MESSAGE Conflict for 'org.eclipse.ui.file.revert':
+HandlerActivation(commandId=org.eclipse.ui.file.revert,
+	handler=ActionHandler(org.eclipse.ui.texteditor.RevertToSavedAction@581118e6),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.ui.file.revert,
+	handler=ActionHandler(org.eclipse.ui.texteditor.RevertToSavedAction@4a79d135),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-10-13 12:19:27.884
+!MESSAGE Conflict for 'org.eclipse.ui.edit.paste':
+HandlerActivation(commandId=org.eclipse.ui.edit.paste,
+	handler=ActionHandler(org.eclipse.ui.texteditor.TextOperationAction@39614c6),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.ui.edit.paste,
+	handler=ActionHandler(org.eclipse.ui.texteditor.TextOperationAction@722dd500),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-10-13 12:19:27.884
+!MESSAGE Conflict for 'org.eclipse.ui.edit.delete':
+HandlerActivation(commandId=org.eclipse.ui.edit.delete,
+	handler=ActionHandler(org.eclipse.ui.texteditor.TextOperationAction@1efb2d90),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.ui.edit.delete,
+	handler=ActionHandler(org.eclipse.ui.texteditor.TextOperationAction@7c6c58d3),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-10-13 12:19:27.884
+!MESSAGE Conflict for 'org.eclipse.ui.edit.text.shiftRight':
+HandlerActivation(commandId=org.eclipse.ui.edit.text.shiftRight,
+	handler=ActionHandler(org.eclipse.ui.texteditor.ShiftAction@2d3bc476),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.ui.edit.text.shiftRight,
+	handler=ActionHandler(org.eclipse.ui.texteditor.ShiftAction@2edf362d),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-10-13 12:19:27.884
+!MESSAGE Conflict for 'org.eclipse.ui.edit.copy':
+HandlerActivation(commandId=org.eclipse.ui.edit.copy,
+	handler=ActionHandler(org.eclipse.ui.texteditor.TextOperationAction@405ddc65),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.ui.edit.copy,
+	handler=ActionHandler(org.eclipse.ui.texteditor.TextOperationAction@52308be6),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-10-13 12:19:27.884
+!MESSAGE Conflict for 'org.eclipse.cdt.ui.edit.text.c.remove.block.comment':
+HandlerActivation(commandId=org.eclipse.cdt.ui.edit.text.c.remove.block.comment,
+	handler=ActionHandler(org.eclipse.cdt.internal.ui.actions.RemoveBlockCommentAction@7130d331),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.cdt.ui.edit.text.c.remove.block.comment,
+	handler=ActionHandler(org.eclipse.cdt.internal.ui.actions.RemoveBlockCommentAction@3c797005),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-10-13 12:19:27.884
+!MESSAGE Conflict for 'org.eclipse.cdt.ui.edit.text.c.indent':
+HandlerActivation(commandId=org.eclipse.cdt.ui.edit.text.c.indent,
+	handler=ActionHandler(org.eclipse.cdt.internal.ui.actions.IndentAction@48a97747),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.cdt.ui.edit.text.c.indent,
+	handler=ActionHandler(org.eclipse.cdt.internal.ui.actions.IndentAction@6dd5fb95),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-10-13 12:19:27.884
+!MESSAGE Conflict for 'org.eclipse.ui.edit.redo':
+HandlerActivation(commandId=org.eclipse.ui.edit.redo,
+	handler=ActionHandler(org.eclipse.ui.operations.RedoActionHandler@7b782b88),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.ui.edit.redo,
+	handler=ActionHandler(org.eclipse.ui.operations.RedoActionHandler@e722d0c),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-10-13 12:19:27.884
+!MESSAGE Conflict for 'org.eclipse.cdt.ui.refactor.implement.method':
+HandlerActivation(commandId=org.eclipse.cdt.ui.refactor.implement.method,
+	handler=ActionHandler(org.eclipse.cdt.ui.refactoring.actions.ImplementMethodAction@69eb763c),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.cdt.ui.refactor.implement.method,
+	handler=ActionHandler(org.eclipse.cdt.ui.refactoring.actions.ImplementMethodAction@619f9377),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-10-13 12:19:27.884
+!MESSAGE Conflict for 'org.eclipse.cdt.ui.edit.opendecl':
+HandlerActivation(commandId=org.eclipse.cdt.ui.edit.opendecl,
+	handler=ActionHandler(org.eclipse.cdt.internal.ui.search.actions.OpenDeclarationsAction@338a9bb3),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.cdt.ui.edit.opendecl,
+	handler=ActionHandler(org.eclipse.cdt.internal.ui.search.actions.OpenDeclarationsAction@50f41f34),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-10-13 12:19:27.884
+!MESSAGE Conflict for 'org.eclipse.ui.edit.text.toggleBlockSelectionMode':
+HandlerActivation(commandId=org.eclipse.ui.edit.text.toggleBlockSelectionMode,
+	handler=ActionHandler(org.eclipse.ui.texteditor.BlockSelectionModeToggleAction@4b2cb871),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.ui.edit.text.toggleBlockSelectionMode,
+	handler=ActionHandler(org.eclipse.ui.texteditor.BlockSelectionModeToggleAction@65012945),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-10-13 12:19:27.884
+!MESSAGE Conflict for 'org.eclipse.ui.file.print':
+HandlerActivation(commandId=org.eclipse.ui.file.print,
+	handler=ActionHandler(org.eclipse.ui.texteditor.AbstractDecoratedTextEditor$12@2f3ca4d1),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.ui.file.print,
+	handler=ActionHandler(org.eclipse.ui.texteditor.AbstractDecoratedTextEditor$12@3668ad91),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-10-13 12:19:27.884
+!MESSAGE Conflict for 'org.eclipse.ui.edit.text.toggleShowWhitespaceCharacters':
+HandlerActivation(commandId=org.eclipse.ui.edit.text.toggleShowWhitespaceCharacters,
+	handler=ActionHandler(org.eclipse.ui.texteditor.ShowWhitespaceCharactersAction@125b267f),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.ui.edit.text.toggleShowWhitespaceCharacters,
+	handler=ActionHandler(org.eclipse.ui.texteditor.ShowWhitespaceCharactersAction@1e3c6543),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-10-13 12:19:27.884
+!MESSAGE Conflict for 'org.eclipse.cdt.ui.refactor.getters.and.setters':
+HandlerActivation(commandId=org.eclipse.cdt.ui.refactor.getters.and.setters,
+	handler=ActionHandler(org.eclipse.cdt.ui.refactoring.actions.GettersAndSettersAction@f1c2137),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.cdt.ui.refactor.getters.and.setters,
+	handler=ActionHandler(org.eclipse.cdt.ui.refactoring.actions.GettersAndSettersAction@7fc8a9a0),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-10-13 12:19:27.884
+!MESSAGE Conflict for 'org.eclipse.cdt.ui.edit.text.c.add.include':
+HandlerActivation(commandId=org.eclipse.cdt.ui.edit.text.c.add.include,
+	handler=ActionHandler(org.eclipse.cdt.internal.ui.editor.AddIncludeOnSelectionAction@4ef888ea),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.cdt.ui.edit.text.c.add.include,
+	handler=ActionHandler(org.eclipse.cdt.internal.ui.editor.AddIncludeOnSelectionAction@1ee4e327),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-10-13 12:19:27.884
+!MESSAGE Conflict for 'org.eclipse.ui.edit.selectAll':
+HandlerActivation(commandId=org.eclipse.ui.edit.selectAll,
+	handler=ActionHandler(org.eclipse.ui.texteditor.TextOperationAction@44fd2549),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.ui.edit.selectAll,
+	handler=ActionHandler(org.eclipse.ui.texteditor.TextOperationAction@479aff01),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-10-13 12:19:27.884
+!MESSAGE Conflict for 'org.eclipse.cdt.ui.edit.text.c.add.block.comment':
+HandlerActivation(commandId=org.eclipse.cdt.ui.edit.text.c.add.block.comment,
+	handler=ActionHandler(org.eclipse.cdt.internal.ui.actions.AddBlockCommentAction@10dbbf61),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.cdt.ui.edit.text.c.add.block.comment,
+	handler=ActionHandler(org.eclipse.cdt.internal.ui.actions.AddBlockCommentAction@4af181ec),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-10-13 12:19:27.884
+!MESSAGE Conflict for 'org.eclipse.cdt.ui.edit.open.call.hierarchy':
+HandlerActivation(commandId=org.eclipse.cdt.ui.edit.open.call.hierarchy,
+	handler=ActionHandler(org.eclipse.cdt.internal.ui.callhierarchy.OpenCallHierarchyAction@3588d364),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.cdt.ui.edit.open.call.hierarchy,
+	handler=ActionHandler(org.eclipse.cdt.internal.ui.callhierarchy.OpenCallHierarchyAction@29ee65b1),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-10-13 12:19:27.884
+!MESSAGE Conflict for 'org.eclipse.ui.file.properties':
+HandlerActivation(commandId=org.eclipse.ui.file.properties,
+	handler=ActionHandler(org.eclipse.ui.dialogs.PropertyDialogAction@62565cf8),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.ui.file.properties,
+	handler=ActionHandler(org.eclipse.ui.dialogs.PropertyDialogAction@13f1d038),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-10-13 12:19:27.884
+!MESSAGE Conflict for 'org.eclipse.cdt.ui.edit.text.c.sort.lines':
+HandlerActivation(commandId=org.eclipse.cdt.ui.edit.text.c.sort.lines,
+	handler=ActionHandler(org.eclipse.cdt.internal.ui.editor.SortLinesAction@689d16c2),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.cdt.ui.edit.text.c.sort.lines,
+	handler=ActionHandler(org.eclipse.cdt.internal.ui.editor.SortLinesAction@21415036),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-10-13 12:19:27.884
+!MESSAGE Conflict for 'org.eclipse.ui.edit.undo':
+HandlerActivation(commandId=org.eclipse.ui.edit.undo,
+	handler=ActionHandler(org.eclipse.ui.operations.UndoActionHandler@46f91a48),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.ui.edit.undo,
+	handler=ActionHandler(org.eclipse.ui.operations.UndoActionHandler@c2c915f),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-10-13 12:19:27.884
+!MESSAGE Conflict for 'org.eclipse.ui.edit.findReplace':
+HandlerActivation(commandId=org.eclipse.ui.edit.findReplace,
+	handler=ActionHandler(org.eclipse.ui.texteditor.FindReplaceAction@41fbfa37),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.ui.edit.findReplace,
+	handler=ActionHandler(org.eclipse.ui.texteditor.FindReplaceAction@5e852b9),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-10-13 12:19:27.884
+!MESSAGE Conflict for 'org.eclipse.cdt.ui.edit.open.include.browser':
+HandlerActivation(commandId=org.eclipse.cdt.ui.edit.open.include.browser,
+	handler=ActionHandler(org.eclipse.cdt.internal.ui.includebrowser.OpenIncludeBrowserAction@578ef2b6),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.cdt.ui.edit.open.include.browser,
+	handler=ActionHandler(org.eclipse.cdt.internal.ui.includebrowser.OpenIncludeBrowserAction@69e0b7a2),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-10-13 12:19:27.884
+!MESSAGE Conflict for 'org.eclipse.ui.edit.cut':
+HandlerActivation(commandId=org.eclipse.ui.edit.cut,
+	handler=ActionHandler(org.eclipse.ui.texteditor.TextOperationAction@203822fc),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.ui.edit.cut,
+	handler=ActionHandler(org.eclipse.ui.texteditor.TextOperationAction@4580deea),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-10-13 12:19:27.884
+!MESSAGE Conflict for 'org.eclipse.ui.edit.text.shiftLeft':
+HandlerActivation(commandId=org.eclipse.ui.edit.text.shiftLeft,
+	handler=ActionHandler(org.eclipse.ui.texteditor.ShiftAction@faaf84c),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.ui.edit.text.shiftLeft,
+	handler=ActionHandler(org.eclipse.ui.texteditor.ShiftAction@21934d9d),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-10-13 12:19:27.884
+!MESSAGE Conflict for 'org.eclipse.cdt.ui.edit.text.c.format':
+HandlerActivation(commandId=org.eclipse.cdt.ui.edit.text.c.format,
+	handler=ActionHandler(org.eclipse.ui.texteditor.TextOperationAction@4dcc8fa3),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.cdt.ui.edit.text.c.format,
+	handler=ActionHandler(org.eclipse.ui.texteditor.TextOperationAction@30ea3e3c),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-10-13 12:19:27.884
+!MESSAGE Conflict for 'org.eclipse.cdt.ui.edit.text.c.toggle.comment':
+HandlerActivation(commandId=org.eclipse.cdt.ui.edit.text.c.toggle.comment,
+	handler=ActionHandler(org.eclipse.cdt.internal.ui.editor.ToggleCommentAction@629bee3a),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.cdt.ui.edit.text.c.toggle.comment,
+	handler=ActionHandler(org.eclipse.cdt.internal.ui.editor.ToggleCommentAction@6b355469),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-10-13 12:19:27.884
+!MESSAGE Conflict for 'org.eclipse.cdt.ui.edit.open.type.hierarchy':
+HandlerActivation(commandId=org.eclipse.cdt.ui.edit.open.type.hierarchy,
+	handler=ActionHandler(org.eclipse.cdt.internal.ui.typehierarchy.OpenTypeHierarchyAction@7a38f07b),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.cdt.ui.edit.open.type.hierarchy,
+	handler=ActionHandler(org.eclipse.cdt.internal.ui.typehierarchy.OpenTypeHierarchyAction@303459ed),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-10-13 12:19:27.884
+!MESSAGE Conflict for 'org.eclipse.ui.edit.addTask':
+HandlerActivation(commandId=org.eclipse.ui.edit.addTask,
+	handler=ActionHandler(org.eclipse.ui.texteditor.AddTaskAction@3cfbef54),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+HandlerActivation(commandId=org.eclipse.ui.edit.addTask,
+	handler=ActionHandler(org.eclipse.ui.texteditor.AddTaskAction@401d9313),
+	expression=AndExpression(LegacyEditorActionBarExpression(org.eclipse.cdt.ui.editor.CEditor),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@647fc8b2)),sourcePriority=4210689)
+!SESSION 2017-10-13 12:34:09.545 -----------------------------------------------
+eclipse.buildId=Release 13.4 Build SDK_O.87xd
+java.version=1.6.0_21
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY org.eclipse.cdt.ui 4 4 2017-10-13 12:41:59.817
+!MESSAGE Error
+!STACK 1
+org.eclipse.core.runtime.CoreException: Project: real_time_clock is closed or inaccessible!
+	at org.eclipse.cdt.internal.core.settings.model.ExceptionFactory.createCoreException(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescriptionStorage(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescriptionInternal(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.createProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.CConfigBasedDescriptorManager.createProjDescriptionForDescriptor(Unknown Source)
+	at org.eclipse.cdt.internal.core.CConfigBasedDescriptorManager.findDescriptor(Unknown Source)
+	at org.eclipse.cdt.internal.core.CConfigBasedDescriptorManager.getDescriptor(Unknown Source)
+	at org.eclipse.cdt.core.CCorePlugin.getCProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.ui.text.doctools.ProjectMap.load(Unknown Source)
+	at org.eclipse.cdt.internal.ui.text.doctools.ProjectMap.<init>(Unknown Source)
+	at org.eclipse.cdt.internal.ui.text.doctools.DocCommentOwnerManager.getProjectMap(Unknown Source)
+	at org.eclipse.cdt.internal.ui.text.doctools.DocCommentOwnerManager.getCommentOwner(Unknown Source)
+	at org.eclipse.cdt.internal.ui.text.CTextTools.getDocumentationCommentOwner(Unknown Source)
+	at org.eclipse.cdt.internal.ui.text.CTextTools.setupCDocument(Unknown Source)
+	at org.eclipse.cdt.internal.ui.editor.CDocumentSetupParticipant.setup(Unknown Source)
+	at org.eclipse.core.internal.filebuffers.ResourceTextFileBufferManager$1.run(ResourceTextFileBufferManager.java:151)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.filebuffers.ResourceTextFileBufferManager.createEmptyDocument(ResourceTextFileBufferManager.java:166)
+	at org.eclipse.core.internal.filebuffers.ResourceTextFileBuffer.initializeFileBufferContent(ResourceTextFileBuffer.java:289)
+	at org.eclipse.core.internal.filebuffers.ResourceFileBuffer.create(ResourceFileBuffer.java:245)
+	at org.eclipse.core.internal.filebuffers.TextFileBufferManager.connect(TextFileBufferManager.java:112)
+	at org.eclipse.ui.editors.text.TextFileDocumentProvider.createFileInfo(TextFileDocumentProvider.java:559)
+	at org.eclipse.cdt.internal.ui.editor.CDocumentProvider.createFileInfo(Unknown Source)
+	at org.eclipse.ui.editors.text.TextFileDocumentProvider.connect(TextFileDocumentProvider.java:478)
+	at org.eclipse.cdt.internal.ui.editor.CDocumentProvider.connect(Unknown Source)
+	at org.eclipse.ui.texteditor.AbstractTextEditor.doSetInput(AbstractTextEditor.java:4056)
+	at org.eclipse.ui.texteditor.StatusTextEditor.doSetInput(StatusTextEditor.java:217)
+	at org.eclipse.ui.texteditor.AbstractDecoratedTextEditor.doSetInput(AbstractDecoratedTextEditor.java:1444)
+	at org.eclipse.ui.editors.text.TextEditor.doSetInput(TextEditor.java:169)
+	at org.eclipse.cdt.internal.ui.editor.CEditor.internalDoSetInput(Unknown Source)
+	at org.eclipse.cdt.internal.ui.editor.CEditor.doSetInput(Unknown Source)
+	at org.eclipse.ui.texteditor.AbstractTextEditor$19.run(AbstractTextEditor.java:3043)
+	at org.eclipse.jface.operation.ModalContext.runInCurrentThread(ModalContext.java:464)
+	at org.eclipse.jface.operation.ModalContext.run(ModalContext.java:372)
+	at org.eclipse.jface.window.ApplicationWindow$1.run(ApplicationWindow.java:759)
+	at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:70)
+	at org.eclipse.jface.window.ApplicationWindow.run(ApplicationWindow.java:756)
+	at org.eclipse.ui.internal.WorkbenchWindow.run(WorkbenchWindow.java:2606)
+	at org.eclipse.ui.texteditor.AbstractTextEditor.internalInit(AbstractTextEditor.java:3061)
+	at org.eclipse.ui.texteditor.AbstractTextEditor.init(AbstractTextEditor.java:3088)
+	at org.eclipse.ui.internal.EditorManager.createSite(EditorManager.java:798)
+	at org.eclipse.ui.internal.EditorReference.createPartHelper(EditorReference.java:647)
+	at org.eclipse.ui.internal.EditorReference.createPart(EditorReference.java:465)
+	at org.eclipse.ui.internal.WorkbenchPartReference.getPart(WorkbenchPartReference.java:595)
+	at org.eclipse.ui.internal.PartPane.setVisible(PartPane.java:313)
+	at org.eclipse.ui.internal.presentations.PresentablePart.setVisible(PresentablePart.java:180)
+	at org.eclipse.ui.internal.presentations.util.PresentablePartFolder.select(PresentablePartFolder.java:270)
+	at org.eclipse.ui.internal.presentations.util.LeftToRightTabOrder.select(LeftToRightTabOrder.java:65)
+	at org.eclipse.ui.internal.presentations.util.TabbedStackPresentation.selectPart(TabbedStackPresentation.java:473)
+	at org.eclipse.ui.internal.PartStack.refreshPresentationSelection(PartStack.java:1254)
+	at org.eclipse.ui.internal.PartStack.setSelection(PartStack.java:1207)
+	at org.eclipse.ui.internal.PartStack.presentationSelectionChanged(PartStack.java:841)
+	at org.eclipse.ui.internal.PartStack.access$1(PartStack.java:827)
+	at org.eclipse.ui.internal.PartStack$1.selectPart(PartStack.java:137)
+	at org.eclipse.ui.internal.presentations.util.TabbedStackPresentation$1.handleEvent(TabbedStackPresentation.java:133)
+	at org.eclipse.ui.internal.presentations.util.AbstractTabFolder.fireEvent(AbstractTabFolder.java:269)
+	at org.eclipse.ui.internal.presentations.util.AbstractTabFolder.fireEvent(AbstractTabFolder.java:278)
+	at org.eclipse.ui.internal.presentations.defaultpresentation.DefaultTabFolder.access$1(DefaultTabFolder.java:1)
+	at org.eclipse.ui.internal.presentations.defaultpresentation.DefaultTabFolder$2.handleEvent(DefaultTabFolder.java:88)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1053)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1077)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1062)
+	at org.eclipse.swt.widgets.Widget.notifyListeners(Widget.java:774)
+	at org.eclipse.swt.custom.CTabFolder.setSelection(CTabFolder.java:2743)
+	at org.eclipse.swt.custom.CTabFolder.onMouse(CTabFolder.java:1429)
+	at org.eclipse.swt.custom.CTabFolder$1.handleEvent(CTabFolder.java:257)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1053)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4066)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3657)
+	at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2640)
+	at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2604)
+	at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2438)
+	at org.eclipse.ui.internal.Workbench$7.run(Workbench.java:671)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:664)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:115)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:369)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:179)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:620)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:575)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1408)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1384)
+!SUBENTRY 1 org.eclipse.cdt.core 4 0 2017-10-13 12:41:59.817
+!MESSAGE Project: real_time_clock is closed or inaccessible!
+
+!ENTRY org.eclipse.ui 4 0 2017-10-13 12:41:59.817
+!MESSAGE Unable to create editor ID org.eclipse.cdt.ui.editor.CEditor: Project: real_time_clock is closed or inaccessible!
+!STACK 1
+org.eclipse.core.runtime.CoreException: Project: real_time_clock is closed or inaccessible!
+	at org.eclipse.cdt.internal.core.settings.model.ExceptionFactory.createCoreException(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescriptionStorage(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescriptionInternal(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.createProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.CConfigBasedDescriptorManager.createProjDescriptionForDescriptor(Unknown Source)
+	at org.eclipse.cdt.internal.core.CConfigBasedDescriptorManager.findDescriptor(Unknown Source)
+	at org.eclipse.cdt.internal.core.CConfigBasedDescriptorManager.getDescriptor(Unknown Source)
+	at org.eclipse.cdt.core.CCorePlugin.getCProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.language.LanguageMappingStore.getProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.language.LanguageMappingStore.decodeMappings(Unknown Source)
+	at org.eclipse.cdt.core.model.LanguageManager.getLanguageConfiguration(Unknown Source)
+	at org.eclipse.cdt.internal.core.language.LanguageMappingResolver.computeLanguage(Unknown Source)
+	at org.eclipse.cdt.core.model.LanguageManager.getLanguageForFile(Unknown Source)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getLanguage(Unknown Source)
+	at org.eclipse.cdt.internal.ui.editor.CEditor.internalDoSetInput(Unknown Source)
+	at org.eclipse.cdt.internal.ui.editor.CEditor.doSetInput(Unknown Source)
+	at org.eclipse.ui.texteditor.AbstractTextEditor$19.run(AbstractTextEditor.java:3043)
+	at org.eclipse.jface.operation.ModalContext.runInCurrentThread(ModalContext.java:464)
+	at org.eclipse.jface.operation.ModalContext.run(ModalContext.java:372)
+	at org.eclipse.jface.window.ApplicationWindow$1.run(ApplicationWindow.java:759)
+	at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:70)
+	at org.eclipse.jface.window.ApplicationWindow.run(ApplicationWindow.java:756)
+	at org.eclipse.ui.internal.WorkbenchWindow.run(WorkbenchWindow.java:2606)
+	at org.eclipse.ui.texteditor.AbstractTextEditor.internalInit(AbstractTextEditor.java:3061)
+	at org.eclipse.ui.texteditor.AbstractTextEditor.init(AbstractTextEditor.java:3088)
+	at org.eclipse.ui.internal.EditorManager.createSite(EditorManager.java:798)
+	at org.eclipse.ui.internal.EditorReference.createPartHelper(EditorReference.java:647)
+	at org.eclipse.ui.internal.EditorReference.createPart(EditorReference.java:465)
+	at org.eclipse.ui.internal.WorkbenchPartReference.getPart(WorkbenchPartReference.java:595)
+	at org.eclipse.ui.internal.PartPane.setVisible(PartPane.java:313)
+	at org.eclipse.ui.internal.presentations.PresentablePart.setVisible(PresentablePart.java:180)
+	at org.eclipse.ui.internal.presentations.util.PresentablePartFolder.select(PresentablePartFolder.java:270)
+	at org.eclipse.ui.internal.presentations.util.LeftToRightTabOrder.select(LeftToRightTabOrder.java:65)
+	at org.eclipse.ui.internal.presentations.util.TabbedStackPresentation.selectPart(TabbedStackPresentation.java:473)
+	at org.eclipse.ui.internal.PartStack.refreshPresentationSelection(PartStack.java:1254)
+	at org.eclipse.ui.internal.PartStack.setSelection(PartStack.java:1207)
+	at org.eclipse.ui.internal.PartStack.presentationSelectionChanged(PartStack.java:841)
+	at org.eclipse.ui.internal.PartStack.access$1(PartStack.java:827)
+	at org.eclipse.ui.internal.PartStack$1.selectPart(PartStack.java:137)
+	at org.eclipse.ui.internal.presentations.util.TabbedStackPresentation$1.handleEvent(TabbedStackPresentation.java:133)
+	at org.eclipse.ui.internal.presentations.util.AbstractTabFolder.fireEvent(AbstractTabFolder.java:269)
+	at org.eclipse.ui.internal.presentations.util.AbstractTabFolder.fireEvent(AbstractTabFolder.java:278)
+	at org.eclipse.ui.internal.presentations.defaultpresentation.DefaultTabFolder.access$1(DefaultTabFolder.java:1)
+	at org.eclipse.ui.internal.presentations.defaultpresentation.DefaultTabFolder$2.handleEvent(DefaultTabFolder.java:88)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1053)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1077)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1062)
+	at org.eclipse.swt.widgets.Widget.notifyListeners(Widget.java:774)
+	at org.eclipse.swt.custom.CTabFolder.setSelection(CTabFolder.java:2743)
+	at org.eclipse.swt.custom.CTabFolder.onMouse(CTabFolder.java:1429)
+	at org.eclipse.swt.custom.CTabFolder$1.handleEvent(CTabFolder.java:257)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1053)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4066)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3657)
+	at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2640)
+	at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2604)
+	at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2438)
+	at org.eclipse.ui.internal.Workbench$7.run(Workbench.java:671)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:664)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:115)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:369)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:179)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:620)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:575)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1408)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1384)
+!SUBENTRY 1 org.eclipse.cdt.core 4 0 2017-10-13 12:41:59.817
+!MESSAGE Project: real_time_clock is closed or inaccessible!
+
+!ENTRY org.eclipse.ui 2 2 2017-10-13 12:41:59.833
+!MESSAGE Ignored attempt to add saveable that was already registered
+!STACK 0
+org.eclipse.core.runtime.AssertionFailedException: unknown saveable: org.eclipse.ui.internal.DefaultSaveable@2af9aaf1 from part: org.eclipse.ui.internal.ErrorEditorPart@2af9aaf1
+	at org.eclipse.ui.internal.SaveablesList.logWarning(SaveablesList.java:187)
+	at org.eclipse.ui.internal.SaveablesList.addModel(SaveablesList.java:117)
+	at org.eclipse.ui.internal.SaveablesList.addModels(SaveablesList.java:289)
+	at org.eclipse.ui.internal.SaveablesList.postOpen(SaveablesList.java:684)
+	at org.eclipse.ui.internal.PartList.partOpened(PartList.java:234)
+	at org.eclipse.ui.internal.PartList.access$0(PartList.java:210)
+	at org.eclipse.ui.internal.PartList$1.propertyChanged(PartList.java:40)
+	at org.eclipse.ui.internal.WorkbenchPartReference.fireInternalPropertyChange(WorkbenchPartReference.java:375)
+	at org.eclipse.ui.internal.WorkbenchPartReference.getPart(WorkbenchPartReference.java:610)
+	at org.eclipse.ui.internal.PartPane.setVisible(PartPane.java:313)
+	at org.eclipse.ui.internal.presentations.PresentablePart.setVisible(PresentablePart.java:180)
+	at org.eclipse.ui.internal.presentations.util.PresentablePartFolder.select(PresentablePartFolder.java:270)
+	at org.eclipse.ui.internal.presentations.util.LeftToRightTabOrder.select(LeftToRightTabOrder.java:65)
+	at org.eclipse.ui.internal.presentations.util.TabbedStackPresentation.selectPart(TabbedStackPresentation.java:473)
+	at org.eclipse.ui.internal.PartStack.refreshPresentationSelection(PartStack.java:1254)
+	at org.eclipse.ui.internal.PartStack.setSelection(PartStack.java:1207)
+	at org.eclipse.ui.internal.PartStack.presentationSelectionChanged(PartStack.java:841)
+	at org.eclipse.ui.internal.PartStack.access$1(PartStack.java:827)
+	at org.eclipse.ui.internal.PartStack$1.selectPart(PartStack.java:137)
+	at org.eclipse.ui.internal.presentations.util.TabbedStackPresentation$1.handleEvent(TabbedStackPresentation.java:133)
+	at org.eclipse.ui.internal.presentations.util.AbstractTabFolder.fireEvent(AbstractTabFolder.java:269)
+	at org.eclipse.ui.internal.presentations.util.AbstractTabFolder.fireEvent(AbstractTabFolder.java:278)
+	at org.eclipse.ui.internal.presentations.defaultpresentation.DefaultTabFolder.access$1(DefaultTabFolder.java:1)
+	at org.eclipse.ui.internal.presentations.defaultpresentation.DefaultTabFolder$2.handleEvent(DefaultTabFolder.java:88)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1053)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1077)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1062)
+	at org.eclipse.swt.widgets.Widget.notifyListeners(Widget.java:774)
+	at org.eclipse.swt.custom.CTabFolder.setSelection(CTabFolder.java:2743)
+	at org.eclipse.swt.custom.CTabFolder.onMouse(CTabFolder.java:1429)
+	at org.eclipse.swt.custom.CTabFolder$1.handleEvent(CTabFolder.java:257)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1053)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4066)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3657)
+	at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2640)
+	at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2604)
+	at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2438)
+	at org.eclipse.ui.internal.Workbench$7.run(Workbench.java:671)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:664)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:115)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:369)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:179)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:620)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:575)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1408)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1384)
+
+!ENTRY org.eclipse.ui 4 0 2017-10-13 12:42:00.644
+!MESSAGE Unable to create editor ID org.eclipse.cdt.ui.editor.CEditor: Project: real_time_clock is closed or inaccessible!
+!STACK 1
+org.eclipse.core.runtime.CoreException: Project: real_time_clock is closed or inaccessible!
+	at org.eclipse.cdt.internal.core.settings.model.ExceptionFactory.createCoreException(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescriptionStorage(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescriptionInternal(Unknown Source)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.createProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.CConfigBasedDescriptorManager.createProjDescriptionForDescriptor(Unknown Source)
+	at org.eclipse.cdt.internal.core.CConfigBasedDescriptorManager.findDescriptor(Unknown Source)
+	at org.eclipse.cdt.internal.core.CConfigBasedDescriptorManager.getDescriptor(Unknown Source)
+	at org.eclipse.cdt.core.CCorePlugin.getCProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.language.LanguageMappingStore.getProjectDescription(Unknown Source)
+	at org.eclipse.cdt.internal.core.language.LanguageMappingStore.decodeMappings(Unknown Source)
+	at org.eclipse.cdt.core.model.LanguageManager.getLanguageConfiguration(Unknown Source)
+	at org.eclipse.cdt.internal.core.language.LanguageMappingResolver.computeLanguage(Unknown Source)
+	at org.eclipse.cdt.core.model.LanguageManager.getLanguageForFile(Unknown Source)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getLanguage(Unknown Source)
+	at org.eclipse.cdt.internal.ui.editor.CEditor.internalDoSetInput(Unknown Source)
+	at org.eclipse.cdt.internal.ui.editor.CEditor.doSetInput(Unknown Source)
+	at org.eclipse.ui.texteditor.AbstractTextEditor$19.run(AbstractTextEditor.java:3043)
+	at org.eclipse.jface.operation.ModalContext.runInCurrentThread(ModalContext.java:464)
+	at org.eclipse.jface.operation.ModalContext.run(ModalContext.java:372)
+	at org.eclipse.jface.window.ApplicationWindow$1.run(ApplicationWindow.java:759)
+	at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:70)
+	at org.eclipse.jface.window.ApplicationWindow.run(ApplicationWindow.java:756)
+	at org.eclipse.ui.internal.WorkbenchWindow.run(WorkbenchWindow.java:2606)
+	at org.eclipse.ui.texteditor.AbstractTextEditor.internalInit(AbstractTextEditor.java:3061)
+	at org.eclipse.ui.texteditor.AbstractTextEditor.init(AbstractTextEditor.java:3088)
+	at org.eclipse.ui.internal.EditorManager.createSite(EditorManager.java:798)
+	at org.eclipse.ui.internal.EditorReference.createPartHelper(EditorReference.java:647)
+	at org.eclipse.ui.internal.EditorReference.createPart(EditorReference.java:465)
+	at org.eclipse.ui.internal.WorkbenchPartReference.getPart(WorkbenchPartReference.java:595)
+	at org.eclipse.ui.internal.PartPane.setVisible(PartPane.java:313)
+	at org.eclipse.ui.internal.presentations.PresentablePart.setVisible(PresentablePart.java:180)
+	at org.eclipse.ui.internal.presentations.util.PresentablePartFolder.select(PresentablePartFolder.java:270)
+	at org.eclipse.ui.internal.presentations.util.LeftToRightTabOrder.select(LeftToRightTabOrder.java:65)
+	at org.eclipse.ui.internal.presentations.util.TabbedStackPresentation.selectPart(TabbedStackPresentation.java:473)
+	at org.eclipse.ui.internal.PartStack.refreshPresentationSelection(PartStack.java:1254)
+	at org.eclipse.ui.internal.PartStack.setSelection(PartStack.java:1207)
+	at org.eclipse.ui.internal.PartStack.presentationSelectionChanged(PartStack.java:841)
+	at org.eclipse.ui.internal.PartStack.access$1(PartStack.java:827)
+	at org.eclipse.ui.internal.PartStack$1.selectPart(PartStack.java:137)
+	at org.eclipse.ui.internal.presentations.util.TabbedStackPresentation$1.handleEvent(TabbedStackPresentation.java:133)
+	at org.eclipse.ui.internal.presentations.util.AbstractTabFolder.fireEvent(AbstractTabFolder.java:269)
+	at org.eclipse.ui.internal.presentations.util.AbstractTabFolder.fireEvent(AbstractTabFolder.java:278)
+	at org.eclipse.ui.internal.presentations.defaultpresentation.DefaultTabFolder.access$1(DefaultTabFolder.java:1)
+	at org.eclipse.ui.internal.presentations.defaultpresentation.DefaultTabFolder$2.handleEvent(DefaultTabFolder.java:88)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1053)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1077)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1062)
+	at org.eclipse.swt.widgets.Widget.notifyListeners(Widget.java:774)
+	at org.eclipse.swt.custom.CTabFolder.setSelection(CTabFolder.java:2743)
+	at org.eclipse.swt.custom.CTabFolder.onMouse(CTabFolder.java:1429)
+	at org.eclipse.swt.custom.CTabFolder$1.handleEvent(CTabFolder.java:257)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1053)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4066)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3657)
+	at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2640)
+	at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2604)
+	at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2438)
+	at org.eclipse.ui.internal.Workbench$7.run(Workbench.java:671)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:664)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:115)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:369)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:179)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:620)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:575)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1408)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1384)
+!SUBENTRY 1 org.eclipse.cdt.core 4 0 2017-10-13 12:42:00.644
+!MESSAGE Project: real_time_clock is closed or inaccessible!
+
+!ENTRY org.eclipse.ui 2 2 2017-10-13 12:42:00.644
+!MESSAGE Ignored attempt to add saveable that was already registered
+!STACK 0
+org.eclipse.core.runtime.AssertionFailedException: unknown saveable: org.eclipse.ui.internal.DefaultSaveable@677bb8fe from part: org.eclipse.ui.internal.ErrorEditorPart@677bb8fe
+	at org.eclipse.ui.internal.SaveablesList.logWarning(SaveablesList.java:187)
+	at org.eclipse.ui.internal.SaveablesList.addModel(SaveablesList.java:117)
+	at org.eclipse.ui.internal.SaveablesList.addModels(SaveablesList.java:289)
+	at org.eclipse.ui.internal.SaveablesList.postOpen(SaveablesList.java:684)
+	at org.eclipse.ui.internal.PartList.partOpened(PartList.java:234)
+	at org.eclipse.ui.internal.PartList.access$0(PartList.java:210)
+	at org.eclipse.ui.internal.PartList$1.propertyChanged(PartList.java:40)
+	at org.eclipse.ui.internal.WorkbenchPartReference.fireInternalPropertyChange(WorkbenchPartReference.java:375)
+	at org.eclipse.ui.internal.WorkbenchPartReference.getPart(WorkbenchPartReference.java:610)
+	at org.eclipse.ui.internal.PartPane.setVisible(PartPane.java:313)
+	at org.eclipse.ui.internal.presentations.PresentablePart.setVisible(PresentablePart.java:180)
+	at org.eclipse.ui.internal.presentations.util.PresentablePartFolder.select(PresentablePartFolder.java:270)
+	at org.eclipse.ui.internal.presentations.util.LeftToRightTabOrder.select(LeftToRightTabOrder.java:65)
+	at org.eclipse.ui.internal.presentations.util.TabbedStackPresentation.selectPart(TabbedStackPresentation.java:473)
+	at org.eclipse.ui.internal.PartStack.refreshPresentationSelection(PartStack.java:1254)
+	at org.eclipse.ui.internal.PartStack.setSelection(PartStack.java:1207)
+	at org.eclipse.ui.internal.PartStack.presentationSelectionChanged(PartStack.java:841)
+	at org.eclipse.ui.internal.PartStack.access$1(PartStack.java:827)
+	at org.eclipse.ui.internal.PartStack$1.selectPart(PartStack.java:137)
+	at org.eclipse.ui.internal.presentations.util.TabbedStackPresentation$1.handleEvent(TabbedStackPresentation.java:133)
+	at org.eclipse.ui.internal.presentations.util.AbstractTabFolder.fireEvent(AbstractTabFolder.java:269)
+	at org.eclipse.ui.internal.presentations.util.AbstractTabFolder.fireEvent(AbstractTabFolder.java:278)
+	at org.eclipse.ui.internal.presentations.defaultpresentation.DefaultTabFolder.access$1(DefaultTabFolder.java:1)
+	at org.eclipse.ui.internal.presentations.defaultpresentation.DefaultTabFolder$2.handleEvent(DefaultTabFolder.java:88)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1053)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1077)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1062)
+	at org.eclipse.swt.widgets.Widget.notifyListeners(Widget.java:774)
+	at org.eclipse.swt.custom.CTabFolder.setSelection(CTabFolder.java:2743)
+	at org.eclipse.swt.custom.CTabFolder.onMouse(CTabFolder.java:1429)
+	at org.eclipse.swt.custom.CTabFolder$1.handleEvent(CTabFolder.java:257)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1053)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4066)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3657)
+	at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2640)
+	at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2604)
+	at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2438)
+	at org.eclipse.ui.internal.Workbench$7.run(Workbench.java:671)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:664)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:115)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:369)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:179)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:620)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:575)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1408)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1384)

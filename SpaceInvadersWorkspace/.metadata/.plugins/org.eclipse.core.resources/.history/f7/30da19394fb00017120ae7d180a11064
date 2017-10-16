@@ -1,0 +1,22 @@
+/*
+ * saucer.h
+ *
+ *  Created on: Oct 13, 2017
+ *      Author: superman
+ */
+
+#ifndef SAUCER_H_
+#define SAUCER_H_
+#include "globals.h"
+/////////////////////// DEFINES /////////////////////
+
+
+
+/////////////////////// FUNCTIONS ///////////////////
+//Moves the saucer right
+void moveSaucerRight();
+//Moves the saucer left
+void moveSaucerLeft();
+
+
+#endif /* SAUCER_H_ */

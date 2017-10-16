@@ -29,6 +29,9 @@ void moveAliens();
 //Given a number between 0-54, kills the corresponding alien
 void killAlien(uint8_t alien);
 
+//returns the location of the alien
+point_t getAlienLocation(uint8_t alienNum);
+
 //Returns the index of the leftmost living column of aliens
 int8_t getLeftmostLivingAlienColumn();
 
@@ -38,6 +41,12 @@ int8_t getRightmostLivingAlienColumn();
 //Given a row and column, accesses aliensAlive array and returns whether
 //corresponding alien is alive or not
 uint8_t isAlienAlive(uint8_t row, uint8_t col);
+
+//returns the alien number that has a pixel at the provided point
+uint8_t getAlienNumberFromPoint(point_t point);
+
+//returns how many points the alien is worth
+uint8_t alienPoints(uint8_t alienNum);
 
 //Prints the aliensAlive array to the console. Used in debugging.
 void printAliens();

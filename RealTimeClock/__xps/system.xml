@@ -1,5 +1,5 @@
 
-<EDKSYSTEM EDKVERSION="13.4" EDWVERSION="1.2" TIMESTAMP="Mon Sep 18 13:57:13 2017">
+<EDKSYSTEM EDKVERSION="13.4" EDWVERSION="1.2" TIMESTAMP="Mon Oct 09 12:08:02 2017">
 
   <SYSTEMINFO ARCH="spartan6" DEVICE="xc6slx45" PACKAGE="csg324" PART="xc6slx45csg324-3" SOURCE="C:/Users/superman/Documents/TylerBondGithub/ecen427/RealTimeClock/system.xmp" SPEEDGRADE="-3"/>
 

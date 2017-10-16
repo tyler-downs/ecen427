@@ -14,8 +14,8 @@
 #include "render.h"
 #include "globals.h"
 #include "saucer.h"
+#include "counters.h"
 
-#define MOVE_ALIENS_COUNTER_MAX 90 //One second at one interrupt every 10ms
 #define PB_BTNC_MASK 0x0001 //Mask for identifying the center button
 #define PB_BTNR_MASK 0x0002 //Mask for identifying the right button
 #define PB_BTND_MASK 0x0004 //Mask for identifying the down button
@@ -26,18 +26,15 @@ XGpio gpLED;  // This is a handle for the LED GPIO block.
 XGpio gpPB;   // This is a handle for the push-button GPIO block.
 
 u32 currentButtonState = 0; //the state of the button register
-u32 previousButtonState = 0; //for debouncing: checking if button state has changed
 
-u32 moveAliensTickCtr = 0; //Counter for the FIT
+u8 leftButtonPressed() {return currentButtonState & PB_BTNL_MASK;} //returns nonzero if the left button is pressed
+u8 rightButtonPressed() {return currentButtonState & PB_BTNR_MASK;} //returns nonzero if the right button is pressed
+u8 centerButtonPressed() {return currentButtonState & PB_BTNC_MASK;} //returns nonzero if the center button is pressed
 
 // This is invoked in response to a timer interrupt.
 void timer_interrupt_handler() {
-	moveAliensTickCtr++;
-	if (moveAliensTickCtr > MOVE_ALIENS_COUNTER_MAX)
-	{
-		moveAliensTickCtr = 0;
-		moveAliens();
-	}
+	updateAllCounters();
+
 }
 
 // This is invoked each time there is a change in the button state (result of a push or a bounce).
@@ -98,8 +95,6 @@ int main()
     disp_init();
 
     microblaze_enable_interrupts();
-
-    drawSaucer();
 
     while(1);  // Program never ends.
 

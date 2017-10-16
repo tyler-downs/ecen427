@@ -23,7 +23,7 @@ point_t getTankBulletSpawnPosition()
 //Draws the tank bullet to the display
 void drawTankBullet(point_t location)
 {
-	drawObject(tankBullet_3x6, TANK_BULLET_WIDTH, TANK_BULLET_HEIGHT, location, WHITE, LEAVE_BACKGROUND);
+	drawObject(tankBullet_3x6, TANK_BULLET_WIDTH, TANK_BULLET_HEIGHT, location, BULLET_WHITE, LEAVE_BACKGROUND);
 }
 
 //Fires the tank bullet. Will only work if the bullet isn't on the screen already.
@@ -41,13 +41,14 @@ void fireTankBullet()
 }
 
 
-//Erases entire tank bullet. For debugging.
+//Erases entire tank bullet.
 void eraseEntireTankBullet()
 {
 	drawObject(tankBullet_3x6, TANK_BULLET_WIDTH, TANK_BULLET_HEIGHT, getTankBulletPosition(), BLACK, FORCE_BLACK_BACKGROUND);
 	tankBulletExists = FALSE;
 }
 
+#define BULLET_CEILING 60 //the highest the bullet can go on the screen before being erased
 //Advances the tank bullet on the display. Updates its location. Handles off-screen behavior.
 void advanceTankBullet()
 {
@@ -64,6 +65,11 @@ void advanceTankBullet()
 		{
 			//move the tank bullet up (decrement y value)
 			point_t newTankBulletPosition = {getTankBulletPosition().x, getTankBulletPosition().y - TANK_BULLET_TRAVEL_DISTANCE};
+			if (newTankBulletPosition.y < BULLET_CEILING) //if the bullet's going off the top of the screen
+			{
+				eraseEntireTankBullet(); //remove it from the screen and reset global
+				return;
+			}
 			//erase the bottom of the tank bullet
 			eraseRectangle((point_t){newTankBulletPosition.x + MAGNIFY_MULT, newTankBulletPosition.y + TANK_BULLET_HEIGHT}, MAGNIFY_MULT, TANK_BULLET_TRAVEL_DISTANCE);
 			//draw the new tank bullet
@@ -103,11 +109,11 @@ void eraseAlienBullet(bullet_type type, bullet_guise_type guise, point_t locatio
 	{
 		if (guise == bullet_guise_0)
 		{
-			drawObject(crossBulletGuise0_5x6, CROSS_BULLET_WIDTH, CR0SS_BULLET_HEIGHT, location, BLACK, LEAVE_BACKGROUND);
+			drawObject(crossBulletGuise0_5x6, CROSS_BULLET_WIDTH, CROSS_BULLET_HEIGHT, location, BLACK, LEAVE_BACKGROUND);
 		}
 		else // guise 1
 		{
-			drawObject(crossBulletGuise1_5x6, CROSS_BULLET_WIDTH, CR0SS_BULLET_HEIGHT, location, BLACK, LEAVE_BACKGROUND);
+			drawObject(crossBulletGuise1_5x6, CROSS_BULLET_WIDTH, CROSS_BULLET_HEIGHT, location, BLACK, LEAVE_BACKGROUND);
 		}
 	}
 	else //zigzag
@@ -130,22 +136,22 @@ void drawAlienBullet(bullet_type type, bullet_guise_type guise, point_t location
 	{
 		if (guise == bullet_guise_0)
 		{
-			drawObject(crossBulletGuise0_5x6, CROSS_BULLET_WIDTH, CR0SS_BULLET_HEIGHT, location, WHITE, LEAVE_BACKGROUND);
+			drawObject(crossBulletGuise0_5x6, CROSS_BULLET_WIDTH, CROSS_BULLET_HEIGHT, location, BULLET_WHITE, LEAVE_BACKGROUND);
 		}
 		else // guise 1
 		{
-			drawObject(crossBulletGuise1_5x6, CROSS_BULLET_WIDTH, CR0SS_BULLET_HEIGHT, location, WHITE, LEAVE_BACKGROUND);
+			drawObject(crossBulletGuise1_5x6, CROSS_BULLET_WIDTH, CROSS_BULLET_HEIGHT, location, BULLET_WHITE, LEAVE_BACKGROUND);
 		}
 	}
 	else //zigzag
 	{
 		if (guise == bullet_guise_0)
 		{
-			drawObject(zigzagBulletGuise0_3x7, ZIGZAG_BULLET_WIDTH, ZIGZAG_BULLET_HEIGHT, location, WHITE, LEAVE_BACKGROUND);
+			drawObject(zigzagBulletGuise0_3x7, ZIGZAG_BULLET_WIDTH, ZIGZAG_BULLET_HEIGHT, location, BULLET_WHITE, LEAVE_BACKGROUND);
 		}
 		else // guise 1
 		{
-			drawObject(zigzagBulletGuise1_3x7, ZIGZAG_BULLET_WIDTH, ZIGZAG_BULLET_HEIGHT, location, WHITE, LEAVE_BACKGROUND);
+			drawObject(zigzagBulletGuise1_3x7, ZIGZAG_BULLET_WIDTH, ZIGZAG_BULLET_HEIGHT, location, BULLET_WHITE, LEAVE_BACKGROUND);
 		}
 	}
 }
@@ -245,6 +251,89 @@ void advanceAllAlienBullets()
 			advanceOneAlienBullet(i);
 		}
 	}
+}
+
+#define NO_PIXEL -10
+//returns the pixel that is the specified color in the given area. Returns -10, -10 if none found.
+point_t colorExistsInArea(point_t startPoint, uint8_t width, uint8_t height, uint32_t color)
+{
+	uint16_t r, c;
+	for (r = startPoint.y; r < (startPoint.y * height * MAGNIFY_MULT); r++)
+	{
+		for (c = startPoint.x; c < (startPoint.x * width * MAGNIFY_MULT); c++)
+		{
+			if (getFramePointer0()[r*WIDTH_DISPLAY + c] == color)
+				return (point_t) {c, r}; //return the point where the color was found
+		}
+	}
+	return (point_t) {NO_PIXEL, NO_PIXEL}; //no pixels of the color found
+}
+
+#define NO_HIT -1
+//if the tank bullet will hit an alien on its next move, this will return the alien number. Otherwise it will return -1.
+int8_t tankBulletWillHitAlien()
+{
+	point_t newTankBulletPosition = {getTankBulletPosition().x, getTankBulletPosition().y - TANK_BULLET_TRAVEL_DISTANCE}; //where the bullet will be
+	point_t collisionPoint = colorExistsInArea(newTankBulletPosition, TANK_BULLET_WIDTH, TANK_BULLET_TRAVEL_DISTANCE, WHITE); //check if we'll hit an alien
+	if (collisionPoint.x > NO_PIXEL && collisionPoint.y > NO_PIXEL) //if the tank bullet is going to hit an alien
+	{
+		return getAlienNumberFromPoint(collisionPoint); //return the alien number that will get hit
+	}
+	return NO_HIT; //no alien will be hit
+}
+
+//returns true if the tank bullet will hit the spaceship on its next move
+uint8_t tankBulletWillHitSpaceship()
+{
+	point_t newTankBulletPosition = {getTankBulletPosition().x, getTankBulletPosition().y - TANK_BULLET_TRAVEL_DISTANCE};
+	point_t collisionPoint = colorExistsInArea(newTankBulletPosition, TANK_BULLET_WIDTH, TANK_BULLET_TRAVEL_DISTANCE, RED); //check if we'll hit the spaceship
+	if (collisionPoint.x > NO_PIXEL && collisionPoint.y > NO_PIXEL) //if the tank bullet is going to hit the saucer
+	{
+		return TRUE;
+	}
+	else return FALSE;
+
+}
+
+//if the tank bullet will hit a bunker on its next move, this will return the bunker number. Otherwise it will return -1.
+int8_t tankBulletWillHitBunker()
+{
+	point_t newTankBulletPosition = {getTankBulletPosition().x, getTankBulletPosition().y - TANK_BULLET_TRAVEL_DISTANCE};
+	point_t collisionPoint = colorExistsInArea(newTankBulletPosition, TANK_BULLET_WIDTH, TANK_BULLET_TRAVEL_DISTANCE, GREEN); //check if we'll hit a bunker
+	if (collisionPoint.x > NO_PIXEL && collisionPoint.y > NO_PIXEL) //if the tank bullet is going to hit a bunker
+	{
+		return getBunkerBlockNumber(collisionPoint); //return the block number that is going to get hit
+	}
+	return NO_HIT;
+}
+
+//returns true if the specified alien bullet will hit the tank on its next move
+uint8_t alienBulletWillHitTank(uint8_t bulletNum)
+{
+	uint16_t alien_bullet_width = (getAlienBulletType(bulletNum) == cross_bullet) ? CROSS_BULLET_WIDTH : ZIGZAG_BULLET_WIDTH;
+	point_t newAlienBulletPosition = {getAlienBulletPosition(bulletNum).x, getAlienBulletPosition(bulletNum).y + ALIEN_BULLET_TRAVEL_DISTANCE};
+	point_t collisionPoint = colorExistsInArea(newAlienBulletPosition, alien_bullet_width, ALIEN_BULLET_TRAVEL_DISTANCE, GREEN); //check if we'll hit the tank or a bunker
+
+	//if the green point is below the top of the tank and above the green line on the bottom of the screen
+	if (collisionPoint.y >= TANK_START_Y && collisionPoint.y < BOTTOMLINE_TOP)
+	{
+		return TRUE; //it must be the tank
+	}
+	else return FALSE;
+}
+
+#define NO_HIT -1
+//if the specified alien bullet will hit a bunker on its next move, this will return the bunker block number. Otherwise it will return -1.
+int8_t alienBulletWillHitBunkerBlock(uint8_t bulletNum)
+{
+	uint16_t alien_bullet_width = (getAlienBulletType(bulletNum) == cross_bullet) ? CROSS_BULLET_WIDTH : ZIGZAG_BULLET_WIDTH;
+	point_t newAlienBulletPosition = {getAlienBulletPosition(bulletNum).x, getAlienBulletPosition(bulletNum).y + ALIEN_BULLET_TRAVEL_DISTANCE};
+	point_t collisionPoint = colorExistsInArea(newAlienBulletPosition, alien_bullet_width, ALIEN_BULLET_TRAVEL_DISTANCE, GREEN); //check if we'll hit the tank or a bunker
+	if (collisionPoint.y < TANK_START_Y) //if the green point is above the tank then we're hitting a bunker, not the tank
+	{
+		return getBunkerBlockNumber(collisionPoint); //return the block number that is going to get hit
+	}
+	else return NO_HIT;
 }
 
 

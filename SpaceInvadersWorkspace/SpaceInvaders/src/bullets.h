@@ -39,4 +39,19 @@ void fireRandomAlienBullet();
 //Advances all bullets on the screen
 void advanceAllAlienBullets();
 
+//if the tank bullet will hit an alien on its next move, this will return the alien number. Otherwise it will return -1.
+int8_t tankBulletWillHitAlien();
+
+//returns true if the tank bullet will hit the spaceship on its next move
+uint8_t tankBulletWillHitSpaceship();
+
+//if the tank bullet will hit a bunker on its next move, this will return the bunker number. Otherwise it will return -1.
+int8_t tankBulletWillHitBunker();
+
+//returns true if the specified alien bullet will hit the tank on its next move
+uint8_t alienBulletWillHitTank(uint8_t bulletNum);
+
+//if the specified alien bullet will hit a bunker on its next move, this will return the bunker number. Otherwise it will return -1.
+int8_t alienBulletWillHitBunkerBlock(uint8_t bulletNum);
+
 #endif /* BULLETS_H_ */

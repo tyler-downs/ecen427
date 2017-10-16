@@ -1,4 +1,5 @@
 
-****  of configuration Debug for project real_time_clock ****
+**** Build of configuration Debug for project real_time_clock ****
 
-Nothing to build for project real_time_clock
+make all 
+make: Nothing to be done for `all'.

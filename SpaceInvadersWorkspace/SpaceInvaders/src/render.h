@@ -49,6 +49,9 @@
 
 
 ////////////////////// FUNCTION PROTOTYPES ///////////////////////
+//return framePointer0
+unsigned int * getFramePointer0();
+
 //Initializes the display
 void disp_init();
 

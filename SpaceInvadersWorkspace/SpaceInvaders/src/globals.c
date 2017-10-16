@@ -157,3 +157,15 @@ void updateLives(uint8_t incDec)
 	lives += incDec;
 }
 uint8_t getNumLives() {return lives;}
+
+//end the game
+void gameOver()
+{
+	xil_printf("GAME OVER!!\n\r");
+}
+
+//the player beat the level
+void levelCleared()
+{
+	xil_printf("LEVEL CLEARED!\n\r");
+}

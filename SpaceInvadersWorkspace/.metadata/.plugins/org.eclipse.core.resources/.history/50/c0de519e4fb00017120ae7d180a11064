@@ -1,0 +1,32 @@
+/*
+ * saucer.c
+ *
+ *  Created on: Oct 13, 2017
+ *      Author: superman
+ */
+#include "saucer.h"
+#include "render.h"
+
+//////////////////////// GLOBAL VARIABLES ///////////////////
+static saucer_direction_type saucerDirection = saucer_moves_left;
+
+////////////////////////// FUNCTIONS ////////////////////////
+void drawSaucer()
+{
+	drawObject(saucer_16x7, 16, 7, (point_t){300, SAUCER_POSITION_Y}, RED, FORCE_)
+}
+
+
+
+
+//Moves the saucer right
+void moveSaucerRight()
+{
+
+}
+
+//Moves the saucer left
+void moveSaucerLeft()
+{
+
+}

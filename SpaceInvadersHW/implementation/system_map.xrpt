@@ -5,14 +5,14 @@
     The structure and the elements are likely to change over the next few releases.
     This means code written to parse this file will need to be revisited each subsequent release.-->
 
-  <application stringID="Map" timeStamp="Fri Sep 22 12:37:21 2017">
+  <application stringID="Map" timeStamp="Fri Oct 13 12:32:18 2017">
     <section stringID="User_Env">
       <table stringID="User_EnvVar">
         <column stringID="variable"/>
         <column stringID="value"/>
         <row stringID="row" value="0">
           <item stringID="variable" value="PATH"/>
-          <item stringID="value" value="C:\Xilinx\13.4\ISE_DS\ISE\\lib\nt64;C:\Xilinx\13.4\ISE_DS\EDK\lib\nt64;C:\Xilinx\13.4\ISE_DS\ISE\\bin\nt64;C:\Xilinx\13.4\ISE_DS\EDK\bin\nt64;C:\Xilinx\13.4\ISE_DS\EDK\gnu\microblaze\nt64\bin;C:\Xilinx\13.4\ISE_DS\EDK\gnu\powerpc-eabi\nt64\bin;C:\Xilinx\13.4\ISE_DS\EDK\gnuwin\bin;C:\Xilinx\13.4\ISE_DS\PlanAhead\bin;C:\Xilinx\13.4\ISE_DS\ISE\bin\nt64;C:\Xilinx\13.4\ISE_DS\ISE\lib\nt64;C:\Xilinx\13.4\ISE_DS\common\bin\nt64;C:\Xilinx\13.4\ISE_DS\common\lib\nt64;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\QuickTime\QTSystem\;C:\Program Files\MATLAB\R2013a\runtime\win64;C:\Program Files\MATLAB\R2013a\bin;C:\texlive\2014\bin\win32;C:\Xilinx\13.4\ISE_DS\EDK\gnu\microblaze\nt64\bin\;C:\Users\superman\AppData\Local\GitHubDesktop\bin"/>
+          <item stringID="value" value="C:\Xilinx\13.4\ISE_DS\ISE\\lib\nt64;C:\Xilinx\13.4\ISE_DS\EDK\lib\nt64;C:\Xilinx\13.4\ISE_DS\ISE\\bin\nt64;C:\Xilinx\13.4\ISE_DS\EDK\bin\nt64;C:\Xilinx\13.4\ISE_DS\EDK\gnu\microblaze\nt64\bin;C:\Xilinx\13.4\ISE_DS\EDK\gnu\powerpc-eabi\nt64\bin;C:\Xilinx\13.4\ISE_DS\EDK\gnuwin\bin;C:\Xilinx\13.4\ISE_DS\PlanAhead\bin;C:\Xilinx\13.4\ISE_DS\ISE\bin\nt64;C:\Xilinx\13.4\ISE_DS\ISE\lib\nt64;C:\Xilinx\13.4\ISE_DS\common\bin\nt64;C:\Xilinx\13.4\ISE_DS\common\lib\nt64;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\QuickTime\QTSystem\;C:\Program Files\MATLAB\R2013a\runtime\win64;C:\Program Files\MATLAB\R2013a\bin;C:\texlive\2014\bin\win32;C:\Xilinx\13.4\ISE_DS\EDK\gnu\microblaze\nt64\bin\"/>
         </row>
         <row stringID="row" value="1">
           <item stringID="variable" value="PATHEXT"/>
@@ -39,7 +39,7 @@
         <item stringID="User_EnvOsname" value="Microsoft Windows 7 , 64-bit"/>
         <item stringID="User_EnvOsrelease" value="Service Pack 1  (build 7601)"/>
       </item>
-      <item stringID="User_EnvHost" value="CB400-04"/>
+      <item stringID="User_EnvHost" value="CB400-05"/>
       <table stringID="User_EnvCpu">
         <column stringID="arch"/>
         <column stringID="speed"/>
@@ -110,9 +110,9 @@
         <item dataType="int" stringID="MAP_NUM_ERRORS" value="0"/>
         <item dataType="int" stringID="MAP_FILTERED_WARNINGS" value="0"/>
         <item dataType="int" stringID="MAP_NUM_WARNINGS" value="37"/>
-        <item UNITS="KB" dataType="int" stringID="MAP_PEAK_MEMORY" value="731652"/>
-        <item stringID="MAP_TOTAL_REAL_TIME" value="1 mins 58 secs "/>
-        <item stringID="MAP_TOTAL_CPU_TIME" value="1 mins 54 secs "/>
+        <item UNITS="KB" dataType="int" stringID="MAP_PEAK_MEMORY" value="742156"/>
+        <item stringID="MAP_TOTAL_REAL_TIME" value="1 mins 56 secs "/>
+        <item stringID="MAP_TOTAL_CPU_TIME" value="1 mins 53 secs "/>
       </section>
       <section stringID="MAP_SLICE_REPORTING">
         <item AVAILABLE="54576" dataType="int" label="Number of Slice Registers" stringID="MAP_SLICE_REGISTERS" value="6200">

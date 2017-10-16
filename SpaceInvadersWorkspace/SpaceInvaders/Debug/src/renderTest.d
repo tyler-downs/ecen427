@@ -12,7 +12,8 @@ src/renderTest.d src/renderTest.o: ../src/renderTest.c \
   ../../hello_world_bsp_2/microblaze_0/include/xdebug.h \
   ../../hello_world_bsp_2/microblaze_0/include/xstatus.h \
   ../../hello_world_bsp_2/microblaze_0/include/xil_assert.h \
-  ../../hello_world_bsp_2/microblaze_0/include/xio.h ../src/bitmaps.h
+  ../../hello_world_bsp_2/microblaze_0/include/xio.h ../src/bitmaps.h \
+  ../src/bunkers.h ../src/aliens.h
 
 ../src/renderTest.h:
 
@@ -49,3 +50,7 @@ src/renderTest.d src/renderTest.o: ../src/renderTest.c \
 ../../hello_world_bsp_2/microblaze_0/include/xio.h:
 
 ../src/bitmaps.h:
+
+../src/bunkers.h:
+
+../src/aliens.h:

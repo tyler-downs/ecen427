@@ -12,7 +12,7 @@ src/render.d src/render.o: ../src/render.c ../src/render.h \
   ../../hello_world_bsp_2/microblaze_0/include/xstatus.h \
   ../../hello_world_bsp_2/microblaze_0/include/xil_assert.h \
   ../../hello_world_bsp_2/microblaze_0/include/xio.h ../src/bitmaps.h \
-  ../src/globals.h
+  ../src/globals.h ../src/bunkers.h
 
 ../src/render.h:
 
@@ -47,3 +47,5 @@ src/render.d src/render.o: ../src/render.c ../src/render.h \
 ../src/bitmaps.h:
 
 ../src/globals.h:
+
+../src/bunkers.h:

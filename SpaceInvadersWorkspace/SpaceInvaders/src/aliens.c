@@ -156,6 +156,31 @@ void switchAlienDirection()
 	}
 }
 
+int8_t lowestLivingRow()
+{
+	int8_t r, c;
+	for (r = NUM_ALIEN_ROWS-1; r >= 0; r++) //go through each row, starting from the bottom
+	{
+		for (c = 0; c < NUM_ALIEN_COLUMNS; c++) //go through each column
+		{
+			if (isAlienAlive(r, c)) //if there's a living alien, return the row number
+			{
+				return r;
+			}
+		}
+	}
+	xil_printf("Error: no living aliens\n\r"); //shouldn't ever happen
+	return -1;
+}
+
+//if an alien is drawn at this point or below (the top of the alien), they win
+#define BOTTOM_Y (BUNKER_START_Y + (BUNKER_BLOCK_HEIGHT * MAGNIFY_MULT * 2)) //this would put the alien level with the bottom block of the bunker
+uint8_t reachedBottom() //returns true if the aliens have reached the bottom of the bunkers
+{
+	int16_t lowestAlienPos = getOneAlienLocation(lowestLivingRow(), 0).y; //get the y coordinate of the lowest living row of aliens
+	return (lowestAlienPos >= BOTTOM_Y); //returns true if the aliens have reached the bottom
+}
+
 //Facilitates moving the aliens down one row
 void moveDownOneRow()
 {
@@ -171,6 +196,9 @@ void moveDownOneRow()
 	switchAlienDirection();
 	//set row switch flag to true
 	movedDownRow = TRUE;
+
+	if (reachedBottom())//check if we've reached the bottom. If so, GAME OVER!
+		gameOver();
 }
 
 //Returns the index of the rightmost column that has aliens still in it.
@@ -337,6 +365,21 @@ uint8_t getColumnFromAlienNumber(uint8_t num)
 	return num;
 }
 
+//returns true if all the aliens are dead
+uint8_t allAliensDead()
+{
+	uint8_t r, c;
+	for (r = 0; r < NUM_ALIEN_COLUMNS; r++)
+	{
+		for (c = 0; c < NUM_ALIEN_ROWS; c++)
+		{
+			if (isAlienAlive(r, c)) //if there is an alien alive
+				return FALSE;
+		}
+	}
+	return TRUE; //if all aliens are dead
+}
+
 //Given a number between 0-54, kills the corresponding alien
 void killAlien(uint8_t alien)
 {
@@ -349,6 +392,18 @@ void killAlien(uint8_t alien)
 
 	//kill this alien
 	aliensAlive[row][col] = 0;
+
+	if (allAliensDead()) //if all the aliens are now dead
+		levelCleared(); //you won the level!
+}
+
+//returns the location of the alien
+point_t getAlienLocation(uint8_t alienNum)
+{
+	uint8_t row, col;
+	row = getRowFromAlienNumber(alienNum);
+	col = getColumnFromAlienNumber(alienNum);
+	return getOneAlienLocation(row, col);
 }
 
 //Sets the global for alien block position
@@ -361,6 +416,46 @@ void setAlienBlockPosition(point_t val)
 point_t getAlienBlockPosition()
 {
 	return alienBlockPosition;
+}
+
+//returns the alien number at the given row and column index
+uint8_t getAlienNumberFromRowCol(uint8_t row, uint8_t col)
+{
+	return (row * NUM_ALIEN_COLUMNS) + col;
+}
+
+//returns the alien number that has a pixel at the provided point
+uint8_t getAlienNumberFromPoint(point_t point)
+{
+	uint8_t r, c;
+	for (r = 0; r < NUM_ALIEN_ROWS; r++)
+	{
+		for (c = 0; c < NUM_ALIEN_COLUMNS; c++)
+		{
+			point_t alienPos = getOneAlienLocation(r, c); //get the position of the alien
+			if (point.x >= alienPos.x && point.x <= (alienPos.x + ALIEN_WIDTH*MAGNIFY_MULT) &&
+				point.y >= alienPos.y && point.y <= (alienPos.y + ALIEN_HEIGHT*MAGNIFY_MULT)	) //if the point is in this alien
+			{
+				return getAlienNumberFromRowCol(r, c); //return the alien number
+			}
+
+		}
+	}
+	xil_printf("Alien number from point error!\n\r"); //shouldn't happen
+}
+
+#define TOP_ALIEN_POINTS 40
+#define MIDDLE_ALIEN_POINTS 20
+#define BOTTOM_ALIEN_POINTS 10
+//returns how many points the alien is worth
+uint8_t alienPoints(uint8_t alienNum)
+{
+	uint8_t row = getRowFromAlienNumber(alienNum);
+	if (row == NUM_TOP_ALIEN_ROWS)
+		return TOP_ALIEN_POINTS;
+	else if (row < NUM_TOP_ALIEN_ROWS + NUM_MIDDLE_ALIEN_ROWS)
+		return MIDDLE_ALIEN_POINTS;
+	else return BOTTOM_ALIEN_POINTS;
 }
 
 //Prints all living aliens to the console. Used for debugging.

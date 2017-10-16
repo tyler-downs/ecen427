@@ -10,7 +10,8 @@
 
 /////////////////////// DEFINES /////////////////////
 #define SAUCER_POSITION_Y 60 //The y coord of the saucer's upper right corner
-
+#define SAUCER_WIDTH 16
+#define SAUCER_HEIGHT 7
 
 /////////////////////// FUNCTIONS ///////////////////
 //Draws the saucer at the global position

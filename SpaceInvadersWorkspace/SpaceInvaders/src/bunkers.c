@@ -46,7 +46,7 @@ void drawBunkersInit()
 	for (n = 0; n < NUM_BUNKERS; n++) //iterate through the four bunkers
 	{
 		point_t bunkerStartPoint = getBunkerStartPoint(n); //get the start point
-		drawObject(bunker_24x18, BUNKER_WIDTH, BUNKER_HEIGHT, bunkerStartPoint, GREEN); //draw bunkers
+		drawObject(bunker_24x18, BUNKER_WIDTH, BUNKER_HEIGHT, bunkerStartPoint, GREEN, FORCE_BLACK_BACKGROUND); //draw bunkers
 	}
 }
 
@@ -103,16 +103,18 @@ void setBlockErosionState(uint8_t bunker, uint8_t row, uint8_t col, uint8_t stat
 	}
 }
 
-
+point_t getBlockStartPoint(point_t bunkerStartPoint, uint8_t row, uint8_t col)
+{
+	int16_t blockX = bunkerStartPoint.x + (col*BUNKER_BLOCK_WIDTH*MAGNIFY_MULT);
+	int16_t blockY = bunkerStartPoint.y + (row*BUNKER_BLOCK_HEIGHT*MAGNIFY_MULT);
+	return (point_t) {blockX, blockY};
+}
 
 //Erodes the specified bunker block by one level.
 void erodeBunkerBlock(uint8_t bunker, uint8_t row, uint8_t col)
 {
-	//xil_printf("  eroding bunker %d, row: %d, col: %d\n\r", bunker, row, col);
 	point_t bunkerStartPoint = getBunkerStartPoint(bunker);
-	int16_t blockX = bunkerStartPoint.x + (col*BUNKER_BLOCK_WIDTH*MAGNIFY_MULT);
-	int16_t blockY = bunkerStartPoint.y + (row*BUNKER_BLOCK_HEIGHT*MAGNIFY_MULT);
-	point_t blockStartPoint = {blockX, blockY};
+	point_t blockStartPoint = getBlockStartPoint(bunkerStartPoint, row, col);
 
 	switch (getBunkerBlockState(bunker, row, col)) //get the current erosion state
 	{
@@ -149,4 +151,45 @@ void erodeEntireBunker(uint8_t bunker)
 			erodeBunkerBlock(bunker, r, c);
 		}
 	}
+}
+
+#define NO_BUNKER -1
+//returns the bunker number that contains this pixel. -1 if none
+int8_t getBunkerNumber(point_t pixel)
+{
+	uint8_t b;
+	for (b = 0; b < NUM_BUNKERS; b++)
+	{
+		point_t bunkerPoint = getBunkerStartPoint(b);
+		if (pixel.x >= bunkerPoint.x && pixel.x <= (bunkerPoint.x + BUNKER_WIDTH*MAGNIFY_MULT) &&
+			pixel.y >= bunkerPoint.y && pixel.y <= (bunkerPoint.y + BUNKER_HEIGHT*MAGNIFY_MULT)	) //if the pixel is within this bunker
+		{
+			return b;
+		}
+	}
+	xil_printf("Bunker collision error!\n\r"); //shouldn't happen
+	return NO_BUNKER; //shouldn't happen
+}
+
+#define NUM_BLOCKS_PER_BUNKER (NUM_BUNKER_BLOCK_ROWS * NUM_BUNKER_BLOCK_COLS)
+#define NO_BLOCK -1
+//returns a unique number for the bunker block that contains the pixel
+int8_t getBunkerBlockNumber(point_t pixel)
+{
+	int8_t bunker = getBunkerNumber(pixel);
+	uint8_t r, c;
+	for (r = 0; r < NUM_BUNKER_BLOCK_ROWS; r++)
+	{
+		for (c = 0; c < NUM_BUNKER_BLOCK_COLS; c++)
+		{
+			point_t blockStartPoint = getBlockStartPoint(getBunkerStartPoint(bunker), r, c);
+			if (pixel.x >= blockStartPoint.x && pixel.x <= (blockStartPoint.x + BUNKER_BLOCK_WIDTH*MAGNIFY_MULT) &&
+				pixel.y >= blockStartPoint.y && pixel.y <= (blockStartPoint.y + BUNKER_BLOCK_HEIGHT*MAGNIFY_MULT)) //if the pixel is within this block
+			{
+				return (bunker * NUM_BLOCKS_PER_BUNKER) + (r * NUM_BUNKER_BLOCK_COLS) + c; //returns a block ID
+			}
+		}
+	}
+	xil_printf("Block collision error!\n\r"); //shouldn't happen
+	return NO_BLOCK;//shouldn't happen
 }

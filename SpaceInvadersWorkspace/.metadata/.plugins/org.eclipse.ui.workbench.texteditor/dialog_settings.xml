@@ -13,13 +13,19 @@
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="tank" key="selection"/>
+		<item value="centerButtonPressed" key="selection"/>
 		<list key="findhistory">
+			<item value="centerButtonPressed"/>
+			<item value="WHITE"/>
+			<item value="score"/>
+			<item value="drawSaucer"/>
+			<item value="xaxivdma"/>
 			<item value="tank"/>
-			<item value="microblaze_enable"/>
-			<item value="currentButtonState"/>
+			<item value="nop"/>
+			<item value="brlid"/>
 		</list>
 		<list key="replacehistory">
+			<item value="BULLET_WHITE"/>
 		</list>
 	</section>
 </section>

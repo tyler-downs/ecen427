@@ -19,6 +19,7 @@
 #define GREEN 0x0000FF00
 #define WHITE 0x00FFFFFF
 #define RED	  0x00FF0000
+#define BULLET_WHITE 0x00FFFFFE //slightly off-white so bullets will pass through each other and not think they're colliding
 
 //Boolean values - True and False
 #define TRUE 1
@@ -47,7 +48,7 @@
 #define NUM_BULLET_TYPES 2			//The number of bullet types
 #define MAX_ALIEN_BULLETS 4			//The max number of alien bullets that can be on the screen
 #define CROSS_BULLET_WIDTH 5		//The width of the cross bullet
-#define CR0SS_BULLET_HEIGHT 6		//The height of the cross bullet
+#define CROSS_BULLET_HEIGHT 6		//The height of the cross bullet
 #define ZIGZAG_BULLET_WIDTH 3		//Width of the zigzag bullet
 #define ZIGZAG_BULLET_HEIGHT 7		//Height of the zigzag bullet
 
@@ -118,6 +119,9 @@ void moveAliens();					//Moves the whole alien block one step
 void killAlien(uint8_t alien);		//Kills the alien at the given index
 void advanceAllBullets();			//Advances all alien bullets
 void eraseAllAliens();				//Erases all aliens
+
+void gameOver(); //end the game
+void levelCleared(); //the player beat the level
 
 
 #endif /* GLOBALS_H_ */
