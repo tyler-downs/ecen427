@@ -436,7 +436,6 @@ uint8_t getAlienNumberFromPoint(point_t point)
 			if (point.x >= alienPos.x && point.x <= (alienPos.x + ALIEN_WIDTH*MAGNIFY_MULT) &&
 				point.y >= alienPos.y && point.y <= (alienPos.y + ALIEN_HEIGHT*MAGNIFY_MULT)	) //if the point is in this alien
 			{
-				xil_printf("Alien %d hit\n\r", getAlienNumberFromRowCol(r,c)); //TEST
 				return getAlienNumberFromRowCol(r, c); //return the alien number
 			}
 
@@ -452,7 +451,7 @@ uint8_t getAlienNumberFromPoint(point_t point)
 uint8_t alienPoints(uint8_t alienNum)
 {
 	uint8_t row = getRowFromAlienNumber(alienNum);
-	if (row == NUM_TOP_ALIEN_ROWS)
+	if (row == 0)
 		return TOP_ALIEN_POINTS;
 	else if (row < NUM_TOP_ALIEN_ROWS + NUM_MIDDLE_ALIEN_ROWS)
 		return MIDDLE_ALIEN_POINTS;

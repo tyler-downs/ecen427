@@ -13,7 +13,7 @@
 //There is one interrupt every 10ms
 #define MOVE_ALIENS_COUNTER_MAX 90 //how much time passes between alien movements
 #define MOVE_BULLETS_COUNTER_MAX 1 //how much time passes between moving the bullets (controls bullet speed)
-#define ALIEN_EXPLODE_COUNTER_MAX 5 //how long the alien explosion stays on screen after an alien is shot
+#define ALIEN_EXPLODE_COUNTER_MAX 10 //how long the alien explosion stays on screen after an alien is shot
 #define TANK_DEAD_COUNTER_MAX 100 //how long the tank stays dead
 #define TANK_DEAD_GUISE_COUNTER_MAX 25 //time between switching between the two dead tank guises
 #define TANK_MOVE_COUNTER_MAX 2 //time between moving the tank if the button is pressed (controls tank movement speed)
@@ -76,18 +76,17 @@ void updateBulletMoveCounter()
 
 			if (alienHit > NO_HIT)//if tank bullet will hit an alien on next move (there is white in the rectangle ahead)
 			{
-				xil_printf("ALIEN HIT!");//TEST
 				killAlien(alienHit); //kill the alien in the array
 				//draw the alien explosion (and save its location)
 				alienExplosionLocation = getAlienLocation((uint8_t) alienHit);
-				drawObject(alien_explosion_12x10, ALIEN_EXPLOSION_WIDTH, ALIEN_EXPLOSION_HEIGHT, alienExplosionLocation, WHITE, FORCE_BLACK_BACKGROUND);
+				drawObject(alien_explosion_12x10, ALIEN_EXPLOSION_WIDTH, ALIEN_EXPLOSION_HEIGHT, alienExplosionLocation, WHITE, LEAVE_BACKGROUND);
 				alienExplosionExists = TRUE; //set global
 				alienExplodeCtr = 0;//reset explosion timer
 
 				eraseEntireTankBullet();//erase the bullet
 				disableTankBullet(); //reset global
 
-				incrementScore(alienPoints(alienHit));//increment the score
+				incrementScore(alienPoints(alienHit));//increment the score, and update the screen
 				//if that was the last alien, LEVEL CLEARED! //ADDED TO killAlien()
 			}
 			/*else if (tankBulletWillHitSpaceship())//else if the bullet will hit the spaceship
@@ -99,18 +98,18 @@ void updateBulletMoveCounter()
 				//increment score
 				//disable spaceshipLaunched global
 			}
-			else if (bunkerHit > NO_HIT)//else if the bullet will hit a bunker
+			*/else if (bunkerHit > NO_HIT)//else if the bullet will hit a bunker
 			{
-				xil_printf("BUNKER HIT!");//TEST
-				//erode the bunker
-				//erase the bullet
+				erodeBunkerBlockByNum(bunkerHit);//erode the bunker
+				eraseEntireTankBullet();//erase the bullet
+				disableTankBullet(); //reset global
 			}
 			else
 			{
 				//advance the tank bullet
-				//advanceTankBullet();
-			}*/
-			advanceTankBullet(); //TEST
+				advanceTankBullet();
+			}
+
 		}
 		advanceAllAlienBullets(); //TEST
 		//for each alien bullet on screen
@@ -138,7 +137,7 @@ void updateBulletMoveCounter()
 void updateAlienExplodeCounter()
 {
 	alienExplodeCtr++;
-	if(alienExplodeCtr > ALIEN_EXPLODE_COUNTER_MAX)//if the timer has expired
+	if(alienExplosionExists && (alienExplodeCtr > ALIEN_EXPLODE_COUNTER_MAX))//if the timer has expired, and there is an explosion on the screen
 	{
 		drawObject(alien_explosion_12x10, ALIEN_EXPLOSION_WIDTH, ALIEN_EXPLOSION_HEIGHT, alienExplosionLocation, BLACK, FORCE_BLACK_BACKGROUND);//erase the alien explosion
 		alienExplosionExists = FALSE; //disable the global

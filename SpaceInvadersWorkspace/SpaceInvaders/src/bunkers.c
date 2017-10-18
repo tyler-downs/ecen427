@@ -6,7 +6,7 @@
  */
 #include "bunkers.h"
 
-
+#define NUM_BLOCKS_PER_BUNKER (NUM_BUNKER_BLOCK_ROWS * NUM_BUNKER_BLOCK_COLS)
 //there are 3 rows and 4 columns of "bunker blocks".
 //bunker 0 is leftmost, bunker 3 is rightmost
 uint8_t bunker0state[NUM_BUNKER_BLOCK_ROWS][NUM_BUNKER_BLOCK_COLS] = { //initialized to 0 to indicate 0 damage
@@ -140,6 +140,18 @@ void erodeBunkerBlock(uint8_t bunker, uint8_t row, uint8_t col)
 	}
 }
 
+//erodes the specified bunker block by one level
+void erodeBunkerBlockByNum(uint8_t blockNum)
+{
+	uint8_t bunker, blockWithinBunker, row, col;
+	bunker = blockNum / NUM_BLOCKS_PER_BUNKER; //calculate bunker
+	blockWithinBunker = blockNum % (NUM_BLOCKS_PER_BUNKER); //the block number (0-11) within the bunker
+	row = (blockWithinBunker / NUM_BUNKER_BLOCK_COLS); //calculate the row number
+	col = blockWithinBunker % NUM_BUNKER_BLOCK_COLS; //calculate the column number
+
+	erodeBunkerBlock(bunker, row, col); //erode the bunker block
+}
+
 //For test purposes only, erode an entire bunker at once
 void erodeEntireBunker(uint8_t bunker)
 {
@@ -164,7 +176,6 @@ int8_t getBunkerNumber(point_t pixel)
 		if (pixel.x >= bunkerPoint.x && pixel.x <= (bunkerPoint.x + BUNKER_WIDTH*MAGNIFY_MULT) &&
 			pixel.y >= bunkerPoint.y && pixel.y <= (bunkerPoint.y + BUNKER_HEIGHT*MAGNIFY_MULT)	) //if the pixel is within this bunker
 		{
-			xil_printf("Bunker %d hit!\n\r", b); //TEST
 			return b;
 		}
 	}
@@ -172,7 +183,7 @@ int8_t getBunkerNumber(point_t pixel)
 	return NO_BUNKER; //shouldn't happen
 }
 
-#define NUM_BLOCKS_PER_BUNKER (NUM_BUNKER_BLOCK_ROWS * NUM_BUNKER_BLOCK_COLS)
+
 #define NO_BLOCK -1
 //returns a unique number for the bunker block that contains the pixel
 int8_t getBunkerBlockNumber(point_t pixel)
@@ -187,7 +198,6 @@ int8_t getBunkerBlockNumber(point_t pixel)
 			if (pixel.x >= blockStartPoint.x && pixel.x <= (blockStartPoint.x + BUNKER_BLOCK_WIDTH*MAGNIFY_MULT) &&
 				pixel.y >= blockStartPoint.y && pixel.y <= (blockStartPoint.y + BUNKER_BLOCK_HEIGHT*MAGNIFY_MULT)) //if the pixel is within this block
 			{
-				xil_printf("Bunker block %d hit!\n\r", (bunker * NUM_BLOCKS_PER_BUNKER) + (r * NUM_BUNKER_BLOCK_COLS) + c); //TEST
 				return (bunker * NUM_BLOCKS_PER_BUNKER) + (r * NUM_BUNKER_BLOCK_COLS) + c; //returns a block ID
 			}
 		}

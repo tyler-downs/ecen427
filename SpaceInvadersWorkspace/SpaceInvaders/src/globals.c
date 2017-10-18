@@ -145,10 +145,12 @@ uint16_t getCurrentScore() {return currentScore;}
 
 //Sets the score to the given value
 void setScore(uint16_t score) {currentScore = score;}
-//increments the score to the provided value
+
+//increments the score to the provided value, and updates the score on the screen
 void incrementScore(uint16_t plus)
 {
-	currentScore = getCurrentScore() + plus;
+	currentScore = getCurrentScore() + plus; //update global
+	updateScoreDisplay(currentScore); //update display
 }
 
 //pass in 1 or -1 to increment or decrement the number of lives
