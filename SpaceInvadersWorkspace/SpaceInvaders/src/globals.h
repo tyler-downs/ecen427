@@ -66,7 +66,7 @@
 #define TANK_BULLET_OFFSET_Y (TANK_HEIGHT+4)		//The y offset for placing a tank bullet
 #define TANK_BULLET_HEIGHT 6						//The height of a tank bullet
 #define TANK_BULLET_WIDTH 3							//The width of a tank bullet
-#define TANK_BULLET_TRAVEL_DISTANCE 6 				//The distance a tank bullet travels with each step
+#define TANK_BULLET_TRAVEL_DISTANCE 12				//The distance a tank bullet travels with each step
 
 //Bunker defines
 #define NUM_BUNKER_BLOCKS 10

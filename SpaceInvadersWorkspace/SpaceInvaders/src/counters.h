@@ -10,6 +10,7 @@
 
 #include "globals.h"
 #include "render.h"
+#include "bullets.h"
 
 //updates all of the gameplay counters
 void updateAllCounters();

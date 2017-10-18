@@ -48,7 +48,7 @@ void erodeBunkerBlock(uint8_t bunker, uint8_t row, uint8_t col);
 //for test purposes only, erode an entire bunker at once
 void erodeEntireBunker(uint8_t bunker);
 
-//returns a unique number for the bunker block that contains the pixel. -1 for error
+//returns a unique number for the bunker block that contains the pixel. -1 for error.
 int8_t getBunkerBlockNumber(point_t pixel);
 
 #endif /* BUNKERS_H_ */

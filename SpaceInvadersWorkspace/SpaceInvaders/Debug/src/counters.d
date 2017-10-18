@@ -13,7 +13,7 @@ src/counters.d src/counters.o: ../src/counters.c ../src/counters.h \
   ../../hello_world_bsp_2/microblaze_0/include/xstatus.h \
   ../../hello_world_bsp_2/microblaze_0/include/xil_assert.h \
   ../../hello_world_bsp_2/microblaze_0/include/xio.h ../src/bitmaps.h \
-  ../src/bunkers.h ../src/aliens.h ../src/bullets.h
+  ../src/bunkers.h ../src/bullets.h ../src/aliens.h
 
 ../src/counters.h:
 
@@ -53,6 +53,6 @@ src/counters.d src/counters.o: ../src/counters.c ../src/counters.h \
 
 ../src/bunkers.h:
 
-../src/aliens.h:
-
 ../src/bullets.h:
+
+../src/aliens.h:

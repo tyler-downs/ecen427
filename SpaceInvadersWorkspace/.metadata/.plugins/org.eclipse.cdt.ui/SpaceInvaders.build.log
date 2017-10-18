@@ -2,37 +2,4 @@
 **** Build of configuration Debug for project SpaceInvaders ****
 
 make all 
-Building file: ../src/counters.c
-Invoking: MicroBlaze gcc compiler
-mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../hello_world_bsp_2/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v8.20.b -mno-xl-soft-mul -MMD -MP -MF"src/counters.d" -MT"src/counters.d" -o"src/counters.o" "../src/counters.c"
-../src/counters.c: In function 'updateBulletMoveCounter':
-../src/counters.c:69: warning: passing argument 1 of 'drawObject' discards qualifiers from pointer target type
-../src/counters.c: In function 'updateTankMoveCounter':
-../src/counters.c:147: warning: implicit declaration of function 'leftButtonPressed'
-../src/counters.c:147: warning: implicit declaration of function 'rightButtonPressed'
-Finished building: ../src/counters.c
-' '
-Building target: SpaceInvaders.elf
-Invoking: MicroBlaze gcc linker
-mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../hello_world_bsp_2/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v8.20.b -mno-xl-soft-mul -o"SpaceInvaders.elf"  ./src/aliens.o ./src/bullets.o ./src/bunkers.o ./src/counters.o ./src/globals.o ./src/platform.o ./src/render.o ./src/renderTest.o ./src/saucer.o ./src/spaceInvadersMain.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
-Finished building target: SpaceInvaders.elf
-' '
-Invoking: MicroBlaze Print Size
-mb-size SpaceInvaders.elf  |tee "SpaceInvaders.elf.size"
-   text	   data	    bss	    dec	    hex	filename
- 109040	   1572	   5512	 116124	  1c59c	SpaceInvaders.elf
-Finished building: SpaceInvaders.elf.size
-' '
-Invoking: Xilinx ELF Check
-elfcheck SpaceInvaders.elf -hw ../../SpaceInvaders_hw_platform/system.xml -pe microblaze_0  |tee "SpaceInvaders.elf.elfcheck"
-elfcheck
-Xilinx EDK 13.4 Build EDK_O.87xd
-Copyright (c) 1995-2011 Xilinx, Inc.  All rights reserved.
-
-Command Line: elfcheck -hw ../../SpaceInvaders_hw_platform/system.xml -pe
-microblaze_0 SpaceInvaders.elf 
-
-ELF file	: SpaceInvaders.elf
-elfcheck passed.
-Finished building: SpaceInvaders.elf.elfcheck
-' '
+make: Nothing to be done for `all'.

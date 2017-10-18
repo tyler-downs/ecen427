@@ -164,6 +164,7 @@ int8_t getBunkerNumber(point_t pixel)
 		if (pixel.x >= bunkerPoint.x && pixel.x <= (bunkerPoint.x + BUNKER_WIDTH*MAGNIFY_MULT) &&
 			pixel.y >= bunkerPoint.y && pixel.y <= (bunkerPoint.y + BUNKER_HEIGHT*MAGNIFY_MULT)	) //if the pixel is within this bunker
 		{
+			xil_printf("Bunker %d hit!\n\r", b); //TEST
 			return b;
 		}
 	}
@@ -186,10 +187,13 @@ int8_t getBunkerBlockNumber(point_t pixel)
 			if (pixel.x >= blockStartPoint.x && pixel.x <= (blockStartPoint.x + BUNKER_BLOCK_WIDTH*MAGNIFY_MULT) &&
 				pixel.y >= blockStartPoint.y && pixel.y <= (blockStartPoint.y + BUNKER_BLOCK_HEIGHT*MAGNIFY_MULT)) //if the pixel is within this block
 			{
+				xil_printf("Bunker block %d hit!\n\r", (bunker * NUM_BLOCKS_PER_BUNKER) + (r * NUM_BUNKER_BLOCK_COLS) + c); //TEST
 				return (bunker * NUM_BLOCKS_PER_BUNKER) + (r * NUM_BUNKER_BLOCK_COLS) + c; //returns a block ID
 			}
 		}
 	}
+
+
 	xil_printf("Block collision error!\n\r"); //shouldn't happen
 	return NO_BLOCK;//shouldn't happen
 }

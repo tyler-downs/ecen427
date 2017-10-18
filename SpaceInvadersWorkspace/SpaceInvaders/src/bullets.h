@@ -14,10 +14,17 @@
 
 //////////////////// DEFINES ///////////////////////////
 #define HALF_ALIEN (ALIEN_WIDTH / 2)	//Half the width of an alien
-#define ALIEN_BULLET_TRAVEL_DISTANCE TANK_BULLET_TRAVEL_DISTANCE //Distance the alien bullet travels on each step
+#define ALIEN_BULLET_TRAVEL_DISTANCE (TANK_BULLET_TRAVEL_DISTANCE/2) //Distance the alien bullet travels on each step
 #define ALIEN_BULLET_DEACTIVATE_BUFFER (ALIEN_BULLET_TRAVEL_DISTANCE/2 - 1)	//Distance from the bottom line the alien bullets will disappear
+#define NO_HIT -1
 
 //////////////// FUNCTION PROTOTYPES ///////////////////
+//reset tankBulletExists global
+void disableTankBullet();
+
+//returns true if the tank bullet is on the screen
+uint8_t tankBulletOnScreen();
+
 //Fires a bullet from the tank
 void fireTankBullet();
 
