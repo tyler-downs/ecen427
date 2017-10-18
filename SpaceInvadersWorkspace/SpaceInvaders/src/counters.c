@@ -52,6 +52,16 @@ void updateAlienTickCounter()
 	}
 }
 
+//if the center button is pressed, the tank bullet will fire
+void onFireTankBulletButtonPress()
+{
+	//if the center button is pressed
+	if (centerButtonPressed())
+	{
+		fireTankBullet();
+	}
+}
+
 void updateBulletMoveCounter()
 {
 	bulletMoveTickCtr++;
@@ -91,6 +101,7 @@ void updateBulletMoveCounter()
 		else
 		{
 			//advance the tank bullet
+			//advanceTankBullet();
 		}
 
 		//for each alien bullet on screen
@@ -200,6 +211,7 @@ void updateAllCounters()
 	updateAlienExplodeCounter();
 	updateAlienTickCounter();
 	updateTankMoveCounter();
+	onFireTankBulletButtonPress();
 	updateMoveSpaceShipCtr();
 	updateTankDeadCounter();
 	updateTankDeadGuiseCounter();
