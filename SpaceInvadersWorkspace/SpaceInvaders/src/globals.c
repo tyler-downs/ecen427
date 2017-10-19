@@ -17,6 +17,7 @@ static bullet_type alienBulletTypes[MAX_ALIEN_BULLETS]; //the types of each alie
 static bullet_guise_type alienBulletGuises[MAX_ALIEN_BULLETS]; //the guises of each alien bullet
 static point_t alienBulletPositions[MAX_ALIEN_BULLETS]; //the positions of each alien bullet
 static uint8_t bulletsActive[MAX_ALIEN_BULLETS] = {0, 0, 0, 0}; //bools to indicate which alien bullets are active
+static dead_tank_guise_type deadTankGuise = dead_tank_guise_0; //default guise for the dead tank
 static int16_t saucerPosition; //The current x-coord of the saucer
 
 //Arrays for storing the state of each block in each bunker
@@ -30,6 +31,18 @@ static uint16_t currentScore = 0;
 
 
 ////////////////////////// FUNCTIONS //////////////////////////////////
+//Returns the current guise of the dead tank
+dead_tank_guise_type getDeadTankGuise()
+{
+	return deadTankGuise;
+}
+
+//Sets the dead tank guise type to the given value
+void setDeadTankGuise(dead_tank_guise_type guise)
+{
+	deadTankGuise = guise;
+}
+
 //Returns the value of the global saucer position x-coord
 int16_t getSaucerPosition(){
 	return saucerPosition;
@@ -164,6 +177,7 @@ uint8_t getNumLives() {return lives;}
 void gameOver()
 {
 	xil_printf("GAME OVER!!\n\r");
+	//exit(0);
 }
 
 //the player beat the level

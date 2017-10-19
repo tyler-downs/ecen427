@@ -343,7 +343,7 @@ uint8_t alienBulletWillHitTank(uint8_t bulletNum)
 	else return FALSE;
 }
 
-#define NO_HIT -1
+
 //if the specified alien bullet will hit a bunker on its next move, this will return the bunker block number. Otherwise it will return -1.
 int8_t alienBulletWillHitBunkerBlock(uint8_t bulletNum)
 {

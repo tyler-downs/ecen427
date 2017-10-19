@@ -9,6 +9,7 @@
 #include "bitmaps.h"
 #include "aliens.h"
 #include "bullets.h"
+#include "render.h"
 
 //There is one interrupt every 10ms
 #define MOVE_ALIENS_COUNTER_MAX 90 //how much time passes between alien movements
@@ -36,7 +37,7 @@ point_t alienExplosionLocation; //the top-left pixel of where to draw the alien 
 uint8_t alienExplosionExists = FALSE; //signifies if the explosion is currently on the screen
 
 //flags
-u8 tankDead = 0; //flag to signal if the tank is dead
+u8 tankDead = FALSE; //flag to signal if the tank is dead
 u8 spaceShipLaunched = 0; //flag to signal if spaceship is launched
 
 void updateAlienTickCounter()
@@ -61,6 +62,30 @@ void onFireTankBulletButtonPress()
 	{
 		fireTankBullet();
 	}
+}
+
+//decrements lives and removes the tank on the top of the display
+void removeLife()
+{
+	//decrement global lives
+	updateLives(DEC);
+	//remove the tank from the lives display
+	updateLivesDisplay(DEC);
+	//if there are zero lives, gameOver()
+	if (getNumLives() == 0)
+	{
+		gameOver();
+	}
+}
+
+
+
+void addLife()
+{
+	//increment global lives
+	updateLives(INC);
+	//add the tank from the lives display
+	updateLivesDisplay(INC);
 }
 
 void updateBulletMoveCounter()
@@ -111,25 +136,56 @@ void updateBulletMoveCounter()
 			}
 
 		}
-		advanceAllAlienBullets(); //TEST
+		//advanceAllAlienBullets(); //TEST
+		/*//returns true if the specified alien bullet will hit the tank on its next move
+		uint8_t alienBulletWillHitTank(uint8_t bulletNum)*/
 		//for each alien bullet on screen
+		uint8_t i;
+		for (i = 0; i < MAX_ALIEN_BULLETS; i++)
+		{
+			if (!isBulletActive(i)) {continue;}
 			//if alien bullet will hit tank(and it's not dead already)
+			if (alienBulletWillHitTank(i))
+			{
 				//draw the dead tank
+				drawObject(tank_dead_guise0_15x8, TANK_WIDTH, TANK_HEIGHT, (point_t){getTankPosition(), TANK_START_Y}, GREEN, FORCE_BLACK_BACKGROUND);
 				//reset the dead tank timer and dead tank guise timer
-				//disable tank movement, firing bullets (both tank bullets and alien bullets), or dying again(by setting dead variable)
-				//remove a life
-					//if there are no 0 lives, it's game over
+				tankDeadCtr = 0;
+				tankDeadGuiseCtr = 0;
 				//erase alien bullet
+				eraseAlienBullet(getAlienBulletType(i), getAlienBulletGuise(i), getAlienBulletPosition(i));
+				//deactivate the bullet
+				setBulletStatus(i, FALSE);
+				//disable tank movement, firing bullets (both tank bullets and alien bullets), or dying again(by setting dead variable)
+				tankDead = TRUE;
+				//remove a life
+				removeLife();
+				xil_printf("Removed life. Lives: %d  Bullet: %d\n\r", getNumLives(), i);
+			}
 
 			//else if alien bullet will hit dead tank
 				//erase bullet
 
 			//else if alien bullet will hit bunker
-				//erode bunker
-				//erase bullet
 
-			//else
-				//advance alien bullet
+			else if (alienBulletWillHitBunkerBlock(i) != NO_HIT)
+			{
+				int8_t bunkerHit = alienBulletWillHitBunkerBlock(i);
+				//erode bunker
+				erodeBunkerBlockByNum(bunkerHit);
+				//erase bullet
+				eraseAlienBullet(getAlienBulletType(i), getAlienBulletGuise(i), getAlienBulletPosition(i));
+				//deactivate the bullet
+				setBulletStatus(i, FALSE);
+			}
+
+			else  //advance alien bullet
+			{
+				advanceOneAlienBullet(i);
+			}
+
+		}
+
 	}
 
 }
@@ -148,16 +204,65 @@ void updateTankDeadCounter()
 {
 	tankDeadCtr++;
 	//if the timer has expired
-		//redraw the live tank
-		//reenable tank movement, bullet firing, and dying again (by disabling dead variable)
+	if (tankDeadCtr >= TANK_DEAD_COUNTER_MAX)
+	{
+		tankDeadCtr = 0;
+		if (tankDead)
+		{
+			//redraw the live tank
+			drawObject(tank_15x8, TANK_WIDTH, TANK_HEIGHT, (point_t){getTankPosition(), TANK_START_Y}, GREEN, FORCE_BLACK_BACKGROUND);
+			//reenable tank movement, bullet firing, and dying again (by disabling dead variable)
+			tankDead = FALSE;
+			xil_printf("tankDead = FALSE in updateTankDeadCounter()\n\r");
+		}
+
+	}
+
+}
+
+
+//switches the guise of the dead tank
+void switchDeadTankGuises()
+{
+	//if it's 0, make it 1
+	if (getDeadTankGuise() == dead_tank_guise_0)
+	{
+		setDeadTankGuise(dead_tank_guise_1);
+	}
+	//if it's 1, make it 0
+	else
+	{
+		setDeadTankGuise(dead_tank_guise_0);
+	}
+}
+
+void drawDeadTank()
+{
+	//if it's guise 0, draw that one
+	if (getDeadTankGuise() == dead_tank_guise_0)
+	{
+		drawObject(tank_dead_guise0_15x8, TANK_WIDTH, TANK_HEIGHT, (point_t){getTankPosition(), TANK_START_Y}, GREEN, FORCE_BLACK_BACKGROUND);
+	}
+	else //if it's guise 1, draw that one
+	{
+		drawObject(tank_dead_guise1_15x8, TANK_WIDTH, TANK_HEIGHT, (point_t){getTankPosition(), TANK_START_Y}, GREEN, FORCE_BLACK_BACKGROUND);
+	}
 }
 
 void updateTankDeadGuiseCounter()
 {
 	tankDeadGuiseCtr++;
 	//if the tank is still dead and the timer has expired //need "dead" global variable
+	if (tankDead && tankDeadGuiseCtr >= TANK_DEAD_GUISE_COUNTER_MAX)
+	{
 		//switch tank guises
+		switchDeadTankGuises();
+		//draw the dead tank in that guise
+		drawDeadTank();
 		//reset the tankDeadGuiseCtr.
+		tankDeadGuiseCtr = 0;
+	}
+
 }
 
 void updateTankMoveCounter()
@@ -218,16 +323,23 @@ void updateMoveSpaceShipCtr()
 void updateAllCounters()
 {
 	//MIGHT NEED TO CHANGE ORDER
-	updateBulletMoveCounter();
-	updateAlienExplodeCounter();
-	updateAlienTickCounter();
-	updateTankMoveCounter();
-	onFireTankBulletButtonPress();
-	updateMoveSpaceShipCtr();
-	updateTankDeadCounter();
-	updateTankDeadGuiseCounter();
-	updateFireNewAlienBulletCtr();
-	updateSpaceShipLaunchCtr();
+	if (tankDead)
+	{
+		updateTankDeadCounter();
+		updateTankDeadGuiseCounter();
+	}
+	else
+	{
+		updateBulletMoveCounter();
+		updateAlienExplodeCounter();
+		updateAlienTickCounter();
+		updateTankMoveCounter();
+		onFireTankBulletButtonPress();
+		updateMoveSpaceShipCtr();
+		updateFireNewAlienBulletCtr();
+		updateSpaceShipLaunchCtr();
+	}
+
 
 
 }

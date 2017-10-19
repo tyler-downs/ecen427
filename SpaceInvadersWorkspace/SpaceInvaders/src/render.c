@@ -109,7 +109,7 @@ point_t calculateLifePosition(uint8_t lifeNum)
 
 void updateLivesDisplay(int8_t incDec)
 {
-	uint8_t lifeNum = (incDec > 0) ? getNumLives() : (getNumLives() - 1);
+	uint8_t lifeNum = (incDec > 0) ? getNumLives() : (getNumLives());
 	point_t lifePosition = calculateLifePosition(lifeNum);
 	uint32_t color = (incDec > 0) ? GREEN : BLACK;
 	drawObject(tank_15x8, TANK_WIDTH, TANK_HEIGHT, lifePosition, color, FORCE_BLACK_BACKGROUND);
