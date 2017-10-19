@@ -11,6 +11,14 @@
 #include "bullets.h"
 #include "render.h"
 
+/*TODO:
+ * Make alien bullets erode the bunkers - I'm getting block and bunker collision errors!
+Make aliens marching erode the bunkers
+Saucer move and destroy by tank bullet
+gameOver()
+levelCleared()
+ */
+
 //There is one interrupt every 10ms
 #define MOVE_ALIENS_COUNTER_MAX 90 //how much time passes between alien movements
 #define MOVE_BULLETS_COUNTER_MAX 1 //how much time passes between moving the bullets (controls bullet speed)
