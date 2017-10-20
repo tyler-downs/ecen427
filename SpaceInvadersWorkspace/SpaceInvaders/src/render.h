@@ -47,6 +47,8 @@
 #define INC 1
 #define DEC -1
 
+#define SCORE_SPACE 15
+
 
 ////////////////////// FUNCTION PROTOTYPES ///////////////////////
 //return framePointer0
@@ -72,5 +74,14 @@ void updateScoreDisplay(uint16_t newScore);
 
 //update the lives displayed on the screen by passing in 1 to add a life or -1 to lose a life
 void updateLivesDisplay(int8_t incDec);
+
+//Draws the game over screen at the end of the game
+void drawGameOverScreen();
+
+//Initially draws the tank
+void drawTankInit();
+
+//Initially draws the aliens
+void drawAliensInit();
 
 #endif /* RENDER_H_ */

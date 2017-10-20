@@ -51,4 +51,7 @@ void erodeEntireBunker(uint8_t bunker);
 //returns a unique number for the bunker block that contains the pixel. -1 for error.
 int8_t getBunkerBlockNumber(point_t pixel);
 
+//revives all the bunkers
+void reviveAllBunkers();
+
 #endif /* BUNKERS_H_ */

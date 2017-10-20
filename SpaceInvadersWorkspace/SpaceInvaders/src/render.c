@@ -18,7 +18,7 @@ char score[MAX_SCORE_DIGITS] = {0, 0, 0, 0, 0, 0}; //The global score digits
 
 unsigned int * getFramePointer0() {return framePointer0;}
 
-#define SCORE_SPACE 15
+
 //Updates the score display given an integer score value
 void updateScoreDisplay(uint16_t newScore)
 {
@@ -95,6 +95,7 @@ void updateScoreDisplay(uint16_t newScore)
 	}
 }
 
+
 #define LIVES_PER_ROW 6
 #define SPACE_BETWEEN_LIFE_ROWS (TANK_HEIGHT * 1.5 * MAGNIFY_MULT)
 point_t calculateLifePosition(uint8_t lifeNum)
@@ -127,7 +128,7 @@ for(n = 0; n < NUM_LIVES_INIT; n++) //Just draw a tank three times at the top of
 
 uint8_t isOnScreen(point_t point)
 {
-	return (point.x >= 0 && point.x < 640 && point.y >=0 && point.y < 480);
+	return (point.x >= 0 && point.x < WIDTH_DISPLAY && point.y >=0 && point.y < HEIGHT_DISPLAY);
 }
 //Draws one pixel to the frame buffer. Checks if it is already that color before drawing.
 void drawPixel(int16_t y, int16_t x, uint32_t color)
@@ -223,6 +224,18 @@ void drawAliensInit()
 	setAlienBlockPosition(alienBlockStartPoint); //set global
 }
 
+#define GAME_OVER_WIDTH 33
+#define GAME_OVER_HEIGHT 5
+#define GAME_OVER_START_X 275
+#define GAME_OVER_START_Y 70
+
+//Draws the game over screen when the game ends
+void drawGameOverScreen(u32 color)
+{
+	drawObject(gameOver_33x5, GAME_OVER_WIDTH, GAME_OVER_HEIGHT, (point_t) {GAME_OVER_START_X, GAME_OVER_START_Y}, color, FORCE_BLACK_BACKGROUND);
+}
+
+
 //Initializes the display
 void disp_init()
 {
@@ -309,7 +322,6 @@ void disp_init()
 		updateLivesDisplay(INC);
 		updateLives(INC); //update the global variable tracking number of lives
 	}
-
 	srand(time(NULL)); //set random seed
 	// This tells the HDMI controller the resolution of your display (there must be a better way to do this).
 	XIo_Out32(XPAR_AXI_HDMI_0_BASEADDR, 640*480);

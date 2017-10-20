@@ -304,7 +304,7 @@ int8_t tankBulletWillHitAlien()
 }
 
 //returns true if the tank bullet will hit the spaceship on its next move
-uint8_t tankBulletWillHitSpaceship()
+uint8_t tankBulletWillHitSaucer()
 {
 	point_t newTankBulletPosition = {getTankBulletPosition().x, getTankBulletPosition().y - TANK_BULLET_TRAVEL_DISTANCE};
 	point_t collisionPoint = colorExistsInArea(newTankBulletPosition, TANK_BULLET_WIDTH, TANK_BULLET_TRAVEL_DISTANCE, RED, FALSE); //check if we'll hit the spaceship

@@ -57,7 +57,7 @@
 #define TANK_START_Y 400				//Start y coord for the tank
 #define TANK_WIDTH 15					//Width of tank
 #define TANK_HEIGHT 8 					//Height of tank
-#define TANK_MOVE_PIXELS (3 * MAGNIFY_MULT)	//Distance the tank moves on each press
+#define TANK_MOVE_PIXELS 4	//Distance the tank moves on each press
 #define TANK_SCREEN_EDGE_RIGHT (WIDTH_DISPLAY-(TANK_WIDTH+TANK_MOVE_PIXELS)*MAGNIFY_MULT) //How far the tank can go on the right
 #define TANK_SCREEN_EDGE_LEFT TANK_MOVE_PIXELS //Bumper for the left side of the screen
 

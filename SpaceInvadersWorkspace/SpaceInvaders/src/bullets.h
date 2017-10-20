@@ -50,7 +50,7 @@ void advanceAllAlienBullets();
 int8_t tankBulletWillHitAlien();
 
 //returns true if the tank bullet will hit the spaceship on its next move
-uint8_t tankBulletWillHitSpaceship();
+uint8_t tankBulletWillHitSaucer();
 
 //if the tank bullet will hit a bunker on its next move, this will return the bunker number. Otherwise it will return -1.
 int8_t tankBulletWillHitBunker();

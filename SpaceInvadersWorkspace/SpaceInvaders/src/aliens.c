@@ -8,14 +8,37 @@
 
 
 //////////// GLOBAL VARIABLES AND ENUMS //////////////////
-static point_t alienBlockPosition; //globally excessible variable
-static point_t oldAlienBlockPosition; //globally accessible variable used for erasing alien at old location
-static uint8_t movedDownRow = FALSE; //flag which indicates when the alien block has just moved down a row
-static alien_guise_type currentAlienGuise = alien_guise_out; //initialize alien guise to out
-static alien_direction_type currentAlienDirection = aliens_move_right; //initialize alien crawl direction to right
+static point_t aliens_alienBlockPosition; //globally excessible variable
+static point_t aliens_oldAlienBlockPosition; //globally accessible variable used for erasing alien at old location
+static uint8_t aliens_movedDownRow = FALSE; //flag which indicates when the alien block has just moved down a row
+static alien_guise_type aliens_currentAlienGuise = alien_guise_out; //initialize alien guise to out
+static alien_direction_type aliens_currentAlienDirection = aliens_move_right; //initialize alien crawl direction to right
+static uint8_t aliens_numAliensAlive = NUM_ALIEN_COLUMNS * NUM_ALIEN_ROWS;	//number of aliens alive. Decrements when an alien is killed.
+
+//Returns the number of aliens that are alive
+uint8_t aliens_getNumAliensAlive()
+{
+	return aliens_numAliensAlive;
+}
+
+//Decrements the global numAliensAlive (use when an alien is killed)
+void aliens_decrementNumAliensAlive()
+{
+	aliens_numAliensAlive--;
+	if (aliens_numAliensAlive == 0)
+	{
+		levelCleared();
+	}
+}
+
+//Sets the number of aliens alive to the given value
+void aliens_setNumAliensAlive(uint8_t number)
+{
+	aliens_numAliensAlive = number;
+}
 
 //Array for aliens currently alive (row, column)
-static uint8_t aliensAlive[NUM_ALIEN_ROWS][NUM_ALIEN_COLUMNS] = \
+static uint8_t aliens_aliensAlive[NUM_ALIEN_ROWS][NUM_ALIEN_COLUMNS] = \
 		{{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
 		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
 		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
@@ -24,26 +47,26 @@ static uint8_t aliensAlive[NUM_ALIEN_ROWS][NUM_ALIEN_COLUMNS] = \
 
 //Given a row and column, accesses aliensAlive array and returns whether
 //corresponding alien is alive or not
-uint8_t isAlienAlive(uint8_t row, uint8_t col)
+uint8_t aliens_isAlienAlive(uint8_t row, uint8_t col)
 {
-	return aliensAlive[row][col];
+	return aliens_aliensAlive[row][col];
 }
 
 //Switches the current guise of the aliens
-void switchAlienGuises()
+void aliens_switchAlienGuises()
 {
-	if (currentAlienGuise == alien_guise_out)
+	if (aliens_currentAlienGuise == alien_guise_out)
 	{
-		currentAlienGuise = alien_guise_in;
+		aliens_currentAlienGuise = alien_guise_in;
 	}
 	else //if current alien guise is in
 	{
-		currentAlienGuise = alien_guise_out;
+		aliens_currentAlienGuise = alien_guise_out;
 	}
 }
 
 //Given a row and column index, returns the location of the corresponding alien on the screen
-point_t getOneAlienLocation(uint8_t row, uint8_t col)
+point_t aliens_getOneAlienLocation(uint8_t row, uint8_t col)
 {
 	int16_t x = getAlienBlockPosition().x + (ALIEN_WIDTH * MAGNIFY_MULT * col) + (ALIEN_SPACE_HORIZ * col); //set this alien's start x
 	int16_t y = getAlienBlockPosition().y + (ALIEN_HEIGHT * MAGNIFY_MULT * row) + (ALIEN_SPACE_VERT * row); //set this alien's start y
@@ -52,12 +75,12 @@ point_t getOneAlienLocation(uint8_t row, uint8_t col)
 }
 
 //Given a row and column index, erases the corresponding alien completely (draws it black)
-void eraseOneAlien(uint8_t row, uint8_t col)
+void aliens_eraseOneAlien(uint8_t row, uint8_t col)
 {
 	//get the alien's location
-	point_t alienLocation = getOneAlienLocation(row, col);
+	point_t alienLocation = aliens_getOneAlienLocation(row, col);
 	//check to see which guise the alien is so we erase just the right stuff
-	if (currentAlienGuise == alien_guise_out)
+	if (aliens_currentAlienGuise == alien_guise_out)
 	{
 		if (row < NUM_TOP_ALIEN_ROWS) //if we're drawing a top alien
 			drawObject(alien_top_out_12x8, ALIEN_WIDTH, ALIEN_HEIGHT, alienLocation, BLACK, FORCE_BLACK_BACKGROUND); //draw top alien
@@ -79,7 +102,7 @@ void eraseOneAlien(uint8_t row, uint8_t col)
 
 
 //Erases all aliens from the screen. Does not kill them. Used for debugging.
-void eraseAllAliens()
+void aliens_eraseAllAliens()
 {
 	//just draw all of the aliens I just drew but in black
 	//iterate through the rows and columns
@@ -88,22 +111,22 @@ void eraseAllAliens()
 	{
 		for (c = 0; c < NUM_ALIEN_COLUMNS; c++) //alien column
 		{
-			if (aliensAlive[r][c]) //if the alien at this position is alive
+			if (aliens_aliensAlive[r][c]) //if the alien at this position is alive
 			{
 				//erase the current alien
-				eraseOneAlien(r, c);
+				aliens_eraseOneAlien(r, c);
 			}
 		}
 	}
 }
 
 //Draws the alien at a given row and column. Finds its location and draws in white.
-void drawOneAlien(uint8_t row, uint8_t col)
+void aliens_drawOneAlien(uint8_t row, uint8_t col)
 {
 	//get the alien's location
-	point_t alienLocation = getOneAlienLocation(row, col);
+	point_t alienLocation = aliens_getOneAlienLocation(row, col);
 	//check to see which guise the alien is so we erase just the right stuff
-	if (currentAlienGuise == alien_guise_out)
+	if (aliens_currentAlienGuise == alien_guise_out)
 	{
 		if (row < NUM_TOP_ALIEN_ROWS) //if we're drawing a top alien
 			drawObject(alien_top_out_12x8, ALIEN_WIDTH, ALIEN_HEIGHT, alienLocation, WHITE, FORCE_BLACK_BACKGROUND); //draw top alien
@@ -124,7 +147,7 @@ void drawOneAlien(uint8_t row, uint8_t col)
 }
 
 //Draws all (living) aliens to the screen.
-void drawAllAliens()
+void aliens_drawAllAliens()
 {
 	//iterate through the rows and columns
 	uint8_t r = 0, c = 0;
@@ -132,38 +155,38 @@ void drawAllAliens()
 	{
 		for (c = 0; c < NUM_ALIEN_COLUMNS; c++) //alien column
 		{
-			if (aliensAlive[r][c]) //if the alien at this position is alive
+			if (aliens_aliensAlive[r][c]) //if the alien at this position is alive
 			{
 				//erase the current alien
-				drawOneAlien(r, c);
+				aliens_drawOneAlien(r, c);
 			}
 		}
 	}
 }
 
 //Changes the direction variable for the aliens
-void switchAlienDirection()
+void aliens_switchAlienDirection()
 {
 	//if the current direction is right, assign it to left
-	if (currentAlienDirection == aliens_move_right)
+	if (aliens_currentAlienDirection == aliens_move_right)
 	{
-		currentAlienDirection = aliens_move_left;
+		aliens_currentAlienDirection = aliens_move_left;
 	}
 	//if the current direction is left, assign it to right
 	else
 	{
-		currentAlienDirection = aliens_move_right;
+		aliens_currentAlienDirection = aliens_move_right;
 	}
 }
 
-int8_t lowestLivingRow()
+int8_t aliens_lowestLivingRow()
 {
 	int8_t r, c;
 	for (r = NUM_ALIEN_ROWS-1; r >= 0; r++) //go through each row, starting from the bottom
 	{
 		for (c = 0; c < NUM_ALIEN_COLUMNS; c++) //go through each column
 		{
-			if (isAlienAlive(r, c)) //if there's a living alien, return the row number
+			if (aliens_isAlienAlive(r, c)) //if there's a living alien, return the row number
 			{
 				return r;
 			}
@@ -173,31 +196,37 @@ int8_t lowestLivingRow()
 	return -1;
 }
 
+//Returns the y-coord of the bottom of the living alien block
+int16_t aliens_getBottomOfAliens()
+{
+	return (aliens_getAlienBlockPosition().y + (ALIEN_HEIGHT + ALIEN_SPACE_VERT) * (aliens_lowestLivingRow() + 1));
+}
+
 //if an alien is drawn at this point or below (the top of the alien), they win
 #define BOTTOM_Y (BUNKER_START_Y + (BUNKER_BLOCK_HEIGHT * MAGNIFY_MULT * 2)) //this would put the alien level with the bottom block of the bunker
-uint8_t reachedBottom() //returns true if the aliens have reached the bottom of the bunkers
+uint8_t aliens_reachedBottom() //returns true if the aliens have reached the bottom of the bunkers
 {
-	int16_t lowestAlienPos = getOneAlienLocation(lowestLivingRow(), 0).y; //get the y coordinate of the lowest living row of aliens
+	int16_t lowestAlienPos = aliens_getOneAlienLocation(aliens_lowestLivingRow(), 0).y; //get the y coordinate of the lowest living row of aliens
 	return (lowestAlienPos >= BOTTOM_Y); //returns true if the aliens have reached the bottom
 }
 
 //Facilitates moving the aliens down one row
-void moveDownOneRow()
+void aliens_moveDownOneRow()
 {
 	//erase the whole aliens
-	eraseAllAliens();
+	aliens_eraseAllAliens();
 	//move the start line down one row
 	point_t newAlienBlockPosition = {getAlienBlockPosition().x, \
 			getAlienBlockPosition().y + (ALIEN_HEIGHT * MAGNIFY_MULT)};
 	setAlienBlockPosition(newAlienBlockPosition);
 	//draw all of the aliens
-	drawAllAliens();
+	aliens_drawAllAliens();
 	//switch the direction of the aliens
-	switchAlienDirection();
+	aliens_switchAlienDirection();
 	//set row switch flag to true
-	movedDownRow = TRUE;
+	aliens_movedDownRow = TRUE;
 
-	if (reachedBottom())//check if we've reached the bottom. If so, GAME OVER!
+	if (aliens_reachedBottom())//check if we've reached the bottom. If so, GAME OVER!
 		gameOver();
 }
 
@@ -211,7 +240,7 @@ int8_t getRightmostLivingAlienColumn()
 		row = 0;
 		while (row <= MAX_ALIEN_ROW_INDEX)
 		{
-			if (aliensAlive[row][col])
+			if (aliens_aliensAlive[row][col])
 			{
 				return col;
 			}
@@ -232,7 +261,7 @@ int8_t getLeftmostLivingAlienColumn()
 		while (row <= MAX_ALIEN_ROW_INDEX) //iterate through rows
 		{
 			//if any alien in this column is alive, return the column index
-			if (aliensAlive[row][col])
+			if (aliens_aliensAlive[row][col])
 			{
 				return col;
 			}
@@ -270,7 +299,7 @@ int16_t getLeftmostLivingAlienColumnAdjustment()
 void updateAlienBlockPosition()
 {
 	//check the bounds
-	if (currentAlienDirection == aliens_move_right)
+	if (aliens_currentAlienDirection == aliens_move_right)
 	{
 		//if the right edge of the alien block is at the edge of the screen minus a bit
 		if (getRightEdgeOfAlienBlock() >= (WIDTH_DISPLAY - SCREEN_EDGE_BUMPER_PIXELS))
@@ -280,7 +309,7 @@ void updateAlienBlockPosition()
 		else
 		{
 			//update the alien's position
-			oldAlienBlockPosition = getAlienBlockPosition();
+			aliens_oldAlienBlockPosition = aliens_getAlienBlockPosition();
 			point_t newAlienBlockPosition = {(getAlienBlockPosition().x + ALIEN_MOVE_PIXELS), getAlienBlockPosition().y};
 			setAlienBlockPosition(newAlienBlockPosition);
 		}
@@ -295,7 +324,7 @@ void updateAlienBlockPosition()
 		else
 		{
 			//update the alien's position
-			oldAlienBlockPosition = getAlienBlockPosition();
+			aliens_oldAlienBlockPosition = aliens_getAlienBlockPosition();
 			point_t newAlienBlockPosition = {(getAlienBlockPosition().x - ALIEN_MOVE_PIXELS), getAlienBlockPosition().y};
 			setAlienBlockPosition(newAlienBlockPosition);
 		}
@@ -306,9 +335,9 @@ void updateAlienBlockPosition()
 //Takes in the row and column index of the alien and finds position based on that current alien block position.
 void eraseAlienRectangle(uint8_t r, uint8_t c)
 {
-	uint16_t xOld = oldAlienBlockPosition.x + (ALIEN_WIDTH * MAGNIFY_MULT * c) + (ALIEN_SPACE_HORIZ * c); //set this alien's start x
-	uint16_t yOld = oldAlienBlockPosition.y + (ALIEN_HEIGHT * MAGNIFY_MULT * r) + (ALIEN_SPACE_VERT * r); //set this alien's start y
-	if (currentAlienDirection == aliens_move_right)
+	uint16_t xOld = aliens_oldAlienBlockPosition.x + (ALIEN_WIDTH * MAGNIFY_MULT * c) + (ALIEN_SPACE_HORIZ * c); //set this alien's start x
+	uint16_t yOld = aliens_oldAlienBlockPosition.y + (ALIEN_HEIGHT * MAGNIFY_MULT * r) + (ALIEN_SPACE_VERT * r); //set this alien's start y
+	if (aliens_currentAlienDirection == aliens_move_right)
 	{
 		eraseRectangle((point_t){xOld, yOld}, ALIEN_MOVE_PIXELS, ALIEN_HEIGHT);
 	}
@@ -325,14 +354,14 @@ void moveAliens()
 	switchAlienGuises();
 	//update the alien positions
 	updateAlienBlockPosition();
-	if (!movedDownRow)
+	if (!aliens_movedDownRow)
 	{
 		uint8_t r = 0, c = 0;
 		for (r = 0; r < NUM_ALIEN_ROWS; r++) //alien rows
 		{
 			for (c = 0; c < NUM_ALIEN_COLUMNS; c++) //alien column
 			{
-				if (aliensAlive[r][c]) //if the alien at this position is alive
+				if (aliens_aliensAlive[r][c]) //if the alien at this position is alive
 				{
 					//erase the rectangle for the aliens
 					eraseAlienRectangle(r, c);
@@ -342,11 +371,11 @@ void moveAliens()
 			}
 		}
 	}
-	movedDownRow = FALSE; //reset this so the aliens can move later
+	aliens_movedDownRow = FALSE; //reset this so the aliens can move later
 }
 
 //Given the alien index passed in (0-54), returns the row in which this alien is located
-uint8_t getRowFromAlienNumber(uint8_t num)
+uint8_t aliens_getRowFromAlienNumber(uint8_t num)
 {
 	int c = 0; //this is our counter
 	while (num > MAX_ALIEN_COL_INDEX) //Exits when you get a number between 0 and 10
@@ -358,7 +387,7 @@ uint8_t getRowFromAlienNumber(uint8_t num)
 }
 
 //Given the alien index passed in, returns the column in which this alien is located
-uint8_t getColumnFromAlienNumber(uint8_t num)
+uint8_t aliens_getColumnFromAlienNumber(uint8_t num)
 {
 	while (num > MAX_ALIEN_COL_INDEX) //exits when you get a number between 0 and 10
 		num -= NUM_ALIEN_COLUMNS; //decrement num by 11
@@ -366,14 +395,14 @@ uint8_t getColumnFromAlienNumber(uint8_t num)
 }
 
 //returns true if all the aliens are dead
-uint8_t allAliensDead()
+uint8_t aliens_allAliensDead()
 {
 	uint8_t r, c;
 	for (r = 0; r < NUM_ALIEN_COLUMNS; r++)
 	{
 		for (c = 0; c < NUM_ALIEN_ROWS; c++)
 		{
-			if (isAlienAlive(r, c)) //if there is an alien alive
+			if (aliens_isAlienAlive(r, c)) //if there is an alien alive
 				return FALSE;
 		}
 	}
@@ -381,62 +410,65 @@ uint8_t allAliensDead()
 }
 
 //Given a number between 0-54, kills the corresponding alien
-void killAlien(uint8_t alien)
+void aliens_killAlien(uint8_t alien)
 {
 	//map this number alien to a row/column
-	uint8_t row = getRowFromAlienNumber(alien);
-	uint8_t col = getColumnFromAlienNumber(alien);
+	uint8_t row = aliens_getRowFromAlienNumber(alien);
+	uint8_t col = aliens_getColumnFromAlienNumber(alien);
 
 	//erase this alien
-	eraseOneAlien(row, col);
+	aliens_eraseOneAlien(row, col);
 
 	//kill this alien
-	aliensAlive[row][col] = 0;
+	aliens_aliensAlive[row][col] = 0;
 
-	if (allAliensDead()) //if all the aliens are now dead
+	//decrement the global
+	aliens_decrementNumAliensAlive();
+
+	if (aliens_allAliensDead()) //if all the aliens are now dead
 		levelCleared(); //you won the level!
 }
 
 //returns the location of the alien
-point_t getAlienLocation(uint8_t alienNum)
+point_t aliens_getAlienLocation(uint8_t alienNum)
 {
 	uint8_t row, col;
 	row = getRowFromAlienNumber(alienNum);
 	col = getColumnFromAlienNumber(alienNum);
-	return getOneAlienLocation(row, col);
+	return aliens_getOneAlienLocation(row, col);
 }
 
 //Sets the global for alien block position
-void setAlienBlockPosition(point_t val)
+void aliens_setAlienBlockPosition(point_t val)
 {
-	alienBlockPosition = val;
+	aliens_alienBlockPosition = val;
 }
 
 //Returns the global for alien block position
-point_t getAlienBlockPosition()
+point_t aliens_getAlienBlockPosition()
 {
-	return alienBlockPosition;
+	return aliens_alienBlockPosition;
 }
 
 //returns the alien number at the given row and column index
-uint8_t getAlienNumberFromRowCol(uint8_t row, uint8_t col)
+uint8_t aliens_getAlienNumberFromRowCol(uint8_t row, uint8_t col)
 {
 	return (row * NUM_ALIEN_COLUMNS) + col;
 }
 
 //returns the alien number that has a pixel at the provided point
-uint8_t getAlienNumberFromPoint(point_t point)
+uint8_t aliens_getAlienNumberFromPoint(point_t point)
 {
 	uint8_t r, c;
 	for (r = 0; r < NUM_ALIEN_ROWS; r++)
 	{
 		for (c = 0; c < NUM_ALIEN_COLUMNS; c++)
 		{
-			point_t alienPos = getOneAlienLocation(r, c); //get the position of the alien
+			point_t alienPos = aliens_getOneAlienLocation(r, c); //get the position of the alien
 			if (point.x >= alienPos.x && point.x <= (alienPos.x + ALIEN_WIDTH*MAGNIFY_MULT) &&
 				point.y >= alienPos.y && point.y <= (alienPos.y + ALIEN_HEIGHT*MAGNIFY_MULT)	) //if the point is in this alien
 			{
-				return getAlienNumberFromRowCol(r, c); //return the alien number
+				return aliens_getAlienNumberFromRowCol(r, c); //return the alien number
 			}
 
 		}
@@ -448,9 +480,9 @@ uint8_t getAlienNumberFromPoint(point_t point)
 #define MIDDLE_ALIEN_POINTS 20
 #define BOTTOM_ALIEN_POINTS 10
 //returns how many points the alien is worth
-uint8_t alienPoints(uint8_t alienNum)
+uint8_t aliens_alienPoints(uint8_t alienNum)
 {
-	uint8_t row = getRowFromAlienNumber(alienNum);
+	uint8_t row = aliens_getRowFromAlienNumber(alienNum);
 	if (row == 0)
 		return TOP_ALIEN_POINTS;
 	else if (row < NUM_TOP_ALIEN_ROWS + NUM_MIDDLE_ALIEN_ROWS)
@@ -462,13 +494,27 @@ uint8_t alienPoints(uint8_t alienNum)
 void printAliens()
 {
 	xil_printf("\n\raliens alive:\n\r");
-	int r , c; //r = row, c = column
+	uint16_t r , c; //r = row, c = column
 	for (r = 0; r < NUM_ALIEN_ROWS; r++) //iterate through rows
 	{
 		for (c = 0; c < NUM_ALIEN_COLUMNS; c++) //iterate through columns
 		{
-			xil_printf("%d ", aliensAlive[r][c]);
+			xil_printf("%d ", aliens_aliensAlive[r][c]);
 		}
 		xil_printf("\n\r");
 	}
 }
+
+//Revives all of the aliens in the array to 1
+void reviveAllAliens()
+{
+	uint16_t r , c; //r = row, c = column
+	for (r = 0; r < NUM_ALIEN_ROWS; r++) //iterate through rows
+	{
+		for (c = 0; c < NUM_ALIEN_COLUMNS; c++) //iterate through columns
+		{
+			aliens_aliensAlive[r][c] = TRUE;
+		}
+	}
+}
+

@@ -9,6 +9,7 @@
 #include "bitmaps.h"
 #include "render.h"
 #include "bullets.h"
+#include "counters.h"
 
 //////////////////////// GLOBAL VARIABLES ///////////////////////////////
 static uint16_t tankPosition; // The current x-coordinate of the tank
@@ -136,7 +137,7 @@ void moveTankLeft()
 	if (getTankPosition() > TANK_SCREEN_EDGE_LEFT)
 	{
 		//erase the rectangle
-		eraseRectangle((point_t){getTankPosition() + TANK_WIDTH + TANK_MOVE_PIXELS, TANK_START_Y}, TANK_MOVE_PIXELS, TANK_HEIGHT);
+		eraseRectangle((point_t){getTankPosition() + TANK_WIDTH*MAGNIFY_MULT - TANK_MOVE_PIXELS, TANK_START_Y}, TANK_MOVE_PIXELS, TANK_HEIGHT);
 		//change the start point of the tank
 		uint16_t newTankPosition = getTankPosition() - TANK_MOVE_PIXELS;
 		setTankPosition(newTankPosition);
@@ -177,7 +178,8 @@ uint8_t getNumLives() {return lives;}
 void gameOver()
 {
 	xil_printf("GAME OVER!!\n\r");
-	//exit(0);
+	drawGameOverScreen(RED);
+	setGameOverState();
 }
 
 //the player beat the level

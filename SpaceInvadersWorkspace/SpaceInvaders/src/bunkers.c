@@ -103,6 +103,23 @@ void setBlockErosionState(uint8_t bunker, uint8_t row, uint8_t col, uint8_t stat
 	}
 }
 
+//revives all the bunkers
+void reviveAllBunkers()
+{
+	//loop through the bunkers and each row and columns of blocks in each bunker
+	uint8_t i, r, c;
+	for (i = 0; i < NUM_BUNKERS; i++)
+	{
+		for (r = 0; r < NUM_BUNKER_BLOCK_ROWS; r++)
+		{
+			for (c = 0; c < NUM_BUNKER_BLOCK_COLS; c++)
+			{
+				setBlockErosionState(i, r, c, EROSION_ST_UNDAMAGED);
+			}
+		}
+	}
+}
+
 point_t getBlockStartPoint(point_t bunkerStartPoint, uint8_t row, uint8_t col)
 {
 	int16_t blockX = bunkerStartPoint.x + (col*BUNKER_BLOCK_WIDTH*MAGNIFY_MULT);
@@ -179,7 +196,7 @@ int8_t getBunkerNumber(point_t pixel)
 			return b;
 		}
 	}
-	xil_printf("Bunker collision error!\n\r"); //shouldn't happen
+	//xil_printf("Bunker collision error!\n\r"); //shouldn't happen
 	return NO_BUNKER; //shouldn't happen
 }
 
@@ -204,6 +221,6 @@ int8_t getBunkerBlockNumber(point_t pixel)
 	}
 
 
-	xil_printf("Block collision error!\n\r"); //shouldn't happen
+	//xil_printf("Block collision error!\n\r"); //shouldn't happen
 	return NO_BLOCK;//shouldn't happen
 }

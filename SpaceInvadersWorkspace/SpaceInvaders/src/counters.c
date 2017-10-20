@@ -9,26 +9,22 @@
 #include "bitmaps.h"
 #include "aliens.h"
 #include "bullets.h"
+#include "saucer.h"
 #include "render.h"
 
-/*TODO:
- * Make alien bullets erode the bunkers - I'm getting block and bunker collision errors!
-Make aliens marching erode the bunkers
-Saucer move and destroy by tank bullet
-gameOver()
-levelCleared()
- */
 
 //There is one interrupt every 10ms
-#define MOVE_ALIENS_COUNTER_MAX 90 //how much time passes between alien movements
-#define MOVE_BULLETS_COUNTER_MAX 1 //how much time passes between moving the bullets (controls bullet speed)
+#define MOVE_ALIENS_COUNTER_MAX 45 //how much time passes between alien movements //TODO: this should be 90
+#define MOVE_BULLETS_COUNTER_MAX 2 //how much time passes between moving the bullets (controls bullet speed)
 #define ALIEN_EXPLODE_COUNTER_MAX 10 //how long the alien explosion stays on screen after an alien is shot
 #define TANK_DEAD_COUNTER_MAX 100 //how long the tank stays dead
 #define TANK_DEAD_GUISE_COUNTER_MAX 25 //time between switching between the two dead tank guises
-#define TANK_MOVE_COUNTER_MAX 2 //time between moving the tank if the button is pressed (controls tank movement speed)
+#define TANK_MOVE_COUNTER_MAX 1 //time between moving the tank if the button is pressed (controls tank movement speed)
 #define INITIAL_BULLET_WAIT_TIME 500 //how long until the first alien bullet is fired
-#define SPACESHIP_WAIT_TIME 2000 //how long until the spaceship crosses the screen again
-#define SPACESHIP_MOVE_COUNTER_MAX 30 //how long to wait until moving the spaceship again (controls spaceship movement speed)
+#define SAUCER_WAIT_TIME 1000 //how long until the SAUCER crosses the screen again
+#define SAUCER_MOVE_COUNTER_MAX 3 //how long to wait until moving the SAUCER again (controls SAUCER movement speed)
+#define SAUCER_SCORE_COUNTER_MAX 50 //how long the saucer score will remain on the screen
+#define GAME_OVER_COUNTER_MAX 300 //how long before you can restart the game
 
 u32 moveAliensTickCtr = 0; //Counter for when to move the aliens
 u32 bulletMoveTickCtr = 0; //counter for when to advance the bullets that are on the screen
@@ -38,15 +34,21 @@ u32 tankDeadGuiseCtr = 0; //counter for when to switch dead tank guises
 u32 tankMoveCtr = 0; //counter for when to move the tank again
 u32 fireNewAlienBulletMaxTime = INITIAL_BULLET_WAIT_TIME;  //The time between bullets coming out will be randomized
 u32 fireNewAlienBulletCtr = 0; //counter for when to move the tank again
-u32 spaceShipLaunchCtr = 0; //counter for when to launch the spaceship again
-u32 moveSpaceShipCtr = 0; //counter for when to move spaceship (controls movement speed)
+u32 saucerLaunchCtr = 0; //counter for when to launch the saucer again
+u32 moveSaucerCtr = 0; //counter for when to move saucer (controls movement speed)
+u32 saucerScoreCtr = 0; //counter for the saucer score remaining on the screen
+uint8_t randScore; //the random score used by the saucer when it DIES
+u32 gameOverCtr = 0; //the counter for the delay between game over and restart
 
 point_t alienExplosionLocation; //the top-left pixel of where to draw the alien explosion, and later erase it
 uint8_t alienExplosionExists = FALSE; //signifies if the explosion is currently on the screen
+uint8_t saucerScoreOnScreen = FALSE; //true when the saucer score is on the screen
+uint8_t levelClearedState = FALSE;
+uint8_t gameOverState = FALSE;
 
 //flags
 u8 tankDead = FALSE; //flag to signal if the tank is dead
-u8 spaceShipLaunched = 0; //flag to signal if spaceship is launched
+u8 saucerLaunched = FALSE; //flag to signal if saucer is launched
 
 void updateAlienTickCounter()
 {
@@ -56,9 +58,17 @@ void updateAlienTickCounter()
 		moveAliensTickCtr = 0;
 		moveAliens();
 		//erode bunker blocks if necessary
-
+		//if the aliens are about to hit the bunkers
+			//figure out what bunker to erode
+			//erode the bunker block to 0
 		//if they've reached the bottom of the screen //ADDED TO moveAliens(), moveDownOneRow();
+		if (aliens_getBottomOfAliens() >= BUNKER_START_Y + BUNKER_HEIGHT)
+		{
 			//game over
+			gameOver();
+		}
+
+
 	}
 }
 
@@ -107,11 +117,11 @@ void updateBulletMoveCounter()
 			int8_t alienHit = tankBulletWillHitAlien(); //check if an alien will get hit
 			int8_t bunkerHit = tankBulletWillHitBunker(); //check if a bunker will get hit
 
-			if (alienHit > NO_HIT)//if tank bullet will hit an alien on next move (there is white in the rectangle ahead)
+			if (alienHit > NO_HIT && !alienExplosionExists)//if tank bullet will hit an alien on next move (there is white in the rectangle ahead)
 			{
 				killAlien(alienHit); //kill the alien in the array
 				//draw the alien explosion (and save its location)
-				alienExplosionLocation = getAlienLocation((uint8_t) alienHit);
+				alienExplosionLocation = aliens_getAlienLocation((uint8_t) alienHit);
 				drawObject(alien_explosion_12x10, ALIEN_EXPLOSION_WIDTH, ALIEN_EXPLOSION_HEIGHT, alienExplosionLocation, WHITE, LEAVE_BACKGROUND);
 				alienExplosionExists = TRUE; //set global
 				alienExplodeCtr = 0;//reset explosion timer
@@ -122,16 +132,28 @@ void updateBulletMoveCounter()
 				incrementScore(alienPoints(alienHit));//increment the score, and update the screen
 				//if that was the last alien, LEVEL CLEARED! //ADDED TO killAlien()
 			}
-			/*else if (tankBulletWillHitSpaceship())//else if the bullet will hit the spaceship
+			else if (tankBulletWillHitSaucer())//else if the bullet will hit the saucer
 			{
 				//erase the space ship
-				//set the spaceship location off the screen
-				//erase the bullet
+				eraseSaucer();
+				//xil_printf("when saucer is killed, position = %d\n\r", getSaucerPosition());
+				//erase and disable the bullet
+				eraseEntireTankBullet();
+				disableTankBullet();
 				//flash random score
+				randScore = rand() % 4;
+				randScore = (randScore + 1) * 50;
+				xil_printf("randScore = %d\n\r", randScore);
 				//increment score
-				//disable spaceshipLaunched global
+				printScoreOnSaucerDeath(randScore, GREEN);
+				incrementScore(randScore);
+				//set flag to true
+				saucerScoreOnScreen = TRUE;
+
+				//disable saucerLaunched global
+				saucerLaunched = FALSE;
 			}
-			*/else if (bunkerHit > NO_HIT)//else if the bullet will hit a bunker
+			else if (bunkerHit > NO_HIT)//else if the bullet will hit a bunker
 			{
 				erodeBunkerBlockByNum(bunkerHit);//erode the bunker
 				eraseEntireTankBullet();//erase the bullet
@@ -152,6 +174,9 @@ void updateBulletMoveCounter()
 		for (i = 0; i < MAX_ALIEN_BULLETS; i++)
 		{
 			if (!isBulletActive(i)) {continue;}
+
+			int8_t bunkerHit = alienBulletWillHitBunkerBlock(i);
+
 			//if alien bullet will hit tank(and it's not dead already)
 			if (alienBulletWillHitTank(i))
 			{
@@ -176,9 +201,8 @@ void updateBulletMoveCounter()
 
 			//else if alien bullet will hit bunker
 
-			else if (alienBulletWillHitBunkerBlock(i) != NO_HIT)
+			else if (bunkerHit != NO_HIT)
 			{
-				int8_t bunkerHit = alienBulletWillHitBunkerBlock(i);
 				//erode bunker
 				erodeBunkerBlockByNum(bunkerHit);
 				//erase bullet
@@ -192,7 +216,7 @@ void updateBulletMoveCounter()
 				advanceOneAlienBullet(i);
 			}
 
-		}
+		} //end for loop through 4 alien bullets
 
 	}
 
@@ -304,33 +328,157 @@ void updateFireNewAlienBulletCtr()
 	}
 }
 
-void updateSpaceShipLaunchCtr()
+void updateSaucerLaunchCtr()
 {
-	spaceShipLaunchCtr++;
-	if (spaceShipLaunchCtr > SPACESHIP_WAIT_TIME)
+	saucerLaunchCtr++;
+	if (saucerLaunchCtr > SAUCER_WAIT_TIME)
 	{
-		//set spaceship launched global variable //it's our responsibility to make sure the ship is off the screen before launching again
-		//move space ship
-		//reset MoveSpaceShipCtr
+		saucerLaunchCtr = 0;
+		if (saucerLaunched == FALSE)
+		{
+			//set saucer launched global variable //it's our responsibility to make sure the ship is off the screen before launching again
+			saucerLaunched = TRUE;
+			//init ship depending on direction
+			if (getSaucerDirection() == saucer_moves_left)
+			{
+				initSaucerMovingLeft();
+			}
+			else
+			{
+				initSaucerMovingRight();
+			}
+			//reset moveSaucerCtr
+			moveSaucerCtr = 0;
+		}
 	}
 }
 
-void updateMoveSpaceShipCtr()
+#define NEGATIVE_WIDTH_OF_SAUCER (-1 * SAUCER_WIDTH*MAGNIFY_MULT)
+//Returns TRUE if the saucer is off screen, else returns FALSE
+uint8_t isSaucerOffScreen()
 {
-	//if the spaceship has been launched (check global variable)
-		//increment MoveSpaceShipCtr
-		//if (moveSpaceShipCtr > SPACESHIP_MOVE_COUNTER_MAX)
-			//move spaceship in direction specified by global enum variable
-			//reset moveSpaceShipCtr
-			//if the spaceship is completely off the screen
-				//disable "launched" global variable
-				//switch direction in global enum variable
+	if ((getSaucerPosition() < NEGATIVE_WIDTH_OF_SAUCER) || (getSaucerPosition() > (WIDTH_DISPLAY + SAUCER_WIDTH)))
+	{
+		xil_printf("Saucer position in isSaucerOffScreen: %d\n\r", getSaucerPosition());
+		return TRUE;
+	}
+	else return FALSE;
+}
 
+void setGameOverState()
+{
+	gameOverState = TRUE;
+}
+
+
+void updateMoveSaucerCtr()
+{
+	//if the Saucer has been launched (check global variable)
+	if (saucerLaunched)
+	{
+		//increment MoveSaucerCtr
+		moveSaucerCtr++;
+		//xil_printf("moveSaucerCounter = %d\n\r", moveSaucerCtr);
+		if (moveSaucerCtr > SAUCER_MOVE_COUNTER_MAX)
+		{
+			//move Saucer in direction specified by global enum variable
+			if (getSaucerDirection() == saucer_moves_left)
+			{
+				moveSaucerLeft();
+				//printf("Moving saucer left\n\r");
+			}
+			else
+			{
+				moveSaucerRight();
+				//printf("Moving saucer right\n\r");
+			}
+			//reset moveSaucerCtr
+			moveSaucerCtr = 0;
+			saucerLaunchCtr = 0;
+			//if the Saucer is completely off the screen
+			if (isSaucerOffScreen())
+			{
+				//disable "launched" global variable
+				saucerLaunched = FALSE;
+				//switch direction in global enum variable
+				switchSaucerMoveDirection();
+			}
+
+		}
+
+	}
+
+
+}
+
+void updateSaucerScoreCounter()
+{
+	//increment the saucer score counter
+	saucerScoreCtr++;
+	//if the score counter is above the max
+	if (saucerScoreCtr > SAUCER_SCORE_COUNTER_MAX)
+	{
+		//reset the counter
+		saucerScoreCtr = 0;
+		//if the saucer score is there
+		if (saucerScoreOnScreen)
+		{
+			//erase the score
+			printScoreOnSaucerDeath(randScore, BLACK);
+			//set the flag to false
+			saucerScoreOnScreen = FALSE;
+		}
+	}
+}
+
+//Handles the starting over of the game
+void restartGameOnGameOver()
+{
+	gameOverState = FALSE;
+	//erase the game over stuff
+	drawGameOverScreen(BLACK);
+	//erase all remaining aliens
+	eraseAllAliens();
+	//revive the aliens
+	reviveAllAliens();
+	//revive the bunkers
+	reviveAllBunkers();
+	//init the display again
+	setScore(0); //initialize the score
+	updateScoreDisplay(0); //draw the score
+
+	//draw tank lives
+	int n;
+	for(n = 0; n < NUM_LIVES_INIT; n++) //Just draw a tank three times at the top of the screen
+	{
+		updateLivesDisplay(INC);
+		updateLives(INC); //update the global variable tracking number of lives
+	}
+
+	//redraw the live tank
+	drawObject(tank_15x8, TANK_WIDTH, TANK_HEIGHT, (point_t){getTankPosition(), TANK_START_Y}, GREEN, FORCE_BLACK_BACKGROUND);
+	//reenable tank movement, bullet firing, and dying again (by disabling dead variable)
+	tankDead = FALSE;
+
+	//drawTankInit(); //draw the tank
+	drawBunkersInit(); //draw the bunkers
+	drawAliensInit(); //draw the block of aliens
 }
 
 void updateAllCounters()
 {
 	//MIGHT NEED TO CHANGE ORDER
+	if (gameOverState)
+	{
+		gameOverCtr++;
+		if((centerButtonPressed() || leftButtonPressed() || rightButtonPressed()) && gameOverCtr >= GAME_OVER_COUNTER_MAX)
+		{
+			gameOverCtr = 0;
+			restartGameOnGameOver();
+			return;
+		}
+		else return;
+	}
 	if (tankDead)
 	{
 		updateTankDeadCounter();
@@ -338,16 +486,14 @@ void updateAllCounters()
 	}
 	else
 	{
-		updateBulletMoveCounter();
-		updateAlienExplodeCounter();
-		updateAlienTickCounter();
 		updateTankMoveCounter();
 		onFireTankBulletButtonPress();
-		updateMoveSpaceShipCtr();
+		updateBulletMoveCounter();
+		updateAlienExplodeCounter();
+		updateSaucerScoreCounter();
+		updateAlienTickCounter();
+		updateMoveSaucerCtr();
 		updateFireNewAlienBulletCtr();
-		updateSpaceShipLaunchCtr();
+		updateSaucerLaunchCtr();
 	}
-
-
-
 }

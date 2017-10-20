@@ -12,44 +12,50 @@
 
 ///////////// DEFINES /////////////////////////////
 #define SCREEN_EDGE_BUMPER_PIXELS 10 //The number of pixels that acts as a buffer when the aliens reach the screen edge
-#define ALIEN_MOVE_PIXELS TANK_MOVE_PIXELS //The amount the aliens move with each step
+#define ALIEN_MOVE_PIXELS 6 //The amount the aliens move with each step
 
 
 //////////// FUNCTION PROTOTYPES /////////////////
 
 //Sets the globally accessible alien block origin position given a point_t
-void setAlienBlockPosition(point_t val);
+void aliens_setAlienBlockPosition(point_t val);
 
 //Returns the value of the globally accessible alien block position
-point_t getAlienBlockPosition();
+point_t aliens_getAlienBlockPosition();
 
 //Moves all living aliens one step. Handles moving down rows, switching directions, etc.
-void moveAliens();
+void aliens_moveAliens();
 
 //Given a number between 0-54, kills the corresponding alien
-void killAlien(uint8_t alien);
+void aliens_killAlien(uint8_t alien);
 
 //returns the location of the alien
-point_t getAlienLocation(uint8_t alienNum);
+point_t aliens_getAlienLocation(uint8_t alienNum);
 
 //Returns the index of the leftmost living column of aliens
-int8_t getLeftmostLivingAlienColumn();
+int8_t aliens_getLeftmostLivingAlienColumn();
 
 //Returns the index of the leftmost living column of aliens
-int8_t getRightmostLivingAlienColumn();
+int8_t aliens_getRightmostLivingAlienColumn();
 
 //Given a row and column, accesses aliensAlive array and returns whether
 //corresponding alien is alive or not
-uint8_t isAlienAlive(uint8_t row, uint8_t col);
+uint8_t aliens_isAlienAlive(uint8_t row, uint8_t col);
 
 //returns the alien number that has a pixel at the provided point
-uint8_t getAlienNumberFromPoint(point_t point);
+uint8_t aliens_getAlienNumberFromPoint(point_t point);
 
 //returns how many points the alien is worth
-uint8_t alienPoints(uint8_t alienNum);
+uint8_t aliens_alienPoints(uint8_t alienNum);
+
+//Revives all of the aliens in the array to 1
+void aliens_reviveAllAliens();
+
+//Returns the y-coord of the bottom of the living alien block
+int16_t aliens_getBottomOfAliens();
 
 //Prints the aliensAlive array to the console. Used in debugging.
-void printAliens();
+void aliens_printAliens();
 
 
 #endif /* ALIENS_H_ */
