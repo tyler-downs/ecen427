@@ -22,66 +22,66 @@
 
 
 ///////////////////////// DEFINES /////////////////////////////
-#define LIVES_X 320 						//X position of the Lives display
-#define LIVES_Y 10							//Y position of the Lives display
-#define LIVES_WIDTH 18						//Width of the Lives display
-#define LIVES_HEIGHT 5						//Height of the Lives display
+#define RENDER_LIVES_X 320 						//X position of the Lives display
+#define RENDER_LIVES_Y 10							//Y position of the Lives display
+#define RENDER_LIVES_WIDTH 18						//Width of the Lives display
+#define RENDER_LIVES_HEIGHT 5						//Height of the Lives display
 
-#define SCORE_X 10							//X position of the Score display
-#define SCORE_Y LIVES_Y						//Y position of the Score display
-#define SCORE_WIDTH 20						//Width of the Score display
-#define SCORE_HEIGHT LIVES_HEIGHT			//Height of the Score display
+#define RENDER_SCORE_X 10							//X position of the Score display
+#define RENDER_SCORE_Y RENDER_LIVES_Y						//Y position of the Score display
+#define RENDER_SCORE_WIDTH 20						//Width of the Score display
+#define RENDER_SCORE_HEIGHT RENDER_LIVES_HEIGHT			//Height of the Score display
 
-#define NUM_LIVES_INIT 3					//Initial number of lives
-#define LIVES_TANK_SPACE 20 				//space between "Lives" and the first tank life icon
-#define TANK_SPACE 10						//Space between the tank icons
+#define RENDER_NUM_LIVES_INIT 3					//Initial number of lives
+#define RENDER_LIVES_TANK_SPACE 20 				//space between "Lives" and the first tank life icon
+#define RENDER_TANK_SPACE 10						//Space between the tank icons
 
-#define DIGIT_WIDTH 5						//Width of each digit
-#define DIGIT_HEIGHT 5						//Height of each digit
-#define ONE_WIDTH 5							//Width of the number 1
-#define SCORE_GAP 20 						//space between "score" and first digit
-#define MAX_SCORE_DIGITS 6					//Max number of digits a score can be
+#define RENDER_DIGIT_WIDTH 5						//Width of each digit
+#define RENDER_DIGIT_HEIGHT 5						//Height of each digit
+#define RENDER_ONE_WIDTH 5							//Width of the number 1
+#define RENDER_SCORE_GAP 20 						//space between "score" and first digit
+#define RENDER_MAX_SCORE_DIGITS 6					//Max number of digits a score can be
 
-#define FRAME_BUFFER_0_ADDR 0xC1000000  	//Starting location in DDR where we will store the images that we display.
+#define RENDER_FRAME_BUFFER_0_ADDR 0xC1000000  	//Starting location in DDR where we will store the images that we display.
 
-#define INC 1
-#define DEC -1
+#define RENDER_INC 1								//Used for incrementing the score/lives
+#define RENDER_DEC -1								//Used for decrementing the score/lives
 
-#define SCORE_SPACE 15
+#define RENDER_SCORE_SPACE 15						//Space between score and the score
 
 
 ////////////////////// FUNCTION PROTOTYPES ///////////////////////
 //return framePointer0
-unsigned int * getFramePointer0();
+unsigned int * render_getFramePointer0();
 
 //Initializes the display
-void disp_init();
+void render_disp_init();
 
 //Draws the black game screen with the green line
-void drawScreenInit();
+void render_drawScreenInit();
 
 //Draws an object given details about the bitmap, location, size, and color
-void drawObject(uint32_t bitmap[], uint16_t width, uint16_t height, point_t startPoint, uint32_t color, uint8_t force);
+void render_drawObject(uint32_t bitmap[], uint16_t width, uint16_t height, point_t startPoint, uint32_t color, uint8_t force);
 
 //Draws one pixel given position and color
-void drawPixel(int16_t y, int16_t x, uint32_t color);
+void render_drawPixel(int16_t y, int16_t x, uint32_t color);
 
 //Erases a rectangle at the given position of the given size
-void eraseRectangle(point_t startPoint, uint16_t width, uint16_t height);
+void render_eraseRectangle(point_t startPoint, uint16_t width, uint16_t height);
 
 //update the score displayed on the screen by passing in the score to be displayed
-void updateScoreDisplay(uint16_t newScore);
+void render_updateScoreDisplay(uint16_t newScore);
 
 //update the lives displayed on the screen by passing in 1 to add a life or -1 to lose a life
-void updateLivesDisplay(int8_t incDec);
+void render_updateLivesDisplay(int8_t incDec);
 
 //Draws the game over screen at the end of the game
-void drawGameOverScreen();
+void render_drawGameOverScreen();
 
 //Initially draws the tank
-void drawTankInit();
+void render_drawTankInit();
 
 //Initially draws the aliens
-void drawAliensInit();
+void render_drawAliensInit();
 
 #endif /* RENDER_H_ */

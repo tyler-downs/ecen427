@@ -7,70 +7,74 @@
 #include "saucer.h"
 #include "render.h"
 
+////////////////////////// DEFINES //////////////////////////
+#define SAUCER_SCORE_MAX_INDEX 5	//used in updating the score
+#define SAUCER_SCORE_DIVISOR 10  	//used in finding the digits for the score
+#define SAUCER_MOVE_PIXELS 3		//Number of pixels the saucer moves
+
+
 //////////////////////// GLOBAL VARIABLES ///////////////////
-static saucer_direction_type saucerDirection = saucer_moves_left;
+static saucer_direction_type saucerDirection = saucer_moves_left; //the current direction of the saucer
 
 
 ////////////////////////// FUNCTIONS ////////////////////////
-void drawSaucer()
+
+//Draws the saucer red
+void saucer_drawSaucer()
 {
-	drawObject(saucer_16x7, SAUCER_WIDTH, SAUCER_HEIGHT, (point_t){getSaucerPosition(), SAUCER_POSITION_Y}, RED, FORCE_BLACK_BACKGROUND);
+	render_drawObject(saucer_16x7, SAUCER_WIDTH, SAUCER_HEIGHT, (point_t){globals_getSaucerPosition(), SAUCER_POSITION_Y}, GLOBALS_RED, GLOBALS_FORCE_BLACK_BACKGROUND);
 }
 
-void eraseSaucer()
+//Erases the saucer black
+void saucer_eraseSaucer()
 {
-	drawObject(saucer_16x7, SAUCER_WIDTH, SAUCER_HEIGHT, (point_t){getSaucerPosition(), SAUCER_POSITION_Y}, BLACK, FORCE_BLACK_BACKGROUND);
+	render_drawObject(saucer_16x7, SAUCER_WIDTH, SAUCER_HEIGHT, (point_t){globals_getSaucerPosition(), SAUCER_POSITION_Y}, GLOBALS_BLACK, GLOBALS_FORCE_BLACK_BACKGROUND);
 }
 
 //Sets the position and draws the saucer if it's going to the right
-void initSaucerMovingRight()
+void saucer_initSaucerMovingRight()
 {
 	//set the position
-	setSaucerPosition((int16_t)(SAUCER_WIDTH * -1));
+	globals_setSaucerPosition((int16_t)(SAUCER_WIDTH * -1));
 	//draw the saucer there
-	drawSaucer();
+	saucer_drawSaucer();
 }
 
 //Sets the position and draws the saucer if it's going to the left
-void initSaucerMovingLeft()
+void saucer_initSaucerMovingLeft()
 {
 	//set the position
-	setSaucerPosition((int16_t) WIDTH_DISPLAY);
+	globals_setSaucerPosition((int16_t) GLOBALS_WIDTH_DISPLAY);
 	//draw the saucer there
-	drawSaucer();
+	saucer_drawSaucer();
 }
 
-#define SAUCER_MOVE_PIXELS 3
 //Moves the saucer right
-void moveSaucerRight()
+void saucer_moveSaucerRight()
 {
 	//erase the rectangle
-	eraseRectangle((point_t) {getSaucerPosition(), SAUCER_POSITION_Y}, SAUCER_MOVE_PIXELS, SAUCER_HEIGHT);
+	render_eraseRectangle((point_t) {globals_getSaucerPosition(), SAUCER_POSITION_Y}, SAUCER_MOVE_PIXELS, SAUCER_HEIGHT);
 	//change the start point of the saucer
-	int16_t newSaucerPosition = getSaucerPosition() + SAUCER_MOVE_PIXELS;
-	//xil_printf("In moveSaucerRight, position = %d\n\r", newSaucerPosition);
-	setSaucerPosition(newSaucerPosition);
+	int16_t newSaucerPosition = globals_getSaucerPosition() + SAUCER_MOVE_PIXELS;
+	globals_setSaucerPosition(newSaucerPosition);
 	//draw the saucer
-	//xil_printf("New saucer position: %d\n\r", newSaucerPosition);
-	drawObject(saucer_16x7, SAUCER_WIDTH, SAUCER_HEIGHT, (point_t){newSaucerPosition, SAUCER_POSITION_Y}, RED, FORCE_BLACK_BACKGROUND);
+	render_drawObject(saucer_16x7, SAUCER_WIDTH, SAUCER_HEIGHT, (point_t){newSaucerPosition, SAUCER_POSITION_Y}, GLOBALS_RED, GLOBALS_FORCE_BLACK_BACKGROUND);
 }
 
 //Moves the saucer left
-void moveSaucerLeft()
+void saucer_moveSaucerLeft()
 {
 	//erase the rectangle
-	eraseRectangle((point_t) {getSaucerPosition() + SAUCER_WIDTH*2 - SAUCER_MOVE_PIXELS, SAUCER_POSITION_Y}, SAUCER_MOVE_PIXELS*2, SAUCER_HEIGHT);
+	render_eraseRectangle((point_t) {globals_getSaucerPosition() + SAUCER_WIDTH*2 - SAUCER_MOVE_PIXELS, SAUCER_POSITION_Y}, SAUCER_MOVE_PIXELS*2, SAUCER_HEIGHT);
 	//change the start point of the saucer
-	int16_t newSaucerPosition = getSaucerPosition() - SAUCER_MOVE_PIXELS;
-	//xil_printf("In moveSaucerLeft, position = %d\n\r", newSaucerPosition);
-	setSaucerPosition(newSaucerPosition);
+	int16_t newSaucerPosition = globals_getSaucerPosition() - SAUCER_MOVE_PIXELS;
+	globals_setSaucerPosition(newSaucerPosition);
 	//draw the saucer
-	//xil_printf("New saucer position: %d\n\r", newSaucerPosition);
-	drawObject(saucer_16x7, SAUCER_WIDTH, SAUCER_HEIGHT, (point_t){newSaucerPosition, SAUCER_POSITION_Y}, RED, FORCE_BLACK_BACKGROUND);
+	render_drawObject(saucer_16x7, SAUCER_WIDTH, SAUCER_HEIGHT, (point_t){newSaucerPosition, SAUCER_POSITION_Y}, GLOBALS_RED, GLOBALS_FORCE_BLACK_BACKGROUND);
 }
 
 //Switches the direction the saucer is moving
-void switchSaucerMoveDirection()
+void saucer_switchSaucerMoveDirection()
 {
 	//if they're going left, move them right
 	if (saucerDirection == saucer_moves_left)
@@ -84,27 +88,26 @@ void switchSaucerMoveDirection()
 }
 
 //returns the current move direction of the saucer
-saucer_direction_type getSaucerDirection()
+saucer_direction_type saucer_getSaucerDirection()
 {
 	return saucerDirection;
 }
 
 //Prints the random score when the saucer is killed
-void printScoreOnSaucerDeath(uint16_t newScore, uint32_t color)
+void saucer_printScoreOnSaucerDeath(uint16_t newScore, uint32_t color)
 {
-	char updatedScore[MAX_SCORE_DIGITS] = {'0', '0', '0', '0', '0', '0'}; //initialize the score char array
+	char updatedScore[RENDER_MAX_SCORE_DIGITS] = {'0', '0', '0', '0', '0', '0'}; //initialize the score char array
 
 	//convert the integer score into a char array
 	int16_t i = 0;
-	for (i = 5; i >= 0; i--)
+	for (i = SAUCER_SCORE_MAX_INDEX; i >= 0; i--)
 	{
-		updatedScore[i] = (char) ((newScore % 10) + '0');
-		//xil_printf("i = %d, newScore = %d, updatedScore[i] = %c\n\r", i, newScore, updatedScore[i]); //TEST
-		newScore /= 10;
+		updatedScore[i] = (char) ((newScore % SAUCER_SCORE_DIVISOR) + '0');
+		newScore /= SAUCER_SCORE_DIVISOR;
 	}
 	//determine the first digit to display (we don't want leading zeros)
-	uint16_t m, firstNonzero = MAX_SCORE_DIGITS-1;
-	for (m = 0 ; m < MAX_SCORE_DIGITS; m++)
+	uint16_t m, firstNonzero = RENDER_MAX_SCORE_DIGITS-1;
+	for (m = 0 ; m < RENDER_MAX_SCORE_DIGITS; m++)
 	{
 		if (updatedScore[m] != '0')
 		{
@@ -112,46 +115,43 @@ void printScoreOnSaucerDeath(uint16_t newScore, uint32_t color)
 			break;
 		}
 	}
-	//xil_printf("firstNonzero = %d\n\r", firstNonzero); //TEST
 	uint16_t k;
 	uint16_t x;
 	//write each digit to the screen
-	for (k = firstNonzero; k < MAX_SCORE_DIGITS; k++)
+	for (k = firstNonzero; k < RENDER_MAX_SCORE_DIGITS; k++)
 	{
-		//xil_printf("saucerPosition: %d + k-firstNonzero*DW*MM: %d\n\r", getSaucerPosition(), (k-firstNonzero)*(DIGIT_WIDTH*MAGNIFY_MULT));
-		x = getSaucerPosition() + (k-firstNonzero)*(DIGIT_WIDTH*MAGNIFY_MULT);
-		//xil_printf("x = %d\n\r", x);
+		x = globals_getSaucerPosition() + (k-firstNonzero)*(RENDER_DIGIT_WIDTH*GLOBALS_MAGNIFY_MULT);
 		switch(updatedScore[k])
 		{
 		case '0':
-			drawObject(zero_5x5, DIGIT_WIDTH, DIGIT_HEIGHT, (point_t) {x, SAUCER_POSITION_Y}, color, FORCE_BLACK_BACKGROUND);
+			render_drawObject(zero_5x5, RENDER_DIGIT_WIDTH, RENDER_DIGIT_HEIGHT, (point_t) {x, SAUCER_POSITION_Y}, color, GLOBALS_FORCE_BLACK_BACKGROUND);
 			break;
 		case '1':
-			drawObject(one_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SAUCER_POSITION_Y}, color, FORCE_BLACK_BACKGROUND);
+			render_drawObject(one_5x5, RENDER_ONE_WIDTH, RENDER_DIGIT_HEIGHT, (point_t) {x, SAUCER_POSITION_Y}, color, GLOBALS_FORCE_BLACK_BACKGROUND);
 			break;
 		case '2':
-			drawObject(two_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SAUCER_POSITION_Y}, color, FORCE_BLACK_BACKGROUND);
+			render_drawObject(two_5x5, RENDER_ONE_WIDTH, RENDER_DIGIT_HEIGHT, (point_t) {x, SAUCER_POSITION_Y}, color, GLOBALS_FORCE_BLACK_BACKGROUND);
 			break;
 		case '3':
-			drawObject(three_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SAUCER_POSITION_Y}, color, FORCE_BLACK_BACKGROUND);
+			render_drawObject(three_5x5, RENDER_ONE_WIDTH, RENDER_DIGIT_HEIGHT, (point_t) {x, SAUCER_POSITION_Y}, color, GLOBALS_FORCE_BLACK_BACKGROUND);
 			break;
 		case '4':
-			drawObject(four_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SAUCER_POSITION_Y}, color, FORCE_BLACK_BACKGROUND);
+			render_drawObject(four_5x5, RENDER_ONE_WIDTH, RENDER_DIGIT_HEIGHT, (point_t) {x, SAUCER_POSITION_Y}, color, GLOBALS_FORCE_BLACK_BACKGROUND);
 			break;
 		case '5':
-			drawObject(five_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SAUCER_POSITION_Y}, color, FORCE_BLACK_BACKGROUND);
+			render_drawObject(five_5x5, RENDER_ONE_WIDTH, RENDER_DIGIT_HEIGHT, (point_t) {x, SAUCER_POSITION_Y}, color, GLOBALS_FORCE_BLACK_BACKGROUND);
 			break;
 		case '6':
-			drawObject(six_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SAUCER_POSITION_Y}, color, FORCE_BLACK_BACKGROUND);
+			render_drawObject(six_5x5, RENDER_ONE_WIDTH, RENDER_DIGIT_HEIGHT, (point_t) {x, SAUCER_POSITION_Y}, color, GLOBALS_FORCE_BLACK_BACKGROUND);
 			break;
 		case '7':
-			drawObject(seven_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SAUCER_POSITION_Y}, color, FORCE_BLACK_BACKGROUND);
+			render_drawObject(seven_5x5, RENDER_ONE_WIDTH, RENDER_DIGIT_HEIGHT, (point_t) {x, SAUCER_POSITION_Y}, color, GLOBALS_FORCE_BLACK_BACKGROUND);
 			break;
 		case '8':
-			drawObject(eight_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SAUCER_POSITION_Y}, color, FORCE_BLACK_BACKGROUND);
+			render_drawObject(eight_5x5, RENDER_ONE_WIDTH, RENDER_DIGIT_HEIGHT, (point_t) {x, SAUCER_POSITION_Y}, color, GLOBALS_FORCE_BLACK_BACKGROUND);
 			break;
 		case '9':
-			drawObject(nine_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SAUCER_POSITION_Y}, color, FORCE_BLACK_BACKGROUND);
+			render_drawObject(nine_5x5, RENDER_ONE_WIDTH, RENDER_DIGIT_HEIGHT, (point_t) {x, SAUCER_POSITION_Y}, color, GLOBALS_FORCE_BLACK_BACKGROUND);
 			break;
 		}
 	}

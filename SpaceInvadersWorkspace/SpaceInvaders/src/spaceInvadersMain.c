@@ -21,11 +21,14 @@
 #define PB_BTND_MASK 0x0004 //Mask for identifying the down button
 #define PB_BTNL_MASK 0x0008 //Mask for identifying the left button
 #define PB_BTNU_MASK 0x0010 //Mask for identifying the up button
+#define INTR_LOOP_COUNT_MAX 1000 //max value for the counter in the main loop
 
 XGpio gpLED;  // This is a handle for the LED GPIO block.
 XGpio gpPB;   // This is a handle for the push-button GPIO block.
 
 u32 currentButtonState = 0; //the state of the button register
+u32 utilLoopCount = 0; //this will count up in the main loop to help with CPU util stuff
+u32 intrLoopCount = 0; //this will count at every interrupt from the timer
 
 u8 leftButtonPressed() {return currentButtonState & PB_BTNL_MASK;} //returns nonzero if the left button is pressed
 u8 rightButtonPressed() {return currentButtonState & PB_BTNR_MASK;} //returns nonzero if the right button is pressed
@@ -33,8 +36,16 @@ u8 centerButtonPressed() {return currentButtonState & PB_BTNC_MASK;} //returns n
 
 // This is invoked in response to a timer interrupt.
 void timer_interrupt_handler() {
-	updateAllCounters();
-
+	//update all counters
+	counters_updateAllCounters();
+	//The following is for calculating CPU utilization
+	intrLoopCount++;
+	if (intrLoopCount > INTR_LOOP_COUNT_MAX)
+	{
+		xil_printf("Util loop count: %d\n\r", utilLoopCount);
+		intrLoopCount = 0;
+		utilLoopCount = 0;
+	}
 }
 
 // This is invoked each time there is a change in the button state (result of a push or a bounce).
@@ -42,9 +53,6 @@ void pb_interrupt_handler() {
   // Clear the GPIO interrupt.
   XGpio_InterruptGlobalDisable(&gpPB);                // Turn off all PB interrupts for now
   currentButtonState = XGpio_DiscreteRead(&gpPB, 1);  // Get the current state of the buttons.
-  // You need to do something here.
-  //xil_printf("Button pressed\n\r");
-
   XGpio_InterruptClear(&gpPB, 0xFFFFFFFF);            // Ack the PB interrupt.
   XGpio_InterruptGlobalEnable(&gpPB);                 // Re-enable PB interrupts.
 }
@@ -90,13 +98,15 @@ int main()
     		(XPAR_FIT_TIMER_0_INTERRUPT_MASK | XPAR_PUSH_BUTTONS_5BITS_IP2INTC_IRPT_MASK));
     XIntc_MasterEnable(XPAR_INTC_0_BASEADDR);
 
-
     //init the display
-    disp_init();
+    render_disp_init();
 
     microblaze_enable_interrupts();
 
-    while(1);  // Program never ends.
+    while(1)// Program never ends.
+    {
+    	utilLoopCount++; //increment the loop count
+    }
 
 
 	cleanup_platform();

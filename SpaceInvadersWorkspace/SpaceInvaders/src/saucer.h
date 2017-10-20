@@ -16,23 +16,23 @@
 
 /////////////////////// FUNCTIONS ///////////////////
 //Draws the saucer at the global position
-void drawSaucer();
+void saucer_drawSaucer();
 //Moves the saucer right
-void moveSaucerRight();
+void saucer_moveSaucerRight();
 //Moves the saucer left
-void moveSaucerLeft();
+void saucer_moveSaucerLeft();
 //switches directions for the saucer
-void switchSaucerMoveDirection();
+void saucer_switchSaucerMoveDirection();
 //returns the current move direction of the saucer
-saucer_direction_type getSaucerDirection();
+saucer_direction_type saucer_getSaucerDirection();
 //Sets the position and draws the saucer if it's going to the left
-void initSaucerMovingLeft();
+void saucer_initSaucerMovingLeft();
 //Sets the position and draws the saucer if it's going to the right
-void initSaucerMovingRight();
+void saucer_initSaucerMovingRight();
 //erases the saucer
-void eraseSaucer();
+void saucer_eraseSaucer();
 //print the saucer score
-void printScoreOnSaucerDeath(uint16_t newScore, uint32_t color);
+void saucer_printScoreOnSaucerDeath(uint16_t newScore, uint32_t color);
 
 
 #endif /* SAUCER_H_ */

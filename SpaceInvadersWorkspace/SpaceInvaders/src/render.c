@@ -7,44 +7,44 @@
 
 #include "render.h"
 
+//////////////////////// DEFINES ////////////////////////////////
+#define UPDATE_SCORE_MAX_INDEX 5	//used in updating the score
+#define UPDATE_SCORE_DIVISOR 10  	//used in finding the digits for the score
+#define LIVES_PER_ROW 6				//Number of lives per row
+#define GAME_OVER_WIDTH 33			//Width of the game over message
+#define GAME_OVER_HEIGHT 5			//Height of the game over message
+#define GAME_OVER_START_X 275		//x-coord of the game over message
+#define GAME_OVER_START_Y 70		//y-coord of the game over message
+#define SPACE_BETWEEN_LIFE_ROWS (GLOBALS_TANK_HEIGHT * 1.5 * GLOBALS_MAGNIFY_MULT) //the space between the life rows
+
+
 ////////////////// GLOBAL VARIABLES ///////////////////////////
 // The variables framePointer and framePointer1 are just pointers to the base address
 // of frame 0 and frame 1.
-unsigned int * framePointer0 = (unsigned int *) FRAME_BUFFER_0_ADDR;
-unsigned int * framePointer1 = ((unsigned int *) FRAME_BUFFER_0_ADDR) + 640*480;
+unsigned int * framePointer0 = (unsigned int *) RENDER_FRAME_BUFFER_0_ADDR;
+unsigned int * framePointer1 = ((unsigned int *) RENDER_FRAME_BUFFER_0_ADDR) + 640*480;
+char score[RENDER_MAX_SCORE_DIGITS] = {0, 0, 0, 0, 0, 0}; //The global score digits
 
-char score[MAX_SCORE_DIGITS] = {0, 0, 0, 0, 0, 0}; //The global score digits
+//////////////////////// FUNCTIONS //////////////////////////////////
 
-
-unsigned int * getFramePointer0() {return framePointer0;}
-
+//Returns the frame pointer
+unsigned int * render_getFramePointer0() {return framePointer0;}
 
 //Updates the score display given an integer score value
-void updateScoreDisplay(uint16_t newScore)
+void render_updateScoreDisplay(uint16_t newScore)
 {
-	char updatedScore[MAX_SCORE_DIGITS] = {'0', '0', '0', '0', '0', '0'}; //initialize the score char array
+	char updatedScore[RENDER_MAX_SCORE_DIGITS] = {'0', '0', '0', '0', '0', '0'}; //initialize the score char array
 
 	//convert the integer score into a char array
 	int16_t i = 0;
-	for (i = 5; i >= 0; i--)
+	for (i = UPDATE_SCORE_MAX_INDEX; i >= 0; i--)
 	{
-		updatedScore[i] = (char) ((newScore % 10) + '0');
-		//xil_printf("i = %d, newScore = %d, updatedScore[i] = %c\n\r", i, newScore, updatedScore[i]); //TEST
-		newScore /= 10;
+		updatedScore[i] = (char) ((newScore % UPDATE_SCORE_DIVISOR) + '0');
+		newScore /= UPDATE_SCORE_DIVISOR;
 	}
-
-	/*//test
-	uint16_t n = 0;
-	xil_printf("Score is : ");
-	for (n = 0; n < MAX_SCORE_DIGITS; n++)
-	{
-		xil_printf("%c", updatedScore[n]);
-	}
-	xil_printf("\n\r");
-*/
 	//determine the first digit to display (we don't want leading zeros)
-	uint16_t m, firstNonzero = MAX_SCORE_DIGITS-1;
-	for (m = 0 ; m < MAX_SCORE_DIGITS; m++)
+	uint16_t m, firstNonzero = RENDER_MAX_SCORE_DIGITS-1;
+	for (m = 0 ; m < RENDER_MAX_SCORE_DIGITS; m++)
 	{
 		if (updatedScore[m] != '0')
 		{
@@ -52,119 +52,109 @@ void updateScoreDisplay(uint16_t newScore)
 			break;
 		}
 	}
-	//xil_printf("firstNonzero = %d\n\r", firstNonzero); //TEST
 	uint16_t k;
-	uint8_t x;
+	uint16_t x;
 	//write each digit to the screen
-	for (k = firstNonzero; k < MAX_SCORE_DIGITS; k++)
+	for (k = firstNonzero; k < RENDER_MAX_SCORE_DIGITS; k++)
 	{
-		x = SCORE_SPACE + SCORE_X + SCORE_WIDTH*MAGNIFY_MULT + (k-firstNonzero)*(DIGIT_WIDTH*MAGNIFY_MULT);
+		x = RENDER_SCORE_SPACE + RENDER_SCORE_X + RENDER_SCORE_WIDTH*GLOBALS_MAGNIFY_MULT + (k-firstNonzero)*(RENDER_DIGIT_WIDTH*GLOBALS_MAGNIFY_MULT);
 		switch(updatedScore[k])
 		{
 		case '0':
-			drawObject(zero_5x5, DIGIT_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN, FORCE_BLACK_BACKGROUND);
+			render_drawObject(zero_5x5, RENDER_DIGIT_WIDTH, RENDER_DIGIT_HEIGHT, (point_t) {x, RENDER_SCORE_Y}, GLOBALS_GREEN, GLOBALS_FORCE_BLACK_BACKGROUND);
 			break;
 		case '1':
-			drawObject(one_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN, FORCE_BLACK_BACKGROUND);
+			render_drawObject(one_5x5, RENDER_ONE_WIDTH, RENDER_DIGIT_HEIGHT, (point_t) {x, RENDER_SCORE_Y}, GLOBALS_GREEN, GLOBALS_FORCE_BLACK_BACKGROUND);
 			break;
 		case '2':
-			drawObject(two_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN, FORCE_BLACK_BACKGROUND);
+			render_drawObject(two_5x5, RENDER_ONE_WIDTH, RENDER_DIGIT_HEIGHT, (point_t) {x, RENDER_SCORE_Y}, GLOBALS_GREEN, GLOBALS_FORCE_BLACK_BACKGROUND);
 			break;
 		case '3':
-			drawObject(three_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN, FORCE_BLACK_BACKGROUND);
+			render_drawObject(three_5x5, RENDER_ONE_WIDTH, RENDER_DIGIT_HEIGHT, (point_t) {x, RENDER_SCORE_Y}, GLOBALS_GREEN, GLOBALS_FORCE_BLACK_BACKGROUND);
 			break;
 		case '4':
-			drawObject(four_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN, FORCE_BLACK_BACKGROUND);
+			render_drawObject(four_5x5, RENDER_ONE_WIDTH, RENDER_DIGIT_HEIGHT, (point_t) {x, RENDER_SCORE_Y}, GLOBALS_GREEN, GLOBALS_FORCE_BLACK_BACKGROUND);
 			break;
 		case '5':
-			drawObject(five_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN, FORCE_BLACK_BACKGROUND);
+			render_drawObject(five_5x5, RENDER_ONE_WIDTH, RENDER_DIGIT_HEIGHT, (point_t) {x, RENDER_SCORE_Y}, GLOBALS_GREEN, GLOBALS_FORCE_BLACK_BACKGROUND);
 			break;
 		case '6':
-			drawObject(six_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN, FORCE_BLACK_BACKGROUND);
+			render_drawObject(six_5x5, RENDER_ONE_WIDTH, RENDER_DIGIT_HEIGHT, (point_t) {x, RENDER_SCORE_Y}, GLOBALS_GREEN, GLOBALS_FORCE_BLACK_BACKGROUND);
 			break;
 		case '7':
-			drawObject(seven_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN, FORCE_BLACK_BACKGROUND);
+			render_drawObject(seven_5x5, RENDER_ONE_WIDTH, RENDER_DIGIT_HEIGHT, (point_t) {x, RENDER_SCORE_Y}, GLOBALS_GREEN, GLOBALS_FORCE_BLACK_BACKGROUND);
 			break;
 		case '8':
-			drawObject(eight_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN, FORCE_BLACK_BACKGROUND);
+			render_drawObject(eight_5x5, RENDER_ONE_WIDTH, RENDER_DIGIT_HEIGHT, (point_t) {x, RENDER_SCORE_Y}, GLOBALS_GREEN, GLOBALS_FORCE_BLACK_BACKGROUND);
 			break;
 		case '9':
-			drawObject(nine_5x5, ONE_WIDTH, DIGIT_HEIGHT, (point_t) {x, SCORE_Y}, GREEN, FORCE_BLACK_BACKGROUND);
+			render_drawObject(nine_5x5, RENDER_ONE_WIDTH, RENDER_DIGIT_HEIGHT, (point_t) {x, RENDER_SCORE_Y}, GLOBALS_GREEN, GLOBALS_FORCE_BLACK_BACKGROUND);
 			break;
 		}
 	}
 }
 
-
-#define LIVES_PER_ROW 6
-#define SPACE_BETWEEN_LIFE_ROWS (TANK_HEIGHT * 1.5 * MAGNIFY_MULT)
+//Returns the position the life tank should be placed given the life number
 point_t calculateLifePosition(uint8_t lifeNum)
 {
-	uint8_t col = lifeNum % LIVES_PER_ROW;
-	uint8_t row = lifeNum / LIVES_PER_ROW;
-	uint16_t x = LIVES_X + LIVES_WIDTH*MAGNIFY_MULT + LIVES_TANK_SPACE + col*(TANK_WIDTH*MAGNIFY_MULT + TANK_SPACE);
-	uint16_t y = LIVES_Y - (TANK_HEIGHT - LIVES_HEIGHT)*MAGNIFY_MULT + row*(SPACE_BETWEEN_LIFE_ROWS);
+	uint8_t col = lifeNum % LIVES_PER_ROW; //determine col
+	uint8_t row = lifeNum / LIVES_PER_ROW; //determine row
+	//Determine the x and y positions using some tricky geometry
+	uint16_t x = RENDER_LIVES_X + RENDER_LIVES_WIDTH*GLOBALS_MAGNIFY_MULT + RENDER_LIVES_TANK_SPACE + col*(GLOBALS_TANK_WIDTH*GLOBALS_MAGNIFY_MULT + RENDER_TANK_SPACE);
+	uint16_t y = RENDER_LIVES_Y - (GLOBALS_TANK_HEIGHT - RENDER_LIVES_HEIGHT)*GLOBALS_MAGNIFY_MULT + row*(SPACE_BETWEEN_LIFE_ROWS);
 	return (point_t) {x, y};
 }
 
-
-void updateLivesDisplay(int8_t incDec)
+//Updates the lives display on the screen, higher level
+void render_updateLivesDisplay(int8_t incDec)
 {
-	uint8_t lifeNum = (incDec > 0) ? getNumLives() : (getNumLives());
+	uint8_t lifeNum = (incDec > 0) ? globals_getNumLives() : (globals_getNumLives());
 	point_t lifePosition = calculateLifePosition(lifeNum);
-	uint32_t color = (incDec > 0) ? GREEN : BLACK;
-	drawObject(tank_15x8, TANK_WIDTH, TANK_HEIGHT, lifePosition, color, FORCE_BLACK_BACKGROUND);
+	uint32_t color = (incDec > 0) ? GLOBALS_GREEN : GLOBALS_BLACK;
+	render_drawObject(tank_15x8, GLOBALS_TANK_WIDTH, GLOBALS_TANK_HEIGHT, lifePosition, color, GLOBALS_FORCE_BLACK_BACKGROUND);
 }
-/*
-int n;
-for(n = 0; n < NUM_LIVES_INIT; n++) //Just draw a tank three times at the top of the screen
-{
-	int x = LIVES_X + LIVES_WIDTH*MAGNIFY_MULT + LIVES_TANK_SPACE + n*(TANK_WIDTH*MAGNIFY_MULT + TANK_SPACE);
-	int y = LIVES_Y - (TANK_HEIGHT - LIVES_HEIGHT)*MAGNIFY_MULT;
-	drawObject(tank_15x8, TANK_WIDTH, TANK_HEIGHT, (point_t) {x, y}, GREEN, FORCE_BLACK_BACKGROUND);
-	updateLives(INC); //update the global variable tracking number of lives
-}
-*/
 
+//Returns whether the point given is on the screen or not
 uint8_t isOnScreen(point_t point)
 {
-	return (point.x >= 0 && point.x < WIDTH_DISPLAY && point.y >=0 && point.y < HEIGHT_DISPLAY);
+	return (point.x >= 0 && point.x < GLOBALS_WIDTH_DISPLAY && point.y >=0 && point.y < GLOBALS_HEIGHT_DISPLAY);
 }
+
 //Draws one pixel to the frame buffer. Checks if it is already that color before drawing.
-void drawPixel(int16_t y, int16_t x, uint32_t color)
+void render_drawPixel(int16_t y, int16_t x, uint32_t color)
 {
-	if (isOnScreen((point_t){x,y}) && framePointer0[y*WIDTH_DISPLAY + x] != color)
-		framePointer0[y*WIDTH_DISPLAY + x] = color;
+	if (isOnScreen((point_t){x,y}) && framePointer0[y*GLOBALS_WIDTH_DISPLAY + x] != color)
+		framePointer0[y*GLOBALS_WIDTH_DISPLAY + x] = color;
 }
 
 //erases a rectangle with upper left point startpoint, given width, and given height in pixels
-void eraseRectangle(point_t startPoint, uint16_t width, uint16_t height)
+void render_eraseRectangle(point_t startPoint, uint16_t width, uint16_t height)
 {
 	uint8_t i, j;
-	for (i = 0; i < width*MAGNIFY_MULT; i++) //iterate through the width of the rectangle
+	for (i = 0; i < width*GLOBALS_MAGNIFY_MULT; i++) //iterate through the width of the rectangle
 	{
-		for (j = 0; j < height*MAGNIFY_MULT; j++) //iterate through the height
+		for (j = 0; j < height*GLOBALS_MAGNIFY_MULT; j++) //iterate through the height
 		{
-			drawPixel((startPoint.y + j), (startPoint.x + i), BLACK); //draw each pixel black as night
+			render_drawPixel((startPoint.y + j), (startPoint.x + i), GLOBALS_BLACK); //draw each pixel black as night
 		}
 	}
 }
 
 //if force is true, it will draw black where the bitmap is 0. If it is false, it will leave it alone.
-void drawObject(uint32_t bitmap[], uint16_t width, uint16_t height, point_t startPoint, uint32_t color, uint8_t force)
+void render_drawObject(uint32_t bitmap[], uint16_t width, uint16_t height, point_t startPoint, uint32_t color, uint8_t force)
 {
 	uint16_t row=0, col=0;
-	for (row=0; row<(height*MAGNIFY_MULT); row++) { //iterate through the height of the object
-		for (col=0; col<(width*MAGNIFY_MULT); col++) {	//iterate through the width of the object
+	for (row=0; row<(height*GLOBALS_MAGNIFY_MULT); row++) { //iterate through the height of the object
+		for (col=0; col<(width*GLOBALS_MAGNIFY_MULT); col++) {	//iterate through the width of the object
 			//if the bitmap tells you to draw and the force is strong
-			if ((bitmap[row/MAGNIFY_MULT] & (1<<(width-1-col/MAGNIFY_MULT))))
+			if ((bitmap[row/GLOBALS_MAGNIFY_MULT] & (1<<(width-1-col/GLOBALS_MAGNIFY_MULT))))
 			{
-				drawPixel((row+startPoint.y), (col+startPoint.x), color); //draw the pixel in the color
+				render_drawPixel((row+startPoint.y), (col+startPoint.x), color); //draw the pixel in the color
 			}
 			else
 			{
 				if (force) //if the force option is enabled, draw the background black
-					drawPixel((row+startPoint.y), (col+startPoint.x), BLACK);
+					render_drawPixel((row+startPoint.y), (col+startPoint.x), GLOBALS_BLACK);
 				else //otherwise, skip the pixels that you don't need to color in
 					continue;
 			}
@@ -173,71 +163,65 @@ void drawObject(uint32_t bitmap[], uint16_t width, uint16_t height, point_t star
 }
 
 //Draws the initial game screen (just the green line and the black background).
-void drawScreenInit()
+void render_drawScreenInit()
 {
 	uint16_t row=0, col=0;
-	for( row=0; row<HEIGHT_DISPLAY; row++) { //iterate through the display height
-		for(col=0; col<WIDTH_DISPLAY; col++) { //iterate through the width too
+	for( row=0; row<GLOBALS_HEIGHT_DISPLAY; row++) { //iterate through the display height
+		for(col=0; col<GLOBALS_WIDTH_DISPLAY; col++) { //iterate through the width too
 			//if we're in the spot where green should be drawn
-			if (row > BOTTOMLINE_TOP && row < BOTTOMLINE_TOP + BOTTOMLINE_WIDTH)
+			if (row > GLOBALS_BOTTOMLINE_TOP && row < GLOBALS_BOTTOMLINE_TOP + GLOBALS_BOTTOMLINE_WIDTH)
 			{
 				//framePointer0[row*WIDTH_DISPLAY + col] = GREEN; //draw green pixels
-				drawPixel(row, col, GREEN);
+				render_drawPixel(row, col, GLOBALS_GREEN);
 			}
 			else
 			{
 				//framePointer0[row*WIDTH_DISPLAY + col] = BLACK; //draw black pixels
-				drawPixel(row, col, BLACK);
+				render_drawPixel(row, col, GLOBALS_BLACK);
 			}
 		}
 	}
 }
 
 //Initially draws the tank
-void drawTankInit()
+void render_drawTankInit()
 {
-	point_t tankStartPoint = {TANK_START_X, TANK_START_Y}; //put the tank at its start point
-	drawObject(tank_15x8, TANK_WIDTH, TANK_HEIGHT, tankStartPoint, GREEN, FORCE_BLACK_BACKGROUND); //draw the tank
-	setTankPosition(TANK_START_X); //set global variable
+	point_t tankStartPoint = {GLOBALS_TANK_START_X, GLOBALS_TANK_START_Y}; //put the tank at its start point
+	render_drawObject(tank_15x8, GLOBALS_TANK_WIDTH, GLOBALS_TANK_HEIGHT, tankStartPoint, GLOBALS_GREEN, GLOBALS_FORCE_BLACK_BACKGROUND); //draw the tank
+	globals_setTankPosition(GLOBALS_TANK_START_X); //set global variable
 }
 
 //Initially draws the aliens
-void drawAliensInit()
+void render_drawAliensInit()
 {
 	uint8_t r = 0, c = 0;
-	for (r = 0; r < NUM_ALIEN_ROWS; r++) //alien rows
+	for (r = 0; r < GLOBALS_NUM_ALIEN_ROWS; r++) //alien rows
 	{
-		for (c = 0; c < NUM_ALIEN_COLUMNS; c++) //alien column
+		for (c = 0; c < GLOBALS_NUM_ALIEN_COLUMNS; c++) //alien column
 		{
-			uint16_t x = ALIENS_START_X + (ALIEN_WIDTH * MAGNIFY_MULT * c) + (ALIEN_SPACE_HORIZ * c);
-			uint16_t y = (ALIENS_START_Y + (ALIEN_HEIGHT * MAGNIFY_MULT * r) + ALIEN_SPACE_VERT * r);
+			uint16_t x = GLOBALS_ALIENS_START_X + (GLOBALS_ALIEN_WIDTH * GLOBALS_MAGNIFY_MULT * c) + (GLOBALS_ALIEN_SPACE_HORIZ * c);
+			uint16_t y = (GLOBALS_ALIENS_START_Y + (GLOBALS_ALIEN_HEIGHT * GLOBALS_MAGNIFY_MULT * r) + GLOBALS_ALIEN_SPACE_VERT * r);
 			point_t alienStartPoint = {x, y};
-			if (r < NUM_TOP_ALIEN_ROWS) //if we're drawing a top alien
-				drawObject(alien_top_out_12x8, ALIEN_WIDTH, ALIEN_HEIGHT, alienStartPoint, WHITE, FORCE_BLACK_BACKGROUND); //draw top alien
-			else if(r < NUM_TOP_ALIEN_ROWS + NUM_MIDDLE_ALIEN_ROWS) //if we're drawing a middle alien
-				drawObject(alien_middle_out_12x8, ALIEN_WIDTH, ALIEN_HEIGHT, alienStartPoint, WHITE, FORCE_BLACK_BACKGROUND); //draw middle alien
+			if (r < GLOBALS_NUM_TOP_ALIEN_ROWS) //if we're drawing a top alien
+				render_drawObject(alien_top_out_12x8, GLOBALS_ALIEN_WIDTH, GLOBALS_ALIEN_HEIGHT, alienStartPoint, GLOBALS_WHITE, GLOBALS_FORCE_BLACK_BACKGROUND); //draw top alien
+			else if(r < GLOBALS_NUM_TOP_ALIEN_ROWS + GLOBALS_NUM_MIDDLE_ALIEN_ROWS) //if we're drawing a middle alien
+				render_drawObject(alien_middle_out_12x8, GLOBALS_ALIEN_WIDTH, GLOBALS_ALIEN_HEIGHT, alienStartPoint, GLOBALS_WHITE, GLOBALS_FORCE_BLACK_BACKGROUND); //draw middle alien
 			else // we must be drawing a bottom alien
-				drawObject(alien_bottom_out_12x8, ALIEN_WIDTH, ALIEN_HEIGHT, alienStartPoint, WHITE, FORCE_BLACK_BACKGROUND); //draw bottom alien
+				render_drawObject(alien_bottom_out_12x8, GLOBALS_ALIEN_WIDTH, GLOBALS_ALIEN_HEIGHT, alienStartPoint, GLOBALS_WHITE, GLOBALS_FORCE_BLACK_BACKGROUND); //draw bottom alien
 		}
 	}
-	point_t alienBlockStartPoint = {ALIENS_START_X, ALIENS_START_Y};
+	point_t alienBlockStartPoint = {GLOBALS_ALIENS_START_X, GLOBALS_ALIENS_START_Y};
 	aliens_setAlienBlockPosition(alienBlockStartPoint); //set global
 }
 
-#define GAME_OVER_WIDTH 33
-#define GAME_OVER_HEIGHT 5
-#define GAME_OVER_START_X 275
-#define GAME_OVER_START_Y 70
-
 //Draws the game over screen when the game ends
-void drawGameOverScreen(u32 color)
+void render_drawGameOverScreen(u32 color)
 {
-	drawObject(gameOver_33x5, GAME_OVER_WIDTH, GAME_OVER_HEIGHT, (point_t) {GAME_OVER_START_X, GAME_OVER_START_Y}, color, FORCE_BLACK_BACKGROUND);
+	render_drawObject(gameOver_33x5, GAME_OVER_WIDTH, GAME_OVER_HEIGHT, (point_t) {GAME_OVER_START_X, GAME_OVER_START_Y}, color, GLOBALS_FORCE_BLACK_BACKGROUND);
 }
 
-
 //Initializes the display
-void disp_init()
+void render_disp_init()
 {
 	//initialize display stuff
 
@@ -288,8 +272,8 @@ void disp_init()
 	// We need to give the frame buffer pointers to the memory that it will use. This memory
 	// is where you will write your video data. The vdma IP/driver then streams it to the HDMI
 	// IP.
-	myFrameBuffer.FrameStoreStartAddr[0] = FRAME_BUFFER_0_ADDR;
-	myFrameBuffer.FrameStoreStartAddr[1] = FRAME_BUFFER_0_ADDR + 4*640*480;
+	myFrameBuffer.FrameStoreStartAddr[0] = RENDER_FRAME_BUFFER_0_ADDR;
+	myFrameBuffer.FrameStoreStartAddr[1] = RENDER_FRAME_BUFFER_0_ADDR + 4*640*480;
 
 	if(XST_FAILURE == XAxiVdma_DmaSetBufferAddr(&videoDMAController, XAXIVDMA_READ,
 			myFrameBuffer.FrameStoreStartAddr)) {
@@ -300,27 +284,27 @@ void disp_init()
 	// Now, let's get ready to start displaying some stuff on the screen.
 
 	//Draw everything on screen in original positions
-	drawScreenInit(); //draw the main screen
-	drawTankInit(); //draw the tank
-	drawBunkersInit(); //draw the bunkers
-	drawAliensInit(); //draw the block of aliens
+	render_drawScreenInit(); //draw the main screen
+	render_drawTankInit(); //draw the tank
+	bunkers_drawBunkersInit(); //draw the bunkers
+	render_drawAliensInit(); //draw the block of aliens
 
 	//Draw the word "Lives"
-	drawObject(lives_18x5, LIVES_WIDTH, LIVES_HEIGHT, (point_t) {LIVES_X, LIVES_Y}, BULLET_WHITE, FORCE_BLACK_BACKGROUND);
+	render_drawObject(lives_18x5, RENDER_LIVES_WIDTH, RENDER_LIVES_HEIGHT, (point_t) {RENDER_LIVES_X, RENDER_LIVES_Y}, GLOBALS_BULLET_WHITE, GLOBALS_FORCE_BLACK_BACKGROUND);
 	//Draw the word "Score"
-	drawObject(score_20x5, SCORE_WIDTH, SCORE_HEIGHT, (point_t) {SCORE_X, SCORE_Y}, BULLET_WHITE, FORCE_BLACK_BACKGROUND);
-	setScore(0); //initialize the score
-	updateScoreDisplay(0); //draw the score
+	render_drawObject(score_20x5, RENDER_SCORE_WIDTH, RENDER_SCORE_HEIGHT, (point_t) {RENDER_SCORE_X, RENDER_SCORE_Y}, GLOBALS_BULLET_WHITE, GLOBALS_FORCE_BLACK_BACKGROUND);
+	globals_setScore(0); //initialize the score
+	render_updateScoreDisplay(0); //draw the score
 
 	//draw tank lives
 	int n;
-	for(n = 0; n < NUM_LIVES_INIT; n++) //Just draw a tank three times at the top of the screen
+	for(n = 0; n < RENDER_NUM_LIVES_INIT; n++) //Just draw a tank three times at the top of the screen
 	{
 		/*int x = LIVES_X + LIVES_WIDTH*MAGNIFY_MULT + LIVES_TANK_SPACE + n*(TANK_WIDTH*MAGNIFY_MULT + TANK_SPACE);
 		int y = LIVES_Y - (TANK_HEIGHT - LIVES_HEIGHT)*MAGNIFY_MULT;
 		drawObject(tank_15x8, TANK_WIDTH, TANK_HEIGHT, (point_t) {x, y}, GREEN, FORCE_BLACK_BACKGROUND);*/
-		updateLivesDisplay(INC);
-		updateLives(INC); //update the global variable tracking number of lives
+		render_updateLivesDisplay(RENDER_INC);
+		globals_updateLives(RENDER_INC); //update the global variable tracking number of lives
 	}
 	srand(time(NULL)); //set random seed
 	// This tells the HDMI controller the resolution of your display (there must be a better way to do this).

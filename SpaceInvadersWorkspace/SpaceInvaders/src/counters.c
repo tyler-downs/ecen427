@@ -13,8 +13,9 @@
 #include "render.h"
 
 
+///////////////////////// DEFINES //////////////////////////////
 //There is one interrupt every 10ms
-#define MOVE_ALIENS_COUNTER_MAX 45 //how much time passes between alien movements //TODO: this should be 90
+#define MOVE_ALIENS_COUNTER_MAX 90 //how much time passes between alien movements
 #define MOVE_BULLETS_COUNTER_MAX 2 //how much time passes between moving the bullets (controls bullet speed)
 #define ALIEN_EXPLODE_COUNTER_MAX 10 //how long the alien explosion stays on screen after an alien is shot
 #define TANK_DEAD_COUNTER_MAX 100 //how long the tank stays dead
@@ -25,6 +26,11 @@
 #define SAUCER_MOVE_COUNTER_MAX 3 //how long to wait until moving the SAUCER again (controls SAUCER movement speed)
 #define SAUCER_SCORE_COUNTER_MAX 50 //how long the saucer score will remain on the screen
 #define GAME_OVER_COUNTER_MAX 300 //how long before you can restart the game
+#define RAND_MOD_SAUCER_SCORE 4 //used to mod the rand for the saucer score
+#define RAND_MULT_SAUCER_SCORE 50 //multiply the modded rand by this to get the score
+#define RAND_SCORE_OFFSET 1 //used in calculating the rand score for the saucer
+#define MAX_TIME_BETWEEN_ALIEN_BULLETS 300 //at least one alien bullet should fire every 3 seconds
+#define NEGATIVE_WIDTH_OF_SAUCER (-1 * SAUCER_WIDTH*GLOBALS_MAGNIFY_MULT) //used in calculating movement of saucer
 
 u32 moveAliensTickCtr = 0; //Counter for when to move the aliens
 u32 bulletMoveTickCtr = 0; //counter for when to advance the bullets that are on the screen
@@ -52,235 +58,218 @@ u8 saucerLaunched = FALSE; //flag to signal if saucer is launched
 
 void updateAlienTickCounter()
 {
-	moveAliensTickCtr++;
+	moveAliensTickCtr++; //increment the counter
 	if (moveAliensTickCtr > MOVE_ALIENS_COUNTER_MAX) //if it's time to move the aliens
 	{
+		//reset the counter
 		moveAliensTickCtr = 0;
+		//move the aliens
 		aliens_moveAliens();
-		//erode bunker blocks if necessary
-		//if the aliens are about to hit the bunkers
-			//figure out what bunker to erode
-			//erode the bunker block to 0
 		//if they've reached the bottom of the screen //ADDED TO moveAliens(), moveDownOneRow();
-		if (aliens_getBottomOfAliens() >= BUNKER_START_Y + BUNKER_HEIGHT)
+		if (aliens_getBottomOfAliens() >= BUNKERS_BUNKER_START_Y + BUNKERS_BUNKER_HEIGHT)
 		{
-			//game over
-			gameOver();
+			globals_gameOver();	//game over time, baby
 		}
-
-
 	}
 }
 
-//if the center button is pressed, the tank bullet will fire
+//If the center button is pressed, the tank bullet will fire
 void onFireTankBulletButtonPress()
 {
 	//if the center button is pressed
 	if (centerButtonPressed())
 	{
-		fireTankBullet();
+		bullets_fireTankBullet(); //fire a bullet
 	}
 }
 
-//decrements lives and removes the tank on the top of the display
+//Decrements lives and removes the tank on the top of the display
 void removeLife()
 {
 	//decrement global lives
-	updateLives(DEC);
+	globals_updateLives(RENDER_DEC);
 	//remove the tank from the lives display
-	updateLivesDisplay(DEC);
+	render_updateLivesDisplay(RENDER_DEC);
 	//if there are zero lives, gameOver()
-	if (getNumLives() == 0)
+	if (globals_getNumLives() == 0)
 	{
-		gameOver();
+		globals_gameOver(); //game over time, baby
 	}
 }
 
 
-
+//adds a life to the player's lives. Not that the player has a life.
 void addLife()
 {
 	//increment global lives
-	updateLives(INC);
+	globals_updateLives(RENDER_INC);
 	//add the tank from the lives display
-	updateLivesDisplay(INC);
+	render_updateLivesDisplay(RENDER_INC);
 }
 
+//Counter for handling updating the bullets, collisions, etc.
 void updateBulletMoveCounter()
 {
-	bulletMoveTickCtr++;
+	bulletMoveTickCtr++; //inc the counter
 	if (bulletMoveTickCtr > MOVE_BULLETS_COUNTER_MAX)//if the timer is expired
 	{
 		bulletMoveTickCtr = 0;//reset bullet move timer
-		if (tankBulletOnScreen())
+		if (bullets_tankBulletOnScreen())
 		{
-			int8_t alienHit = tankBulletWillHitAlien(); //check if an alien will get hit
-			int8_t bunkerHit = tankBulletWillHitBunker(); //check if a bunker will get hit
+			int8_t alienHit = bullets_tankBulletWillHitAlien(); //check if an alien will get hit
+			int8_t bunkerHit = bullets_tankBulletWillHitBunker(); //check if a bunker will get hit
 
-			if (alienHit > NO_HIT && !alienExplosionExists)//if tank bullet will hit an alien on next move (there is white in the rectangle ahead)
+			if (alienHit > BULLETS_NO_HIT && !alienExplosionExists)//if tank bullet will hit an alien on next move (there is white in the rectangle ahead)
 			{
 				aliens_killAlien(alienHit); //kill the alien in the array
 				//draw the alien explosion (and save its location)
 				alienExplosionLocation = aliens_getAlienLocation((uint8_t) alienHit);
-				drawObject(alien_explosion_12x10, ALIEN_EXPLOSION_WIDTH, ALIEN_EXPLOSION_HEIGHT, alienExplosionLocation, WHITE, LEAVE_BACKGROUND);
+				render_drawObject(alien_explosion_12x10, ALIEN_EXPLOSION_WIDTH, ALIEN_EXPLOSION_HEIGHT, alienExplosionLocation, GLOBALS_WHITE, GLOBALS_LEAVE_BACKGROUND);
 				alienExplosionExists = TRUE; //set global
 				alienExplodeCtr = 0;//reset explosion timer
 
-				eraseEntireTankBullet();//erase the bullet
-				disableTankBullet(); //reset global
+				bullets_eraseEntireTankBullet();//erase the bullet
+				bullets_disableTankBullet(); //reset global
 
-				incrementScore(aliens_alienPoints(alienHit));//increment the score, and update the screen
+				globals_incrementScore(aliens_alienPoints(alienHit));//increment the score, and update the screen
 				//if that was the last alien, LEVEL CLEARED! //ADDED TO killAlien()
 			}
-			else if (tankBulletWillHitSaucer())//else if the bullet will hit the saucer
+			else if (bullets_tankBulletWillHitSaucer())//else if the bullet will hit the saucer
 			{
 				//erase the space ship
-				eraseSaucer();
+				saucer_eraseSaucer();
 				//xil_printf("when saucer is killed, position = %d\n\r", getSaucerPosition());
 				//erase and disable the bullet
-				eraseEntireTankBullet();
-				disableTankBullet();
+				bullets_eraseEntireTankBullet();
+				bullets_disableTankBullet();
 				//flash random score
-				randScore = rand() % 4;
-				randScore = (randScore + 1) * 50;
-				xil_printf("randScore = %d\n\r", randScore);
+				randScore = rand() % RAND_MOD_SAUCER_SCORE;
+				randScore = (randScore + RAND_SCORE_OFFSET) * RAND_MULT_SAUCER_SCORE;
 				//increment score
-				printScoreOnSaucerDeath(randScore, GREEN);
-				incrementScore(randScore);
+				saucer_printScoreOnSaucerDeath(randScore, GLOBALS_GREEN);
+				globals_incrementScore(randScore);
 				//set flag to true
 				saucerScoreOnScreen = TRUE;
-
 				//disable saucerLaunched global
 				saucerLaunched = FALSE;
 			}
-			else if (bunkerHit > NO_HIT)//else if the bullet will hit a bunker
+			else if (bunkerHit > BULLETS_NO_HIT)//else if the bullet will hit a bunker
 			{
 				erodeBunkerBlockByNum(bunkerHit);//erode the bunker
-				eraseEntireTankBullet();//erase the bullet
-				disableTankBullet(); //reset global
+				bullets_eraseEntireTankBullet();//erase the bullet
+				bullets_disableTankBullet(); //reset global
 			}
 			else
 			{
 				//advance the tank bullet
-				advanceTankBullet();
+				bullets_advanceTankBullet();
 			}
 
 		}
-		//advanceAllAlienBullets(); //TEST
-		/*//returns true if the specified alien bullet will hit the tank on its next move
-		uint8_t alienBulletWillHitTank(uint8_t bulletNum)*/
 		//for each alien bullet on screen
 		uint8_t i;
-		for (i = 0; i < MAX_ALIEN_BULLETS; i++)
+		for (i = 0; i < GLOBALS_MAX_ALIEN_BULLETS; i++)
 		{
-			if (!isBulletActive(i)) {continue;}
+			if (!globals_isBulletActive(i)) {continue;} //skip this iteration if the alien bullet in question is not active
 
-			int8_t bunkerHit = alienBulletWillHitBunkerBlock(i);
+			int8_t bunkerHit = bullets_alienBulletWillHitBunkerBlock(i); //check to see if it will hit the bunkers
 
 			//if alien bullet will hit tank(and it's not dead already)
-			if (alienBulletWillHitTank(i))
+			if (bullets_alienBulletWillHitTank(i))
 			{
 				//draw the dead tank
-				drawObject(tank_dead_guise0_15x8, TANK_WIDTH, TANK_HEIGHT, (point_t){getTankPosition(), TANK_START_Y}, GREEN, FORCE_BLACK_BACKGROUND);
+				render_drawObject(tank_dead_guise0_15x8, GLOBALS_TANK_WIDTH, GLOBALS_TANK_HEIGHT, (point_t){globals_getTankPosition(), GLOBALS_TANK_START_Y}, GLOBALS_GREEN, GLOBALS_FORCE_BLACK_BACKGROUND);
 				//reset the dead tank timer and dead tank guise timer
 				tankDeadCtr = 0;
 				tankDeadGuiseCtr = 0;
 				//erase alien bullet
-				eraseAlienBullet(getAlienBulletType(i), getAlienBulletGuise(i), getAlienBulletPosition(i));
+				eraseAlienBullet(globals_getAlienBulletType(i), globals_getAlienBulletGuise(i), globals_getAlienBulletPosition(i));
 				//deactivate the bullet
-				setBulletStatus(i, FALSE);
+				globals_setBulletStatus(i, FALSE);
 				//disable tank movement, firing bullets (both tank bullets and alien bullets), or dying again(by setting dead variable)
 				tankDead = TRUE;
 				//remove a life
 				removeLife();
-				xil_printf("Removed life. Lives: %d  Bullet: %d\n\r", getNumLives(), i);
 			}
-
-			//else if alien bullet will hit dead tank
-				//erase bullet
-
 			//else if alien bullet will hit bunker
-
-			else if (bunkerHit != NO_HIT)
+			else if (bunkerHit != BULLETS_NO_HIT)
 			{
 				//erode bunker
 				erodeBunkerBlockByNum(bunkerHit);
 				//erase bullet
-				eraseAlienBullet(getAlienBulletType(i), getAlienBulletGuise(i), getAlienBulletPosition(i));
+				eraseAlienBullet(globals_getAlienBulletType(i), globals_getAlienBulletGuise(i), globals_getAlienBulletPosition(i));
 				//deactivate the bullet
-				setBulletStatus(i, FALSE);
+				globals_setBulletStatus(i, FALSE);
 			}
-
 			else  //advance alien bullet
 			{
 				advanceOneAlienBullet(i);
 			}
 
 		} //end for loop through 4 alien bullets
-
 	}
-
 }
 
+//Counter updater for the alien explosion on the screen
 void updateAlienExplodeCounter()
 {
-	alienExplodeCtr++;
+	alienExplodeCtr++; //inc the counter
 	if(alienExplosionExists && (alienExplodeCtr > ALIEN_EXPLODE_COUNTER_MAX))//if the timer has expired, and there is an explosion on the screen
 	{
-		drawObject(alien_explosion_12x10, ALIEN_EXPLOSION_WIDTH, ALIEN_EXPLOSION_HEIGHT, alienExplosionLocation, BLACK, FORCE_BLACK_BACKGROUND);//erase the alien explosion
+		//erase the alien explosion
+		render_drawObject(alien_explosion_12x10, ALIEN_EXPLOSION_WIDTH, ALIEN_EXPLOSION_HEIGHT, alienExplosionLocation, GLOBALS_BLACK, GLOBALS_FORCE_BLACK_BACKGROUND);
 		alienExplosionExists = FALSE; //disable the global
 	}
 }
 
+//Counter updater for the dead tank counter
 void updateTankDeadCounter()
 {
-	tankDeadCtr++;
+	tankDeadCtr++; //inc the counter
 	//if the timer has expired
 	if (tankDeadCtr >= TANK_DEAD_COUNTER_MAX)
 	{
 		tankDeadCtr = 0;
-		if (tankDead)
+		if (tankDead) //if the tank is actually dead
 		{
 			//redraw the live tank
-			drawObject(tank_15x8, TANK_WIDTH, TANK_HEIGHT, (point_t){getTankPosition(), TANK_START_Y}, GREEN, FORCE_BLACK_BACKGROUND);
+			render_drawObject(tank_15x8, GLOBALS_TANK_WIDTH, GLOBALS_TANK_HEIGHT, (point_t){globals_getTankPosition(), GLOBALS_TANK_START_Y}, GLOBALS_GREEN, GLOBALS_FORCE_BLACK_BACKGROUND);
 			//reenable tank movement, bullet firing, and dying again (by disabling dead variable)
 			tankDead = FALSE;
-			xil_printf("tankDead = FALSE in updateTankDeadCounter()\n\r");
 		}
-
 	}
-
 }
-
 
 //switches the guise of the dead tank
 void switchDeadTankGuises()
 {
 	//if it's 0, make it 1
-	if (getDeadTankGuise() == dead_tank_guise_0)
+	if (globals_getDeadTankGuise() == dead_tank_guise_0)
 	{
-		setDeadTankGuise(dead_tank_guise_1);
+		globals_setDeadTankGuise(dead_tank_guise_1);
 	}
 	//if it's 1, make it 0
 	else
 	{
-		setDeadTankGuise(dead_tank_guise_0);
+		globals_setDeadTankGuise(dead_tank_guise_0);
 	}
 }
 
+//Draws the dead tank in its correct guise
 void drawDeadTank()
 {
 	//if it's guise 0, draw that one
-	if (getDeadTankGuise() == dead_tank_guise_0)
+	if (globals_getDeadTankGuise() == dead_tank_guise_0)
 	{
-		drawObject(tank_dead_guise0_15x8, TANK_WIDTH, TANK_HEIGHT, (point_t){getTankPosition(), TANK_START_Y}, GREEN, FORCE_BLACK_BACKGROUND);
+		render_drawObject(tank_dead_guise0_15x8, GLOBALS_TANK_WIDTH, GLOBALS_TANK_HEIGHT, (point_t){globals_getTankPosition(), GLOBALS_TANK_START_Y}, GLOBALS_GREEN, GLOBALS_FORCE_BLACK_BACKGROUND);
 	}
 	else //if it's guise 1, draw that one
 	{
-		drawObject(tank_dead_guise1_15x8, TANK_WIDTH, TANK_HEIGHT, (point_t){getTankPosition(), TANK_START_Y}, GREEN, FORCE_BLACK_BACKGROUND);
+		render_drawObject(tank_dead_guise1_15x8, GLOBALS_TANK_WIDTH, GLOBALS_TANK_HEIGHT, (point_t){globals_getTankPosition(), GLOBALS_TANK_START_Y}, GLOBALS_GREEN, GLOBALS_FORCE_BLACK_BACKGROUND);
 	}
 }
 
+//Counter updater for the dead tank guise counter
 void updateTankDeadGuiseCounter()
 {
 	tankDeadGuiseCtr++;
@@ -297,6 +286,7 @@ void updateTankDeadGuiseCounter()
 
 }
 
+//Counter updater for the tank move counter
 void updateTankMoveCounter()
 {
 	if(tankMoveCtr <= TANK_MOVE_COUNTER_MAX) //if the button is not pressed, be ready to move as soon as it is. Don't want to roll over or go out of bounds
@@ -305,47 +295,48 @@ void updateTankMoveCounter()
 	{
 		if (leftButtonPressed() && !rightButtonPressed())//if left button pressed (and only left)
 		{
-			moveTankLeft(); //move the tank left
+			globals_moveTankLeft(); //move the tank left
 			tankMoveCtr = 0; //reset tankMoveCtr
 		}
 		else if (rightButtonPressed() && !leftButtonPressed()) //if the right button is pressed (and only right)
 		{
-			moveTankRight(); //move the tank right
+			globals_moveTankRight(); //move the tank right
 			tankMoveCtr = 0; //reset tankMoveCtr
 		}
 	}
 }
 
-#define MAX_TIME_BETWEEN_ALIEN_BULLETS 300 //at least one alien bullet should fire every 3 seconds
+//Facilitates the firing of alien bullets, including timing of them
 void updateFireNewAlienBulletCtr()
 {
 	fireNewAlienBulletCtr++;
-	if (fireNewAlienBulletCtr > fireNewAlienBulletMaxTime)
+	if (fireNewAlienBulletCtr > fireNewAlienBulletMaxTime) // if we're at the max time
 	{
-		fireRandomAlienBullet(); //fire a random alien bullet
+		bullets_fireRandomAlienBullet(); //fire a random alien bullet
 		fireNewAlienBulletMaxTime = rand() % MAX_TIME_BETWEEN_ALIEN_BULLETS; //set fireNewAlienBulletMaxTime to a new random number
 		fireNewAlienBulletCtr = 0;//reset fireNewAlienBulletCtr
 	}
 }
 
+//Handles the saucer launch counter
 void updateSaucerLaunchCtr()
 {
 	saucerLaunchCtr++;
 	if (saucerLaunchCtr > SAUCER_WAIT_TIME)
 	{
 		saucerLaunchCtr = 0;
-		if (saucerLaunched == FALSE)
+		if (saucerLaunched == FALSE) //if the saucer hasnt been launched
 		{
 			//set saucer launched global variable //it's our responsibility to make sure the ship is off the screen before launching again
 			saucerLaunched = TRUE;
 			//init ship depending on direction
-			if (getSaucerDirection() == saucer_moves_left)
+			if (saucer_getSaucerDirection() == saucer_moves_left)
 			{
-				initSaucerMovingLeft();
+				saucer_initSaucerMovingLeft();
 			}
 			else
 			{
-				initSaucerMovingRight();
+				saucer_initSaucerMovingRight();
 			}
 			//reset moveSaucerCtr
 			moveSaucerCtr = 0;
@@ -353,24 +344,24 @@ void updateSaucerLaunchCtr()
 	}
 }
 
-#define NEGATIVE_WIDTH_OF_SAUCER (-1 * SAUCER_WIDTH*MAGNIFY_MULT)
 //Returns TRUE if the saucer is off screen, else returns FALSE
 uint8_t isSaucerOffScreen()
 {
-	if ((getSaucerPosition() < NEGATIVE_WIDTH_OF_SAUCER) || (getSaucerPosition() > (WIDTH_DISPLAY + SAUCER_WIDTH)))
+	if ((globals_getSaucerPosition() < NEGATIVE_WIDTH_OF_SAUCER) || (globals_getSaucerPosition() > (GLOBALS_WIDTH_DISPLAY + SAUCER_WIDTH)))
 	{
-		xil_printf("Saucer position in isSaucerOffScreen: %d\n\r", getSaucerPosition());
+		xil_printf("Saucer position in isSaucerOffScreen: %d\n\r", globals_getSaucerPosition());
 		return TRUE;
 	}
 	else return FALSE;
 }
 
-void setGameOverState()
+//Sets the global game over state to true
+void counters_setGameOverState()
 {
 	gameOverState = TRUE;
 }
 
-
+//Updates the moving of the saucer
 void updateMoveSaucerCtr()
 {
 	//if the Saucer has been launched (check global variable)
@@ -382,14 +373,14 @@ void updateMoveSaucerCtr()
 		if (moveSaucerCtr > SAUCER_MOVE_COUNTER_MAX)
 		{
 			//move Saucer in direction specified by global enum variable
-			if (getSaucerDirection() == saucer_moves_left)
+			if (saucer_getSaucerDirection() == saucer_moves_left)
 			{
-				moveSaucerLeft();
+				saucer_moveSaucerLeft();
 				//printf("Moving saucer left\n\r");
 			}
 			else
 			{
-				moveSaucerRight();
+				saucer_moveSaucerRight();
 				//printf("Moving saucer right\n\r");
 			}
 			//reset moveSaucerCtr
@@ -401,16 +392,13 @@ void updateMoveSaucerCtr()
 				//disable "launched" global variable
 				saucerLaunched = FALSE;
 				//switch direction in global enum variable
-				switchSaucerMoveDirection();
+				saucer_switchSaucerMoveDirection();
 			}
-
 		}
-
 	}
-
-
 }
 
+//Updates the saucer score counter
 void updateSaucerScoreCounter()
 {
 	if (saucerScoreOnScreen)
@@ -423,7 +411,7 @@ void updateSaucerScoreCounter()
 			//reset the counter
 			saucerScoreCtr = 0;
 			//erase the score
-			printScoreOnSaucerDeath(randScore, BLACK);
+			saucer_printScoreOnSaucerDeath(randScore, GLOBALS_BLACK);
 			//set the flag to false
 			saucerScoreOnScreen = FALSE;
 		}
@@ -435,56 +423,57 @@ void restartGameOnGameOver()
 {
 	gameOverState = FALSE;
 	//erase the game over stuff
-	drawGameOverScreen(BLACK);
+	render_drawGameOverScreen(GLOBALS_BLACK);
 	//erase all remaining aliens
 	aliens_eraseAllAliens();
 	//revive the aliens
 	aliens_reviveAllAliens();
 	//revive the bunkers
-	reviveAllBunkers();
+	bunkers_reviveAllBunkers();
 	//init the display again
-	setScore(0); //initialize the score
-	updateScoreDisplay(0); //draw the score
+	globals_setScore(0); //initialize the score
+	render_updateScoreDisplay(0); //draw the score
 
 	//draw tank lives
 	int n;
-	for(n = 0; n < NUM_LIVES_INIT; n++) //Just draw a tank three times at the top of the screen
+	for(n = 0; n < RENDER_NUM_LIVES_INIT; n++) //Just draw a tank three times at the top of the screen
 	{
-		updateLivesDisplay(INC);
-		updateLives(INC); //update the global variable tracking number of lives
+		render_updateLivesDisplay(RENDER_INC);
+		globals_updateLives(RENDER_INC); //update the global variable tracking number of lives
 	}
 
 	//redraw the live tank
-	drawObject(tank_15x8, TANK_WIDTH, TANK_HEIGHT, (point_t){getTankPosition(), TANK_START_Y}, GREEN, FORCE_BLACK_BACKGROUND);
+	render_drawObject(tank_15x8, GLOBALS_TANK_WIDTH, GLOBALS_TANK_HEIGHT, (point_t){globals_getTankPosition(), GLOBALS_TANK_START_Y}, GLOBALS_GREEN, GLOBALS_FORCE_BLACK_BACKGROUND);
 	//reenable tank movement, bullet firing, and dying again (by disabling dead variable)
 	tankDead = FALSE;
-
-	//drawTankInit(); //draw the tank
-	drawBunkersInit(); //draw the bunkers
-	drawAliensInit(); //draw the block of aliens
+	bunkers_drawBunkersInit(); //draw the bunkers
+	render_drawAliensInit(); //draw the block of aliens
 }
 
-void updateAllCounters()
+//updates all counters, depending on the game state
+void counters_updateAllCounters()
 {
-	//MIGHT NEED TO CHANGE ORDER
-	if (gameOverState)
+	if (gameOverState) //if we're in the game over state
 	{
-		gameOverCtr++;
+		gameOverCtr++; //inc the counter
+		//if any of the buttons are pressed after the timer runs out
 		if((centerButtonPressed() || leftButtonPressed() || rightButtonPressed()) && gameOverCtr >= GAME_OVER_COUNTER_MAX)
 		{
-			gameOverCtr = 0;
-			restartGameOnGameOver();
+			gameOverCtr = 0; 			//reset the ctr
+			restartGameOnGameOver(); 	//restarts the game
 			return;
 		}
-		else return;
+		else return; //dont inc the other counters if the game is over
 	}
-	if (tankDead)
+	if (tankDead) //if the tank is dead
 	{
+		//only inc these two counters
 		updateTankDeadCounter();
 		updateTankDeadGuiseCounter();
 	}
 	else
 	{
+		//inc all of the gameplay counters
 		updateTankMoveCounter();
 		onFireTankBulletButtonPress();
 		updateBulletMoveCounter();

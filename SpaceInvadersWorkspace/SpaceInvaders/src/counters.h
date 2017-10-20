@@ -13,6 +13,9 @@
 #include "bullets.h"
 
 //updates all of the gameplay counters
-void updateAllCounters();
+void counters_updateAllCounters();
+
+//Sets the global game over state to true
+void counters_setGameOverState();
 
 #endif /* COUNTERS_H_ */

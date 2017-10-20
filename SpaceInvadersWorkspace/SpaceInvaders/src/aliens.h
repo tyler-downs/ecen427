@@ -11,8 +11,12 @@
 #include "render.h"
 
 ///////////// DEFINES /////////////////////////////
-#define SCREEN_EDGE_BUMPER_PIXELS 10 //The number of pixels that acts as a buffer when the aliens reach the screen edge
-#define ALIEN_MOVE_PIXELS 6 //The amount the aliens move with each step
+#define ALIENS_SCREEN_EDGE_BUMPER_PIXELS 10 //The number of pixels that acts as a buffer when the aliens reach the screen edge
+#define ALIENS_MOVE_PIXELS 6 				//The amount the aliens move with each step
+#define ALIENS_TOP_ALIEN_POINTS 40 			//The point worth of the top aliens
+#define ALIENS_MIDDLE_ALIEN_POINTS 20		//The point worth of the middle aliens
+#define ALIENS_BOTTOM_ALIEN_POINTS 10		//The point worth of the bottom aliens
+#define ALIENS_HALF_ALIEN (GLOBALS_ALIEN_WIDTH / 2)		//Half the width of an alien
 
 
 //////////// FUNCTION PROTOTYPES /////////////////
