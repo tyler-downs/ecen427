@@ -20,7 +20,7 @@ void renderTest()
 		switch(input)
 		{
 		case '8':
-			moveAliens();		//Moves the aliens
+			aliens_moveAliens();		//Moves the aliens
 			break;
 		case '4':
 			moveTankLeft();		//Moves the tank left
@@ -32,7 +32,7 @@ void renderTest()
 			printf("Enter an alien index to kill:\n\r");
 			int alienToKill;
 			scanf("%d", &alienToKill);
-			killAlien(alienToKill);	//Kills an alien
+			aliens_killAlien(alienToKill);	//Kills an alien
 			break;
 		case '5':
 			fireTankBullet();	//Fires the tank bullet

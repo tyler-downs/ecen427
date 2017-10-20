@@ -68,8 +68,8 @@ void aliens_switchAlienGuises()
 //Given a row and column index, returns the location of the corresponding alien on the screen
 point_t aliens_getOneAlienLocation(uint8_t row, uint8_t col)
 {
-	int16_t x = getAlienBlockPosition().x + (ALIEN_WIDTH * MAGNIFY_MULT * col) + (ALIEN_SPACE_HORIZ * col); //set this alien's start x
-	int16_t y = getAlienBlockPosition().y + (ALIEN_HEIGHT * MAGNIFY_MULT * row) + (ALIEN_SPACE_VERT * row); //set this alien's start y
+	int16_t x = aliens_getAlienBlockPosition().x + (ALIEN_WIDTH * MAGNIFY_MULT * col) + (ALIEN_SPACE_HORIZ * col); //set this alien's start x
+	int16_t y = aliens_getAlienBlockPosition().y + (ALIEN_HEIGHT * MAGNIFY_MULT * row) + (ALIEN_SPACE_VERT * row); //set this alien's start y
 	point_t alienLocation = {x, y}; //create the point_t variable to use in draw Object for this alien
 	return alienLocation;
 }
@@ -216,9 +216,9 @@ void aliens_moveDownOneRow()
 	//erase the whole aliens
 	aliens_eraseAllAliens();
 	//move the start line down one row
-	point_t newAlienBlockPosition = {getAlienBlockPosition().x, \
-			getAlienBlockPosition().y + (ALIEN_HEIGHT * MAGNIFY_MULT)};
-	setAlienBlockPosition(newAlienBlockPosition);
+	point_t newAlienBlockPosition = {aliens_getAlienBlockPosition().x, \
+			aliens_getAlienBlockPosition().y + (ALIEN_HEIGHT * MAGNIFY_MULT)};
+	aliens_setAlienBlockPosition(newAlienBlockPosition);
 	//draw all of the aliens
 	aliens_drawAllAliens();
 	//switch the direction of the aliens
@@ -232,7 +232,7 @@ void aliens_moveDownOneRow()
 
 //Returns the index of the rightmost column that has aliens still in it.
 //Columns are indexed 0-10. There are 11 columns in total
-int8_t getRightmostLivingAlienColumn()
+int8_t aliens_getRightmostLivingAlienColumn()
 {
 	int8_t row = 0, col = MAX_ALIEN_COL_INDEX;
 	while (col >= 0)
@@ -252,7 +252,7 @@ int8_t getRightmostLivingAlienColumn()
 }
 
 //Returns the leftmost living column of aliens
-int8_t getLeftmostLivingAlienColumn()
+int8_t aliens_getLeftmostLivingAlienColumn()
 {
 	int8_t row = 0, col = 0;
 	while (col <= MAX_ALIEN_COL_INDEX) //iterate through columns
@@ -276,11 +276,11 @@ int8_t getLeftmostLivingAlienColumn()
 
 
 //Returns the x coordinate of the right edge of the alien block
-uint16_t getRightEdgeOfAlienBlock()
+uint16_t aliens_getRightEdgeOfAlienBlock()
 {
 	//check to see what the rightmost column of aliens is
-	uint8_t rightmostLivingAlienColumn = getRightmostLivingAlienColumn();
-	uint16_t r = getAlienBlockPosition().x \
+	uint8_t rightmostLivingAlienColumn = aliens_getRightmostLivingAlienColumn();
+	uint16_t r = aliens_getAlienBlockPosition().x \
 			+ (ALIEN_WIDTH * MAGNIFY_MULT * (rightmostLivingAlienColumn+1)) \
 			+ (ALIEN_SPACE_HORIZ * (rightmostLivingAlienColumn));
 	return r;
@@ -289,51 +289,51 @@ uint16_t getRightEdgeOfAlienBlock()
 
 //Returns the value that must be added to the alien block position so it can
 //make it all the way to the left edge of the screen.
-int16_t getLeftmostLivingAlienColumnAdjustment()
+int16_t aliens_getLeftmostLivingAlienColumnAdjustment()
 {
-	return (getLeftmostLivingAlienColumn() * (ALIEN_WIDTH  + ALIEN_SPACE_HORIZ + NUM_ALIEN_COLUMNS));
+	return (aliens_getLeftmostLivingAlienColumn() * (ALIEN_WIDTH  + ALIEN_SPACE_HORIZ + NUM_ALIEN_COLUMNS));
 }
 
 //Updates the block position of aliens depending on current location.
 //Called in moveAliens()
-void updateAlienBlockPosition()
+void aliens_updateAlienBlockPosition()
 {
 	//check the bounds
 	if (aliens_currentAlienDirection == aliens_move_right)
 	{
 		//if the right edge of the alien block is at the edge of the screen minus a bit
-		if (getRightEdgeOfAlienBlock() >= (WIDTH_DISPLAY - SCREEN_EDGE_BUMPER_PIXELS))
+		if (aliens_getRightEdgeOfAlienBlock() >= (WIDTH_DISPLAY - SCREEN_EDGE_BUMPER_PIXELS))
 		{
-			moveDownOneRow();
+			aliens_moveDownOneRow();
 		}
 		else
 		{
 			//update the alien's position
 			aliens_oldAlienBlockPosition = aliens_getAlienBlockPosition();
-			point_t newAlienBlockPosition = {(getAlienBlockPosition().x + ALIEN_MOVE_PIXELS), getAlienBlockPosition().y};
-			setAlienBlockPosition(newAlienBlockPosition);
+			point_t newAlienBlockPosition = {(aliens_getAlienBlockPosition().x + ALIEN_MOVE_PIXELS), aliens_getAlienBlockPosition().y};
+			aliens_setAlienBlockPosition(newAlienBlockPosition);
 		}
 	}
 	else //if aliens are moving left
 	{
 		//if the left end of the alien block is too close to the left edge of the screen
-		if ( (getAlienBlockPosition().x + getLeftmostLivingAlienColumnAdjustment()) <= SCREEN_EDGE_BUMPER_PIXELS)
+		if ( (aliens_getAlienBlockPosition().x + aliens_getLeftmostLivingAlienColumnAdjustment()) <= SCREEN_EDGE_BUMPER_PIXELS)
 		{
-			moveDownOneRow();
+			aliens_moveDownOneRow();
 		}
 		else
 		{
 			//update the alien's position
 			aliens_oldAlienBlockPosition = aliens_getAlienBlockPosition();
-			point_t newAlienBlockPosition = {(getAlienBlockPosition().x - ALIEN_MOVE_PIXELS), getAlienBlockPosition().y};
-			setAlienBlockPosition(newAlienBlockPosition);
+			point_t newAlienBlockPosition = {(aliens_getAlienBlockPosition().x - ALIEN_MOVE_PIXELS), aliens_getAlienBlockPosition().y};
+			aliens_setAlienBlockPosition(newAlienBlockPosition);
 		}
 	}
 }
 
 //Erases the half of the alien that needs to be erased when moving the alien over.
 //Takes in the row and column index of the alien and finds position based on that current alien block position.
-void eraseAlienRectangle(uint8_t r, uint8_t c)
+void aliens_eraseAlienRectangle(uint8_t r, uint8_t c)
 {
 	uint16_t xOld = aliens_oldAlienBlockPosition.x + (ALIEN_WIDTH * MAGNIFY_MULT * c) + (ALIEN_SPACE_HORIZ * c); //set this alien's start x
 	uint16_t yOld = aliens_oldAlienBlockPosition.y + (ALIEN_HEIGHT * MAGNIFY_MULT * r) + (ALIEN_SPACE_VERT * r); //set this alien's start y
@@ -348,12 +348,12 @@ void eraseAlienRectangle(uint8_t r, uint8_t c)
 }
 
 //Moves all living aliens one step. Handles moving down rows, switching directions, etc.
-void moveAliens()
+void aliens_moveAliens()
 {
 	//switch alien guise
-	switchAlienGuises();
+	aliens_switchAlienGuises();
 	//update the alien positions
-	updateAlienBlockPosition();
+	aliens_updateAlienBlockPosition();
 	if (!aliens_movedDownRow)
 	{
 		uint8_t r = 0, c = 0;
@@ -364,9 +364,9 @@ void moveAliens()
 				if (aliens_aliensAlive[r][c]) //if the alien at this position is alive
 				{
 					//erase the rectangle for the aliens
-					eraseAlienRectangle(r, c);
+					aliens_eraseAlienRectangle(r, c);
 					//draw the current alien
-					drawOneAlien(r, c);
+					aliens_drawOneAlien(r, c);
 				}
 			}
 		}
@@ -433,8 +433,8 @@ void aliens_killAlien(uint8_t alien)
 point_t aliens_getAlienLocation(uint8_t alienNum)
 {
 	uint8_t row, col;
-	row = getRowFromAlienNumber(alienNum);
-	col = getColumnFromAlienNumber(alienNum);
+	row = aliens_getRowFromAlienNumber(alienNum);
+	col = aliens_getColumnFromAlienNumber(alienNum);
 	return aliens_getOneAlienLocation(row, col);
 }
 
@@ -491,7 +491,7 @@ uint8_t aliens_alienPoints(uint8_t alienNum)
 }
 
 //Prints all living aliens to the console. Used for debugging.
-void printAliens()
+void aliens_printAliens()
 {
 	xil_printf("\n\raliens alive:\n\r");
 	uint16_t r , c; //r = row, c = column
@@ -506,7 +506,7 @@ void printAliens()
 }
 
 //Revives all of the aliens in the array to 1
-void reviveAllAliens()
+void aliens_reviveAllAliens()
 {
 	uint16_t r , c; //r = row, c = column
 	for (r = 0; r < NUM_ALIEN_ROWS; r++) //iterate through rows

@@ -12,18 +12,18 @@
 
 
 //////////////////// GLOBAL VARIABLES ///////////////////////////
-uint8_t tankBulletExists = FALSE; 			//global variable that indicates if the tank bullet is active
+uint8_t bullets_tankBulletExists = FALSE; 			//global variable that indicates if the tank bullet is active
 
 //reset tankBulletExists global
 void disableTankBullet()
 {
-	tankBulletExists = FALSE;
+	bullets_tankBulletExists = FALSE;
 }
 
 //returns true if the tank bullet is on the screen
 uint8_t tankBulletOnScreen()
 {
-	return tankBulletExists;
+	return bullets_tankBulletExists;
 }
 
 //Returns the spawn position of the tank when it fires its bullet
@@ -41,14 +41,14 @@ void drawTankBullet(point_t location)
 //Fires the tank bullet. Will only work if the bullet isn't on the screen already.
 void fireTankBullet()
 {
-	if (!tankBulletExists)
+	if (!bullets_tankBulletExists)
 	{
 		//draw the tank bullet just above the location of the tank
 		drawTankBullet(getTankBulletSpawnPosition());
 		//set the globally accessible tank bullet position
 		setTankBulletPosition(getTankBulletSpawnPosition());
 		//Set the tank bullet exits flag to true
-		tankBulletExists = TRUE;
+		bullets_tankBulletExists = TRUE;
 	}
 }
 
@@ -65,7 +65,7 @@ void eraseEntireTankBullet()
 void advanceTankBullet()
 {
 	//only do anything if there is a tank bullet on the screen
-	if (tankBulletExists)
+	if (bullets_tankBulletExists)
 	{
 		//if the tank bullet is off the screen, remove it
 		if (getTankBulletPosition().y <= 0)
@@ -80,7 +80,7 @@ void advanceTankBullet()
 			if (newTankBulletPosition.y < BULLET_CEILING) //if the bullet's going off the top of the screen
 			{
 				eraseEntireTankBullet(); //remove it from the screen
-				tankBulletExists = FALSE; //reset global
+				bullets_tankBulletExists = FALSE; //reset global
 				return;
 			}
 			//erase the bottom of the tank bullet
@@ -97,8 +97,8 @@ void advanceTankBullet()
 //Given the row and column index of an alien, returns the location at which the alien bullet appears.
 point_t getAlienBulletSpawnPosition(int8_t row, int8_t col)
 {
-	uint16_t x = getAlienBlockPosition().x + (ALIEN_WIDTH * MAGNIFY_MULT * col) + (ALIEN_SPACE_HORIZ * col) + HALF_ALIEN + MAGNIFY_MULT;
-	uint16_t y = (getAlienBlockPosition().y + (ALIEN_HEIGHT * MAGNIFY_MULT * row) + ALIEN_SPACE_VERT * row) + ALIEN_HEIGHT*MAGNIFY_MULT;
+	uint16_t x = aliens_getAlienBlockPosition().x + (ALIEN_WIDTH * MAGNIFY_MULT * col) + (ALIEN_SPACE_HORIZ * col) + HALF_ALIEN + MAGNIFY_MULT;
+	uint16_t y = (aliens_getAlienBlockPosition().y + (ALIEN_HEIGHT * MAGNIFY_MULT * row) + ALIEN_SPACE_VERT * row) + ALIEN_HEIGHT*MAGNIFY_MULT;
 	return (point_t) {x, y};
 }
 
@@ -204,7 +204,7 @@ void fireRandomAlienBullet()
 		for (row = NUM_ALIEN_ROWS-1; row >= 0; row--)
 		{
 			//if there's an alien in this row
-			if (isAlienAlive(row, randCol))
+			if (aliens_isAlienAlive(row, randCol))
 			{
 				//setAlieninColumn to true and exit the for loop
 				alienInColumn = TRUE;
@@ -298,7 +298,7 @@ int8_t tankBulletWillHitAlien()
 	point_t collisionPoint = colorExistsInArea(newTankBulletPosition, TANK_BULLET_WIDTH*MAGNIFY_MULT, TANK_BULLET_TRAVEL_DISTANCE, WHITE, FALSE); //check if we'll hit an alien
 	if (collisionPoint.x > NO_PIXEL && collisionPoint.y > NO_PIXEL) //if the tank bullet is going to hit an alien
 	{
-		return getAlienNumberFromPoint(collisionPoint); //return the alien number that will get hit
+		return aliens_getAlienNumberFromPoint(collisionPoint); //return the alien number that will get hit
 	}
 	return NO_HIT; //no alien will be hit
 }

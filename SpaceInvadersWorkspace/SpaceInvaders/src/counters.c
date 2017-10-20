@@ -56,7 +56,7 @@ void updateAlienTickCounter()
 	if (moveAliensTickCtr > MOVE_ALIENS_COUNTER_MAX) //if it's time to move the aliens
 	{
 		moveAliensTickCtr = 0;
-		moveAliens();
+		aliens_moveAliens();
 		//erode bunker blocks if necessary
 		//if the aliens are about to hit the bunkers
 			//figure out what bunker to erode
@@ -119,7 +119,7 @@ void updateBulletMoveCounter()
 
 			if (alienHit > NO_HIT && !alienExplosionExists)//if tank bullet will hit an alien on next move (there is white in the rectangle ahead)
 			{
-				killAlien(alienHit); //kill the alien in the array
+				aliens_killAlien(alienHit); //kill the alien in the array
 				//draw the alien explosion (and save its location)
 				alienExplosionLocation = aliens_getAlienLocation((uint8_t) alienHit);
 				drawObject(alien_explosion_12x10, ALIEN_EXPLOSION_WIDTH, ALIEN_EXPLOSION_HEIGHT, alienExplosionLocation, WHITE, LEAVE_BACKGROUND);
@@ -129,7 +129,7 @@ void updateBulletMoveCounter()
 				eraseEntireTankBullet();//erase the bullet
 				disableTankBullet(); //reset global
 
-				incrementScore(alienPoints(alienHit));//increment the score, and update the screen
+				incrementScore(aliens_alienPoints(alienHit));//increment the score, and update the screen
 				//if that was the last alien, LEVEL CLEARED! //ADDED TO killAlien()
 			}
 			else if (tankBulletWillHitSaucer())//else if the bullet will hit the saucer
@@ -413,16 +413,15 @@ void updateMoveSaucerCtr()
 
 void updateSaucerScoreCounter()
 {
-	//increment the saucer score counter
-	saucerScoreCtr++;
-	//if the score counter is above the max
-	if (saucerScoreCtr > SAUCER_SCORE_COUNTER_MAX)
+	if (saucerScoreOnScreen)
 	{
-		//reset the counter
-		saucerScoreCtr = 0;
-		//if the saucer score is there
-		if (saucerScoreOnScreen)
+		//increment the saucer score counter
+		saucerScoreCtr++;
+		//if the score counter is above the max
+		if (saucerScoreCtr > SAUCER_SCORE_COUNTER_MAX)
 		{
+			//reset the counter
+			saucerScoreCtr = 0;
 			//erase the score
 			printScoreOnSaucerDeath(randScore, BLACK);
 			//set the flag to false
@@ -438,9 +437,9 @@ void restartGameOnGameOver()
 	//erase the game over stuff
 	drawGameOverScreen(BLACK);
 	//erase all remaining aliens
-	eraseAllAliens();
+	aliens_eraseAllAliens();
 	//revive the aliens
-	reviveAllAliens();
+	aliens_reviveAllAliens();
 	//revive the bunkers
 	reviveAllBunkers();
 	//init the display again

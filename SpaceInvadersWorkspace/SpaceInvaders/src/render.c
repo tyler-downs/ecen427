@@ -221,7 +221,7 @@ void drawAliensInit()
 		}
 	}
 	point_t alienBlockStartPoint = {ALIENS_START_X, ALIENS_START_Y};
-	setAlienBlockPosition(alienBlockStartPoint); //set global
+	aliens_setAlienBlockPosition(alienBlockStartPoint); //set global
 }
 
 #define GAME_OVER_WIDTH 33

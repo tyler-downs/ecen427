@@ -57,5 +57,7 @@ int16_t aliens_getBottomOfAliens();
 //Prints the aliensAlive array to the console. Used in debugging.
 void aliens_printAliens();
 
+//Erases all aliens from the screen. Does not kill them. Used for debugging.
+void aliens_eraseAllAliens();
 
 #endif /* ALIENS_H_ */
