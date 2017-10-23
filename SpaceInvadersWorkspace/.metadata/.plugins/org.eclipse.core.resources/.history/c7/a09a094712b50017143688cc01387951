@@ -1,0 +1,85 @@
+/*
+ * saucer.c
+ *
+ *  Created on: Oct 13, 2017
+ *      Author: superman
+ */
+#include "saucer.h"
+#include "render.h"
+
+//////////////////////// GLOBAL VARIABLES ///////////////////
+static saucer_direction_type saucerDirection = saucer_moves_left;
+
+
+////////////////////////// FUNCTIONS ////////////////////////
+void drawSaucer()
+{
+	drawObject(saucer_16x7, SAUCER_WIDTH, SAUCER_HEIGHT, (point_t){getSaucerPosition(), SAUCER_POSITION_Y}, RED, FORCE_BLACK_BACKGROUND);
+}
+
+//Sets the position and draws the saucer if it's going to the right
+void initSaucerMovingRight()
+{
+	//set the position
+	setSaucerPosition((int16_t)(SAUCER_WIDTH * -1));
+	//draw the saucer there
+	drawSaucer();
+}
+
+//Sets the position and draws the saucer if it's going to the left
+void initSaucerMovingLeft()
+{
+	//set the position
+	setSaucerPosition((int16_t) WIDTH_DISPLAY);
+	//draw the saucer there
+	drawSaucer();
+}
+
+#define SAUCER_MOVE_PIXELS (3 * MAGNIFY_MULT)
+//Moves the saucer right
+void moveSaucerRight()
+{
+	//erase the rectangle
+	eraseRectangle((point_t) {getSaucerPosition(), SAUCER_POSITION_Y}, SAUCER_MOVE_PIXELS, SAUCER_HEIGHT);
+	//change the start point of the saucer
+	int16_t newSaucerPosition = getSaucerPosition() + SAUCER_MOVE_PIXELS;
+	xil_printf("In moveSaucerRight, position = %d\n\r", newSaucerPosition);
+	setSaucerPosition(newSaucerPosition);
+	//draw the saucer
+	//xil_printf("New saucer position: %d\n\r", newSaucerPosition);
+	drawObject(saucer_16x7, SAUCER_WIDTH, SAUCER_HEIGHT, (point_t){newSaucerPosition, SAUCER_POSITION_Y}, RED, FORCE_BLACK_BACKGROUND);
+}
+
+//Moves the saucer left
+void moveSaucerLeft()
+{
+	//erase the rectangle
+	eraseRectangle((point_t) {getSaucerPosition() + SAUCER_WIDTH + SAUCER_MOVE_PIXELS, SAUCER_POSITION_Y}, SAUCER_MOVE_PIXELS, SAUCER_HEIGHT);
+	//change the start point of the saucer
+	int16_t newSaucerPosition = getSaucerPosition() - SAUCER_MOVE_PIXELS;
+	xil_printf("In moveSaucerLeft, position = %d\n\r", newSaucerPosition);
+	setSaucerPosition(newSaucerPosition);
+	//draw the saucer
+	//xil_printf("New saucer position: %d\n\r", newSaucerPosition);
+	drawObject(saucer_16x7, SAUCER_WIDTH, SAUCER_HEIGHT, (point_t){newSaucerPosition, SAUCER_POSITION_Y}, RED, FORCE_BLACK_BACKGROUND);
+}
+
+//Switches the direction the saucer is moving
+void switchSaucerMoveDirection()
+{
+	//if they're going left, move them right
+	if (saucerDirection == saucer_moves_left)
+	{
+		saucerDirection = saucer_moves_right;
+	}
+	else //if theyre going right, move them left
+	{
+		saucerDirection = saucer_moves_left;
+	}
+}
+
+//returns the current move direction of the saucer
+saucer_direction_type getSaucerDirection()
+{
+	return saucerDirection;
+}

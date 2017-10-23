@@ -2,4 +2,40 @@
 **** Build of configuration Debug for project SpaceInvaders ****
 
 make all 
-make: Nothing to be done for `all'.
+Building file: ../src/spaceInvadersMain.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../hello_world_bsp_2/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v8.20.b -mno-xl-soft-mul -MMD -MP -MF"src/spaceInvadersMain.d" -MT"src/spaceInvadersMain.d" -o"src/spaceInvadersMain.o" "../src/spaceInvadersMain.c"
+In file included from ../src/render.h:17,
+                 from ../src/renderTest.h:11,
+                 from ../src/spaceInvadersMain.c:13:
+../src/bitmaps.h:436: warning: left shift count >= width of type
+../src/bitmaps.h:437: warning: left shift count >= width of type
+../src/bitmaps.h:438: warning: left shift count >= width of type
+../src/bitmaps.h:439: warning: left shift count >= width of type
+../src/bitmaps.h:440: warning: left shift count >= width of type
+Finished building: ../src/spaceInvadersMain.c
+' '
+Building target: SpaceInvaders.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../hello_world_bsp_2/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v8.20.b -mno-xl-soft-mul -o"SpaceInvaders.elf"  ./src/aliens.o ./src/bullets.o ./src/bunkers.o ./src/counters.o ./src/globals.o ./src/platform.o ./src/render.o ./src/renderTest.o ./src/saucer.o ./src/spaceInvadersMain.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: SpaceInvaders.elf
+' '
+Invoking: MicroBlaze Print Size
+mb-size SpaceInvaders.elf  |tee "SpaceInvaders.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 114148	   1576	   5540	 121264	  1d9b0	SpaceInvaders.elf
+Finished building: SpaceInvaders.elf.size
+' '
+Invoking: Xilinx ELF Check
+elfcheck SpaceInvaders.elf -hw ../../SpaceInvaders_hw_platform/system.xml -pe microblaze_0  |tee "SpaceInvaders.elf.elfcheck"
+elfcheck
+Xilinx EDK 13.4 Build EDK_O.87xd
+Copyright (c) 1995-2011 Xilinx, Inc.  All rights reserved.
+
+Command Line: elfcheck -hw ../../SpaceInvaders_hw_platform/system.xml -pe
+microblaze_0 SpaceInvaders.elf 
+
+ELF file	: SpaceInvaders.elf
+elfcheck passed.
+Finished building: SpaceInvaders.elf.elfcheck
+' '

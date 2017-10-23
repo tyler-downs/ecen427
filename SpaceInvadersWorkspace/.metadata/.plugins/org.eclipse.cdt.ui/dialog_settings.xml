@@ -4,9 +4,24 @@
 	<item value="Default C header template" key="LastUsedHeaderTemplate"/>
 	<section name="completion_proposal_size">
 	</section>
+	<section name="PDOMSearchPage">
+		<item value="227191" key="searchFlags"/>
+		<item value="true" key="caseSensitive"/>
+		<list key="previousPatterns">
+			<item value="disableTankBullet"/>
+		</list>
+	</section>
 	<section name="org.eclipse.cdt.ui.text.hover.CMacroExpansionExploration.internal">
 		<item value="457" key="size.width"/>
 		<item value="180" key="size.height"/>
+	</section>
+	<section name="CRenameRefactoringInputPage">
+		<item value="false" key="preprocessor"/>
+		<item value="false" key="macroDefinition"/>
+		<item value="3" key="scope"/>
+		<item value="false" key="comment"/>
+		<item value="false" key="references_inv"/>
+		<item value="" key="workingset"/>
 	</section>
 	<section name="org.eclipse.cdt.ui.text.hover.CMacroExpansionExploration">
 	</section>

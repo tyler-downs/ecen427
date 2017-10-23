@@ -13,7 +13,7 @@ src/globals.d src/globals.o: ../src/globals.c ../src/globals.h \
   ../../hello_world_bsp_2/microblaze_0/include/xstatus.h \
   ../../hello_world_bsp_2/microblaze_0/include/xil_assert.h \
   ../../hello_world_bsp_2/microblaze_0/include/xio.h ../src/bunkers.h \
-  ../src/bullets.h ../src/aliens.h
+  ../src/bullets.h ../src/aliens.h ../src/counters.h
 
 ../src/globals.h:
 
@@ -54,3 +54,5 @@ src/globals.d src/globals.o: ../src/globals.c ../src/globals.h \
 ../src/bullets.h:
 
 ../src/aliens.h:
+
+../src/counters.h:
