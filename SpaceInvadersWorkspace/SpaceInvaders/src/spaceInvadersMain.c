@@ -15,6 +15,7 @@
 #include "globals.h"
 #include "saucer.h"
 #include "counters.h"
+#include "sounds.h"
 
 #define PB_BTNC_MASK 0x0001 //Mask for identifying the center button
 #define PB_BTNR_MASK 0x0002 //Mask for identifying the right button
@@ -83,6 +84,7 @@ int main()
 {
 	init_platform(); // Necessary for all programs.
 
+	/*
     int success;
 
     success = XGpio_Initialize(&gpPB, XPAR_PUSH_BUTTONS_5BITS_DEVICE_ID);
@@ -107,7 +109,9 @@ int main()
     {
     	utilLoopCount++; //increment the loop count
     }
-
+	*/
+	xil_printf("Hello world\n\r");
+	init_sound();
 
 	cleanup_platform();
 	return 0;
