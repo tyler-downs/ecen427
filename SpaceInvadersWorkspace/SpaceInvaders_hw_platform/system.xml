@@ -1,7 +1,7 @@
 
-<EDKSYSTEM EDKVERSION="13.4" EDWVERSION="1.2" TIMESTAMP="Mon Oct 01 16:37:19 2012">
+<EDKSYSTEM EDKVERSION="13.4" EDWVERSION="1.2" TIMESTAMP="Wed Nov 01 18:31:03 2017">
 
-  <SYSTEMINFO ARCH="spartan6" DEVICE="xc6slx45" PACKAGE="csg324" PART="xc6slx45csg324-3" SOURCE="C:/EE427/SpaceInvaderTestHW2/system.xmp" SPEEDGRADE="-3"/>
+  <SYSTEMINFO ARCH="spartan6" DEVICE="xc6slx45" PACKAGE="csg324" PART="xc6slx45csg324-3" SOURCE="C:/Users/superman/Documents/TylerBondGithub/ecen427/SpaceInvaderTestHW2/system.xmp" SPEEDGRADE="-3"/>
 
   <EXTERNALPORTS>
     <PORT DIR="IO" MHS_INDEX="0" NAME="zio" SIGNAME="zio">
@@ -6132,7 +6132,7 @@
       <DESCRIPTION TYPE="SHORT">AXI HDMI Receiver/Transmitter</DESCRIPTION>
       <DESCRIPTION TYPE="LONG">AXI4-Stream HDMI Receiver/Transmitter</DESCRIPTION>
       <DOCUMENTATION>
-        <DOCUMENT SOURCE="C:/EE427/Atlys_BSB_Support_v_3_4/Atlys_BSB_Support_v_3_4/Atlys_AXI_BSB_Support/lib/Digilent/pcores/axi_hdmi_v1_00_a/../../../Digilent/pcores/axi_hdmi_v1_00_a/doc/axi_hdmi_v1_00_a.pdf" TYPE="IP"/>
+        <DOCUMENT SOURCE="C:/EE427/Atlys_BSB_Support_v_3_4/Atlys_AXI_BSB_Support/lib/Digilent/pcores/axi_hdmi_v1_00_a/../../../Digilent/pcores/axi_hdmi_v1_00_a/doc/axi_hdmi_v1_00_a.pdf" TYPE="IP"/>
       </DOCUMENTATION>
       <LICENSEINFO ICON_NAME="ps_core_preferred"/>
       <PARAMETERS>

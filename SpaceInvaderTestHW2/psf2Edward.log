@@ -1,3 +1,10 @@
+WARNING:EDK:3605 - Use of the repository located at
+   C:\Xilinx\13.4\ISE_DS\edk_user_repository\ 
+   (equivalent of $XILINX_EDK/../edk_user_repository) is now deprecated. 
+   It is recommended that you use Global SearchPath preference to specify search
+   paths that apply to all the projects.
+WARNING:EDK:1687 - Invalid path specified for ModuleSearchPath in XMP file.
+   Please make sure that the directory specified exists.
 WARNING:EDK:1687 - Invalid path specified for ModuleSearchPath in XMP file.
    Please make sure that the directory specified exists.
 WARNING:EDK:1687 - Invalid path specified for ModuleSearchPath in XMP file.
@@ -43,7 +50,9 @@ WARNING:EDK:4180 - PORT: bscan_tdo1, CONNECTOR: bscan_tdo1 - No driver found.
    C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm
    _v2_1_0.mpd line 239 
 WARNING:EDK:4181 - PORT: axi4lite_0_M_AXI_ACLK_pin, CONNECTOR: axi4lite_0_M_ACLK
-   - floating connection - C:\EE427\SpaceInvaderTestHW2\system.mhs line 39 
+   - floating connection -
+   C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\syste
+   m.mhs line 39 
 WARNING:EDK:4181 - PORT: bscan_tdi, CONNECTOR: bscan_tdi - floating connection -
    C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm
    _v2_1_0.mpd line 232 
@@ -84,7 +93,9 @@ WARNING:EDK:4181 - PORT: s2mm_prmry_reset_out_n, CONNECTOR: S2MM_RESET_OUT_N -
    C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_vdma_v5_00_a\dat
    a\axi_vdma_v2_1_0.mpd line 224 
 WARNING:EDK:4181 - PORT: M_AXIS_S2MM_ACLK, CONNECTOR: M_AXIS_S2MM_ACLK_int -
-   floating connection - C:\EE427\SpaceInvaderTestHW2\system.mhs line 246 
+   floating connection -
+   C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\syste
+   m.mhs line 246 
 
 Performing Clock DRCs...
 

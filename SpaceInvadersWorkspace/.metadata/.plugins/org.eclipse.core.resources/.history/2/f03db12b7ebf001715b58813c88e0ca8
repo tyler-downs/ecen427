@@ -1,0 +1,114 @@
+/*
+ * sounds.c
+ *
+ *  Created on: Oct 27, 2017
+ *      Author: superman
+ */
+#include "sounds.h"
+#include <stdint.h>
+#include "xparameters.h"
+#include "stdbool.h"
+
+//#include "soundfiles/alienKilledSound.c"
+
+extern int32_t alienKilledSound_soundData[];
+extern int32_t alienKilledSound_sampleRate;
+extern int32_t alienKilledSound_numSamples;
+
+extern uint32_t tankFireSoundRate;
+extern uint32_t tankFireSoundFrames;
+extern uint32_t tankFireSound[];
+
+#define NUM_SAMPLES_PER_INTERRUPT 255 //how many samples to write to the FIFO at a time
+
+bool playShootSound = FALSE;
+uint32_t sounds_currentIndex;
+
+//fill the fifo, either with a sound or 0's
+void sounds_fillFifo()
+{
+	if (playShootSound)
+	{
+		uint16_t start_point = sounds_currentIndex;
+		for ( ; sounds_currentIndex < (start_point + NUM_SAMPLES_PER_INTERRUPT); sounds_currentIndex++) //load 100 samples from wherever we are
+		{
+			if (sounds_currentIndex < tankFireSoundFrames - 1) //if we haven't reached the end of the sound array
+			{
+				XAC97_mSetInFifoData(XPAR_AXI_AC97_0_BASEADDR, tankFireSound[sounds_currentIndex]); //write sound sample to fifo
+			}
+			else //reached end of sound
+			{
+				XAC97_ClearFifos(XPAR_AXI_AC97_0_BASEADDR); //clear the fifo
+				playShootSound = FALSE; //disable the flag
+				return; //we're done here
+			}
+		}
+	}
+	else //no sound needs to be played right now
+	{
+		XAC97_ClearFifos(XPAR_AXI_AC97_0_BASEADDR); //we need to put something in the queue so we'll fill it with 0's
+	}
+}
+
+void sounds_playShootSound() //signal to play the shoot sound
+{
+	playShootSound = TRUE; //set the flag to play the shoot sound
+	sounds_currentIndex = 0; //start at the beginning of the sound
+}
+
+void accessSounds()
+{
+	xil_printf("Sample rate: %d\n\r", alienKilledSound_soundData[0]);
+}
+
+void playAudio(Xuint32 StartAddress, Xuint32 EndAddress) {
+	Xuint32 sample;
+	volatile Xuint32 *sound_ptr = (Xuint32*) StartAddress;
+
+	/** Wait for the ready signal **/
+	XAC97_AwaitCodecReady(XPAR_AXI_AC97_0_BASEADDR);
+
+	/** Clear FIFOs **/
+	XAC97_ClearFifos(XPAR_AXI_AC97_0_BASEADDR);
+
+	while( sound_ptr < (Xuint32*) EndAddress ) {
+		sample = *sound_ptr;
+		sound_ptr = sound_ptr + 1;
+		while(XAC97_isInFIFOFull(XPAR_AXI_AC97_0_BASEADDR));
+		XAC97_mSetInFifoData(XPAR_AXI_AC97_0_BASEADDR, sample);
+		//XAC97_WriteFifo(BaseAddress, sample);
+	}
+	//clear once again
+	XAC97_ClearFifos(XPAR_AXI_AC97_0_BASEADDR);
+}
+
+void playSampleSound()
+{
+	playAudio(&tankFireSound[0], &tankFireSound[tankFireSoundFrames-1]);
+}
+
+
+void sounds_init_sound()
+{
+	//call audio_init
+
+	//call hard reset
+	XAC97_HardReset(XPAR_AXI_AC97_0_BASEADDR);
+	XAC97_InitAudio(XPAR_AXI_AC97_0_BASEADDR, 0);
+	XAC97_AwaitCodecReady(XPAR_AXI_AC97_0_BASEADDR);
+	//set VRA
+	XAC97_WriteReg(XPAR_AXI_AC97_0_BASEADDR, AC97_ExtendedAudioStat, AC97_EXTENDED_AUDIO_CONTROL_VRA);
+	//set frequency DAC
+	XAC97_WriteReg(XPAR_AXI_AC97_0_BASEADDR, AC97_PCM_DAC_Rate, tankFireSoundRate);
+	//set volumes
+	XAC97_WriteReg(XPAR_AXI_AC97_0_BASEADDR, AC97_PCMOutVol, AC97_VOL_MID);
+	//clear FIFO
+	XAC97_ClearFifos(XPAR_AXI_AC97_0_BASEADDR);
+	//set control bit to cause IN_FIFO interrupts
+	XAC97_mSetControl(XPAR_AXI_AC97_0_BASEADDR, AC97_ENABLE_IN_FIFO_INTERRUPT);
+
+
+
+
+
+}

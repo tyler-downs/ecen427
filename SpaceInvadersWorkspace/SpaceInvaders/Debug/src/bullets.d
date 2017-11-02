@@ -13,7 +13,9 @@ src/bullets.d src/bullets.o: ../src/bullets.c ../src/bullets.h \
   ../../hello_world_bsp_2/microblaze_0/include/xstatus.h \
   ../../hello_world_bsp_2/microblaze_0/include/xil_assert.h \
   ../../hello_world_bsp_2/microblaze_0/include/xio.h ../src/bunkers.h \
-  ../src/aliens.h
+  ../src/aliens.h ../src/sounds.h ../src/xac97_l.h \
+  ../../hello_world_bsp_2/microblaze_0/include/xbasic_types.h \
+  ../../hello_world_bsp_2/microblaze_0/include/xio.h
 
 ../src/bullets.h:
 
@@ -54,3 +56,11 @@ src/bullets.d src/bullets.o: ../src/bullets.c ../src/bullets.h \
 ../src/bunkers.h:
 
 ../src/aliens.h:
+
+../src/sounds.h:
+
+../src/xac97_l.h:
+
+../../hello_world_bsp_2/microblaze_0/include/xbasic_types.h:
+
+../../hello_world_bsp_2/microblaze_0/include/xio.h:

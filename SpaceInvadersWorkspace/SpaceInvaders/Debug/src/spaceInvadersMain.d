@@ -20,7 +20,9 @@ src/spaceInvadersMain.d src/spaceInvadersMain.o:  \
   ../../hello_world_bsp_2/microblaze_0/include/xdebug.h \
   ../../hello_world_bsp_2/microblaze_0/include/xio.h ../src/bitmaps.h \
   ../src/bunkers.h ../src/saucer.h ../src/counters.h ../src/bullets.h \
-  ../src/aliens.h
+  ../src/aliens.h ../src/sounds.h ../src/xac97_l.h \
+  ../../hello_world_bsp_2/microblaze_0/include/xbasic_types.h \
+  ../../hello_world_bsp_2/microblaze_0/include/xio.h
 
 ../../hello_world_bsp_2/microblaze_0/include/xgpio.h:
 
@@ -77,3 +79,11 @@ src/spaceInvadersMain.d src/spaceInvadersMain.o:  \
 ../src/bullets.h:
 
 ../src/aliens.h:
+
+../src/sounds.h:
+
+../src/xac97_l.h:
+
+../../hello_world_bsp_2/microblaze_0/include/xbasic_types.h:
+
+../../hello_world_bsp_2/microblaze_0/include/xio.h:

@@ -5,6 +5,11 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
+<msg type="warning" file="EDK" num="3605" delta="new" >Use of the repository located at <arg fmt="%s" index="1">C:\Xilinx\13.4\ISE_DS\edk_user_repository\</arg> 
+(equivalent of $XILINX_EDK/../edk_user_repository) is now deprecated. 
+It is recommended that you use Global SearchPath preference to specify search paths that apply to all the projects.
+</msg>
+
 <msg type="info" file="EDK" num="4130" delta="old" >IPNAME: <arg fmt="%s" index="1">microblaze</arg>, INSTANCE:<arg fmt="%s" index="2">microblaze_0</arg> - <arg fmt="%s" index="3">tcl</arg> is overriding <arg fmt="%s" index="4">PARAMETER</arg> <arg fmt="%s" index="5">C_ENDIANNESS</arg> value to <arg fmt="%s" index="6">1</arg> - <arg fmt="%s" index="7">C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\microblaze_v8_20_b\data\microblaze_v2_1_0.mpd line 195</arg> 
 </msg>
 
@@ -57,7 +62,7 @@
 <msg type="warning" file="EDK" num="4180" delta="old" >PORT: <arg fmt="%s" index="1">bscan_tdo1</arg>, CONNECTOR: <arg fmt="%s" index="2">bscan_tdo1</arg> - No driver found. Port will be driven to <arg fmt="%s" index="3">GND</arg> - <arg fmt="%s" index="4">C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm_v2_1_0.mpd line 239</arg> 
 </msg>
 
-<msg type="warning" file="EDK" num="4181" delta="old" >PORT: <arg fmt="%s" index="1">axi4lite_0_M_AXI_ACLK_pin</arg>, CONNECTOR: <arg fmt="%s" index="2">axi4lite_0_M_ACLK</arg> - floating connection - <arg fmt="%s" index="3">C:\EE427\SpaceInvaderTestHW2\system.mhs line 39</arg> 
+<msg type="warning" file="EDK" num="4181" delta="new" >PORT: <arg fmt="%s" index="1">axi4lite_0_M_AXI_ACLK_pin</arg>, CONNECTOR: <arg fmt="%s" index="2">axi4lite_0_M_ACLK</arg> - floating connection - <arg fmt="%s" index="3">C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\system.mhs line 39</arg> 
 </msg>
 
 <msg type="warning" file="EDK" num="4181" delta="old" >PORT: <arg fmt="%s" index="1">bscan_tdi</arg>, CONNECTOR: <arg fmt="%s" index="2">bscan_tdi</arg> - floating connection - <arg fmt="%s" index="3">C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm_v2_1_0.mpd line 232</arg> 
@@ -90,7 +95,7 @@
 <msg type="warning" file="EDK" num="4181" delta="old" >PORT: <arg fmt="%s" index="1">s2mm_prmry_reset_out_n</arg>, CONNECTOR: <arg fmt="%s" index="2">S2MM_RESET_OUT_N</arg> - floating connection - <arg fmt="%s" index="3">C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_vdma_v5_00_a\data\axi_vdma_v2_1_0.mpd line 224</arg> 
 </msg>
 
-<msg type="warning" file="EDK" num="4181" delta="old" >PORT: <arg fmt="%s" index="1">M_AXIS_S2MM_ACLK</arg>, CONNECTOR: <arg fmt="%s" index="2">M_AXIS_S2MM_ACLK_int</arg> - floating connection - <arg fmt="%s" index="3">C:\EE427\SpaceInvaderTestHW2\system.mhs line 246</arg> 
+<msg type="warning" file="EDK" num="4181" delta="new" >PORT: <arg fmt="%s" index="1">M_AXIS_S2MM_ACLK</arg>, CONNECTOR: <arg fmt="%s" index="2">M_AXIS_S2MM_ACLK_int</arg> - floating connection - <arg fmt="%s" index="3">C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\system.mhs line 246</arg> 
 </msg>
 
 <msg type="info" file="EDK" num="4130" delta="old" >IPNAME: <arg fmt="%s" index="1">lmb_bram_if_cntlr</arg>, INSTANCE:<arg fmt="%s" index="2">microblaze_0_i_bram_ctrl</arg> - <arg fmt="%s" index="3">tcl</arg> is overriding <arg fmt="%s" index="4">PARAMETER</arg> <arg fmt="%s" index="5">C_MASK</arg> value to <arg fmt="%s" index="6">0x40000000</arg> - <arg fmt="%s" index="7">C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\lmb_bram_if_cntlr_v3_00_b\data\lmb_bram_if_cntlr_v2_1_0.mpd line 87</arg> 
@@ -151,9 +156,6 @@
 </msg>
 
 <msg type="info" file="EDK" num="4211" delta="old" >The following instances are synthesized with <arg fmt="%s" index="1">XST</arg>. The MPD option IMP_NETLIST=TRUE indicates that a NGC file is to be produced using <arg fmt="%s" index="2">XST</arg> synthesis. IMP_NETLIST=FALSE (default) instances are not synthesized. 
-</msg>
-
-<msg type="info" file="EDK" num="4194" delta="old" >Running <arg fmt="%s" index="1">XST</arg> parallelly on <arg fmt="%s" index="2">2</arg> processors
 </msg>
 
 <msg type="info" file="EDK" num="3509" delta="old" >NCF files should not be modified as they will be regenerated.

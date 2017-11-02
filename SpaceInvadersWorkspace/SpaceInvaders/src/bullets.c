@@ -6,6 +6,7 @@
  */
 
 #include "bullets.h"
+#include "sounds.h"
 #include <time.h>
 #include <stdlib.h>
 
@@ -46,12 +47,13 @@ void bullets_fireTankBullet()
 {
 	if (!bullets_tankBulletExists)
 	{
+		//Set the tank bullet exits flag to true
+		bullets_tankBulletExists = TRUE;
 		//draw the tank bullet just above the location of the tank
 		drawTankBullet(getTankBulletSpawnPosition());
 		//set the globally accessible tank bullet position
 		bullets_setTankBulletPosition(getTankBulletSpawnPosition());
-		//Set the tank bullet exits flag to true
-		bullets_tankBulletExists = TRUE;
+		sounds_playShootSound(); //play the shoot sound
 	}
 }
 

@@ -65,6 +65,8 @@ void updateAlienTickCounter()
 		moveAliensTickCtr = 0;
 		//move the aliens
 		aliens_moveAliens();
+		//play the alien move sound
+		sounds_playAlienMoveSound();
 		//if they've reached the bottom of the screen //ADDED TO moveAliens(), moveDownOneRow();
 		if (aliens_getBottomOfAliens() >= BUNKERS_BUNKER_START_Y + BUNKERS_BUNKER_HEIGHT)
 		{
@@ -125,6 +127,9 @@ void updateBulletMoveCounter()
 				//draw the alien explosion (and save its location)
 				alienExplosionLocation = aliens_getAlienLocation((uint8_t) alienHit);
 				render_drawObject(alien_explosion_12x10, ALIEN_EXPLOSION_WIDTH, ALIEN_EXPLOSION_HEIGHT, alienExplosionLocation, GLOBALS_WHITE, GLOBALS_LEAVE_BACKGROUND);
+
+				sounds_playAlienKilledSound(); //play the alien killed explosion sound
+
 				alienExplosionExists = TRUE; //set global
 				alienExplodeCtr = 0;//reset explosion timer
 
@@ -190,6 +195,8 @@ void updateBulletMoveCounter()
 				tankDead = TRUE;
 				//remove a life
 				removeLife();
+				//play the tank death sound
+				sounds_playTankDeathSound();
 			}
 			//else if alien bullet will hit bunker
 			else if (bunkerHit != BULLETS_NO_HIT)
@@ -349,10 +356,12 @@ uint8_t isSaucerOffScreen()
 {
 	if ((globals_getSaucerPosition() < NEGATIVE_WIDTH_OF_SAUCER) || (globals_getSaucerPosition() > (GLOBALS_WIDTH_DISPLAY + SAUCER_WIDTH)))
 	{
-		xil_printf("Saucer position in isSaucerOffScreen: %d\n\r", globals_getSaucerPosition());
 		return TRUE;
 	}
-	else return FALSE;
+	else
+	{
+		return FALSE;
+	}
 }
 
 //Sets the global game over state to true

@@ -5,9 +5,7 @@ vhdl
 -intstyle
 default
 -lp
-C:/EE427/Atlys_BSB_Support_v_3_4/Atlys_BSB_Support_v_3_4/Atlys_AXI_BSB_Support/lib/
+C:/EE427/Atlys_BSB_Support_v_3_4/Atlys_AXI_BSB_Support/lib/
 -msg
 __xps/ise/xmsgprops.lst
--parallel
-yes
 system.mhs

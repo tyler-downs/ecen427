@@ -6,11 +6,12 @@
 // *** Sample Width: 1
 // *** Framerate: 11127
 // *** Frames: 4080
+#include <stdint.h>
 
-int tankFireSoundRate = 11127;
-int tankFireSoundFrames = 4080;
+uint32_t tankFireSoundRate = 11127;
+uint32_t tankFireSoundFrames = 4080;
 
-int tankFireSound[] = {
+uint32_t tankFireSound[] = {
 1,248,245,7,30,13,233,243,
 20,3,234,238,253,27,17,243,
 240,4,18,254,240,252,25,11,

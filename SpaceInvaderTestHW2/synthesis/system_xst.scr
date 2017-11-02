@@ -11,4 +11,4 @@ run
 -iobuf YES
 -max_fanout 10000
 -sd {../implementation}
--vlgincdir {"C:\EE427\SpaceInvaderTestHW2\pcores\" "C:\EE427\Atlys_BSB_Support_v_3_4\Atlys_BSB_Support_v_3_4\Atlys_AXI_BSB_Support\lib\Digilent\pcores\" "C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxBFMinterface\pcores\" "C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\" }
+-vlgincdir {"C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\pcores\" "C:\EE427\Atlys_BSB_Support_v_3_4\Atlys_AXI_BSB_Support\lib\Digilent\pcores\" "C:\Xilinx\13.4\ISE_DS\edk_user_repository\MyProcessorIPLib\pcores\" "C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxBFMinterface\pcores\" "C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\" }

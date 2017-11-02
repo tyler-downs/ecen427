@@ -3,12 +3,19 @@ Release 13.4 - platgen Xilinx EDK 13.4 Build EDK_O.87xd
 Copyright (c) 1995-2011 Xilinx, Inc.  All rights reserved.
 
 Command Line: platgen -p xc6slx45csg324-3 -lang vhdl -intstyle default -lp
-C:/EE427/Atlys_BSB_Support_v_3_4/Atlys_BSB_Support_v_3_4/Atlys_AXI_BSB_Support/l
-ib/ -msg __xps/ise/xmsgprops.lst -parallel yes system.mhs 
+C:/EE427/Atlys_BSB_Support_v_3_4/Atlys_AXI_BSB_Support/lib/ -msg
+__xps/ise/xmsgprops.lst system.mhs 
 
-Parse C:/EE427/SpaceInvaderTestHW2/system.mhs ...
+Parse
+C:/Users/superman/Documents/TylerBondGithub/ecen427/SpaceInvaderTestHW2/system.m
+hs ...
 
 Read MPD definitions ...
+WARNING:EDK:3605 - Use of the repository located at
+   C:\Xilinx\13.4\ISE_DS\edk_user_repository\ 
+   (equivalent of $XILINX_EDK/../edk_user_repository) is now deprecated. 
+   It is recommended that you use Global SearchPath preference to specify search
+   paths that apply to all the projects.
 
 Overriding IP level properties ...
 INFO:EDK:4130 - IPNAME: microblaze, INSTANCE:microblaze_0 - tcl is overriding
@@ -106,7 +113,9 @@ WARNING:EDK:4180 - PORT: bscan_tdo1, CONNECTOR: bscan_tdo1 - No driver found.
    C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm
    _v2_1_0.mpd line 239 
 WARNING:EDK:4181 - PORT: axi4lite_0_M_AXI_ACLK_pin, CONNECTOR: axi4lite_0_M_ACLK
-   - floating connection - C:\EE427\SpaceInvaderTestHW2\system.mhs line 39 
+   - floating connection -
+   C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\syste
+   m.mhs line 39 
 WARNING:EDK:4181 - PORT: bscan_tdi, CONNECTOR: bscan_tdi - floating connection -
    C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm
    _v2_1_0.mpd line 232 
@@ -147,7 +156,9 @@ WARNING:EDK:4181 - PORT: s2mm_prmry_reset_out_n, CONNECTOR: S2MM_RESET_OUT_N -
    C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_vdma_v5_00_a\dat
    a\axi_vdma_v2_1_0.mpd line 224 
 WARNING:EDK:4181 - PORT: M_AXIS_S2MM_ACLK, CONNECTOR: M_AXIS_S2MM_ACLK_int -
-   floating connection - C:\EE427\SpaceInvaderTestHW2\system.mhs line 246 
+   floating connection -
+   C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\syste
+   m.mhs line 246 
 
 Performing Clock DRCs...
 
@@ -283,63 +294,73 @@ Managing hardware (BBD-specified) netlist files ...
 
 Managing cache ...
 IPNAME:proc_sys_reset INSTANCE:proc_sys_reset_0 -
-C:\EE427\SpaceInvaderTestHW2\system.mhs line 66 - Copying cache implementation
-netlist
+C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\system.m
+hs line 66 - Copying cache implementation netlist
 IPNAME:lmb_v10 INSTANCE:microblaze_0_ilmb -
-C:\EE427\SpaceInvaderTestHW2\system.mhs line 79 - Copying cache implementation
-netlist
+C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\system.m
+hs line 79 - Copying cache implementation netlist
 IPNAME:lmb_bram_if_cntlr INSTANCE:microblaze_0_i_bram_ctrl -
-C:\EE427\SpaceInvaderTestHW2\system.mhs line 86 - Copying cache implementation
-netlist
+C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\system.m
+hs line 86 - Copying cache implementation netlist
 IPNAME:lmb_v10 INSTANCE:microblaze_0_dlmb -
-C:\EE427\SpaceInvaderTestHW2\system.mhs line 95 - Copying cache implementation
-netlist
+C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\system.m
+hs line 95 - Copying cache implementation netlist
 IPNAME:lmb_bram_if_cntlr INSTANCE:microblaze_0_d_bram_ctrl -
-C:\EE427\SpaceInvaderTestHW2\system.mhs line 102 - Copying cache implementation
-netlist
+C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\system.m
+hs line 102 - Copying cache implementation netlist
 IPNAME:bram_block INSTANCE:microblaze_0_bram_block -
-C:\EE427\SpaceInvaderTestHW2\system.mhs line 111 - Copying cache implementation
-netlist
+C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\system.m
+hs line 111 - Copying cache implementation netlist
 IPNAME:microblaze INSTANCE:microblaze_0 -
-C:\EE427\SpaceInvaderTestHW2\system.mhs line 118 - Copying cache implementation
-netlist
-IPNAME:mdm INSTANCE:debug_module - C:\EE427\SpaceInvaderTestHW2\system.mhs line
-146 - Copying cache implementation netlist
-IPNAME:axi_vdma INSTANCE:axi_vdma_0 - C:\EE427\SpaceInvaderTestHW2\system.mhs
-line 181 - Copying cache implementation netlist
+C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\system.m
+hs line 118 - Copying cache implementation netlist
+IPNAME:mdm INSTANCE:debug_module -
+C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\system.m
+hs line 146 - Copying cache implementation netlist
+IPNAME:axi_vdma INSTANCE:axi_vdma_0 -
+C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\system.m
+hs line 181 - Copying cache implementation netlist
 IPNAME:axi_gpio INSTANCE:push_buttons_5bits -
-C:\EE427\SpaceInvaderTestHW2\system.mhs line 201 - Copying cache implementation
-netlist
-IPNAME:axi_hdmi INSTANCE:axi_hdmi_0 - C:\EE427\SpaceInvaderTestHW2\system.mhs
-line 216 - Copying cache implementation netlist
-IPNAME:axi_ac97 INSTANCE:axi_ac97_0 - C:\EE427\SpaceInvaderTestHW2\system.mhs
-line 250 - Copying cache implementation netlist
+C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\system.m
+hs line 201 - Copying cache implementation netlist
+IPNAME:axi_hdmi INSTANCE:axi_hdmi_0 -
+C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\system.m
+hs line 216 - Copying cache implementation netlist
+IPNAME:axi_ac97 INSTANCE:axi_ac97_0 -
+C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\system.m
+hs line 250 - Copying cache implementation netlist
 IPNAME:axi_interconnect INSTANCE:axi4lite_0 -
-C:\EE427\SpaceInvaderTestHW2\system.mhs line 265 - Copying cache implementation
-netlist
+C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\system.m
+hs line 265 - Copying cache implementation netlist
 IPNAME:axi_interconnect INSTANCE:axi4_0 -
-C:\EE427\SpaceInvaderTestHW2\system.mhs line 273 - Copying cache implementation
-netlist
+C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\system.m
+hs line 273 - Copying cache implementation netlist
 IPNAME:axi_uartlite INSTANCE:rs232_uart_1 -
-C:\EE427\SpaceInvaderTestHW2\system.mhs line 280 - Copying cache implementation
-netlist
-IPNAME:axi_s6_ddrx INSTANCE:mcb_ddr2 - C:\EE427\SpaceInvaderTestHW2\system.mhs
-line 295 - Copying cache implementation netlist
+C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\system.m
+hs line 280 - Copying cache implementation netlist
+IPNAME:axi_s6_ddrx INSTANCE:mcb_ddr2 -
+C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\system.m
+hs line 295 - Copying cache implementation netlist
 IPNAME:d_qspi_axi INSTANCE:digilent_quadspi_cntlr -
-C:\EE427\SpaceInvaderTestHW2\system.mhs line 343 - Copying cache implementation
-netlist
-IPNAME:axi_intc INSTANCE:axi_intc_0 - C:\EE427\SpaceInvaderTestHW2\system.mhs
-line 355 - Copying cache implementation netlist
-IPNAME:axi_timer INSTANCE:axi_timer_0 - C:\EE427\SpaceInvaderTestHW2\system.mhs
-line 366 - Copying cache implementation netlist
-IPNAME:fit_timer INSTANCE:fit_timer_0 - C:\EE427\SpaceInvaderTestHW2\system.mhs
-line 376 - Copying cache implementation netlist
+C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\system.m
+hs line 343 - Copying cache implementation netlist
+IPNAME:axi_intc INSTANCE:axi_intc_0 -
+C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\system.m
+hs line 355 - Copying cache implementation netlist
+IPNAME:axi_timer INSTANCE:axi_timer_0 -
+C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\system.m
+hs line 366 - Copying cache implementation netlist
+IPNAME:fit_timer INSTANCE:fit_timer_0 -
+C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\system.m
+hs line 376 - Copying cache implementation netlist
 
 Elaborating instances ...
 IPNAME:bram_block INSTANCE:microblaze_0_bram_block -
-C:\EE427\SpaceInvaderTestHW2\system.mhs line 111 - elaborating IP
+C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\system.m
+hs line 111 - elaborating IP
 IPNAME:clock_generator INSTANCE:clock_generator_0 -
-C:\EE427\SpaceInvaderTestHW2\system.mhs line 159 - elaborating IP
+C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\system.m
+hs line 159 - elaborating IP
 ClkGen elaborate status: PASSED
 ----------------------------------------
 
@@ -349,7 +370,7 @@ Inserting wrapper level ...
 Completion time: 0.00 seconds
 
 Constructing platform-level connectivity ...
-Completion time: 0.00 seconds
+Completion time: 1.00 seconds
 
 Writing (top-level) BMM ...
 
@@ -362,19 +383,21 @@ Running XST synthesis ...
 INFO:EDK:4211 - The following instances are synthesized with XST. The MPD option
    IMP_NETLIST=TRUE indicates that a NGC file is to be produced using XST
    synthesis. IMP_NETLIST=FALSE (default) instances are not synthesized. 
-INFO:EDK:4194 - Running XST parallelly on 2 processors
-INSTANCE:clock_generator_0 - C:\EE427\SpaceInvaderTestHW2\system.mhs line 159 -
-Running XST synthesis
-INSTANCE:axi_ac97_0 - C:\EE427\SpaceInvaderTestHW2\system.mhs line 250 - Running
-XST synthesis
+INSTANCE:clock_generator_0 -
+C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\system.m
+hs line 159 - Running XST synthesis
+INSTANCE:axi_ac97_0 -
+C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\system.m
+hs line 250 - Running XST synthesis
 
 Running NGCBUILD ...
 IPNAME:clock_generator_0_wrapper INSTANCE:clock_generator_0 -
-C:\EE427\SpaceInvaderTestHW2\system.mhs line 159 - Running NGCBUILD
+C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\system.m
+hs line 159 - Running NGCBUILD
 INFO:EDK:3509 - NCF files should not be modified as they will be regenerated.
    If any constraint needs to be overridden, this should be done by modifying
    the data/system.ucf file.
 
 Rebuilding cache ...
 
-Total run time: 30.00 seconds
+Total run time: 33.00 seconds

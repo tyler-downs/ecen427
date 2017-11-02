@@ -6,7 +6,6 @@
  */
 #include "saucer.h"
 #include "render.h"
-
 ////////////////////////// DEFINES //////////////////////////
 #define SAUCER_SCORE_MAX_INDEX 5	//used in updating the score
 #define SAUCER_SCORE_DIVISOR 10  	//used in finding the digits for the score

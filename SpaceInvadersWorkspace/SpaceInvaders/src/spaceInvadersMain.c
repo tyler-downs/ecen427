@@ -40,13 +40,13 @@ void timer_interrupt_handler() {
 	//update all counters
 	counters_updateAllCounters();
 	//The following is for calculating CPU utilization
-	intrLoopCount++;
+	/*intrLoopCount++;
 	if (intrLoopCount > INTR_LOOP_COUNT_MAX)
 	{
 		xil_printf("Util loop count: %d\n\r", utilLoopCount);
 		intrLoopCount = 0;
 		utilLoopCount = 0;
-	}
+	}*/
 }
 
 // This is invoked each time there is a change in the button state (result of a push or a bounce).
@@ -56,6 +56,19 @@ void pb_interrupt_handler() {
   currentButtonState = XGpio_DiscreteRead(&gpPB, 1);  // Get the current state of the buttons.
   XGpio_InterruptClear(&gpPB, 0xFFFFFFFF);            // Ack the PB interrupt.
   XGpio_InterruptGlobalEnable(&gpPB);                 // Re-enable PB interrupts.
+}
+
+//this is invoked each time the in fifo is half empty
+void sound_interrupt_handler() {
+	//xil_printf("enter sound interrupt handler\n\r");
+	//see capacity of fifo
+	//uint32_t level = XAC97_ReadReg(XPAR_AXI_AC97_0_BASEADDR, AC97_IN_FIFO_LEVEL) >> AC97_IN_FIFO_LEVEL_RSHFT;
+	//xil_printf("fifo level: %d\n\r", level);
+    //XIntc_DisableIntr(XPAR_INTC_0_BASEADDR, //sound only
+    //		(XPAR_AXI_AC97_0_INTERRUPT_MASK));
+	sounds_fillFifo();
+    //XIntc_EnableIntr(XPAR_INTC_0_BASEADDR, //sound only
+    //		(XPAR_AXI_AC97_0_INTERRUPT_MASK));
 }
 
 
@@ -77,14 +90,20 @@ void interrupt_handler_dispatcher(void* ptr) {
 		pb_interrupt_handler();
 		XIntc_AckIntr(XPAR_INTC_0_BASEADDR, XPAR_PUSH_BUTTONS_5BITS_IP2INTC_IRPT_MASK);
 	}
+	//check the audio queue
+	if(intc_status & XPAR_AXI_AC97_0_INTERRUPT_MASK) {
+		XIntc_AckIntr(XPAR_INTC_0_BASEADDR, XPAR_AXI_AC97_0_INTERRUPT_MASK);
+		sound_interrupt_handler();
+	}
 }
 
 
 int main()
 {
 	init_platform(); // Necessary for all programs.
+	sounds_init_sound();
 
-	/*
+
     int success;
 
     success = XGpio_Initialize(&gpPB, XPAR_PUSH_BUTTONS_5BITS_DEVICE_ID);
@@ -97,7 +116,9 @@ int main()
 
     microblaze_register_handler(interrupt_handler_dispatcher, NULL);
     XIntc_EnableIntr(XPAR_INTC_0_BASEADDR,
-    		(XPAR_FIT_TIMER_0_INTERRUPT_MASK | XPAR_PUSH_BUTTONS_5BITS_IP2INTC_IRPT_MASK));
+    		(XPAR_FIT_TIMER_0_INTERRUPT_MASK | XPAR_PUSH_BUTTONS_5BITS_IP2INTC_IRPT_MASK | XPAR_AXI_AC97_0_INTERRUPT_MASK));
+   // XIntc_EnableIntr(XPAR_INTC_0_BASEADDR, //sound only
+   // 		(XPAR_AXI_AC97_0_INTERRUPT_MASK));
     XIntc_MasterEnable(XPAR_INTC_0_BASEADDR);
 
     //init the display
@@ -109,9 +130,12 @@ int main()
     {
     	utilLoopCount++; //increment the loop count
     }
-	*/
-	xil_printf("Hello world\n\r");
-	init_sound();
+
+
+	//xil_printf("Hello world\n\r");
+
+
+
 
 	cleanup_platform();
 	return 0;
