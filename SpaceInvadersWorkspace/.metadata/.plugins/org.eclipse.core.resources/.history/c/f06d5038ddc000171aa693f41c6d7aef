@@ -157,7 +157,6 @@ void updateBulletMoveCounter()
 				saucerScoreOnScreen = TRUE;
 				//disable saucerLaunched global
 				saucerLaunched = FALSE;
-				sounds_playAlienKilledSound(); //play the alien killed sound
 			}
 			else if (bunkerHit > BULLETS_NO_HIT)//else if the bullet will hit a bunker
 			{
