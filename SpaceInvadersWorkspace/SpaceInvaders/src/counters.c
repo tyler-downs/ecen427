@@ -459,6 +459,15 @@ void restartGameOnGameOver()
 	render_drawAliensInit(); //draw the block of aliens
 }
 
+void changeVolume()
+{
+	if(upButtonPressed() && !downButtonPressed()) //if the up button is pressed
+		sounds_volumeUp(); //increase volume
+	if (downButtonPressed() && !upButtonPressed()) //if the down button is pressed
+		sounds_volumeDown(); //decrease volume
+}
+
+
 //updates all counters, depending on the game state
 void counters_updateAllCounters()
 {
@@ -492,5 +501,6 @@ void counters_updateAllCounters()
 		updateMoveSaucerCtr();
 		updateFireNewAlienBulletCtr();
 		updateSaucerLaunchCtr();
+		changeVolume();
 	}
 }

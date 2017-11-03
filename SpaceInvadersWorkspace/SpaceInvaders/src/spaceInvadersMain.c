@@ -34,6 +34,9 @@ u32 intrLoopCount = 0; //this will count at every interrupt from the timer
 u8 leftButtonPressed() {return currentButtonState & PB_BTNL_MASK;} //returns nonzero if the left button is pressed
 u8 rightButtonPressed() {return currentButtonState & PB_BTNR_MASK;} //returns nonzero if the right button is pressed
 u8 centerButtonPressed() {return currentButtonState & PB_BTNC_MASK;} //returns nonzero if the center button is pressed
+u8 upButtonPressed() {return currentButtonState & PB_BTNU_MASK;} //returns nonzero if the up button is pressed
+u8 downButtonPressed() {return currentButtonState & PB_BTND_MASK;} //returns nonzero if the down button is pressed
+
 
 // This is invoked in response to a timer interrupt.
 void timer_interrupt_handler() {
@@ -59,16 +62,9 @@ void pb_interrupt_handler() {
 }
 
 //this is invoked each time the in fifo is half empty
-void sound_interrupt_handler() {
-	//xil_printf("enter sound interrupt handler\n\r");
-	//see capacity of fifo
-	//uint32_t level = XAC97_ReadReg(XPAR_AXI_AC97_0_BASEADDR, AC97_IN_FIFO_LEVEL) >> AC97_IN_FIFO_LEVEL_RSHFT;
-	//xil_printf("fifo level: %d\n\r", level);
-    //XIntc_DisableIntr(XPAR_INTC_0_BASEADDR, //sound only
-    //		(XPAR_AXI_AC97_0_INTERRUPT_MASK));
+void sound_interrupt_handler()
+{
 	sounds_fillFifo();
-    //XIntc_EnableIntr(XPAR_INTC_0_BASEADDR, //sound only
-    //		(XPAR_AXI_AC97_0_INTERRUPT_MASK));
 }
 
 
@@ -103,7 +99,6 @@ int main()
 	init_platform(); // Necessary for all programs.
 	sounds_init_sound();
 
-
     int success;
 
     success = XGpio_Initialize(&gpPB, XPAR_PUSH_BUTTONS_5BITS_DEVICE_ID);
@@ -117,8 +112,6 @@ int main()
     microblaze_register_handler(interrupt_handler_dispatcher, NULL);
     XIntc_EnableIntr(XPAR_INTC_0_BASEADDR,
     		(XPAR_FIT_TIMER_0_INTERRUPT_MASK | XPAR_PUSH_BUTTONS_5BITS_IP2INTC_IRPT_MASK | XPAR_AXI_AC97_0_INTERRUPT_MASK));
-   // XIntc_EnableIntr(XPAR_INTC_0_BASEADDR, //sound only
-   // 		(XPAR_AXI_AC97_0_INTERRUPT_MASK));
     XIntc_MasterEnable(XPAR_INTC_0_BASEADDR);
 
     //init the display
@@ -130,12 +123,6 @@ int main()
     {
     	utilLoopCount++; //increment the loop count
     }
-
-
-	//xil_printf("Hello world\n\r");
-
-
-
 
 	cleanup_platform();
 	return 0;

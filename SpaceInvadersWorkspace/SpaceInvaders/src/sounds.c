@@ -56,12 +56,16 @@ extern u8 saucerLaunched; //true if the saucer is alive on screen
 #define SAUCER_SOUND_HIGH 1 //the high pitch saucer sound
 #define SAUCER_SOUND_LOW 0 //the low pitch saucer sound
 
+#define DELTA_VOLUME 8 //how much to change the volume by on every button press
+
 uint8_t playShootSound = FALSE; //flag to signal to play the shoot sound
 uint8_t playTankDeathSound = FALSE; //flag to signal to play the tank death sound
 uint8_t playAlienKilledSound = FALSE; //flag to signal to play the alien killed sound
 uint8_t playAlienMoveSound = FALSE; //flag to signal to play the alien move sound
 uint8_t alienMoveSoundNumber = ALIEN_MOVE_PITCH_LOWEST; //4 is the highest pitch, 1 is the lowest
 uint32_t sounds_currentIndex = 0;
+
+uint16_t currentVolume = AC97_VOL_MID; //the current volume
 
 //writes zeros to the FIFO
 void writeZeros()
@@ -128,7 +132,7 @@ void sounds_fillFifo()
 	}
 	else //play saucer sound if it's on screen. Otherwise no sound needs to be played right now
 	{
-		if (saucerLaunched)
+		if (saucerLaunched) //true if the saucer is on the screen
 		{
 			writeSound(NULL, UFOLowPitchSound_soundData, UFOLowPitchSound_numSamples);
 		}
@@ -168,14 +172,39 @@ void sounds_playAlienMoveSound() //signal to play the alien move sound
 	else
 		alienMoveSoundNumber--; //move down a pitch
 }
-/*
-void sounds_playSaucerSound() //signal to play the saucer sound
-{
-	playSaucerSound = TRUE;
-	if (!playTankDeathSound && !playShootSound && !playAlienKilledSound && !playAlienMoveSound) //if a higher priority sound is not playing
-		sounds_currentIndex = 0; //start at the beginning of the sound
+
+//write a new volume to the registers
+void writeVol(u16 newVolume) {
+	XAC97_WriteReg(XPAR_AXI_AC97_0_BASEADDR, AC97_MasterVol, newVolume);
+	XAC97_WriteReg(XPAR_AXI_AC97_0_BASEADDR, AC97_AuxOutVol, newVolume);
+	XAC97_WriteReg(XPAR_AXI_AC97_0_BASEADDR, AC97_MasterVolMono, newVolume);
+	XAC97_WriteReg(XPAR_AXI_AC97_0_BASEADDR, AC97_PCBeepVol, newVolume);
+	XAC97_WriteReg(XPAR_AXI_AC97_0_BASEADDR, AC97_PCMOutVol, newVolume);
+	XAC97_WriteReg(XPAR_AXI_AC97_0_BASEADDR, AC97_LineInVol, newVolume);
+	XAC97_WriteReg(XPAR_AXI_AC97_0_BASEADDR, AC97_MicVol, newVolume);
 }
-*/
+
+void sounds_volumeDown() //decrease the volume
+{
+	u32 newVolume = currentVolume + DELTA_VOLUME; //decrease the volume
+	if (newVolume > AC97_VOL_MIN) //if we passed the min volume
+		newVolume = AC97_VOL_MIN;
+	writeVol(newVolume); //update the volume registers
+	currentVolume = newVolume; //update the global
+}
+
+void sounds_volumeUp() //increase the volume
+{
+
+	u32 newVolume;
+	if(currentVolume < DELTA_VOLUME) //if the next decrease will put the volume below zero (max)
+		newVolume = AC97_VOL_MAX; //set the volume to 0 (max)
+	else
+		newVolume = currentVolume - DELTA_VOLUME; //decrease the volume
+	writeVol(newVolume); //update the volume registers
+	currentVolume = newVolume; //update the global
+}
+
 void sounds_init_sound()
 {
 	//call audio_init

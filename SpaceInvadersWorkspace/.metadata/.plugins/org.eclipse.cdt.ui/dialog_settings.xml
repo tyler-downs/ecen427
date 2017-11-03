@@ -12,16 +12,16 @@
 		</list>
 	</section>
 	<section name="org.eclipse.cdt.ui.text.hover.CMacroExpansionExploration.internal">
-		<item value="457" key="size.width"/>
+		<item value="641" key="size.width"/>
 		<item value="180" key="size.height"/>
 	</section>
 	<section name="CRenameRefactoringInputPage">
 		<item value="false" key="preprocessor"/>
-		<item value="false" key="macroDefinition"/>
 		<item value="3" key="scope"/>
+		<item value="false" key="macroDefinition"/>
 		<item value="false" key="comment"/>
-		<item value="false" key="references_inv"/>
 		<item value="" key="workingset"/>
+		<item value="false" key="references_inv"/>
 	</section>
 	<section name="org.eclipse.cdt.ui.text.hover.CMacroExpansionExploration">
 	</section>
