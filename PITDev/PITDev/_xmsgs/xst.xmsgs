@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- IMPORTANT: This is an internal file that has been generated
+     by the Xilinx ISE software.  Any direct editing or
+     changes made to this file may result in unpredictable
+     behavior or data corruption.  It is strongly advised that
+     users do not edit the contents of this file. -->
+<messages>
+<msg type="info" file="Xst" num="0" delta="new" >Part-select index evaluated to out of bound value may lead to incorrect synthesis results; it is recommended not to use them in RTL
+</msg>
+
+<msg type="error" file="HDLCompiler" num="104" delta="new" >"C:\Users\superman\Documents\TylerBondGithub\ecen427\PITDev\PITDev\user_logic.vhd" Line 58: Cannot find &lt;<arg fmt="%s" index="1">proc_common_pkg</arg>&gt; in library &lt;<arg fmt="%s" index="2">proc_common_v3_00_a</arg>&gt;. Please ensure that the library was compiled, and that a library and a use clause are present in the VHDL file.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="854" delta="new" >"C:\Users\superman\Documents\TylerBondGithub\ecen427\PITDev\PITDev\user_logic.vhd" Line 84: Unit &lt;<arg fmt="%s" index="1">user_logic</arg>&gt; ignored due to previous errors.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="374" delta="new" >"C:\Users\superman\Documents\TylerBondGithub\ecen427\PITDev\PITDev\user_logic.vhd" Line 132: Entity &lt;<arg fmt="%s" index="1">user_logic</arg>&gt; is not yet compiled.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="69" delta="new" >"C:\Users\superman\Documents\TylerBondGithub\ecen427\PITDev\PITDev\user_logic.vhd" Line 135: &lt;<arg fmt="%s" index="1">std_logic_vector</arg>&gt; is not declared.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="69" delta="new" >"C:\Users\superman\Documents\TylerBondGithub\ecen427\PITDev\PITDev\user_logic.vhd" Line 136: &lt;<arg fmt="%s" index="1">std_logic</arg>&gt; is not declared.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="69" delta="new" >"C:\Users\superman\Documents\TylerBondGithub\ecen427\PITDev\PITDev\user_logic.vhd" Line 137: &lt;<arg fmt="%s" index="1">std_logic</arg>&gt; is not declared.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="69" delta="new" >"C:\Users\superman\Documents\TylerBondGithub\ecen427\PITDev\PITDev\user_logic.vhd" Line 138: &lt;<arg fmt="%s" index="1">std_logic</arg>&gt; is not declared.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="69" delta="new" >"C:\Users\superman\Documents\TylerBondGithub\ecen427\PITDev\PITDev\user_logic.vhd" Line 143: &lt;<arg fmt="%s" index="1">std_logic_vector</arg>&gt; is not declared.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="69" delta="new" >"C:\Users\superman\Documents\TylerBondGithub\ecen427\PITDev\PITDev\user_logic.vhd" Line 144: &lt;<arg fmt="%s" index="1">std_logic_vector</arg>&gt; is not declared.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="69" delta="new" >"C:\Users\superman\Documents\TylerBondGithub\ecen427\PITDev\PITDev\user_logic.vhd" Line 145: &lt;<arg fmt="%s" index="1">std_logic_vector</arg>&gt; is not declared.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="69" delta="new" >"C:\Users\superman\Documents\TylerBondGithub\ecen427\PITDev\PITDev\user_logic.vhd" Line 146: &lt;<arg fmt="%s" index="1">std_logic_vector</arg>&gt; is not declared.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="69" delta="new" >"C:\Users\superman\Documents\TylerBondGithub\ecen427\PITDev\PITDev\user_logic.vhd" Line 147: &lt;<arg fmt="%s" index="1">std_logic_vector</arg>&gt; is not declared.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="69" delta="new" >"C:\Users\superman\Documents\TylerBondGithub\ecen427\PITDev\PITDev\user_logic.vhd" Line 148: &lt;<arg fmt="%s" index="1">std_logic</arg>&gt; is not declared.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="69" delta="new" >"C:\Users\superman\Documents\TylerBondGithub\ecen427\PITDev\PITDev\user_logic.vhd" Line 149: &lt;<arg fmt="%s" index="1">std_logic</arg>&gt; is not declared.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="69" delta="new" >"C:\Users\superman\Documents\TylerBondGithub\ecen427\PITDev\PITDev\user_logic.vhd" Line 154: &lt;<arg fmt="%s" index="1">slv_read_ack</arg>&gt; is not declared.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="69" delta="new" >"C:\Users\superman\Documents\TylerBondGithub\ecen427\PITDev\PITDev\user_logic.vhd" Line 157: &lt;<arg fmt="%s" index="1">ip2bus_wrack</arg>&gt; is not declared.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="69" delta="new" >"C:\Users\superman\Documents\TylerBondGithub\ecen427\PITDev\PITDev\user_logic.vhd" Line 158: &lt;<arg fmt="%s" index="1">ip2bus_rdack</arg>&gt; is not declared.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="69" delta="new" >"C:\Users\superman\Documents\TylerBondGithub\ecen427\PITDev\PITDev\user_logic.vhd" Line 159: &lt;<arg fmt="%s" index="1">ip2bus_error</arg>&gt; is not declared.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="69" delta="new" >"C:\Users\superman\Documents\TylerBondGithub\ecen427\PITDev\PITDev\user_logic.vhd" Line 165: &lt;<arg fmt="%s" index="1">decrementenable</arg>&gt; is not declared.
+</msg>
+
+</messages>
+

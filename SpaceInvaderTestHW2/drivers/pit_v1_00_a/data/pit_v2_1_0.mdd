@@ -1,0 +1,15 @@
+##############################################################################
+## Filename:          C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2/drivers/pit_v1_00_a/data/pit_v2_1_0.mdd
+## Description:       Microprocessor Driver Definition
+## Date:              Mon Nov 06 17:52:38 2017 (by Create and Import Peripheral Wizard)
+##############################################################################
+
+OPTION psf_version = 2.1.0;
+
+BEGIN DRIVER pit
+
+  OPTION supported_peripherals = (pit);
+  OPTION depends = (common_v1_00_a);
+  OPTION copyfiles = all;
+
+END DRIVER

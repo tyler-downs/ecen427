@@ -1,0 +1,73 @@
+Release 13.4 - xst O.87xd (nt64)
+Copyright (c) 1995-2011 Xilinx, Inc.  All rights reserved.
+--> Parameter TMPDIR set to C:/Users/superman/Documents/TylerBondGithub/ecen427/PITDev/PITDev/xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.18 secs
+ 
+--> Parameter xsthdpdir set to C:/Users/superman/Documents/TylerBondGithub/ecen427/PITDev/PITDev/xst
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.18 secs
+ 
+--> Reading design: user_logic.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Parsing
+  3) HDL Elaboration
+  4) HDL Synthesis
+       4.1) HDL Synthesis Report
+  5) Advanced HDL Synthesis
+       5.1) Advanced HDL Synthesis Report
+  6) Low Level Synthesis
+  7) Partition Report
+  8) Design Summary
+       8.1) Primitive and Black Box Usage
+       8.2) Device utilization summary
+       8.3) Partition Resource Summary
+       8.4) Timing Report
+            8.4.1) Clock Information
+            8.4.2) Asynchronous Control Signals Information
+            8.4.3) Timing Summary
+            8.4.4) Timing Details
+            8.4.5) Cross Clock Domains Report
+
+INFO:Xst - Part-select index evaluated to out of bound value may lead to incorrect synthesis results; it is recommended not to use them in RTL
+
+=========================================================================
+*                          HDL Parsing                                  *
+=========================================================================
+Parsing VHDL file "C:\Users\superman\Documents\TylerBondGithub\ecen427\PITDev\PITDev\user_logic.vhd" into library work
+ERROR:HDLCompiler:104 - "C:\Users\superman\Documents\TylerBondGithub\ecen427\PITDev\PITDev\user_logic.vhd" Line 58: Cannot find <proc_common_pkg> in library <proc_common_v3_00_a>. Please ensure that the library was compiled, and that a library and a use clause are present in the VHDL file.
+Parsing entity <user_logic>.
+ERROR:HDLCompiler:854 - "C:\Users\superman\Documents\TylerBondGithub\ecen427\PITDev\PITDev\user_logic.vhd" Line 84: Unit <user_logic> ignored due to previous errors.
+Parsing architecture <IMP> of entity <user_logic>.
+ERROR:HDLCompiler:374 - "C:\Users\superman\Documents\TylerBondGithub\ecen427\PITDev\PITDev\user_logic.vhd" Line 132: Entity <user_logic> is not yet compiled.
+ERROR:HDLCompiler:69 - "C:\Users\superman\Documents\TylerBondGithub\ecen427\PITDev\PITDev\user_logic.vhd" Line 135: <std_logic_vector> is not declared.
+ERROR:HDLCompiler:69 - "C:\Users\superman\Documents\TylerBondGithub\ecen427\PITDev\PITDev\user_logic.vhd" Line 136: <std_logic> is not declared.
+ERROR:HDLCompiler:69 - "C:\Users\superman\Documents\TylerBondGithub\ecen427\PITDev\PITDev\user_logic.vhd" Line 137: <std_logic> is not declared.
+ERROR:HDLCompiler:69 - "C:\Users\superman\Documents\TylerBondGithub\ecen427\PITDev\PITDev\user_logic.vhd" Line 138: <std_logic> is not declared.
+ERROR:HDLCompiler:69 - "C:\Users\superman\Documents\TylerBondGithub\ecen427\PITDev\PITDev\user_logic.vhd" Line 143: <std_logic_vector> is not declared.
+ERROR:HDLCompiler:69 - "C:\Users\superman\Documents\TylerBondGithub\ecen427\PITDev\PITDev\user_logic.vhd" Line 144: <std_logic_vector> is not declared.
+ERROR:HDLCompiler:69 - "C:\Users\superman\Documents\TylerBondGithub\ecen427\PITDev\PITDev\user_logic.vhd" Line 145: <std_logic_vector> is not declared.
+ERROR:HDLCompiler:69 - "C:\Users\superman\Documents\TylerBondGithub\ecen427\PITDev\PITDev\user_logic.vhd" Line 146: <std_logic_vector> is not declared.
+ERROR:HDLCompiler:69 - "C:\Users\superman\Documents\TylerBondGithub\ecen427\PITDev\PITDev\user_logic.vhd" Line 147: <std_logic_vector> is not declared.
+ERROR:HDLCompiler:69 - "C:\Users\superman\Documents\TylerBondGithub\ecen427\PITDev\PITDev\user_logic.vhd" Line 148: <std_logic> is not declared.
+ERROR:HDLCompiler:69 - "C:\Users\superman\Documents\TylerBondGithub\ecen427\PITDev\PITDev\user_logic.vhd" Line 149: <std_logic> is not declared.
+ERROR:HDLCompiler:69 - "C:\Users\superman\Documents\TylerBondGithub\ecen427\PITDev\PITDev\user_logic.vhd" Line 154: <slv_read_ack> is not declared.
+ERROR:HDLCompiler:69 - "C:\Users\superman\Documents\TylerBondGithub\ecen427\PITDev\PITDev\user_logic.vhd" Line 157: <ip2bus_wrack> is not declared.
+ERROR:HDLCompiler:69 - "C:\Users\superman\Documents\TylerBondGithub\ecen427\PITDev\PITDev\user_logic.vhd" Line 158: <ip2bus_rdack> is not declared.
+ERROR:HDLCompiler:69 - "C:\Users\superman\Documents\TylerBondGithub\ecen427\PITDev\PITDev\user_logic.vhd" Line 159: <ip2bus_error> is not declared.
+ERROR:HDLCompiler:69 - "C:\Users\superman\Documents\TylerBondGithub\ecen427\PITDev\PITDev\user_logic.vhd" Line 165: <decrementenable> is not declared.
+Sorry, too many errors..
+--> 
+
+Total memory usage is 199456 kilobytes
+
+Number of errors   :   19 (   0 filtered)
+Number of warnings :    0 (   0 filtered)
+Number of infos    :    1 (   0 filtered)
+
