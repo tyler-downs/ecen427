@@ -13,16 +13,16 @@
 		<item value="false" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="Vol" key="selection"/>
+		<item value="" key="selection"/>
 		<list key="findhistory">
+			<item value="uint32"/>
+			<item value="Xil_In32"/>
+			<item value="Xil_In"/>
+			<item value="pit"/>
+			<item value="PIT"/>
+			<item value="XPAR_FIT_TIMER_0_INTERRUPT_MASK"/>
 			<item value="vol"/>
 			<item value="initSau"/>
-			<item value="fireTank"/>
-			<item value="printf"/>
-			<item value="tankDead = TRUE"/>
-			<item value="sound"/>
-			<item value="BOTTOMLINE_TOP"/>
-			<item value="ALIEN_BULLET_TRAVEL"/>
 		</list>
 		<list key="replacehistory">
 			<item value="aliens_getColumnFrom"/>

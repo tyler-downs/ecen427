@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<item value="C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvadersWorkspace\SpaceInvaders_hw_platform\system.bit" key="SpaceInvaders_hw_platform-bitFile"/>
-	<item value="bootloop" key="SpaceInvaders_hw_platform-microblaze_0-initElf"/>
 	<item value="C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvadersWorkspace\SpaceInvaders_hw_platform\system_bd.bmm" key="SpaceInvaders_hw_platform-bmmFile"/>
+	<item value="bootloop" key="SpaceInvaders_hw_platform-microblaze_0-initElf"/>
 </section>

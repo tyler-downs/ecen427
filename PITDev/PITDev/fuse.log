@@ -1,0 +1,17 @@
+Running: fuse.exe -relaunch -intstyle "ise" -incremental -lib "secureip" -o "C:/Users/superman/Documents/TylerBondGithub/ecen427/PITDev/PITDev/user_logic_isim_beh.exe" -prj "C:/Users/superman/Documents/TylerBondGithub/ecen427/PITDev/PITDev/user_logic_beh.prj" "work.user_logic" 
+ISim O.87xd (signature 0xc3576ebc)
+Number of CPUs detected in this system: 4
+Turning on mult-threading, number of parallel sub-compilation jobs: 8 
+Determining compilation order of HDL files
+Parsing VHDL file "C:/Users/superman/Documents/TylerBondGithub/ecen427/PITDev/PITDev/user_logic.vhd" into library work
+Starting static elaboration
+Completed static elaboration
+Compiling package standard
+Compiling package std_logic_1164
+Compiling package numeric_std
+Compiling architecture imp of entity user_logic
+Time Resolution for simulation is 1ps.
+Compiled 4 VHDL Units
+Built simulation executable C:/Users/superman/Documents/TylerBondGithub/ecen427/PITDev/PITDev/user_logic_isim_beh.exe
+Fuse Memory Usage: 37032 KB
+Fuse CPU Usage: 452 ms

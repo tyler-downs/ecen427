@@ -129,7 +129,9 @@ pcores/axi_ac97_v1_00_a/hdl/vhdl/srl_fifo.vhd \
 pcores/axi_ac97_v1_00_a/hdl/vhdl/ac97_fifo.vhd \
 pcores/axi_ac97_v1_00_a/hdl/vhdl/opb_ac97.vhd \
 pcores/axi_ac97_v1_00_a/hdl/vhdl/user_logic.vhd \
-pcores/axi_ac97_v1_00_a/hdl/vhdl/axi_ac97.vhd
+pcores/axi_ac97_v1_00_a/hdl/vhdl/axi_ac97.vhd \
+pcores/pit_v1_00_a/hdl/vhdl/user_logic.vhd \
+pcores/pit_v1_00_a/hdl/vhdl/pit.vhd
 
 WRAPPER_NGC_FILES = implementation/proc_sys_reset_0_wrapper.ngc \
 implementation/microblaze_0_ilmb_wrapper.ngc \
@@ -151,7 +153,8 @@ implementation/mcb_ddr2_wrapper.ngc \
 implementation/digilent_quadspi_cntlr_wrapper.ngc \
 implementation/axi_intc_0_wrapper.ngc \
 implementation/axi_timer_0_wrapper.ngc \
-implementation/fit_timer_0_wrapper.ngc
+implementation/fit_timer_0_wrapper.ngc \
+implementation/pit_0_wrapper.ngc
 
 POSTSYN_NETLIST = implementation/$(SYSTEM).ngc
 

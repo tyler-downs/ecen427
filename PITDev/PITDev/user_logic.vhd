@@ -51,11 +51,12 @@
 -- DO NOT EDIT BELOW THIS LINE --------------------
 library ieee;
 use ieee.std_logic_1164.all;
-use ieee.std_logic_arith.all;
-use ieee.std_logic_unsigned.all;
+--use ieee.std_logic_arith.all;
+--use ieee.std_logic_unsigned.all;
+use IEEE.NUMERIC_STD.ALL;
 
-library proc_common_v3_00_a;
-use proc_common_v3_00_a.proc_common_pkg.all;
+--library proc_common_v3_00_a;
+--use proc_common_v3_00_a.proc_common_pkg.all;
 
 -- DO NOT EDIT ABOVE THIS LINE --------------------
 
@@ -86,7 +87,6 @@ entity user_logic is
   (
     -- ADD USER GENERICS BELOW THIS LINE ---------------
     --USER generics added here
-			--	MAX_TIMER_VAL : integer := 16#FFFFFFFF#; --just using register?
     -- ADD USER GENERICS ABOVE THIS LINE ---------------
 
     -- DO NOT EDIT BELOW THIS LINE ---------------------
@@ -105,15 +105,8 @@ entity user_logic is
     -- DO NOT EDIT BELOW THIS LINE ---------------------
     -- Bus protocol ports, do not add to or delete
     Bus2IP_Clk                     : in  std_logic;
-    Bus2IP_Resetn                  : in  std_logic;
-    Bus2IP_Data                    : in  std_logic_vector(C_SLV_DWIDTH-1 downto 0);
-    Bus2IP_BE                      : in  std_logic_vector(C_SLV_DWIDTH/8-1 downto 0);
-    Bus2IP_RdCE                    : in  std_logic_vector(C_NUM_REG-1 downto 0);
-    Bus2IP_WrCE                    : in  std_logic_vector(C_NUM_REG-1 downto 0);
-    IP2Bus_Data                    : out std_logic_vector(C_SLV_DWIDTH-1 downto 0);
-    IP2Bus_RdAck                   : out std_logic;
-    IP2Bus_WrAck                   : out std_logic;
-    IP2Bus_Error                   : out std_logic
+    Bus2IP_Resetn                  : in  std_logic
+
     -- DO NOT EDIT ABOVE THIS LINE ---------------------
   );
 
@@ -132,7 +125,7 @@ end entity user_logic;
 architecture IMP of user_logic is
 
   --USER signal declarations added here, as needed for user logic
-	signal timer : std_logic_vector(31 downto 0) := MAX_TIMER_VAL; --just use slv_reg1?
+	signal timer : unsigned(31 downto 0) := (others => '1'); --just use slv_reg1?
 	signal decrementEnable : std_logic;
 	signal interruptOutputEnable : std_logic;
 	signal timerReloadEnable : std_logic;
@@ -140,125 +133,47 @@ architecture IMP of user_logic is
   ------------------------------------------
   -- Signals for user logic slave model s/w accessible register example
   ------------------------------------------
-  signal slv_reg0                       : std_logic_vector(C_SLV_DWIDTH-1 downto 0);
-  signal slv_reg1                       : std_logic_vector(C_SLV_DWIDTH-1 downto 0); 
-  signal slv_reg_write_sel              : std_logic_vector(1 downto 0);
-  signal slv_reg_read_sel               : std_logic_vector(1 downto 0);
-  signal slv_ip2bus_data                : std_logic_vector(C_SLV_DWIDTH-1 downto 0);
-  signal slv_read_ack                   : std_logic;
-  signal slv_write_ack                  : std_logic;
+  signal slv_reg0                       : std_logic_vector(C_SLV_DWIDTH-1 downto 0); --control bits
+  signal slv_reg1                       : std_logic_vector(C_SLV_DWIDTH-1 downto 0); --delay value
+
 
 begin
 
   --USER logic implementation added here
-	IP2Bus_Data <= slv_ip2bus_data when slv_read_ack = '1' else 
-									(others => '0');
+--	IP2Bus_Data <= slv_ip2bus_data when slv_read_ack = '1' else 
+--									(others => '0');
 									
-	IP2Bus_WrAck <= slv_write_ack;
-	IP2Bus_RdAck <= slv_read_ack;
-	IP2Bus_Error <= '0';
+--	IP2Bus_WrAck <= slv_write_ack;
+--	IP2Bus_RdAck <= slv_read_ack;
+--	IP2Bus_Error <= '0';
 	
 	
 	--slv_reg0 shall be the register with the control bits
 	--slv_reg1 shall be the delay value register
 	
-	decrementEnable <= slv_reg0(0);
-	interruptOutputEnable <= slv_reg0(1);
-	timerReloadEnable <= slv_reg0(2);
+	decrementEnable <= slv_reg0(0); --bit 0
+	interruptOutputEnable <= slv_reg0(1); --bit 1
+	timerReloadEnable <= slv_reg0(2); --bit 2
 	
 	process (Bus2IP_Clk)
 	begin
-		if (Bus2IP_Resetn = '0') then --on reset
+		if (Bus2IP_Resetn = '1') then --on reset
 			timer <= (others => '1'); --set the timer to all F's (1's)
-			slv_reg0 <= (others => '1'); --turn off timer
 		elsif Bus2IP_Clk 'event and Bus2IP_Clk = '1' then
 			timer <= timer; --default is keep the same value
-			if (timer > slv_reg1 and decrementEnable = '1') then --if we need to start at the max value
-				timer <= slv_reg1;
+			if (timer > Unsigned(slv_reg1) and decrementEnable = '1') then --if we need to start at the max value
+				timer <= Unsigned(slv_reg1);
 			elsif (timer > 0 and decrementEnable = '1') then --timer hasn't reached 0, and the timer is running
 				timer <= timer - 1; --decrement timer
 			elsif(decrementEnable = '1' and timerReloadEnable = '1') then --timer has reached 0, is running and reloading is enabled
-				timer <= slv_reg1; --reload timer
+				timer <= Unsigned(slv_reg1); --reload timer
 			end if;
 		end if;
 	
 	end process;
 	
-	interruptOutputEnable <= '1' when (timer = '0' and interruptOutputEnable = '1')
+	PITInterrupt <= '1' when (timer = 0 and interruptOutputEnable = '1')
 		else '0';
 
-  ------------------------------------------
-  -- Example code to read/write user logic slave model s/w accessible registers
-  -- 
-  -- Note:
-  -- The example code presented here is to show you one way of reading/writing
-  -- software accessible registers implemented in the user logic slave model.
-  -- Each bit of the Bus2IP_WrCE/Bus2IP_RdCE signals is configured to correspond
-  -- to one software accessible register by the top level template. For example,
-  -- if you have four 32 bit software accessible registers in the user logic,
-  -- you are basically operating on the following memory mapped registers:
-  -- 
-  --    Bus2IP_WrCE/Bus2IP_RdCE   Memory Mapped Register
-  --                     "1000"   C_BASEADDR + 0x0
-  --                     "0100"   C_BASEADDR + 0x4
-  --                     "0010"   C_BASEADDR + 0x8
-  --                     "0001"   C_BASEADDR + 0xC
-  -- 
-  ------------------------------------------
-  slv_reg_write_sel <= Bus2IP_WrCE(1 downto 0);
-  slv_reg_read_sel  <= Bus2IP_RdCE(1 downto 0);
-  slv_write_ack     <= Bus2IP_WrCE(0) or Bus2IP_WrCE(1);
-  slv_read_ack      <= Bus2IP_RdCE(0) or Bus2IP_RdCE(1);
-
-  -- implement slave model software accessible register(s)
-  SLAVE_REG_WRITE_PROC : process( Bus2IP_Clk ) is
-  begin
-
-    if Bus2IP_Clk'event and Bus2IP_Clk = '1' then
-      if Bus2IP_Resetn = '0' then
-        slv_reg0 <= (others => '0');
-        slv_reg1 <= (others => '0');
-      else
-        case slv_reg_write_sel is
-          when "10" =>
-            for byte_index in 0 to (C_SLV_DWIDTH/8)-1 loop
-              if ( Bus2IP_BE(byte_index) = '1' ) then
-                slv_reg0(byte_index*8+7 downto byte_index*8) <= Bus2IP_Data(byte_index*8+7 downto byte_index*8);
-              end if;
-            end loop;
-          when "01" =>
-            for byte_index in 0 to (C_SLV_DWIDTH/8)-1 loop
-              if ( Bus2IP_BE(byte_index) = '1' ) then
-                slv_reg1(byte_index*8+7 downto byte_index*8) <= Bus2IP_Data(byte_index*8+7 downto byte_index*8);
-              end if;
-            end loop;
-          when others => null;
-        end case;
-      end if;
-    end if;
-
-  end process SLAVE_REG_WRITE_PROC;
-
-  -- implement slave model software accessible register(s) read mux
-  SLAVE_REG_READ_PROC : process( slv_reg_read_sel, slv_reg0, slv_reg1 ) is
-  begin
-
-    case slv_reg_read_sel is
-      when "10" => slv_ip2bus_data <= slv_reg0;
-      when "01" => slv_ip2bus_data <= slv_reg1;
-      when others => slv_ip2bus_data <= (others => '0');
-    end case;
-
-  end process SLAVE_REG_READ_PROC;
-
-  ------------------------------------------
-  -- Example code to drive IP to Bus signals
-  ------------------------------------------
-  IP2Bus_Data  <= slv_ip2bus_data when slv_read_ack = '1' else
-                  (others => '0');
-
-  IP2Bus_WrAck <= slv_write_ack;
-  IP2Bus_RdAck <= slv_read_ack;
-  IP2Bus_Error <= '0';
 
 end IMP;

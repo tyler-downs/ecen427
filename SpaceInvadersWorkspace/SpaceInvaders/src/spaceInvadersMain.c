@@ -41,6 +41,7 @@ u8 downButtonPressed() {return currentButtonState & PB_BTND_MASK;} //returns non
 // This is invoked in response to a timer interrupt.
 void timer_interrupt_handler() {
 	//update all counters
+	//xil_printf("timer interrupt handler\n\r");
 	counters_updateAllCounters();
 	//The following is for calculating CPU utilization
 	/*intrLoopCount++;
@@ -76,11 +77,19 @@ void sound_interrupt_handler()
 // but pb_interrupt_handler() is called before ack'ing the interrupt controller?
 void interrupt_handler_dispatcher(void* ptr) {
 	int intc_status = XIntc_GetIntrStatus(XPAR_INTC_0_BASEADDR);
-	// Check the FIT interrupt first.
-	if (intc_status & XPAR_FIT_TIMER_0_INTERRUPT_MASK){
-		XIntc_AckIntr(XPAR_INTC_0_BASEADDR, XPAR_FIT_TIMER_0_INTERRUPT_MASK);
-		timer_interrupt_handler();
+//	// Check the FIT interrupt first.
+//	if (intc_status & XPAR_FIT_TIMER_0_INTERRUPT_MASK){
+//		XIntc_AckIntr(XPAR_INTC_0_BASEADDR, XPAR_FIT_TIMER_0_INTERRUPT_MASK);
+//		timer_interrupt_handler();
+//	}
+
+	//check the PIT interrupt
+	if (intc_status & XPAR_PIT_0_PITINTERRUPT_MASK)
+	{
+		XIntc_AckIntr(XPAR_INTC_0_BASEADDR, XPAR_PIT_0_PITINTERRUPT_MASK); //acknowledge interrupt
+		timer_interrupt_handler(); //call interrupt handler
 	}
+
 	// Check the push buttons.
 	if (intc_status & XPAR_PUSH_BUTTONS_5BITS_IP2INTC_IRPT_MASK){
 		pb_interrupt_handler();
@@ -93,6 +102,7 @@ void interrupt_handler_dispatcher(void* ptr) {
 	}
 }
 
+#define BASE_TEN 10
 
 int main()
 {
@@ -109,19 +119,41 @@ int main()
     // Enable all interrupts in the push button peripheral.
     XGpio_InterruptEnable(&gpPB, 0xFFFFFFFF);
 
+    //initialize the PIT
+    pit_init();
+
     microblaze_register_handler(interrupt_handler_dispatcher, NULL);
+//  XIntc_EnableIntr(XPAR_INTC_0_BASEADDR,
+//    		(XPAR_FIT_TIMER_0_INTERRUPT_MASK | XPAR_PUSH_BUTTONS_5BITS_IP2INTC_IRPT_MASK | XPAR_AXI_AC97_0_INTERRUPT_MASK));
     XIntc_EnableIntr(XPAR_INTC_0_BASEADDR,
-    		(XPAR_FIT_TIMER_0_INTERRUPT_MASK | XPAR_PUSH_BUTTONS_5BITS_IP2INTC_IRPT_MASK | XPAR_AXI_AC97_0_INTERRUPT_MASK));
+    		(XPAR_PIT_0_PITINTERRUPT_MASK | XPAR_PUSH_BUTTONS_5BITS_IP2INTC_IRPT_MASK | XPAR_AXI_AC97_0_INTERRUPT_MASK));
     XIntc_MasterEnable(XPAR_INTC_0_BASEADDR);
 
     //init the display
     render_disp_init();
+    xil_printf("interval is: %ld\n\r", pit_getInterval());
 
     microblaze_enable_interrupts();
 
+    //start the PIT
+    pit_startTimer();
+
     while(1)// Program never ends.
     {
-    	utilLoopCount++; //increment the loop count
+    	//utilLoopCount++; //increment the loop count
+
+    	//Get a new interval from the keyboard
+    	uint32_t temp_val = 0;
+    	char temp_char = getchar();
+    	while(temp_char != '\r')
+    	{
+    		temp_val *= BASE_TEN;
+    		temp_val += temp_char - '0';
+    		temp_char = getchar();
+
+    	}
+    	pit_setInterval(temp_val);
+    	xil_printf("interval is: %ld\n\r", pit_getInterval());
     }
 
 	cleanup_platform();

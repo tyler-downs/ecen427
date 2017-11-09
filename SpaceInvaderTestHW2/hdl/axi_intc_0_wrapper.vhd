@@ -31,7 +31,7 @@ entity axi_intc_0_wrapper is
     S_AXI_RRESP : out std_logic_vector(1 downto 0);
     S_AXI_RVALID : out std_logic;
     S_AXI_RREADY : in std_logic;
-    Intr : in std_logic_vector(3 downto 0);
+    Intr : in std_logic_vector(4 downto 0);
     Irq : out std_logic
   );
 
@@ -94,8 +94,8 @@ begin
       C_HIGHADDR => X"4120ffff",
       C_S_AXI_ADDR_WIDTH => 32,
       C_S_AXI_DATA_WIDTH => 32,
-      C_NUM_INTR_INPUTS => 4,
-      C_KIND_OF_INTR => B"11111111111111111111111111111001",
+      C_NUM_INTR_INPUTS => 5,
+      C_KIND_OF_INTR => B"11111111111111111111111111110010",
       C_KIND_OF_EDGE => B"11111111111111111111111111111111",
       C_KIND_OF_LVL => B"11111111111111111111111111111111",
       C_HAS_IPR => 1,

@@ -1,0 +1,2 @@
+vhdl isim_temp "user_logic.vhd"
+vhdl isim_temp "pit.vhd"

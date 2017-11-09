@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -lib "secureip" -o "C:/Users/superman/Documents/TylerBondGithub/ecen427/PITDev/PITDev/user_logic_isim_beh.exe" -prj "C:/Users/superman/Documents/TylerBondGithub/ecen427/PITDev/PITDev/user_logic_beh.prj" "work.user_logic" 

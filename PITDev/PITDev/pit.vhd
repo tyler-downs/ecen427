@@ -59,18 +59,18 @@
 
 library ieee;
 use ieee.std_logic_1164.all;
-use ieee.std_logic_arith.all;
-use ieee.std_logic_unsigned.all;
+--use ieee.std_logic_arith.all;
+--use ieee.std_logic_unsigned.all;
 
-library proc_common_v3_00_a;
-use proc_common_v3_00_a.proc_common_pkg.all;
-use proc_common_v3_00_a.ipif_pkg.all;
+--library proc_common_v3_00_a;
+--use proc_common_v3_00_a.proc_common_pkg.all;
+--use proc_common_v3_00_a.ipif_pkg.all;
 
-library axi_lite_ipif_v1_01_a;
-use axi_lite_ipif_v1_01_a.axi_lite_ipif;
+--library axi_lite_ipif_v1_01_a;
+--use axi_lite_ipif_v1_01_a.axi_lite_ipif;
 
-library pit_v1_00_a;
-use pit_v1_00_a.user_logic;
+--library pit_v1_00_a;
+--use pit_v1_00_a.user_logic;
 
 ------------------------------------------------------------------------------
 -- Entity section

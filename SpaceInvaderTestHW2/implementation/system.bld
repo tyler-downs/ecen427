@@ -71,6 +71,9 @@ Loading design module
 ntation/fit_timer_0_wrapper.ngc"...
 Loading design module
 "C:/Users/superman/Documents/TylerBondGithub/ecen427/SpaceInvaderTestHW2/impleme
+ntation/pit_0_wrapper.ngc"...
+Loading design module
+"C:/Users/superman/Documents/TylerBondGithub/ecen427/SpaceInvaderTestHW2/impleme
 ntation/microblaze_0_bram_block_wrapper.ngc"...
 Applying constraints in
 "C:/Users/superman/Documents/TylerBondGithub/ecen427/SpaceInvaderTestHW2/impleme
@@ -294,10 +297,10 @@ NGDBUILD Design Results Summary:
   Number of errors:     0
   Number of warnings:  37
 
-Total memory usage is 293168 kilobytes
+Total memory usage is 295692 kilobytes
 
 Writing NGD file "system.ngd" ...
-Total REAL time to NGDBUILD completion:  45 sec
-Total CPU time to NGDBUILD completion:   44 sec
+Total REAL time to NGDBUILD completion:  49 sec
+Total CPU time to NGDBUILD completion:   49 sec
 
 Writing NGDBUILD log file "system.bld"...
