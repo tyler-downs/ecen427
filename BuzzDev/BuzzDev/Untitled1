@@ -1,0 +1,14 @@
+wave add / -radix bin
+isim force add Bus2IP_Clk 1 -value 0 -time 10 ns -repeat 20 ns
+
+#reset
+put Bus2IP_Resetn 0
+put slv_reg0 00000000000000000000000000000000
+put slv_reg1 00000000000000000000000000000000
+run 200 ns
+
+#set duration, nothing should change
+put slv_reg1 00000000000000000000000000000100
+run 200 ns
+
+#

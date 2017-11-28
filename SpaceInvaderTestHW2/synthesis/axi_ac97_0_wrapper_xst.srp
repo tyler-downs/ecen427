@@ -1308,12 +1308,12 @@ Bit_Clk        |         |         |    1.621|         |
 =========================================================================
 
 
-Total REAL time to Xst completion: 10.00 secs
-Total CPU time to Xst completion: 9.83 secs
+Total REAL time to Xst completion: 8.00 secs
+Total CPU time to Xst completion: 8.63 secs
  
 --> 
 
-Total memory usage is 291048 kilobytes
+Total memory usage is 301672 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :   62 (   0 filtered)

@@ -1,0 +1,43 @@
+/*
+ * buzzerDriver.c
+ *
+ *  Created on: Nov 27, 2017
+ *      Author: superman
+ */
+#include "buzzerDriver.h"
+#include "xparameters.h"
+#include "xil_io.h"
+
+#define DURATION_REGISTER_OFFSET 4 //offset to reach the 2nd register, which is for the buzz duration
+#define CONTROL_REG_RELOAD_MASK 0x00000002 //bit 1 of reg 0
+#define CONTROL_REG_BUZZ_ENABLE_MASK 0x00000001 //bit 0 of reg 0
+#define BUZZ_ENABLED 1
+#define BUZZ_DISABLED 0
+#define RELOAD_ENABLED 1
+
+
+void buzzerInit()
+{
+	buzzer_setDelay(0);
+	buzzer_disableBuzz();
+}
+
+void buzzer_setDelay(uint32_t buzzTime)
+{
+	Xil_Out32(XPAR_BUZZER_0_BASEADDR + DURATION_REGISTER_OFFSET, buzzTime); //write the new buzz duration value to the register
+	xil_print("setting delay to: %d\n\r", buzzTime);
+}
+
+void buzzer_buzz()
+{
+	//load the new value into the timer by setting bit 1 to 1
+	Xil_Out32(XPAR_BUZZER_0_BASEADDR, RELOAD_ENABLED | CONTROL_REG_RELOAD_MASK);
+	//xil_printf("setting duration reg to")
+	Xil_Out32(XPAR_BUZZER_0_BASEADDR, BUZZ_ENABLED); //enable buzzing by writing a 1 to bit 0 of register 0 and turning off the reload bit
+}
+
+//This isn't necessary unless you want to stop a buzz short
+void buzzer_disableBuzz()
+{
+	Xil_Out32(XPAR_BUZZER_0_BASEADDR, BUZZ_DISABLED); //disable buzzing by writing a 0 to bit 0 of register 0 and turning off the reload bit
+}

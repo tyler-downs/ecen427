@@ -1,0 +1,17 @@
+/*
+ * sounds.c
+ *
+ *  Created on: Oct 27, 2017
+ *      Author: superman
+ */
+#include "sounds.h"
+
+//#include "soundfiles/alienKilledSound.c"
+
+extern int32_t alienKilledSound_soundData[];
+
+
+void accessSounds()
+{
+	xil_printf("Sample rate: %d\n\r", alienKilledSound_soundData[0]);
+}

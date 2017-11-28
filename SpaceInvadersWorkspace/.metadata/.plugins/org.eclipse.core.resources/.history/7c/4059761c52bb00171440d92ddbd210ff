@@ -1,0 +1,13 @@
+/*
+ * alienKilledSound.h
+ *
+ *  Created on: Oct 27, 2017
+ *      Author: superman
+ */
+
+#ifndef ALIENKILLEDSOUND_H_
+#define ALIENKILLEDSOUND_H_
+#include "alienKilledSound.c"
+
+
+#endif /* ALIENKILLEDSOUND_H_ */

@@ -16,6 +16,7 @@
 #include "saucer.h"
 #include "counters.h"
 #include "sounds.h"
+//#include "buzzerDriver.h" //for testing
 
 #define PB_BTNC_MASK 0x0001 //Mask for identifying the center button
 #define PB_BTNR_MASK 0x0002 //Mask for identifying the right button
@@ -129,6 +130,8 @@ int main()
     		(XPAR_PIT_0_PITINTERRUPT_MASK | XPAR_PUSH_BUTTONS_5BITS_IP2INTC_IRPT_MASK | XPAR_AXI_AC97_0_INTERRUPT_MASK));
     XIntc_MasterEnable(XPAR_INTC_0_BASEADDR);
 
+    buzzerInit(); //init the buzzer
+
     //init the display
     render_disp_init();
     xil_printf("interval is: %ld\n\r", pit_getInterval());
@@ -156,6 +159,19 @@ int main()
     	xil_printf("interval is: %ld\n\r", pit_getInterval());
     }
 
+
+/*
+	//TEST FOR BUZZER
+	buzzerInit();
+	while(1)
+	{
+		xil_printf("buzzing now\n\r");
+		buzzer_setDelay(100000000); //1 second
+		buzzer_buzz();
+		uint32_t i = 0;
+		for (i = 0; i < 30000000; i++);
+	}
+*/
 	cleanup_platform();
 	return 0;
 }

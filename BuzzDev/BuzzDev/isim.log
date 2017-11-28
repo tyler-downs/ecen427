@@ -1,0 +1,30 @@
+ISim log file
+Running: C:\Users\superman\Documents\TylerBondGithub\ecen427\BuzzDev\BuzzDev\buzzer_isim_beh.exe -intstyle ise -gui -tclbatch C:/Users/superman/Documents/TylerBondGithub/ecen427/BuzzDev/BuzzDev/buzzTest.tcl -wdb C:/Users/superman/Documents/TylerBondGithub/ecen427/BuzzDev/BuzzDev/buzzer_isim_beh.wdb 
+ISim O.87xd (signature 0xc3576ebc)
+This is a Full version of ISim.
+Time resolution is 1 ps
+# wave add / -radix bin
+# isim force add Bus2IP_Clk 1 -value 0 -time 10 ns -repeat 20 ns
+# put Bus2IP_Resetn 0
+# put slv_reg0 00000000000000000000000000000000
+# put slv_reg1 00000000000000000000000000000000
+# run 200 ns
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+# put Bus2IP_Resetn 1
+# put slv_reg1 00000000000000000000000000000100
+# run 200 ns
+# put slv_reg0 00000000000000000000000000000010
+# run 200 ns
+# put slv_reg0 00000000000000000000000000000011
+# run 200 ns
+# put slv_reg0 00000000000000000000000000000001
+# run 200 ns
+# put slv_reg0 00000000000000000000000000000010
+# run 200 ns
+# put slv_reg0 00000000000000000000000000000001
+# run 40 ns
+# put slv_reg0 00000000000000000000000000000000
+# run 200 ns
+# put slv_reg0 00000000000000000000000000000001
+# run 200 ns

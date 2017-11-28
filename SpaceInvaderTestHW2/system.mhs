@@ -33,9 +33,6 @@
  PORT RS232_Uart_1_sin = RS232_Uart_1_sin, DIR = I
  PORT RESET = RESET, DIR = I, SIGIS = RST, RST_POLARITY = 0
  PORT GCLK = GCLK, DIR = I, SIGIS = CLK, CLK_FREQ = 100000000
- PORT Digilent_QuadSPI_Cntlr_C_pin = Digilent_QuadSPI_Cntlr_C, DIR = O
- PORT Digilent_QuadSPI_Cntlr_S_pin = Digilent_QuadSPI_Cntlr_S, DIR = O
- PORT Digilent_QuadSPI_Cntlr_DQ = Digilent_QuadSPI_Cntlr_DQ, DIR = IO, VEC = [3:0]
  PORT axi4lite_0_M_AXI_ACLK_pin = axi4lite_0_M_ACLK, DIR = I, VEC = [2:0], SIGIS = CLK
  PORT axi_hdmi_0_TMDS_RX_CLK_P_pin = axi_hdmi_0_TMDS_RX_CLK_P, DIR = I
  PORT axi_hdmi_0_TMDS_RX_CLK_N_pin = axi_hdmi_0_TMDS_RX_CLK_N, DIR = I
@@ -61,6 +58,7 @@
  PORT axi_ac97_0_SData_Out_pin = axi_ac97_0_SData_Out, DIR = O
  PORT axi_ac97_0_AC97Reset_n_pin = axi_ac97_0_AC97Reset_n, DIR = O
  PORT Push_Buttons_5Bits_TRI_I = Push_Buttons_5Bits_TRI_I, DIR = I, VEC = [0:4]
+ PORT buzzer_0_vibrate_pin = buzzer_0_vibrate, DIR = O
 
 
 BEGIN proc_sys_reset
@@ -340,18 +338,6 @@ BEGIN axi_s6_ddrx
  PORT PLL_LOCK = proc_sys_reset_0_Dcm_locked
 END
 
-BEGIN d_qspi_axi
- PARAMETER INSTANCE = Digilent_QuadSPI_Cntlr
- PARAMETER HW_VER = 1.00.a
- PARAMETER C_BASEADDR = 0x7e400000
- PARAMETER C_HIGHADDR = 0x7e40ffff
- BUS_INTERFACE S_AXI = axi4lite_0
- PORT S_AXI_ACLK = clk_100_0000MHzPLL0
- PORT C = Digilent_QuadSPI_Cntlr_C
- PORT S = Digilent_QuadSPI_Cntlr_S
- PORT DQ = Digilent_QuadSPI_Cntlr_DQ
-END
-
 BEGIN axi_intc
  PARAMETER INSTANCE = axi_intc_0
  PARAMETER HW_VER = 1.01.a
@@ -389,5 +375,16 @@ BEGIN pit
  BUS_INTERFACE S_AXI = axi4lite_0
  PORT S_AXI_ACLK = clk_100_0000MHzPLL0
  PORT PITInterrupt = pit_0_PITInterrupt
+END
+
+BEGIN buzzer
+ PARAMETER INSTANCE = buzzer_0
+ PARAMETER HW_VER = 1.00.a
+ PARAMETER C_NUM_REG = 2
+ PARAMETER C_BASEADDR = 0x75800000
+ PARAMETER C_HIGHADDR = 0x7580ffff
+ BUS_INTERFACE S_AXI = axi4lite_0
+ PORT S_AXI_ACLK = clk_100_0000MHzPLL0
+ PORT vibrate = buzzer_0_vibrate
 END
 

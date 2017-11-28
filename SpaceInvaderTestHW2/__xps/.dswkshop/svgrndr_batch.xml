@@ -35,8 +35,6 @@
 
   <RENDERIMG RASNAME="C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\SDK\SDK_Export\hw\imgs\MCB_DDR2.jpg" SVGNAME="C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\SDK\SDK_Export\hw\imgs\MCB_DDR2.svg" TMPSVGFN="C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\__xps\.dswkshop\MCB_DDR2.svg"/>
 
-  <RENDERIMG RASNAME="C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\SDK\SDK_Export\hw\imgs\Digilent_QuadSPI_Cntlr.jpg" SVGNAME="C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\SDK\SDK_Export\hw\imgs\Digilent_QuadSPI_Cntlr.svg" TMPSVGFN="C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\__xps\.dswkshop\Digilent_QuadSPI_Cntlr.svg"/>
-
   <RENDERIMG RASNAME="C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\SDK\SDK_Export\hw\imgs\axi_intc_0.jpg" SVGNAME="C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\SDK\SDK_Export\hw\imgs\axi_intc_0.svg" TMPSVGFN="C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\__xps\.dswkshop\axi_intc_0.svg"/>
 
   <RENDERIMG RASNAME="C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\SDK\SDK_Export\hw\imgs\axi_timer_0.jpg" SVGNAME="C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\SDK\SDK_Export\hw\imgs\axi_timer_0.svg" TMPSVGFN="C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\__xps\.dswkshop\axi_timer_0.svg"/>
@@ -44,6 +42,8 @@
   <RENDERIMG RASNAME="C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\SDK\SDK_Export\hw\imgs\fit_timer_0.jpg" SVGNAME="C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\SDK\SDK_Export\hw\imgs\fit_timer_0.svg" TMPSVGFN="C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\__xps\.dswkshop\fit_timer_0.svg"/>
 
   <RENDERIMG RASNAME="C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\SDK\SDK_Export\hw\imgs\pit_0.jpg" SVGNAME="C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\SDK\SDK_Export\hw\imgs\pit_0.svg" TMPSVGFN="C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\__xps\.dswkshop\pit_0.svg"/>
+
+  <RENDERIMG RASNAME="C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\SDK\SDK_Export\hw\imgs\buzzer_0.jpg" SVGNAME="C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\SDK\SDK_Export\hw\imgs\buzzer_0.svg" TMPSVGFN="C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\__xps\.dswkshop\buzzer_0.svg"/>
 
   <RENDERIMG RASNAME="C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\SDK\SDK_Export\hw\imgs\system_blkd.jpg" SVGNAME="C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\SDK\SDK_Export\hw\imgs\system_blkd.svg" TMPSVGFN="C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\__xps\.dswkshop\system_blkd.svg"/>
 

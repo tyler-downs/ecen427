@@ -1,0 +1,18 @@
+Running: fuse.exe -relaunch -intstyle "ise" -incremental -lib "secureip" -o "C:/Users/superman/Documents/TylerBondGithub/ecen427/BuzzDev/BuzzDev/buzzer_isim_beh.exe" -prj "C:/Users/superman/Documents/TylerBondGithub/ecen427/BuzzDev/BuzzDev/buzzer_beh.prj" "work.buzzer" 
+ISim O.87xd (signature 0xc3576ebc)
+Number of CPUs detected in this system: 4
+Turning on mult-threading, number of parallel sub-compilation jobs: 8 
+Determining compilation order of HDL files
+Parsing VHDL file "C:/Users/superman/Documents/TylerBondGithub/ecen427/BuzzDev/BuzzDev/buzzer.vhd" into library work
+Starting static elaboration
+Completed static elaboration
+Compiling package standard
+Compiling package std_logic_1164
+Compiling package std_logic_arith
+Compiling package std_logic_unsigned
+Compiling architecture behavioral of entity buzzer
+Time Resolution for simulation is 1ps.
+Compiled 5 VHDL Units
+Built simulation executable C:/Users/superman/Documents/TylerBondGithub/ecen427/BuzzDev/BuzzDev/buzzer_isim_beh.exe
+Fuse Memory Usage: 35072 KB
+Fuse CPU Usage: 436 ms

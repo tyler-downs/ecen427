@@ -1,12 +1,12 @@
 #
 # pin constraints
 #
-NET Digilent_QuadSPI_Cntlr_C_pin LOC = "R15"  |  IOSTANDARD = "LVCMOS33" | PULLUP; 
-NET Digilent_QuadSPI_Cntlr_DQ[0] LOC = "T13"  |  IOSTANDARD = "LVCMOS33";
-NET Digilent_QuadSPI_Cntlr_DQ[1] LOC = "R13"  |  IOSTANDARD = "LVCMOS33";
-NET Digilent_QuadSPI_Cntlr_DQ[2] LOC = "T14"  |  IOSTANDARD = "LVCMOS33";
-NET Digilent_QuadSPI_Cntlr_DQ[3] LOC = "V14"  |  IOSTANDARD = "LVCMOS33";
-NET Digilent_QuadSPI_Cntlr_S_pin LOC = "V3"  |  IOSTANDARD = "LVCMOS33";
+#NET Digilent_QuadSPI_Cntlr_C_pin LOC = "R15"  |  IOSTANDARD = "LVCMOS33" | PULLUP; 
+#NET Digilent_QuadSPI_Cntlr_DQ[0] LOC = "T13"  |  IOSTANDARD = "LVCMOS33";
+#NET Digilent_QuadSPI_Cntlr_DQ[1] LOC = "R13"  |  IOSTANDARD = "LVCMOS33";
+#NET Digilent_QuadSPI_Cntlr_DQ[2] LOC = "T14"  |  IOSTANDARD = "LVCMOS33";
+#NET Digilent_QuadSPI_Cntlr_DQ[3] LOC = "V14"  |  IOSTANDARD = "LVCMOS33";
+#NET Digilent_QuadSPI_Cntlr_S_pin LOC = "V3"  |  IOSTANDARD = "LVCMOS33";
 NET GCLK LOC = "L15"  |  IOSTANDARD = "LVCMOS33";
 NET RESET LOC = "T15"  |  IOSTANDARD = "LVCMOS33"  |  TIG;
 NET RS232_Uart_1_sin LOC = "A16"  |  IOSTANDARD = "LVCMOS33";
@@ -25,6 +25,8 @@ NET Push_Buttons_5Bits_TRI_I[4] LOC = "F5"  |  IOSTANDARD = "LVCMOS18";
 #
 # additional constraints
 #
+
+NET buzzer_0_vibrate_pin LOC = "N5";
 
 ################AXI_AC97 CONSTRAINTS########################
 Net axi_ac97_0_Bit_Clk_pin LOC = L13 | IOSTANDARD = LVCMOS33;

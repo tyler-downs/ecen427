@@ -31,9 +31,6 @@ entity system_stub is
     RS232_Uart_1_sin : in std_logic;
     RESET : in std_logic;
     GCLK : in std_logic;
-    Digilent_QuadSPI_Cntlr_C_pin : out std_logic;
-    Digilent_QuadSPI_Cntlr_S_pin : out std_logic;
-    Digilent_QuadSPI_Cntlr_DQ : inout std_logic_vector(3 downto 0);
     axi4lite_0_M_AXI_ACLK_pin : in std_logic_vector(2 downto 0);
     axi_hdmi_0_TMDS_RX_CLK_P_pin : in std_logic;
     axi_hdmi_0_TMDS_RX_CLK_N_pin : in std_logic;
@@ -58,7 +55,8 @@ entity system_stub is
     axi_ac97_0_Sync_pin : out std_logic;
     axi_ac97_0_SData_Out_pin : out std_logic;
     axi_ac97_0_AC97Reset_n_pin : out std_logic;
-    Push_Buttons_5Bits_TRI_I : in std_logic_vector(0 to 4)
+    Push_Buttons_5Bits_TRI_I : in std_logic_vector(0 to 4);
+    buzzer_0_vibrate_pin : out std_logic
   );
 end system_stub;
 
@@ -88,9 +86,6 @@ architecture STRUCTURE of system_stub is
       RS232_Uart_1_sin : in std_logic;
       RESET : in std_logic;
       GCLK : in std_logic;
-      Digilent_QuadSPI_Cntlr_C_pin : out std_logic;
-      Digilent_QuadSPI_Cntlr_S_pin : out std_logic;
-      Digilent_QuadSPI_Cntlr_DQ : inout std_logic_vector(3 downto 0);
       axi4lite_0_M_AXI_ACLK_pin : in std_logic_vector(2 downto 0);
       axi_hdmi_0_TMDS_RX_CLK_P_pin : in std_logic;
       axi_hdmi_0_TMDS_RX_CLK_N_pin : in std_logic;
@@ -115,7 +110,8 @@ architecture STRUCTURE of system_stub is
       axi_ac97_0_Sync_pin : out std_logic;
       axi_ac97_0_SData_Out_pin : out std_logic;
       axi_ac97_0_AC97Reset_n_pin : out std_logic;
-      Push_Buttons_5Bits_TRI_I : in std_logic_vector(0 to 4)
+      Push_Buttons_5Bits_TRI_I : in std_logic_vector(0 to 4);
+      buzzer_0_vibrate_pin : out std_logic
     );
   end component;
 
@@ -148,9 +144,6 @@ begin
       RS232_Uart_1_sin => RS232_Uart_1_sin,
       RESET => RESET,
       GCLK => GCLK,
-      Digilent_QuadSPI_Cntlr_C_pin => Digilent_QuadSPI_Cntlr_C_pin,
-      Digilent_QuadSPI_Cntlr_S_pin => Digilent_QuadSPI_Cntlr_S_pin,
-      Digilent_QuadSPI_Cntlr_DQ => Digilent_QuadSPI_Cntlr_DQ,
       axi4lite_0_M_AXI_ACLK_pin => axi4lite_0_M_AXI_ACLK_pin,
       axi_hdmi_0_TMDS_RX_CLK_P_pin => axi_hdmi_0_TMDS_RX_CLK_P_pin,
       axi_hdmi_0_TMDS_RX_CLK_N_pin => axi_hdmi_0_TMDS_RX_CLK_N_pin,
@@ -175,7 +168,8 @@ begin
       axi_ac97_0_Sync_pin => axi_ac97_0_Sync_pin,
       axi_ac97_0_SData_Out_pin => axi_ac97_0_SData_Out_pin,
       axi_ac97_0_AC97Reset_n_pin => axi_ac97_0_AC97Reset_n_pin,
-      Push_Buttons_5Bits_TRI_I => Push_Buttons_5Bits_TRI_I
+      Push_Buttons_5Bits_TRI_I => Push_Buttons_5Bits_TRI_I,
+      buzzer_0_vibrate_pin => buzzer_0_vibrate_pin
     );
 
 end architecture STRUCTURE;

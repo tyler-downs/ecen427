@@ -7,6 +7,7 @@
 
 #include "bullets.h"
 #include "sounds.h"
+#include "buzzerDriver.h"
 #include <time.h>
 #include <stdlib.h>
 
@@ -14,6 +15,8 @@
 #define BULLET_CEILING 60 //the highest the bullet can go on the screen before being erased
 #define GLOBALS_TANK_BULLET_WIDTH 3 //width of the tank bullet
 #define NO_PIXEL -10 //indicates an error/default case in functions that find pixels
+
+#define SHOOT_BUZZ_DURATION 1000000 //1 tenth of a second
 
 //////////////////// GLOBAL VARIABLES ///////////////////////////
 uint8_t bullets_tankBulletExists = FALSE; 			//global variable that indicates if the tank bullet is active
@@ -54,6 +57,9 @@ void bullets_fireTankBullet()
 		//set the globally accessible tank bullet position
 		bullets_setTankBulletPosition(getTankBulletSpawnPosition());
 		sounds_playShootSound(); //play the shoot sound
+
+		buzzer_setDelay(SHOOT_BUZZ_DURATION); //set buzz length
+		buzzer_buzz(); //buzz
 	}
 }
 

@@ -31,9 +31,6 @@ entity system is
     RS232_Uart_1_sin : in std_logic;
     RESET : in std_logic;
     GCLK : in std_logic;
-    Digilent_QuadSPI_Cntlr_C_pin : out std_logic;
-    Digilent_QuadSPI_Cntlr_S_pin : out std_logic;
-    Digilent_QuadSPI_Cntlr_DQ : inout std_logic_vector(3 downto 0);
     axi4lite_0_M_AXI_ACLK_pin : in std_logic_vector(2 downto 0);
     axi_hdmi_0_TMDS_RX_CLK_P_pin : in std_logic;
     axi_hdmi_0_TMDS_RX_CLK_N_pin : in std_logic;
@@ -58,7 +55,8 @@ entity system is
     axi_ac97_0_Sync_pin : out std_logic;
     axi_ac97_0_SData_Out_pin : out std_logic;
     axi_ac97_0_AC97Reset_n_pin : out std_logic;
-    Push_Buttons_5Bits_TRI_I : in std_logic_vector(0 to 4)
+    Push_Buttons_5Bits_TRI_I : in std_logic_vector(0 to 4);
+    buzzer_0_vibrate_pin : out std_logic
   );
 end system;
 
@@ -2060,35 +2058,6 @@ architecture STRUCTURE of system is
     );
   end component;
 
-  component digilent_quadspi_cntlr_wrapper is
-    port (
-      C : out std_logic;
-      S : out std_logic;
-      DQ_O : out std_logic_vector(3 downto 0);
-      DQ_T : out std_logic_vector(3 downto 0);
-      DQ_I : in std_logic_vector(3 downto 0);
-      S_AXI_ACLK : in std_logic;
-      S_AXI_ARESETN : in std_logic;
-      S_AXI_AWADDR : in std_logic_vector(31 downto 0);
-      S_AXI_AWVALID : in std_logic;
-      S_AXI_WDATA : in std_logic_vector(31 downto 0);
-      S_AXI_WSTRB : in std_logic_vector(3 downto 0);
-      S_AXI_WVALID : in std_logic;
-      S_AXI_BREADY : in std_logic;
-      S_AXI_ARADDR : in std_logic_vector(31 downto 0);
-      S_AXI_ARVALID : in std_logic;
-      S_AXI_RREADY : in std_logic;
-      S_AXI_ARREADY : out std_logic;
-      S_AXI_RDATA : out std_logic_vector(31 downto 0);
-      S_AXI_RRESP : out std_logic_vector(1 downto 0);
-      S_AXI_RVALID : out std_logic;
-      S_AXI_WREADY : out std_logic;
-      S_AXI_BRESP : out std_logic_vector(1 downto 0);
-      S_AXI_BVALID : out std_logic;
-      S_AXI_AWREADY : out std_logic
-    );
-  end component;
-
   component axi_intc_0_wrapper is
     port (
       S_AXI_ACLK : in std_logic;
@@ -2179,6 +2148,31 @@ architecture STRUCTURE of system is
     );
   end component;
 
+  component buzzer_0_wrapper is
+    port (
+      S_AXI_ACLK : in std_logic;
+      S_AXI_ARESETN : in std_logic;
+      S_AXI_AWADDR : in std_logic_vector(31 downto 0);
+      S_AXI_AWVALID : in std_logic;
+      S_AXI_WDATA : in std_logic_vector(31 downto 0);
+      S_AXI_WSTRB : in std_logic_vector(3 downto 0);
+      S_AXI_WVALID : in std_logic;
+      S_AXI_BREADY : in std_logic;
+      S_AXI_ARADDR : in std_logic_vector(31 downto 0);
+      S_AXI_ARVALID : in std_logic;
+      S_AXI_RREADY : in std_logic;
+      S_AXI_ARREADY : out std_logic;
+      S_AXI_RDATA : out std_logic_vector(31 downto 0);
+      S_AXI_RRESP : out std_logic_vector(1 downto 0);
+      S_AXI_RVALID : out std_logic;
+      S_AXI_WREADY : out std_logic;
+      S_AXI_BRESP : out std_logic_vector(1 downto 0);
+      S_AXI_BVALID : out std_logic;
+      S_AXI_AWREADY : out std_logic;
+      vibrate : out std_logic
+    );
+  end component;
+
   component IOBUF is
     port (
       I : in std_logic;
@@ -2190,11 +2184,6 @@ architecture STRUCTURE of system is
 
   -- Internal signals
 
-  signal Digilent_QuadSPI_Cntlr_C : std_logic;
-  signal Digilent_QuadSPI_Cntlr_DQ_I : std_logic_vector(3 downto 0);
-  signal Digilent_QuadSPI_Cntlr_DQ_O : std_logic_vector(3 downto 0);
-  signal Digilent_QuadSPI_Cntlr_DQ_T : std_logic_vector(3 downto 0);
-  signal Digilent_QuadSPI_Cntlr_S : std_logic;
   signal Ext_BRK : std_logic;
   signal Ext_NM_BRK : std_logic;
   signal Push_Buttons_5Bits_IP2INTC_Irpt : std_logic;
@@ -2369,6 +2358,7 @@ architecture STRUCTURE of system is
   signal axi_vdma_0_M_AXIS_MM2S_TVALID : std_logic;
   signal axi_vdma_0_mm2s_buffer_almost_empty : std_logic;
   signal axi_vdma_0_mm2s_fsync_out : std_logic;
+  signal buzzer_0_vibrate : std_logic;
   signal clk_100_0000MHzPLL0 : std_logic_vector(0 to 0);
   signal clk_600_0000MHz180PLL0_nobuf : std_logic;
   signal clk_600_0000MHzPLL0_nobuf : std_logic;
@@ -2479,18 +2469,16 @@ architecture STRUCTURE of system is
   attribute BOX_TYPE of axi4_0_wrapper : component is "user_black_box";
   attribute BOX_TYPE of rs232_uart_1_wrapper : component is "user_black_box";
   attribute BOX_TYPE of mcb_ddr2_wrapper : component is "user_black_box";
-  attribute BOX_TYPE of digilent_quadspi_cntlr_wrapper : component is "user_black_box";
   attribute BOX_TYPE of axi_intc_0_wrapper : component is "user_black_box";
   attribute BOX_TYPE of axi_timer_0_wrapper : component is "user_black_box";
   attribute BOX_TYPE of fit_timer_0_wrapper : component is "user_black_box";
   attribute BOX_TYPE of pit_0_wrapper : component is "user_black_box";
+  attribute BOX_TYPE of buzzer_0_wrapper : component is "user_black_box";
 
 begin
 
   -- Internal assignments
 
-  Digilent_QuadSPI_Cntlr_C_pin <= Digilent_QuadSPI_Cntlr_C;
-  Digilent_QuadSPI_Cntlr_S_pin <= Digilent_QuadSPI_Cntlr_S;
   axi_hdmi_0_TMDS_RX_CLK_P <= axi_hdmi_0_TMDS_RX_CLK_P_pin;
   axi_hdmi_0_TMDS_RX_CLK_N <= axi_hdmi_0_TMDS_RX_CLK_N_pin;
   axi_hdmi_0_TMDS_RX_2_P <= axi_hdmi_0_TMDS_RX_2_P_pin;
@@ -2513,6 +2501,7 @@ begin
   axi_ac97_0_Sync_pin <= axi_ac97_0_Sync;
   axi_ac97_0_SData_Out_pin <= axi_ac97_0_SData_Out;
   axi_ac97_0_AC97Reset_n_pin <= axi_ac97_0_AC97Reset_n;
+  buzzer_0_vibrate_pin <= buzzer_0_vibrate;
   axi4_0_S_AWID(5 downto 4) <= B"00";
   axi4_0_S_AWADDR(95 downto 64) <= B"00000000000000000000000000000000";
   axi4_0_S_AWLEN(23 downto 16) <= B"00000000";
@@ -4545,36 +4534,40 @@ begin
       s5_axi_rready => net_gnd0
     );
 
-  Digilent_QuadSPI_Cntlr : digilent_quadspi_cntlr_wrapper
+  axi_intc_0 : axi_intc_0_wrapper
     port map (
-      C => Digilent_QuadSPI_Cntlr_C,
-      S => Digilent_QuadSPI_Cntlr_S,
-      DQ_O => Digilent_QuadSPI_Cntlr_DQ_O,
-      DQ_T => Digilent_QuadSPI_Cntlr_DQ_T,
-      DQ_I => Digilent_QuadSPI_Cntlr_DQ_I,
       S_AXI_ACLK => pgassign1(9),
       S_AXI_ARESETN => axi4lite_0_M_ARESETN(6),
       S_AXI_AWADDR => axi4lite_0_M_AWADDR(223 downto 192),
       S_AXI_AWVALID => axi4lite_0_M_AWVALID(6),
+      S_AXI_AWREADY => axi4lite_0_M_AWREADY(6),
       S_AXI_WDATA => axi4lite_0_M_WDATA(223 downto 192),
       S_AXI_WSTRB => axi4lite_0_M_WSTRB(27 downto 24),
       S_AXI_WVALID => axi4lite_0_M_WVALID(6),
+      S_AXI_WREADY => axi4lite_0_M_WREADY(6),
+      S_AXI_BRESP => axi4lite_0_M_BRESP(13 downto 12),
+      S_AXI_BVALID => axi4lite_0_M_BVALID(6),
       S_AXI_BREADY => axi4lite_0_M_BREADY(6),
       S_AXI_ARADDR => axi4lite_0_M_ARADDR(223 downto 192),
       S_AXI_ARVALID => axi4lite_0_M_ARVALID(6),
-      S_AXI_RREADY => axi4lite_0_M_RREADY(6),
       S_AXI_ARREADY => axi4lite_0_M_ARREADY(6),
       S_AXI_RDATA => axi4lite_0_M_RDATA(223 downto 192),
       S_AXI_RRESP => axi4lite_0_M_RRESP(13 downto 12),
       S_AXI_RVALID => axi4lite_0_M_RVALID(6),
-      S_AXI_WREADY => axi4lite_0_M_WREADY(6),
-      S_AXI_BRESP => axi4lite_0_M_BRESP(13 downto 12),
-      S_AXI_BVALID => axi4lite_0_M_BVALID(6),
-      S_AXI_AWREADY => axi4lite_0_M_AWREADY(6)
+      S_AXI_RREADY => axi4lite_0_M_RREADY(6),
+      Intr => pgassign3,
+      Irq => axi_intc_0_Irq
     );
 
-  axi_intc_0 : axi_intc_0_wrapper
+  axi_timer_0 : axi_timer_0_wrapper
     port map (
+      CaptureTrig0 => net_gnd0,
+      CaptureTrig1 => net_gnd0,
+      GenerateOut0 => open,
+      GenerateOut1 => open,
+      PWM0 => open,
+      Interrupt => axi_timer_0_Interrupt,
+      Freeze => net_gnd0,
       S_AXI_ACLK => pgassign1(9),
       S_AXI_ARESETN => axi4lite_0_M_ARESETN(7),
       S_AXI_AWADDR => axi4lite_0_M_AWADDR(255 downto 224),
@@ -4593,39 +4586,7 @@ begin
       S_AXI_RDATA => axi4lite_0_M_RDATA(255 downto 224),
       S_AXI_RRESP => axi4lite_0_M_RRESP(15 downto 14),
       S_AXI_RVALID => axi4lite_0_M_RVALID(7),
-      S_AXI_RREADY => axi4lite_0_M_RREADY(7),
-      Intr => pgassign3,
-      Irq => axi_intc_0_Irq
-    );
-
-  axi_timer_0 : axi_timer_0_wrapper
-    port map (
-      CaptureTrig0 => net_gnd0,
-      CaptureTrig1 => net_gnd0,
-      GenerateOut0 => open,
-      GenerateOut1 => open,
-      PWM0 => open,
-      Interrupt => axi_timer_0_Interrupt,
-      Freeze => net_gnd0,
-      S_AXI_ACLK => pgassign1(9),
-      S_AXI_ARESETN => axi4lite_0_M_ARESETN(8),
-      S_AXI_AWADDR => axi4lite_0_M_AWADDR(287 downto 256),
-      S_AXI_AWVALID => axi4lite_0_M_AWVALID(8),
-      S_AXI_AWREADY => axi4lite_0_M_AWREADY(8),
-      S_AXI_WDATA => axi4lite_0_M_WDATA(287 downto 256),
-      S_AXI_WSTRB => axi4lite_0_M_WSTRB(35 downto 32),
-      S_AXI_WVALID => axi4lite_0_M_WVALID(8),
-      S_AXI_WREADY => axi4lite_0_M_WREADY(8),
-      S_AXI_BRESP => axi4lite_0_M_BRESP(17 downto 16),
-      S_AXI_BVALID => axi4lite_0_M_BVALID(8),
-      S_AXI_BREADY => axi4lite_0_M_BREADY(8),
-      S_AXI_ARADDR => axi4lite_0_M_ARADDR(287 downto 256),
-      S_AXI_ARVALID => axi4lite_0_M_ARVALID(8),
-      S_AXI_ARREADY => axi4lite_0_M_ARREADY(8),
-      S_AXI_RDATA => axi4lite_0_M_RDATA(287 downto 256),
-      S_AXI_RRESP => axi4lite_0_M_RRESP(17 downto 16),
-      S_AXI_RVALID => axi4lite_0_M_RVALID(8),
-      S_AXI_RREADY => axi4lite_0_M_RREADY(8)
+      S_AXI_RREADY => axi4lite_0_M_RREADY(7)
     );
 
   fit_timer_0 : fit_timer_0_wrapper
@@ -4636,6 +4597,30 @@ begin
     );
 
   pit_0 : pit_0_wrapper
+    port map (
+      S_AXI_ACLK => pgassign1(9),
+      S_AXI_ARESETN => axi4lite_0_M_ARESETN(8),
+      S_AXI_AWADDR => axi4lite_0_M_AWADDR(287 downto 256),
+      S_AXI_AWVALID => axi4lite_0_M_AWVALID(8),
+      S_AXI_WDATA => axi4lite_0_M_WDATA(287 downto 256),
+      S_AXI_WSTRB => axi4lite_0_M_WSTRB(35 downto 32),
+      S_AXI_WVALID => axi4lite_0_M_WVALID(8),
+      S_AXI_BREADY => axi4lite_0_M_BREADY(8),
+      S_AXI_ARADDR => axi4lite_0_M_ARADDR(287 downto 256),
+      S_AXI_ARVALID => axi4lite_0_M_ARVALID(8),
+      S_AXI_RREADY => axi4lite_0_M_RREADY(8),
+      S_AXI_ARREADY => axi4lite_0_M_ARREADY(8),
+      S_AXI_RDATA => axi4lite_0_M_RDATA(287 downto 256),
+      S_AXI_RRESP => axi4lite_0_M_RRESP(17 downto 16),
+      S_AXI_RVALID => axi4lite_0_M_RVALID(8),
+      S_AXI_WREADY => axi4lite_0_M_WREADY(8),
+      S_AXI_BRESP => axi4lite_0_M_BRESP(17 downto 16),
+      S_AXI_BVALID => axi4lite_0_M_BVALID(8),
+      S_AXI_AWREADY => axi4lite_0_M_AWREADY(8),
+      PITInterrupt => pit_0_PITInterrupt
+    );
+
+  buzzer_0 : buzzer_0_wrapper
     port map (
       S_AXI_ACLK => pgassign1(9),
       S_AXI_ARESETN => axi4lite_0_M_ARESETN(9),
@@ -4656,42 +4641,10 @@ begin
       S_AXI_BRESP => axi4lite_0_M_BRESP(19 downto 18),
       S_AXI_BVALID => axi4lite_0_M_BVALID(9),
       S_AXI_AWREADY => axi4lite_0_M_AWREADY(9),
-      PITInterrupt => pit_0_PITInterrupt
+      vibrate => buzzer_0_vibrate
     );
 
   iobuf_0 : IOBUF
-    port map (
-      I => Digilent_QuadSPI_Cntlr_DQ_O(3),
-      IO => Digilent_QuadSPI_Cntlr_DQ(3),
-      O => Digilent_QuadSPI_Cntlr_DQ_I(3),
-      T => Digilent_QuadSPI_Cntlr_DQ_T(3)
-    );
-
-  iobuf_1 : IOBUF
-    port map (
-      I => Digilent_QuadSPI_Cntlr_DQ_O(2),
-      IO => Digilent_QuadSPI_Cntlr_DQ(2),
-      O => Digilent_QuadSPI_Cntlr_DQ_I(2),
-      T => Digilent_QuadSPI_Cntlr_DQ_T(2)
-    );
-
-  iobuf_2 : IOBUF
-    port map (
-      I => Digilent_QuadSPI_Cntlr_DQ_O(1),
-      IO => Digilent_QuadSPI_Cntlr_DQ(1),
-      O => Digilent_QuadSPI_Cntlr_DQ_I(1),
-      T => Digilent_QuadSPI_Cntlr_DQ_T(1)
-    );
-
-  iobuf_3 : IOBUF
-    port map (
-      I => Digilent_QuadSPI_Cntlr_DQ_O(0),
-      IO => Digilent_QuadSPI_Cntlr_DQ(0),
-      O => Digilent_QuadSPI_Cntlr_DQ_I(0),
-      T => Digilent_QuadSPI_Cntlr_DQ_T(0)
-    );
-
-  iobuf_4 : IOBUF
     port map (
       I => axi_hdmi_0_TMDS_RX_SDA_O,
       IO => axi_hdmi_0_TMDS_RX_SDA_pin,

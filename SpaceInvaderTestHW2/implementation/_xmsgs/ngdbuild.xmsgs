@@ -32,8 +32,8 @@
 </msg>
 
 <msg type="warning" file="ConstraintSystem" num="0" >TNM : globclk was distributed to a DCM but new TNM constraints were not derived. This TNM is used in the following user groups or specifications:
-&lt;TIMESPEC TS_path1 = FROM globclk TO hdmipclk 14 ns;&gt; [system.ucf(74)]
-&lt;TIMESPEC TS_path2 = FROM hdmipclk TO globclk 10 ns;&gt; [system.ucf(75)]
+&lt;TIMESPEC TS_path1 = FROM globclk TO hdmipclk 14 ns;&gt; [system.ucf(76)]
+&lt;TIMESPEC TS_path2 = FROM hdmipclk TO globclk 10 ns;&gt; [system.ucf(77)]
 </msg>
 
 <msg type="warning" file="ConstraintSystem" num="194" delta="old" >The <arg fmt="%s" index="1">TNM</arg> &apos;<arg fmt="%s" index="2">axi4_0_reset_resync</arg>&apos;, does not directly or indirectly drive any flip-flops, latches and/or RAMs and is not actively used by any referencing constraint.
@@ -70,7 +70,7 @@
 <arg fmt="%s" index="7">CLKOUT0</arg>: <arg fmt="%s" index="8">&lt;TIMESPEC TS_axi_hdmi_0_axi_hdmi_0_USE_HDMI_OUT_Inst_AxiHDMITransmitter_Inst_DynClkGen_PllOut_x10 = PERIOD &quot;axi_hdmi_0_axi_hdmi_0_USE_HDMI_OUT_Inst_AxiHDMITransmitter_Inst_DynClkGen_PllOut_x10&quot; TS_a...&gt;</arg>
 </msg>
 
-<msg type="warning" file="NgdBuild" num="1012" delta="old" >The constraint <arg fmt="%s" index="1">&lt;CONFIG VCCAUX = &quot;2.5&quot;&gt;</arg> is overridden on the design object <arg fmt="%s" index="2">system</arg> by the constraint <arg fmt="%s" index="3">&lt;CONFIG VCCAUX = 3.3;&gt; [system.ucf(42)]</arg>.
+<msg type="warning" file="NgdBuild" num="1012" delta="old" >The constraint <arg fmt="%s" index="1">&lt;CONFIG VCCAUX = &quot;2.5&quot;&gt;</arg> is overridden on the design object <arg fmt="%s" index="2">system</arg> by the constraint <arg fmt="%s" index="3">&lt;CONFIG VCCAUX = 3.3;&gt; [system.ucf(44)]</arg>.
 </msg>
 
 <msg type="warning" file="NgdBuild" num="1012" delta="old" >The constraint <arg fmt="%s" index="1">&lt;NET &quot;zio&quot; IOSTANDARD = &quot;SSTL18_II&quot;&gt;</arg> is overridden on the design object <arg fmt="%s" index="2">zio</arg> by the constraint <arg fmt="%s" index="3">&lt;NET zio IOSTANDARD = &quot;LVCMOS18_JEDEC&quot;;&gt; [system.ucf(15)]</arg>.
@@ -83,6 +83,18 @@
 </msg>
 
 <msg type="warning" file="NgdBuild" num="443" delta="old" >SFF primitive &apos;<arg fmt="%s" index="1">microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Decode_I/Using_FPGA.Gen_Bits[27].MEM_EX_Result_Inst</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="452" delta="old" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">N25</arg>&apos; has no driver
+</msg>
+
+<msg type="warning" file="NgdBuild" num="452" delta="old" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">N26</arg>&apos; has no driver
+</msg>
+
+<msg type="warning" file="NgdBuild" num="452" delta="old" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">N27</arg>&apos; has no driver
+</msg>
+
+<msg type="warning" file="NgdBuild" num="452" delta="old" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">N28</arg>&apos; has no driver
 </msg>
 
 <msg type="warning" file="NgdBuild" num="452" delta="old" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">N29</arg>&apos; has no driver
@@ -133,22 +145,10 @@
 <msg type="warning" file="NgdBuild" num="452" delta="old" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">N44</arg>&apos; has no driver
 </msg>
 
-<msg type="warning" file="NgdBuild" num="452" delta="old" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">N49</arg>&apos; has no driver
+<msg type="warning" file="NgdBuild" num="452" delta="old" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">N45</arg>&apos; has no driver
 </msg>
 
-<msg type="warning" file="NgdBuild" num="452" delta="old" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">N50</arg>&apos; has no driver
-</msg>
-
-<msg type="warning" file="NgdBuild" num="452" delta="old" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">N51</arg>&apos; has no driver
-</msg>
-
-<msg type="warning" file="NgdBuild" num="452" delta="old" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">N52</arg>&apos; has no driver
-</msg>
-
-<msg type="warning" file="NgdBuild" num="452" delta="old" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">N53</arg>&apos; has no driver
-</msg>
-
-<msg type="warning" file="NgdBuild" num="452" delta="old" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">N54</arg>&apos; has no driver
+<msg type="warning" file="NgdBuild" num="452" delta="old" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">N46</arg>&apos; has no driver
 </msg>
 
 <msg type="warning" file="NgdBuild" num="478" delta="old" >clock net <arg fmt="%s" index="1">debug_module/bscan_drck1</arg> with clock driver <arg fmt="%s" index="2">debug_module/debug_module/BUFG_DRCK1</arg> drives no clock pins

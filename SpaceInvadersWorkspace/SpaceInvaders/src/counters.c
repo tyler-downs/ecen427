@@ -32,6 +32,8 @@
 #define MAX_TIME_BETWEEN_ALIEN_BULLETS 300 //at least one alien bullet should fire every 3 seconds
 #define NEGATIVE_WIDTH_OF_SAUCER (-1 * SAUCER_WIDTH*GLOBALS_MAGNIFY_MULT) //used in calculating movement of saucer
 
+#define DEATH_BUZZ_DURATION 100000000 //1 second
+
 u32 moveAliensTickCtr = 0; //Counter for when to move the aliens
 u32 bulletMoveTickCtr = 0; //counter for when to advance the bullets that are on the screen
 u32 alienExplodeCtr = 0; //counter for when to erase the alien explosion
@@ -82,6 +84,7 @@ void onFireTankBulletButtonPress()
 	if (centerButtonPressed())
 	{
 		bullets_fireTankBullet(); //fire a bullet
+
 	}
 }
 
@@ -198,6 +201,8 @@ void updateBulletMoveCounter()
 				removeLife();
 				//play the tank death sound
 				sounds_playTankDeathSound();
+				buzzer_setDelay(DEATH_BUZZ_DURATION); //set buzz length
+				buzzer_buzz(); //buzz
 			}
 			//else if alien bullet will hit bunker
 			else if (bunkerHit != BULLETS_NO_HIT)

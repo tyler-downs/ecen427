@@ -17,29 +17,6 @@
 
 /******************************************************************/
 
-
-/* Definitions for peripheral AXI_AC97_0 */
-#define XPAR_AXI_AC97_0_BASEADDR 0x7E240000
-#define XPAR_AXI_AC97_0_HIGHADDR 0x7E24FFFF
-
-
-/* Definitions for peripheral AXI_HDMI_0 */
-#define XPAR_AXI_HDMI_0_BASEADDR 0x7E220000
-#define XPAR_AXI_HDMI_0_HIGHADDR 0x7E22FFFF
-
-
-/* Definitions for peripheral DIGILENT_QUADSPI_CNTLR */
-#define XPAR_DIGILENT_QUADSPI_CNTLR_BASEADDR 0x7E400000
-#define XPAR_DIGILENT_QUADSPI_CNTLR_HIGHADDR 0x7E40FFFF
-
-
-/* Definitions for peripheral PIT_0 */
-#define XPAR_PIT_0_BASEADDR 0x7BC00000
-#define XPAR_PIT_0_HIGHADDR 0x7BC0FFFF
-
-
-/******************************************************************/
-
 /* Definitions for driver S6_DDRX */
 #define XPAR_XS6DDR_NUM_INSTANCES 1
 
@@ -142,6 +119,29 @@
 #define XPAR_UARTLITE_1_ODD_PARITY 1
 #define XPAR_UARTLITE_1_DATA_BITS 8
 #define XPAR_UARTLITE_1_SIO_CHAN 0
+
+
+/******************************************************************/
+
+
+/* Definitions for peripheral AXI_AC97_0 */
+#define XPAR_AXI_AC97_0_BASEADDR 0x7E240000
+#define XPAR_AXI_AC97_0_HIGHADDR 0x7E24FFFF
+
+
+/* Definitions for peripheral AXI_HDMI_0 */
+#define XPAR_AXI_HDMI_0_BASEADDR 0x7E220000
+#define XPAR_AXI_HDMI_0_HIGHADDR 0x7E22FFFF
+
+
+/* Definitions for peripheral BUZZER_0 */
+#define XPAR_BUZZER_0_BASEADDR 0x75800000
+#define XPAR_BUZZER_0_HIGHADDR 0x7580FFFF
+
+
+/* Definitions for peripheral PIT_0 */
+#define XPAR_PIT_0_BASEADDR 0x7BC00000
+#define XPAR_PIT_0_HIGHADDR 0x7BC0FFFF
 
 
 /******************************************************************/

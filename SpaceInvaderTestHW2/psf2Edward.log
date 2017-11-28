@@ -52,7 +52,7 @@ WARNING:EDK:4180 - PORT: bscan_tdo1, CONNECTOR: bscan_tdo1 - No driver found.
 WARNING:EDK:4181 - PORT: axi4lite_0_M_AXI_ACLK_pin, CONNECTOR: axi4lite_0_M_ACLK
    - floating connection -
    C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\syste
-   m.mhs line 39 
+   m.mhs line 36 
 WARNING:EDK:4181 - PORT: bscan_tdi, CONNECTOR: bscan_tdi - floating connection -
    C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm
    _v2_1_0.mpd line 232 
@@ -95,7 +95,7 @@ WARNING:EDK:4181 - PORT: s2mm_prmry_reset_out_n, CONNECTOR: S2MM_RESET_OUT_N -
 WARNING:EDK:4181 - PORT: M_AXIS_S2MM_ACLK, CONNECTOR: M_AXIS_S2MM_ACLK_int -
    floating connection -
    C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\syste
-   m.mhs line 246 
+   m.mhs line 244 
 
 Performing Clock DRCs...
 
