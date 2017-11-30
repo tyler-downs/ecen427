@@ -16,7 +16,7 @@
 #define GLOBALS_TANK_BULLET_WIDTH 3 //width of the tank bullet
 #define NO_PIXEL -10 //indicates an error/default case in functions that find pixels
 
-#define SHOOT_BUZZ_DURATION 3000000 //3 tenths of a second
+#define SHOOT_BUZZ_DURATION 5000000 //half of a second
 
 //////////////////// GLOBAL VARIABLES ///////////////////////////
 uint8_t bullets_tankBulletExists = FALSE; 			//global variable that indicates if the tank bullet is active
