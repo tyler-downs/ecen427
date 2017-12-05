@@ -59,10 +59,13 @@ It is recommended that you use Global SearchPath preference to specify search pa
 <msg type="info" file="EDK" num="4130" delta="old" >IPNAME: <arg fmt="%s" index="1">bram_block</arg>, INSTANCE:<arg fmt="%s" index="2">microblaze_0_bram_block</arg> - <arg fmt="%s" index="3">tool</arg> is overriding <arg fmt="%s" index="4">PARAMETER</arg> <arg fmt="%s" index="5">C_MEMSIZE</arg> value to <arg fmt="%s" index="6">0x8000</arg> - <arg fmt="%s" index="7">C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\bram_block_v1_00_a\data\bram_block_v2_1_0.mpd line 76</arg> 
 </msg>
 
+<msg type="warning" file="EDK" num="3977" delta="new" ><arg fmt="%s" index="1">AXI4</arg> protocol type BUSIF: <arg fmt="%s" index="2">S0_AXI</arg> of IPINSTANCE: <arg fmt="%s" index="3">MCB_DDR2</arg>  connected with <arg fmt="%s" index="4">AXI4LITE</arg> type BUSIF: <arg fmt="%s" index="5">M_AXI</arg> of IPINSTANCE: <arg fmt="%s" index="6">dma_controller_0</arg>.
+</msg>
+
 <msg type="warning" file="EDK" num="4180" delta="old" >PORT: <arg fmt="%s" index="1">bscan_tdo1</arg>, CONNECTOR: <arg fmt="%s" index="2">bscan_tdo1</arg> - No driver found. Port will be driven to <arg fmt="%s" index="3">GND</arg> - <arg fmt="%s" index="4">C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm_v2_1_0.mpd line 239</arg> 
 </msg>
 
-<msg type="warning" file="EDK" num="4181" delta="new" >PORT: <arg fmt="%s" index="1">axi4lite_0_M_AXI_ACLK_pin</arg>, CONNECTOR: <arg fmt="%s" index="2">axi4lite_0_M_ACLK</arg> - floating connection - <arg fmt="%s" index="3">C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\system.mhs line 36</arg> 
+<msg type="warning" file="EDK" num="4181" delta="old" >PORT: <arg fmt="%s" index="1">axi4lite_0_M_AXI_ACLK_pin</arg>, CONNECTOR: <arg fmt="%s" index="2">axi4lite_0_M_ACLK</arg> - floating connection - <arg fmt="%s" index="3">C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\system.mhs line 36</arg> 
 </msg>
 
 <msg type="warning" file="EDK" num="4181" delta="old" >PORT: <arg fmt="%s" index="1">bscan_tdi</arg>, CONNECTOR: <arg fmt="%s" index="2">bscan_tdi</arg> - floating connection - <arg fmt="%s" index="3">C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm_v2_1_0.mpd line 232</arg> 
@@ -95,7 +98,7 @@ It is recommended that you use Global SearchPath preference to specify search pa
 <msg type="warning" file="EDK" num="4181" delta="old" >PORT: <arg fmt="%s" index="1">s2mm_prmry_reset_out_n</arg>, CONNECTOR: <arg fmt="%s" index="2">S2MM_RESET_OUT_N</arg> - floating connection - <arg fmt="%s" index="3">C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_vdma_v5_00_a\data\axi_vdma_v2_1_0.mpd line 224</arg> 
 </msg>
 
-<msg type="warning" file="EDK" num="4181" delta="new" >PORT: <arg fmt="%s" index="1">M_AXIS_S2MM_ACLK</arg>, CONNECTOR: <arg fmt="%s" index="2">M_AXIS_S2MM_ACLK_int</arg> - floating connection - <arg fmt="%s" index="3">C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\system.mhs line 244</arg> 
+<msg type="warning" file="EDK" num="4181" delta="old" >PORT: <arg fmt="%s" index="1">M_AXIS_S2MM_ACLK</arg>, CONNECTOR: <arg fmt="%s" index="2">M_AXIS_S2MM_ACLK_int</arg> - floating connection - <arg fmt="%s" index="3">C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\system.mhs line 244</arg> 
 </msg>
 
 <msg type="info" file="EDK" num="4130" delta="old" >IPNAME: <arg fmt="%s" index="1">lmb_bram_if_cntlr</arg>, INSTANCE:<arg fmt="%s" index="2">microblaze_0_i_bram_ctrl</arg> - <arg fmt="%s" index="3">tcl</arg> is overriding <arg fmt="%s" index="4">PARAMETER</arg> <arg fmt="%s" index="5">C_MASK</arg> value to <arg fmt="%s" index="6">0x40000000</arg> - <arg fmt="%s" index="7">C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\lmb_bram_if_cntlr_v3_00_b\data\lmb_bram_if_cntlr_v2_1_0.mpd line 87</arg> 

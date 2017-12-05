@@ -1308,8 +1308,8 @@ Bit_Clk        |         |         |    1.621|         |
 =========================================================================
 
 
-Total REAL time to Xst completion: 8.00 secs
-Total CPU time to Xst completion: 8.63 secs
+Total REAL time to Xst completion: 10.00 secs
+Total CPU time to Xst completion: 10.02 secs
  
 --> 
 

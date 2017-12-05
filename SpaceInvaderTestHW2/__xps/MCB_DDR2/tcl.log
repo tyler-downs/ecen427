@@ -1,8 +1,8 @@
 =========================================================================
-Time: Mon Nov 27 6:52:05 PM Mountain Standard Time 2017
-Running: run_batch_mode 163331392
+Time: Mon Dec 04 2:37:56 PM Mountain Standard Time 2017
+Running: run_batch_mode 164929088
 {COLLECTING:  INSTANCE MCB_DDR2    }
-{COLLECTING:  C_INTERCONNECT_S0_AXI_MASTERS microblaze_0.M_AXI_DC & microblaze_0.M_AXI_IC & axi_vdma_0.M_AXI_MM2S OPTIONAL string none microblaze_0.M_AXI_DC & microblaze_0.M_AXI_IC & axi_vdma_0.M_AXI_MM2S}
+{COLLECTING:  C_INTERCONNECT_S0_AXI_MASTERS microblaze_0.M_AXI_DC & microblaze_0.M_AXI_IC & axi_vdma_0.M_AXI_MM2S & dma_controller_0.M_AXI OPTIONAL string none microblaze_0.M_AXI_DC & microblaze_0.M_AXI_IC & axi_vdma_0.M_AXI_MM2S & dma_controller_0.M_AXI}
 {COLLECTING:  C_INTERCONNECT_S0_AXI_IS_ACLK_ASYNC 0 OPTIONAL_UPDATE integer 0 }
 {COLLECTING:  C_INTERCONNECT_S0_AXI_ACLK_RATIO 100000000 UPDATE integer 1 }
 {COLLECTING:  C_INTERCONNECT_S0_AXI_SECURE 0 OPTIONAL integer 0 }
@@ -257,7 +257,7 @@ Running: run_batch_mode 163331392
 {SENDING PARAMETER: C_INTERCONNECT_S0_AXI_AW_REGISTER : 8 integer OPTIONAL}
 {SENDING PARAMETER: C_INTERCONNECT_S0_AXI_B_REGISTER : 8 integer OPTIONAL}
 {SENDING PARAMETER: C_INTERCONNECT_S0_AXI_IS_ACLK_ASYNC : 0 integer OPTIONAL_UPDATE}
-{SENDING PARAMETER: C_INTERCONNECT_S0_AXI_MASTERS : {microblaze_0.M_AXI_DC & microblaze_0.M_AXI_IC & axi_vdma_0.M_AXI_MM2S} string OPTIONAL}
+{SENDING PARAMETER: C_INTERCONNECT_S0_AXI_MASTERS : {microblaze_0.M_AXI_DC & microblaze_0.M_AXI_IC & axi_vdma_0.M_AXI_MM2S & dma_controller_0.M_AXI} string OPTIONAL}
 {SENDING PARAMETER: C_INTERCONNECT_S0_AXI_R_REGISTER : 8 integer OPTIONAL}
 {SENDING PARAMETER: C_INTERCONNECT_S0_AXI_READ_ACCEPTANCE : 4 INTEGER OPTIONAL}
 {SENDING PARAMETER: C_INTERCONNECT_S0_AXI_READ_FIFO_DELAY : 0 integer OPTIONAL}
@@ -565,6 +565,6 @@ Running: run_batch_mode 163331392
 {SET: CHECK C_NUM_DQ_PINS = 16 (BATCH:OPTIONAL_UPDATE:CHECK:MPD:MPDVAL)}
 RETURN: 0
 =========================================================================
-Time: Mon Nov 27 6:52:06 PM Mountain Standard Time 2017
-Running: generate_corelevel_constraints 163331392
+Time: Mon Dec 04 2:37:58 PM Mountain Standard Time 2017
+Running: generate_corelevel_constraints 164929088
 RETURN: 

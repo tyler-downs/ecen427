@@ -1,0 +1,20 @@
+C:\Users\superman\Documents\TylerBondGithub\ecen427\dmaHardware\implementation\system.ngc 1512427262
+C:/Users/superman/Documents/TylerBondGithub/ecen427/dmaHardware/implementation/push_buttons_5bits_wrapper.ngc 1512427182
+C:/Users/superman/Documents/TylerBondGithub/ecen427/dmaHardware/implementation/dip_switches_8bits_wrapper.ngc 1512427182
+C:/Users/superman/Documents/TylerBondGithub/ecen427/dmaHardware/implementation/rs232_uart_1_wrapper.ngc 1512427182
+C:/Users/superman/Documents/TylerBondGithub/ecen427/dmaHardware/implementation/proc_sys_reset_0_wrapper.ngc 1512427182
+C:/Users/superman/Documents/TylerBondGithub/ecen427/dmaHardware/implementation/clock_generator_0_wrapper.ngc 1512427237
+C:/Users/superman/Documents/TylerBondGithub/ecen427/dmaHardware/implementation/microblaze_0_ilmb_wrapper.ngc 1512427182
+C:/Users/superman/Documents/TylerBondGithub/ecen427/dmaHardware/implementation/microblaze_0_dlmb_wrapper.ngc 1512427182
+C:/Users/superman/Documents/TylerBondGithub/ecen427/dmaHardware/implementation/mcb_ddr2_wrapper.ngc 1512427246
+C:/Users/superman/Documents/TylerBondGithub/ecen427/dmaHardware/implementation/axi4lite_0_wrapper.ngc 1512427240
+C:/Users/superman/Documents/TylerBondGithub/ecen427/dmaHardware/implementation/axi4_0_wrapper.ngc 1512427243
+C:/Users/superman/Documents/TylerBondGithub/ecen427/dmaHardware/implementation/microblaze_0_wrapper.ngc 1512427182
+C:/Users/superman/Documents/TylerBondGithub/ecen427/dmaHardware/implementation/microblaze_0_intc_wrapper.ngc 1512427182
+C:/Users/superman/Documents/TylerBondGithub/ecen427/dmaHardware/implementation/microblaze_0_i_bram_ctrl_wrapper.ngc 1512427182
+C:/Users/superman/Documents/TylerBondGithub/ecen427/dmaHardware/implementation/microblaze_0_d_bram_ctrl_wrapper.ngc 1512427182
+C:/Users/superman/Documents/TylerBondGithub/ecen427/dmaHardware/implementation/debug_module_wrapper.ngc 1512427182
+C:/Users/superman/Documents/TylerBondGithub/ecen427/dmaHardware/implementation/leds_8bits_wrapper.ngc 1512427182
+C:/Users/superman/Documents/TylerBondGithub/ecen427/dmaHardware/implementation/dma_controller_0_wrapper.ngc 1512427234
+C:/Users/superman/Documents/TylerBondGithub/ecen427/dmaHardware/implementation/microblaze_0_bram_block_wrapper.ngc 1512427182
+OK

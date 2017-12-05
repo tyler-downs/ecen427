@@ -82,6 +82,7 @@ Address Map for Processor microblaze_0
   (0x41400000-0x4140ffff) debug_module	axi4lite_0
   (0x41c00000-0x41c0ffff) axi_timer_0	axi4lite_0
   (0x75800000-0x7580ffff) buzzer_0	axi4lite_0
+  (0x77e00000-0x77e0ffff) dma_controller_0	axi4lite_0
   (0x7bc00000-0x7bc0ffff) pit_0	axi4lite_0
   (0x7e200000-0x7e20ffff) axi_vdma_0	axi4lite_0
   (0x7e220000-0x7e22ffff) axi_hdmi_0	axi4lite_0
@@ -105,8 +106,10 @@ Checking platform address map ...
 Checking platform configuration ...
 IPNAME: lmb_v10, INSTANCE: microblaze_0_ilmb - 1 master(s) : 1 slave(s) 
 IPNAME: lmb_v10, INSTANCE: microblaze_0_dlmb - 1 master(s) : 1 slave(s) 
-IPNAME: axi_interconnect, INSTANCE: axi4lite_0 - 1 master(s) : 10 slave(s) 
-IPNAME: axi_interconnect, INSTANCE: axi4_0 - 3 master(s) : 1 slave(s) 
+IPNAME: axi_interconnect, INSTANCE: axi4lite_0 - 1 master(s) : 11 slave(s) 
+IPNAME: axi_interconnect, INSTANCE: axi4_0 - 4 master(s) : 1 slave(s) 
+WARNING:EDK:3977 - AXI4 protocol type BUSIF: S0_AXI of IPINSTANCE: MCB_DDR2 
+   connected with AXI4LITE type BUSIF: M_AXI of IPINSTANCE: dma_controller_0.
 
 Checking port drivers...
 WARNING:EDK:4180 - PORT: bscan_tdo1, CONNECTOR: bscan_tdo1 - No driver found.
@@ -330,9 +333,6 @@ hs line 214 - Copying cache implementation netlist
 IPNAME:axi_ac97 INSTANCE:axi_ac97_0 -
 C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\system.m
 hs line 248 - Copying cache implementation netlist
-IPNAME:axi_interconnect INSTANCE:axi4_0 -
-C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\system.m
-hs line 271 - Copying cache implementation netlist
 IPNAME:axi_uartlite INSTANCE:rs232_uart_1 -
 C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\system.m
 hs line 278 - Copying cache implementation netlist
@@ -393,12 +393,18 @@ hs line 248 - Running XST synthesis
 INSTANCE:axi4lite_0 -
 C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\system.m
 hs line 263 - Running XST synthesis
+INSTANCE:axi4_0 -
+C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\system.m
+hs line 271 - Running XST synthesis
 INSTANCE:pit_0 -
 C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\system.m
 hs line 370 - Running XST synthesis
 INSTANCE:buzzer_0 -
 C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\system.m
 hs line 380 - Running XST synthesis
+INSTANCE:dma_controller_0 -
+C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\system.m
+hs line 391 - Running XST synthesis
 
 Running NGCBUILD ...
 IPNAME:clock_generator_0_wrapper INSTANCE:clock_generator_0 -
@@ -407,10 +413,13 @@ hs line 157 - Running NGCBUILD
 IPNAME:axi4lite_0_wrapper INSTANCE:axi4lite_0 -
 C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\system.m
 hs line 263 - Running NGCBUILD
+IPNAME:axi4_0_wrapper INSTANCE:axi4_0 -
+C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\system.m
+hs line 271 - Running NGCBUILD
 INFO:EDK:3509 - NCF files should not be modified as they will be regenerated.
    If any constraint needs to be overridden, this should be done by modifying
    the data/system.ucf file.
 
 Rebuilding cache ...
 
-Total run time: 58.00 seconds
+Total run time: 182.00 seconds

@@ -52,6 +52,7 @@ Cores Search Directories           : {../implementation}
 
 =========================================================================
 
+WARNING:UtilitiesC:240 - The message file "C:\Users\superman\Documents\TylerBondGithub\ecen427\SpaceInvaderTestHW2\synthesis/_xmsgs/xst.xmsgs" is corrupt, therefore all message will be marked as new.
 INFO:Xst - Part-select index evaluated to out of bound value may lead to incorrect synthesis results; it is recommended not to use them in RTL
 
 =========================================================================
@@ -891,13 +892,13 @@ S_AXI_ACLK     |    5.053|         |         |         |
 
 
 Total REAL time to Xst completion: 8.00 secs
-Total CPU time to Xst completion: 7.42 secs
+Total CPU time to Xst completion: 7.54 secs
  
 --> 
 
-Total memory usage is 298664 kilobytes
+Total memory usage is 284968 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   19 (   0 filtered)
+Number of warnings :   20 (   0 filtered)
 Number of infos    :    6 (   0 filtered)
 

@@ -2,4 +2,22 @@
 **** Build of configuration Debug for project SpaceInvaders ****
 
 make all 
-make: Nothing to be done for `all'.
+Building file: ../src/PITDriver.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../hello_world_bsp_0/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v8.20.b -mno-xl-soft-mul -MMD -MP -MF"src/PITDriver.d" -MT"src/PITDriver.d" -o"src/PITDriver.o" "../src/PITDriver.c"
+../src/PITDriver.c: In function 'pit_setInterval':
+../src/PITDriver.c:32: error: 'XPAR_PIT_0_BASEADDR' undeclared (first use in this function)
+../src/PITDriver.c:32: error: (Each undeclared identifier is reported only once
+../src/PITDriver.c:32: error: for each function it appears in.)
+../src/PITDriver.c: In function 'pit_getInterval':
+../src/PITDriver.c:38: error: 'XPAR_PIT_0_BASEADDR' undeclared (first use in this function)
+../src/PITDriver.c:39: warning: control reaches end of non-void function
+../src/PITDriver.c: In function 'pit_interruptEnable':
+../src/PITDriver.c:44: error: 'XPAR_PIT_0_BASEADDR' undeclared (first use in this function)
+../src/PITDriver.c: In function 'pit_startTimer':
+../src/PITDriver.c:58: error: 'XPAR_PIT_0_BASEADDR' undeclared (first use in this function)
+../src/PITDriver.c: In function 'pit_pauseTimer':
+../src/PITDriver.c:67: error: 'XPAR_PIT_0_BASEADDR' undeclared (first use in this function)
+../src/PITDriver.c: In function 'pit_timerReloadEnable':
+../src/PITDriver.c:75: error: 'XPAR_PIT_0_BASEADDR' undeclared (first use in this function)
+make: *** [src/PITDriver.o] Error 1

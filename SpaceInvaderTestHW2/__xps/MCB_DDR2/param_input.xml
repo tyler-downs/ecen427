@@ -93,7 +93,7 @@
       </spirit:modelParameter>
       <spirit:modelParameter>
         <spirit:name>C_INTERCONNECT_S0_AXI_MASTERS</spirit:name>
-        <spirit:value spirit:format="string" spirit:resolve="OPTIONAL" spirit:id="MCB_DDR2.C_INTERCONNECT_S0_AXI_MASTERS"> "microblaze_0.M_AXI_DC &amp; microblaze_0.M_AXI_IC &amp; axi_vdma_0.M_AXI_MM2S" </spirit:value>
+        <spirit:value spirit:format="string" spirit:resolve="OPTIONAL" spirit:id="MCB_DDR2.C_INTERCONNECT_S0_AXI_MASTERS"> "microblaze_0.M_AXI_DC &amp; microblaze_0.M_AXI_IC &amp; axi_vdma_0.M_AXI_MM2S &amp; dma_controller_0.M_AXI" </spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter>
         <spirit:name>C_INTERCONNECT_S0_AXI_R_REGISTER</spirit:name>

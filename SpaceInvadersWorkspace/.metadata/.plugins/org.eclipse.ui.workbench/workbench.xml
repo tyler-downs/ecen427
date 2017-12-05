@@ -33,21 +33,35 @@
 <part id="0"/>
 <part id="1"/>
 <part id="2"/>
+<part id="3"/>
+<part id="4"/>
+<part id="5"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="xparameters.h" partName="xparameters.h" path="C:/Users/superman/Documents/TylerBondGithub/ecen427/SpaceInvadersWorkspace/hello_world_bsp_0/microblaze_0/include/xparameters.h" title="xparameters.h" tooltip="hello_world_bsp_0/microblaze_0/include/xparameters.h" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/hello_world_bsp_0/microblaze_0/include/xparameters.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="856" selectionTopPixel="0"/>
-</editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="spaceInvadersMain.c" partName="spaceInvadersMain.c" path="C:/Users/superman/Documents/TylerBondGithub/ecen427/SpaceInvadersWorkspace/SpaceInvaders/src/spaceInvadersMain.c" title="spaceInvadersMain.c" tooltip="SpaceInvaders/src/spaceInvadersMain.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SpaceInvaders/src/spaceInvadersMain.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="4057" selectionTopPixel="1176"/>
-</editor>
-<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="PITDriver.c" partName="PITDriver.c" path="C:/Users/superman/Documents/TylerBondGithub/ecen427/SpaceInvadersWorkspace/SpaceInvaders/src/PITDriver.c" title="PITDriver.c" tooltip="SpaceInvaders/src/PITDriver.c" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="PITDriver.c" partName="PITDriver.c" path="C:/Users/superman/Documents/TylerBondGithub/ecen427/SpaceInvadersWorkspace/SpaceInvaders/src/PITDriver.c" title="PITDriver.c" tooltip="SpaceInvaders/src/PITDriver.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SpaceInvaders/src/PITDriver.c"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="82" selectionTopPixel="0"/>
+</editor>
+<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="dma_controller.h" partName="dma_controller.h" path="C:/Users/superman/Documents/TylerBondGithub/ecen427/SpaceInvadersWorkspace/hello_world_dma/src/dma_controller.h" title="dma_controller.h" tooltip="hello_world_dma/src/dma_controller.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/hello_world_dma/src/dma_controller.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="5094" selectionTopPixel="2491"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="dma_controller.c" partName="dma_controller.c" path="C:/Users/superman/Documents/TylerBondGithub/ecen427/SpaceInvadersWorkspace/hello_world_dma/src/dma_controller.c" title="dma_controller.c" tooltip="hello_world_dma/src/dma_controller.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/hello_world_dma/src/dma_controller.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+</editor>
+<editor id="com.xilinx.sdk.sw.MSSEditor" name="system.mss" partName="system.mss" path="C:/Users/superman/Documents/TylerBondGithub/ecen427/SpaceInvadersWorkspace/hello_world_bsp_dma/system.mss" title="system.mss" tooltip="hello_world_bsp_dma/system.mss" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/hello_world_bsp_dma/system.mss"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="helloworld.c" partName="helloworld.c" path="C:/Users/superman/Documents/TylerBondGithub/ecen427/SpaceInvadersWorkspace/hello_world_dma/src/helloworld.c" title="helloworld.c" tooltip="hello_world_dma/src/helloworld.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/hello_world_dma/src/helloworld.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="507" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="xparameters.h" partName="xparameters.h" path="C:/Users/superman/Documents/TylerBondGithub/ecen427/SpaceInvadersWorkspace/hello_world_bsp_dma/microblaze_0/include/xparameters.h" title="xparameters.h" tooltip="hello_world_bsp_dma/microblaze_0/include/xparameters.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/hello_world_bsp_dma/microblaze_0/include/xparameters.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="30" selectionOffset="4826" selectionTopPixel="2159"/>
 </editor>
 </editors>
 <views>
@@ -60,10 +74,10 @@
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
 <expanded>
+<category IMemento.internal.id="Warnings (100 of 108 items)"/>
 <category IMemento.internal.id="Errors"/>
-<category IMemento.internal.id="Warnings"/>
 </expanded>
-<columnWidths org.eclipse.ui.ide.locationField="64" org.eclipse.ui.ide.markerType="94" org.eclipse.ui.ide.pathField="124" org.eclipse.ui.ide.resourceField="94" org.eclipse.ui.ide.severityAndDescriptionField="354"/>
+<columnWidths org.eclipse.ui.ide.locationField="64" org.eclipse.ui.ide.markerType="94" org.eclipse.ui.ide.pathField="124" org.eclipse.ui.ide.resourceField="94" org.eclipse.ui.ide.severityAndDescriptionField="468"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.pathField"/>
@@ -203,167 +217,167 @@
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/SpaceInvaders/src/PITDriver.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_0/src/helloworld.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_0/src/platform.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_0/src/dma_controller.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_0/src/dma_controller.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/SpaceInvaders/src/spaceInvadersMain.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_bsp_0/microblaze_0/include/xparameters.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/SpaceInvaders/src/spaceInvadersMain.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/real_time_clock/src/realtimeclock_main.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/real_time_clock/src/PITDriver.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/real_time_clock/src/sharedGlobals.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/SpaceInvaders/src/PITDriver.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/real_time_clock/src/PITDriver.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/SpaceInvaders/src/PITDriver.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/SpaceInvaders/src/spaceInvadersMain.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/real_time_clock/src/realtimeclock_main.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_0/src/platform.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_0/src/platform_config.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.xilinx.sdk.lscript.editor" path="/hello_world_0/src/lscript.ld"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.xilinx.sdk.sw.MSSEditor" path="/hello_world_bsp_dma/system.mss"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_bsp_dma/microblaze_0/include/xparameters.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_dma/src/helloworld.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_dma/src/dma_controller.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_dma/src/dma_controller.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_bsp_dma/microblaze_0/include/xparameters.h"/>
 </editors>
-<item historyLabel="spaceInvadersMain.c" index="2">
-<position/>
+<item historyLabel="helloworld.c" index="0">
+<position info="not_deleted" x="1085" y="0"/>
 </item>
-<item historyLabel="spaceInvadersMain.c" index="2">
-<position/>
-</item>
-<item historyLabel="PITDriver.c" index="0">
-<position info="not_deleted" x="1546" y="0"/>
-</item>
-<item historyLabel="xparameters.h" index="1">
-<position info="not_deleted" x="1024" y="19"/>
-</item>
-<item historyLabel="PITDriver.c" index="0">
-<position info="not_deleted" x="1546" y="0"/>
-</item>
-<item historyLabel="spaceInvadersMain.c" index="2">
-<position/>
-</item>
-<item historyLabel="xparameters.h" index="1">
-<position info="not_deleted" x="1024" y="19"/>
-</item>
-<item historyLabel="realtimeclock_main.c" index="3">
+<item historyLabel="platform.c" index="1">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="realtimeclock_main.c" index="3">
-<position info="not_deleted" x="6838" y="0"/>
-</item>
-<item historyLabel="spaceInvadersMain.c" index="2">
+<item historyLabel="platform.c" index="1">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="realtimeclock_main.c" index="3">
-<position info="not_deleted" x="6838" y="0"/>
-</item>
-<item historyLabel="spaceInvadersMain.c" index="2">
+<item historyLabel="helloworld.c" index="0">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="realtimeclock_main.c" index="3">
-<position info="not_deleted" x="6838" y="0"/>
-</item>
-<item historyLabel="spaceInvadersMain.c" index="2">
+<item historyLabel="dma_controller.h" index="2">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="realtimeclock_main.c" index="3">
-<position info="not_deleted" x="6838" y="0"/>
-</item>
-<item historyLabel="spaceInvadersMain.c" index="2">
-<position info="not_deleted" x="5720" y="0"/>
-</item>
-<item historyLabel="realtimeclock_main.c" index="3">
-<position info="not_deleted" x="6838" y="0"/>
-</item>
-<item historyLabel="spaceInvadersMain.c" index="2">
-<position info="not_deleted" x="5720" y="0"/>
-</item>
-<item historyLabel="PITDriver.c" index="4">
-<position info="not_deleted" x="658" y="0"/>
-</item>
-<item historyLabel="sharedGlobals.h" index="5">
-<position/>
-</item>
-<item historyLabel="PITDriver.c" index="4">
-<position info="not_deleted" x="658" y="0"/>
-</item>
-<item historyLabel="realtimeclock_main.c" index="3">
-<position info="not_deleted" x="6838" y="0"/>
-</item>
-<item historyLabel="PITDriver.c" index="4">
-<position info="not_deleted" x="658" y="0"/>
-</item>
-<item historyLabel="PITDriver.c" index="6">
-<position/>
-</item>
-<item historyLabel="PITDriver.c" index="4">
-<position info="not_deleted" x="77" y="0"/>
-</item>
-<item historyLabel="PITDriver.c" index="6">
-<position/>
-</item>
-<item historyLabel="PITDriver.c" index="4">
-<position info="not_deleted" x="77" y="0"/>
-</item>
-<item historyLabel="sharedGlobals.h" index="5">
+<item historyLabel="dma_controller.c" index="3">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="PITDriver.c" index="4">
-<position info="not_deleted" x="77" y="0"/>
+<item historyLabel="dma_controller.h" index="2">
+<position info="not_deleted" x="854" y="0"/>
 </item>
-<item historyLabel="PITDriver.c" index="6">
+<item historyLabel="helloworld.c" index="0">
 <position/>
 </item>
-<item historyLabel="PITDriver.c" index="4">
-<position info="not_deleted" x="77" y="0"/>
+<item historyLabel="dma_controller.h" index="2">
+<position info="not_deleted" x="854" y="0"/>
 </item>
-<item historyLabel="PITDriver.c" index="6">
+<item historyLabel="helloworld.c" index="0">
 <position/>
 </item>
-<item historyLabel="PITDriver.h" index="7">
-<position info="not_deleted" x="0" y="810"/>
+<item historyLabel="dma_controller.h" index="2">
+<position info="not_deleted" x="10294" y="29"/>
 </item>
-<item historyLabel="PITDriver.c" index="6">
-<position/>
-</item>
-<item historyLabel="PITDriver.h" index="8">
-<position info="not_deleted" x="810" y="0"/>
-</item>
-<item historyLabel="spaceInvadersMain.c" index="2">
-<position info="not_deleted" x="2369" y="0"/>
-</item>
-<item historyLabel="PITDriver.c" index="6">
-<position/>
-</item>
-<item historyLabel="xparameters.h" index="1">
-<position info="not_deleted" x="1024" y="19"/>
-</item>
-<item historyLabel="spaceInvadersMain.c" index="2">
-<position info="not_deleted" x="2044" y="0"/>
-</item>
-<item historyLabel="PITDriver.c" index="6">
-<position/>
-</item>
-<item historyLabel="xparameters.h" index="1">
-<position info="not_deleted" x="856" y="0"/>
-</item>
-<item historyLabel="spaceInvadersMain.c" index="9">
-<position info="not_deleted" x="5570" y="0"/>
-</item>
-<item historyLabel="PITDriver.c" index="6">
-<position info="not_deleted" x="1041" y="0"/>
-</item>
-<item historyLabel="spaceInvadersMain.c" index="9">
-<position info="not_deleted" x="6036" y="0"/>
-</item>
-<item historyLabel="PITDriver.c" index="6">
-<position info="not_deleted" x="1053" y="15"/>
-</item>
-<item historyLabel="realtimeclock_main.c" index="10">
+<item historyLabel="dma_controller.c" index="3">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="spaceInvadersMain.c" index="9">
-<position info="not_deleted" x="3357" y="0"/>
+<item historyLabel="helloworld.c" index="0">
+<position/>
 </item>
-<item historyLabel="PITDriver.c" index="6">
-<position info="not_deleted" x="1053" y="15"/>
+<item historyLabel="platform.c" index="1">
+<position info="not_deleted" x="1396" y="16"/>
 </item>
-<item historyLabel="spaceInvadersMain.c" index="9">
-<position info="not_deleted" x="4057" y="0"/>
+<item historyLabel="helloworld.c" index="0">
+<position/>
 </item>
-<item active="true" historyLabel="PITDriver.c" index="6">
+<item historyLabel="platform.c" index="1">
+<position info="not_deleted" x="1396" y="16"/>
+</item>
+<item historyLabel="dma_controller.h" index="2">
+<position info="not_deleted" x="10294" y="29"/>
+</item>
+<item historyLabel="helloworld.c" index="0">
+<position/>
+</item>
+<item historyLabel="spaceInvadersMain.c" index="4">
 <position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="helloworld.c" index="0">
+<position/>
+</item>
+<item historyLabel="xparameters.h" index="5">
+<position info="not_deleted" x="4918" y="0"/>
+</item>
+<item historyLabel="helloworld.c" index="0">
+<position/>
+</item>
+<item historyLabel="platform.h" index="6">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="platform.c" index="1">
+<position info="not_deleted" x="1396" y="16"/>
+</item>
+<item historyLabel="platform_config.h" index="7">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="helloworld.c" index="0">
+<position/>
+</item>
+<item historyLabel="dma_controller.h" index="2">
+<position info="not_deleted" x="10294" y="29"/>
+</item>
+<item historyLabel="dma_controller.c" index="3">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="helloworld.c" index="0">
+<position/>
+</item>
+<item historyLabel="platform.h" index="6">
+<position info="not_deleted" x="936" y="0"/>
+</item>
+<item historyLabel="platform.c" index="1">
+<position info="not_deleted" x="2026" y="0"/>
+</item>
+<item historyLabel="helloworld.c" index="0">
+<position/>
+</item>
+<item historyLabel="platform.c" index="1">
+<position info="not_deleted" x="2026" y="0"/>
+</item>
+<item historyLabel="helloworld.c" index="0">
+<position/>
+</item>
+<item historyLabel="lscript.ld" index="8"/>
+<item historyLabel="helloworld.c" index="0">
+<position/>
+</item>
+<item historyLabel="system.mss" index="9"/>
+<item historyLabel="xparameters.h" index="10">
+<position info="not_deleted" x="4797" y="3"/>
+</item>
+<item historyLabel="helloworld.c" index="11">
+<position info="not_deleted" x="0" y="775"/>
+</item>
+<item historyLabel="helloworld.c" index="0">
+<position info="not_deleted" x="1087" y="0"/>
+</item>
+<item historyLabel="helloworld.c" index="11">
+<position info="not_deleted" x="775" y="0"/>
+</item>
+<item historyLabel="helloworld.c" index="0">
+<position info="not_deleted" x="891" y="0"/>
+</item>
+<item historyLabel="helloworld.c" index="11">
+<position info="not_deleted" x="775" y="0"/>
+</item>
+<item historyLabel="dma_controller.h" index="12">
+<position info="not_deleted" x="10294" y="29"/>
+</item>
+<item historyLabel="dma_controller.c" index="13">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="dma_controller.h" index="12">
+<position info="not_deleted" x="10294" y="29"/>
+</item>
+<item historyLabel="helloworld.c" index="11">
+<position info="not_deleted" x="149" y="0"/>
+</item>
+<item historyLabel="xparameters.h" index="14">
+<position info="not_deleted" x="4826" y="30"/>
+</item>
+<item historyLabel="helloworld.c" index="11">
+<position info="not_deleted" x="507" y="0"/>
+</item>
+<item active="true" historyLabel="dma_controller.h" index="12">
+<position info="not_deleted" x="10294" y="29"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -382,6 +396,42 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="xparameters.h" tooltip="hello_world_bsp_dma/microblaze_0/include/xparameters.h">
+<persistable path="/hello_world_bsp_dma/microblaze_0/include/xparameters.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="helloworld.c" tooltip="hello_world_dma/src/helloworld.c">
+<persistable path="/hello_world_dma/src/helloworld.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.xilinx.sdk.sw.MSSEditor" name="system.mss" tooltip="hello_world_bsp_dma/system.mss">
+<persistable path="/hello_world_bsp_dma/system.mss"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.xilinx.sdk.lscript.editor" name="lscript.ld" tooltip="hello_world_0/src/lscript.ld">
+<persistable path="/hello_world_0/src/lscript.ld"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="platform_config.h" tooltip="hello_world_0/src/platform_config.h">
+<persistable path="/hello_world_0/src/platform_config.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="platform.h" tooltip="hello_world_0/src/platform.h">
+<persistable path="/hello_world_0/src/platform.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="xparameters.h" tooltip="hello_world_bsp_0/microblaze_0/include/xparameters.h">
+<persistable path="/hello_world_bsp_0/microblaze_0/include/xparameters.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="dma_controller.c" tooltip="hello_world_0/src/dma_controller.c">
+<persistable path="/hello_world_0/src/dma_controller.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="dma_controller.h" tooltip="hello_world_0/src/dma_controller.h">
+<persistable path="/hello_world_0/src/dma_controller.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="platform.c" tooltip="hello_world_0/src/platform.c">
+<persistable path="/hello_world_0/src/platform.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="helloworld.c" tooltip="hello_world_0/src/helloworld.c">
+<persistable path="/hello_world_0/src/helloworld.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="bullets.c" tooltip="SpaceInvaders/src/bullets.c">
+<persistable path="/SpaceInvaders/src/bullets.c"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="PITDriver.c" tooltip="SpaceInvaders/src/PITDriver.c">
 <persistable path="/SpaceInvaders/src/PITDriver.c"/>
 </file>
@@ -390,42 +440,6 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="spaceInvadersMain.c" tooltip="SpaceInvaders/src/spaceInvadersMain.c">
 <persistable path="/SpaceInvaders/src/spaceInvadersMain.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="PITDriver.h" tooltip="SpaceInvaders/src/PITDriver.h">
-<persistable path="/SpaceInvaders/src/PITDriver.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="PITDriver.h" tooltip="real_time_clock/src/PITDriver.h">
-<persistable path="/real_time_clock/src/PITDriver.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="sharedGlobals.h" tooltip="real_time_clock/src/sharedGlobals.h">
-<persistable path="/real_time_clock/src/sharedGlobals.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="PITDriver.c" tooltip="real_time_clock/src/PITDriver.c">
-<persistable path="/real_time_clock/src/PITDriver.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="counters.c" tooltip="SpaceInvaders/src/counters.c">
-<persistable path="/SpaceInvaders/src/counters.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="xparameters.h" tooltip="hello_world_bsp_0/microblaze_0/include/xparameters.h">
-<persistable path="/hello_world_bsp_0/microblaze_0/include/xparameters.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="renderTest.c" tooltip="SpaceInvaders/src/renderTest.c">
-<persistable path="/SpaceInvaders/src/renderTest.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="sharedGlobals.c" tooltip="real_time_clock/src/sharedGlobals.c">
-<persistable path="/real_time_clock/src/sharedGlobals.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="xparameters.h" tooltip="hello_world_bsp_1/microblaze_0/include/xparameters.h">
-<persistable path="/hello_world_bsp_1/microblaze_0/include/xparameters.h"/>
-</file>
-<file factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stdio.h" tooltip="C:\Xilinx\13.4\ISE_DS\EDK\gnu\microblaze\nt64\microblaze-xilinx-elf\include\stdio.h">
-<persistable path="C:\Xilinx\13.4\ISE_DS\EDK\gnu\microblaze\nt64\microblaze-xilinx-elf\include\stdio.h" project="real_time_clock"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="setTimeSM.c" tooltip="real_time_clock/src/setTimeSM.c">
-<persistable path="/real_time_clock/src/setTimeSM.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="setTimeSM.h" tooltip="real_time_clock/src/setTimeSM.h">
-<persistable path="/real_time_clock/src/setTimeSM.h"/>
 </file>
 </mruList>
 </workbench>

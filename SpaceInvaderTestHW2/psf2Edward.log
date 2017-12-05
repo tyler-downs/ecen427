@@ -41,8 +41,10 @@ WARNING:EDK:1687 - Invalid path specified for ModuleSearchPath in XMP file.
 Checking platform configuration ...
 IPNAME: lmb_v10, INSTANCE: microblaze_0_ilmb - 1 master(s) : 1 slave(s) 
 IPNAME: lmb_v10, INSTANCE: microblaze_0_dlmb - 1 master(s) : 1 slave(s) 
-IPNAME: axi_interconnect, INSTANCE: axi4lite_0 - 1 master(s) : 10 slave(s) 
-IPNAME: axi_interconnect, INSTANCE: axi4_0 - 3 master(s) : 1 slave(s) 
+IPNAME: axi_interconnect, INSTANCE: axi4lite_0 - 1 master(s) : 11 slave(s) 
+IPNAME: axi_interconnect, INSTANCE: axi4_0 - 4 master(s) : 1 slave(s) 
+WARNING:EDK:3977 - AXI4 protocol type BUSIF: S0_AXI of IPINSTANCE: MCB_DDR2 
+   connected with AXI4LITE type BUSIF: M_AXI of IPINSTANCE: dma_controller_0.
 
 Checking port drivers...
 WARNING:EDK:4180 - PORT: bscan_tdo1, CONNECTOR: bscan_tdo1 - No driver found.

@@ -25,6 +25,6 @@ extern void XIntc_DeviceInterruptHandler (void *);
 MB_InterruptVectorTableEntry MB_InterruptVectorTable[] =
 {
 {	XIntc_DeviceInterruptHandler,
-	(void*) XPAR_AXI_INTC_0_DEVICE_ID}
+	(void*) XPAR_MICROBLAZE_0_INTC_DEVICE_ID}
 };
 
